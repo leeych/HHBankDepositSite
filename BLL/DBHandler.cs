@@ -33,7 +33,7 @@ namespace BLL
         /// <returns>用户信息</returns>
         public UserInfo GetUserInfo(string userName, string password)
         {
-            string sql = @"select * from UserInfo where UserName='{0}' and PassWord='{2}' and 1=1";
+            string sql = @"select * from UserInfo where UserName='{0}' and PassWord='{1}' and 1=1";
             string sqlString = string.Format(sql, userName, password);
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
             {

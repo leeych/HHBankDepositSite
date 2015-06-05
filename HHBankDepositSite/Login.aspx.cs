@@ -32,8 +32,7 @@ namespace HHBankDepositSite
             string password = pwdTxt.Text.Trim();
             if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(password))
             {
-                BizHandler handler = new BizHandler();
-                if (handler.IsUserInDB(userName, password))
+                if (BizHandler.Handler.IsUserInDB(userName, password))
                 {
                     Response.Write("<script language='javascript'>alert('登录成功!');</script>");
                     Session["UserName"] = userName;

@@ -7,14 +7,36 @@ using System.Xml;
 
 namespace BLL
 {
-    public class BizHandler
+    public sealed class BizHandler
     {
+        private static BizHandler instance = null;
+        private static readonly object padLock = new object();
+
+        private BizHandler() { }
+
+        public static BizHandler Handler
+        {
+            get
+            {
+                lock (padLock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new BizHandler();
+                    }
+                    return instance;
+                }
+            }
+        }
+
+        private DBHandler dbHandler = new DBHandler();
+
         /// <summary>
         /// 读取.xml利率表中的利率
         /// </summary>
         /// <param name="fileName">利率表所在路径</param>
         /// <returns></returns>
-        public static BankRate GetBankRateTable(string fileName)
+        public BankRate GetBankRateTable(string fileName)
         {
             BankRate rate = new BankRate();
             XmlDocument xmlDoc = new XmlDocument();
@@ -65,8 +87,7 @@ namespace BLL
         /// <returns></returns>
         public bool IsAdminUser(string userName, string password)
         {
-            DBHandler handler = new DBHandler();
-            UserInfo user = handler.GetUserInfo(userName, password);
+            UserInfo user = dbHandler.GetUserInfo(userName, password);
             if (user.Role == UserRole.Admin)
             {
                 return true;
@@ -77,6 +98,15 @@ namespace BLL
             }
         }
 
-
+        /// <summary>
+        /// 根据用户名和密码获取数据库中的用户信息
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public UserInfo GetUserInfo(string userName, string password)
+        {
+            return dbHandler.GetUserInfo(userName, password);
+        }
     }
 }

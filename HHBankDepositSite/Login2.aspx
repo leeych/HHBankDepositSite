@@ -23,7 +23,26 @@
         .auto-style1 {
             width: 275px;
         }
+
+        .txtBox {
+            text-align: center;
+        }
     </style>
+
+    <script type="text/javascript" lang="zh-cn">
+        function is_digit(c_check) {
+            return (('0' <= c_check) && (c_check <= '9'))
+        }
+
+        function is_alpha(c_check) {
+            return ((('a' <= c_check) && (c_check <= 'z')) || (('A' <= c_check) && (c_check <= 'Z')))
+        }
+
+        function is_null(c_check) {
+            return (c_check != "")
+        }
+
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -43,13 +62,13 @@
                 <tr>
                   <td align="right" height="27">用户名：</td>
                   <td align="right" width="161">
-                      <asp:TextBox runat="server" ID="userNameTxt"></asp:TextBox>
+                      <asp:TextBox runat="server" ID="userNameTxt" Font-Names="Courier New" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
                   </td>
                 </tr>
                 <tr>
                   <td align="right" height="27">密 码：</td>
                   <td align="right" width="161">
-                      <asp:TextBox runat="server" ID="passwordTxt"></asp:TextBox>
+                      <asp:TextBox runat="server" ID="passwordTxt" TextMode="Password" Font-Names="Courier New" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
                   </td>
                 </tr>
               </table>
@@ -58,7 +77,7 @@
               <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td align="center" height="30">
-                      <asp:Button runat="server" CssClass="submit" ID="loginBtn" Font-Bold="True" Font-Size="Medium" ForeColor="White" Text="登录" />
+                      <asp:Button runat="server" CssClass="submit" ID="loginBtn" Font-Bold="True" Font-Size="Medium" ForeColor="White" Text="登录" OnClick="loginBtn_Click" />
                   </td>
                 </tr>
                 <tr>
