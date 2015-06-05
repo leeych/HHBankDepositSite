@@ -10,7 +10,6 @@ namespace Common
         private static readonly string LogPath = ".\\Log\\";
         private static readonly string WriteLogStatus = "0";
 
-
         public static void WriteToFile(string logContent, bool success)
         {
             if (WriteLogStatus == "1" || (WriteLogStatus == "2" && !success))

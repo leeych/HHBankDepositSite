@@ -10,7 +10,8 @@ namespace Common
 {
     public static class SqlHelper
     {
-        public static readonly string ConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
+        //public static readonly string ConnectionString = ConfigurationManager.AppSettings["ConnectString"];
+        public static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
         private static ILogger s_Logger;
 
@@ -89,6 +90,33 @@ namespace Common
             {
                 WriteLog("sql语句[{0}]：错误信息[{1}]调用堆栈[{2}]", sqlString, exception.Message, exception.StackTrace);
                 return -1;
+            }
+            finally
+            {
+                cmd.Dispose();
+                connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 执行sql语句，返回结果第一行第一列
+        /// </summary>
+        /// <param name="sqlString">sql语句</param>
+        /// <returns></returns>
+        public static object ExecuteSqlObj(string sqlString)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand(sqlString, connection);
+            try
+            {
+                connection.Open();
+                object obj = cmd.ExecuteScalar();
+                return obj;
+            }
+            catch (Exception exception)
+            {
+                WriteLog("sql语句[{0}]:错误信息[{1}]调用堆栈[{2}]", sqlString, exception.Message, exception.StackTrace);
+                return null;
             }
             finally
             {
@@ -460,6 +488,107 @@ namespace Common
                 {
                     cmd.Parameters.Add(param);
                 }
+            }
+        }
+
+        #endregion
+
+        #region 存储过程
+
+        /// <summary>
+        /// 构建SqlCommand对象（用来返回一个结果集，而不是一个整数）
+        /// </summary>
+        /// <param name="connection">数据库连接</param>
+        /// <param name="storedProcName">存储过程名</param>
+        /// <param name="parameters">存储过程参数</param>
+        /// <returns>SqlCommand</returns>
+        private static SqlCommand BuildQueryCommand(SqlConnection connection, string storedProcName, SqlParameter[] parameters)
+        {
+            SqlCommand command = new SqlCommand(storedProcName, connection);
+            command.CommandType = CommandType.StoredProcedure;
+            foreach (SqlParameter parameter in parameters)
+            {
+                command.Parameters.Add(parameter);
+            }
+            return command;
+        }
+
+        /// <summary>
+        /// 执行存储过程，返回SqlDataReader
+        /// </summary>
+        /// <param name="storedProcName">存储过程名</param>
+        /// <param name="parameters">存储过程参数</param>
+        /// <returns></returns>
+        public static SqlDataReader RunProcedure(string storedProcName, SqlParameter[] parameters)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            SqlCommand cmd = BuildQueryCommand(connection, storedProcName, parameters);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader returnReader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            return returnReader;
+        }
+
+        /// <summary>
+        /// 执行存储过程，返回DataSet
+        /// </summary>
+        /// <param name="storedProcName">存储过程名</param>
+        /// <param name="parameters">存储过程参数</param>
+        /// <param name="tableName">DataSet中的表名</param>
+        /// <returns>DataSet</returns>
+        public static DataSet RunProcedure(string storedProcName, SqlParameter[] parameters, string tableName)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            try
+            {
+                DataSet dataSet = new DataSet();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = BuildQueryCommand(connection, storedProcName, parameters);
+                adapter.Fill(dataSet, tableName);
+                return dataSet;
+            }
+            catch (Exception exception)
+            {
+                WriteLog("RunProcedure错误信息：[{0}]调用堆栈[{1}]", exception.Message, exception.StackTrace);
+                return null;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 创建SqlCommand对象实例（用来返回一个整数值）
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <param name="storedProcName">存储过程名</param>
+        /// <param name="parameters">存储过程参数</param>
+        /// <returns>SqlCommand对象实例</returns>
+        private static SqlCommand BuildIntCommand(SqlConnection connection, string storedProcName, SqlParameter[] parameters)
+        {
+            SqlCommand cmd = BuildQueryCommand(connection, storedProcName, parameters);
+            cmd.Parameters.Add(new SqlParameter("ReturnValue", SqlDbType.Int, 4, ParameterDirection.ReturnValue, false, 0, 0, string.Empty, DataRowVersion.Default, null));
+            return cmd;
+        }
+
+        /// <summary>
+        /// 执行存储过程，返回影响的行数
+        /// </summary>
+        /// <param name="storedProcName">存储过程名</param>
+        /// <param name="parameters">存储过程参数</param>
+        /// <param name="rowsAffected">影响的行数</param>
+        /// <returns>影响的行数</returns>
+        public static int RunProcedure(string storedProcName, SqlParameter[] parameters, out int rowsAffected)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                int result = 0;
+                connection.Open();
+                SqlCommand cmd = BuildIntCommand(connection, storedProcName, parameters);
+                rowsAffected = cmd.ExecuteNonQuery();
+                result = (int)cmd.Parameters["ReturnValue"].Value;
+                return result;
             }
         }
 

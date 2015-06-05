@@ -1,0 +1,9 @@
+E:\workspace\aspnet\HHBankDepositSite\BLL\bin\Debug\BLL.dll
+E:\workspace\aspnet\HHBankDepositSite\BLL\bin\Debug\BLL.pdb
+E:\workspace\aspnet\HHBankDepositSite\BLL\bin\Debug\Common.dll
+E:\workspace\aspnet\HHBankDepositSite\BLL\bin\Debug\Model.dll
+E:\workspace\aspnet\HHBankDepositSite\BLL\bin\Debug\Common.pdb
+E:\workspace\aspnet\HHBankDepositSite\BLL\bin\Debug\Model.pdb
+E:\workspace\aspnet\HHBankDepositSite\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+E:\workspace\aspnet\HHBankDepositSite\BLL\obj\Debug\BLL.dll
+E:\workspace\aspnet\HHBankDepositSite\BLL\obj\Debug\BLL.pdb
