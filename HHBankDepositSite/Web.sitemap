@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode>
+    <siteMapNode url="Default.aspx" title="首页" description="首页" accesskey="H" />
+    <siteMapNode url="Deposit.aspx" title="存入" description="保利存本金存入" accesskey="C" />
+    <siteMapNode url="Draw.aspx" title="支取" description="保利存本息支取" accesskey="Q" />
+    <siteMapNode url="Search.aspx" title="查询" description="查询交易记录" accesskey="S" target="_blank" />
+    <siteMapNode url="Manage.aspx" title="管理" description="柜员管理" accesskey="M" />
+    <siteMapNode url="Logout.aspx" title="退出登录" description="退出系统" accesskey="E" />
+  </siteMapNode>
+</siteMap>
