@@ -55,5 +55,11 @@ namespace HHBankDepositSite
         {
 
         }
+
+        protected void Calendar1_SelectionChanged1(object sender, EventArgs e)
+        {
+            dateTxt.DataBind();
+            dateTxt.Text = Calendar1.SelectedDate.ToString("yyyy-MM-dd");
+        }
     }
 }

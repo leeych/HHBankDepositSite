@@ -11,7 +11,7 @@
         <div style=" width:100%; height:100%;">
         <fieldset style="height:inherit; text-align: center;">
             <legend>交易信息</legend>
-            <table align="center">
+            <table align="center" cellpadding="5px" cellspacing="5px">
                 <tr>
                     <td>协议号：</td>
                     <td><asp:TextBox ID="protocolTxt" runat="server"></asp:TextBox></td>
@@ -41,13 +41,24 @@
                     <td>存入日期：</td>
                     <td>
                         <asp:TextBox ID="dateTxt" runat="server"></asp:TextBox>
-                        <img src="Images/calendar.png" width="26px" height="26px" alt="Calendar" onclick="displayCalendar()" />
+                        <img src="Images/calendar.png" width="25px" height="25px" alt="Calendar" onclick="displayCalendar()" />
                         <div id="datePicker">
-                            <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+                            <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged1" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px">
+                            <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
+                            <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
+                            <OtherMonthDayStyle ForeColor="#999999" />
+                            <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+                            <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
+                            <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
+                            <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
+                            <WeekendDayStyle BackColor="#CCCCFF" />
+                        </asp:Calendar>
                         </div>
                     </td>
                     <td>补息账号：</td>
-                    <td colspan="5" align="left"><asp:TextBox ID="bindAccountTxt" runat="server" style="margin-left: 0px;" Width="247px"></asp:TextBox></td>
+                    <td colspan="5" align="left"><asp:TextBox ID="bindAccountTxt" runat="server" style="margin-left: 0px;" Width="247px"></asp:TextBox>
+
+                    </td>
                 </tr>
             </table>
         </fieldset>
@@ -55,7 +66,7 @@
             <br />
         <fieldset>
         <legend>经办信息</legend>
-        <table align="center">
+        <table align="center" cellpadding="5px" cellspacing="5px">
             <tr>
                 <td>客户身份证：</td>
                 <td><asp:TextBox ID="IDCardTxt" runat="server"></asp:TextBox></td>
