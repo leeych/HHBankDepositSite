@@ -1,56 +1,105 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="HHBankDepositSite._Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="HHBankDepositSite.Login2" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>登录页</title>
-    <style type="text/css">
-        .loginBtn {
-            border-radius: 5px 5px;
-            background-color: rgb(134,220,33);
+    <title>保利存登录页</title>
+    <style>
+        * { margin:0 auto; padding:0; border:0;}
+        body { background:#0462A5; font:12px "宋体"; color:#004C7E;}
+        input { border:1px solid #004C7E;
+            height: 28px;
+            width: 187px;
+        }
+        .main { background:url(images/bg.jpg) repeat-x; height:600px;}
+        .login { background:#DDF1FE; width:468px; height:262px; border:1px solid #000;}
+        .top { background:url(images/login_bg.jpg) repeat-x; width:464px; height:113px; border:1px solid #2376B1; margin-top:1px;}
+        .logo { background:url(images/hhbank.png) no-repeat; width:214px; height:42px; float:left; margin:29px 0 0 14px;}
+        .lable { background:url(images/lable.png) no-repeat; width:157px; height:32px; float:right; margin:81px 31px 0 0;}
+        .submit { background:url(images/btn-bg.png) no-repeat; width:71px; height:24px; border:0;} 
+        .reset { background:url(images/btn-bg.png) no-repeat; width:71px; height:24px; border:0;} 
+        .auto-style1 {
+            width: 275px;
         }
 
-        .textBox {
-            border-radius: 5px 5px;
+        .txtBox {
             text-align: center;
         }
+    </style>
 
-        .central {
-            margin: 0 auto;
-            width: 800px;
-            height: 600px;
-            background-color: lightgrey;
-            background-image: url(~/Images/loginbg.png);
+    <script type="text/javascript" lang="zh-cn">
+        function is_digit(c_check) {
+            return (('0' <= c_check) && (c_check <= '9'))
         }
 
-    </style>
-</head>
-<body style="vertical-align: middle;">
-    <form id="form1" runat="server">
-    <div class="central">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        function is_alpha(c_check) {
+            return ((('a' <= c_check) && (c_check <= 'z')) || (('A' <= c_check) && (c_check <= 'Z')))
+        }
 
-        <div id="userName" style="width: 800px; height:50px; text-align:center;">
-            &nbsp;<asp:Label ID="userNameLabel" runat="server" Font-Names="华文楷体" Font-Size="25px" Text="用户名："></asp:Label>
-            <asp:TextBox ID="userNameTxt" runat="server" Height="26px" Width="200px" Font-Names="微软雅黑" Font-Size="23px" CssClass="textBox"></asp:TextBox>
+        function is_null(c_check) {
+            return (c_check != "")
+        }
+
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <table width="100%" class="main" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <div class="login">
+        <div class="top">
+          <div class="logo"></div>
+          <div class="lable"></div>
         </div>
-        <div id="password" style="width: 800px; height:50px; text-align: center;">
-            &nbsp;<asp:Label ID="pwdLabel" runat="server" Font-Names="华文楷体" Font-Size="25px" Text="密　码："></asp:Label>
-            <asp:TextBox ID="pwdTxt" runat="server" Height="26px" TextMode="Password" Width="200px" Font-Size="23px" CssClass="textBox"></asp:TextBox>
-        </div>
-        <div id="btn" style="width:800px; height: 50px; text-align:center; padding-top:5px;">
-            <asp:Button ID="btnLogin" runat="server" Text="登 录" Font-Size="20px" Height="40px" Width="90px" CssClass="loginBtn" Font-Names="华文楷体" OnClick="btnLogin_Click" />&nbsp;&nbsp;
-            <asp:Button ID="btnCancel" runat="server" Text="取 消" Font-Size="20px" Height="40px" Width="90px" CssClass="loginBtn" Font-Names="华文楷体" OnClick="btnCancel_Click" />
-            <asp:Button ID="testBtn" runat="server" OnClick="testBtn_Click" Text="test" />
-        </div>
+        <table width="468" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="padding-top:17px;" class="auto-style1">
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="right" height="27">用户名：</td>
+                  <td align="right" width="161">
+                      <asp:TextBox runat="server" ID="userNameTxt" Font-Names="Arial" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right" height="27">密 码：</td>
+                  <td align="right" width="161">
+                      <asp:TextBox runat="server" ID="passwordTxt" TextMode="Password" Font-Names="Arial" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td style="padding-top:17px;">
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center" height="30">
+                      <asp:Button runat="server" CssClass="submit" ID="loginBtn" Font-Bold="True" Font-Size="Medium" ForeColor="White" Text="登录" OnClick="loginBtn_Click" />
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" height="30">
+                    <%--<input name="reset" type="button" class="reset" />--%>
+                      <asp:Button runat="server" CssClass="reset" ID="resetBtn" Font-Bold="True" Font-Size="Medium" ForeColor="White" Text="取消" />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:28px;">
+          <tr>
+            <td align="center"><h4>Copyright 2015 淮河银行</h4></td>
+          </tr>
+        </table>
+      </div>
+      <!--login -->
+    </td>
+  </tr>
+</table>
     </div>
     </form>
 </body>

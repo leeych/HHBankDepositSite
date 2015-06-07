@@ -1,61 +1,57 @@
-﻿using HHBankDepositSite;
-using BLL;
-using System;
+﻿using System;
 using System.Collections.Generic;
+
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Model;
+
+using BLL;
 
 namespace HHBankDepositSite
 {
-    public partial class _Default : System.Web.UI.Page
+    public partial class Login2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-            
-        }
+        { }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            userNameTxt.Text = string.Empty;
-            pwdTxt.Text = string.Empty;
-        }
-
-        protected void btnLogin_Click(object sender, EventArgs e)
+        protected void loginBtn_Click(object sender, EventArgs e)
         {
             if (Session["UserName"] != null)
             {
                 Session["UserName"] = null;
             }
+
             string userName = userNameTxt.Text.Trim();
-            string password = pwdTxt.Text.Trim();
+            string password = passwordTxt.Text.Trim();
+            if (string.IsNullOrEmpty(userName))
+            {
+                Response.Write("<script language='javascript'>alert('用户名不能为空！')</script>");
+                return;
+            }
+            if (string.IsNullOrEmpty(password))
+            {
+                Response.Write("<script language='javascript'>alert('密码不能为空！')</script>");
+                return;
+            }
+
             if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(password))
             {
-                if (BizHandler.Handler.IsUserInDB(userName, password))
+                if (!BizHandler.Handler.IsUserInDB(userName, password))
                 {
-                    Response.Write("<script language='javascript'>alert('登录成功!');</script>");
+                    Response.Write("<script language='javascript'>alert('用户名不存在！')</script>");
+                }
+                else if (BizHandler.Handler.IsAdminUser(userName, password))
+                {
                     Session["UserName"] = userName;
                     Session["Password"] = password;
+                    Response.Redirect("~/Admin/Administor.aspx");
                 }
                 else
                 {
-                    Response.Write("<script language='javascript'>alert('登录失败!');</script>");
+                    Session["UserName"] = userName;
+                    Session["Password"] = password;
+                    Response.Redirect("Default.aspx");
                 }
-            }
-            else
-            {
-                Response.Write("<script language='javascript'>alert('用户名和密码不能空！');</script>");
-            }
-        }
-
-        protected void testBtn_Click(object sender, EventArgs e)
-        {
-            DBHandler handler = new DBHandler();
-            List<DepositRecord> recordList = handler.GetRecordByAccount("10003638572510200000141", "3404157871");
-            foreach (DepositRecord record in recordList)
-            {
-                Response.Write(record);
             }
         }
     }

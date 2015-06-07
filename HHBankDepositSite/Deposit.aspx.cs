@@ -61,5 +61,34 @@ namespace HHBankDepositSite
             dateTxt.DataBind();
             dateTxt.Text = Calendar1.SelectedDate.ToString("yyyy-MM-dd");
         }
+
+        protected void depositBtn_Click(object sender, EventArgs e)
+        {
+            string protocolID = protocolTxt.Text.Trim();
+            string billAccount = billAccountTxt.Text.Trim();
+            string billCode = billCodeTxt.Text.Trim();
+            int period = periodDrop.SelectedIndex;
+            decimal rate = decimal.Parse(rateTxt.Text.Trim());
+            decimal money = decimal.Parse(moneyTxt.Text.Trim());
+            DateTime depositDate = DateTime.Parse(dateTxt.Text.Trim() + "T00:00:00");
+            string bindAccount = bindAccountTxt.Text.Trim();
+            string orgCode = Session["UserName"].ToString();
+            string tellerCode = tellerCodeTxt.Text.Trim();
+            string idCard = IDCardTxt.Text.Trim();
+            string name = nameTxt.Text.Trim();
+            string remark = remarkTxt.Text.Trim();
+
+            DepositRecord record = new DepositRecord 
+                                        {
+                                            ProtocolID = protocolID,
+
+                                        };
+            // TODO: left to be done.
+        }
+
+        protected void cancelBtn_Click(object sender, EventArgs e)
+        {
+            // TODO: left to be done.
+        }
     }
 }

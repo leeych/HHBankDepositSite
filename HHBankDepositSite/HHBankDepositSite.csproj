@@ -74,7 +74,6 @@
     <Content Include="Images\sub.gif" />
     <Content Include="Images\submit.gif" />
     <Content Include="Login.aspx" />
-    <Content Include="Login2.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Main.aspx" />
     <Content Include="Manage.aspx" />
@@ -111,18 +110,11 @@
       <DependentUpon>Draw.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login2.aspx.cs">
-      <DependentUpon>Login2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login2.aspx.designer.cs">
-      <DependentUpon>Login2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>

@@ -4,6 +4,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script type="text/javascript">
         function displayCalendar() {
+            if (datePicker.style.display == 'block') {
+                datePicker.style.display = 'none';
+                return;
+            }
             var dataPicker = document.getElementById('datePicker');
             datePicker.style.display = 'block';
         }
@@ -23,7 +27,7 @@
                 <tr>
                     <td>约定存期：</td>
                     <td>
-                        <asp:DropDownList ID="periodDrop" runat="server" Height="25px" style="margin-left: 0px" Width="108px" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True">
+                        <asp:DropDownList ID="periodDrop" runat="server" Height="19px" style="margin-left: 0px" Width="148px" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem>三个月</asp:ListItem>
                             <asp:ListItem>六个月</asp:ListItem>
                             <asp:ListItem>一年</asp:ListItem>
@@ -39,20 +43,22 @@
                 </tr>
                 <tr>
                     <td>存入日期：</td>
-                    <td>
-                        <asp:TextBox ID="dateTxt" runat="server"></asp:TextBox>
-                        <img src="Images/calendar.png" width="25px" height="25px" alt="Calendar" onclick="displayCalendar()" />
-                        <div id="datePicker">
-                            <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged1" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px">
-                            <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
-                            <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
-                            <OtherMonthDayStyle ForeColor="#999999" />
-                            <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-                            <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
-                            <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
-                            <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
-                            <WeekendDayStyle BackColor="#CCCCFF" />
-                        </asp:Calendar>
+                    <td style="width: 148px;">
+                        <div style="display: inline;">
+                            <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" Width="108px"></asp:TextBox>
+                            <img src="Images/calendar.png" width="20px" height="20px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/>
+                            <div id="datePicker">
+                                <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged1" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px">
+                                <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
+                                <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
+                                <OtherMonthDayStyle ForeColor="#999999" />
+                                <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+                                <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
+                                <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
+                                <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
+                                <WeekendDayStyle BackColor="#CCCCFF" />
+                            </asp:Calendar>
+                        </div>
                         </div>
                     </td>
                     <td>补息账号：</td>
@@ -81,13 +87,13 @@
             </tr>
         </table>
         </fieldset>
-            <fieldset>
+            <fieldset style="vertical-align: middle; text-align: center;">
                 <legend></legend>
-                <div id="bottom" style="display: inline;">
-                    <div style="float: left;"><asp:Button ID="depositBtn" runat="server" Text="存入" Height="30px" Width="100px" /></div>
-                    <div style="float: right;"><asp:Button ID="cancelBtn" runat="server" Text="取消" Height="30px" Width="100px" /></div>
+                <div id="bottom" style="display: inline; margin: 0px auto;">
+                    <span><asp:Button ID="depositBtn" runat="server" Text="存入" Height="30px" Width="100px" CssClass="aspBtn" OnClick="depositBtn_Click"/></span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span><asp:Button ID="cancelBtn" runat="server" Text="取消" Height="30px" Width="100px" CssClass="aspBtn" OnClick="cancelBtn_Click"/></span>
                 </div>
-                
             </fieldset>
     </div>
 

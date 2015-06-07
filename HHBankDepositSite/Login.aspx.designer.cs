@@ -10,7 +10,7 @@
 namespace HHBankDepositSite {
     
     
-    public partial class _Default {
+    public partial class Login2 {
         
         /// <summary>
         /// form1 控件。
@@ -22,15 +22,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// userNameLabel 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label userNameLabel;
-        
-        /// <summary>
         /// userNameTxt 控件。
         /// </summary>
         /// <remarks>
@@ -40,48 +31,30 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox userNameTxt;
         
         /// <summary>
-        /// pwdLabel 控件。
+        /// passwordTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label pwdLabel;
+        protected global::System.Web.UI.WebControls.TextBox passwordTxt;
         
         /// <summary>
-        /// pwdTxt 控件。
+        /// loginBtn 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pwdTxt;
+        protected global::System.Web.UI.WebControls.Button loginBtn;
         
         /// <summary>
-        /// btnLogin 控件。
+        /// resetBtn 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
-        
-        /// <summary>
-        /// btnCancel 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
-        
-        /// <summary>
-        /// testBtn 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button testBtn;
+        protected global::System.Web.UI.WebControls.Button resetBtn;
     }
 }
