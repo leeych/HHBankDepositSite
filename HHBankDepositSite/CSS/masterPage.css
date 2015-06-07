@@ -93,6 +93,12 @@ font-size:10pt;
     background-color: white;
 }
 
+.red-star {
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .content {
     width: 400px;
     background-color: white;
@@ -107,4 +113,21 @@ html {
 .aspBtn {
     border-radius: 10px;
     border: double;
+    background-image: url(../Images/login_bg.jpg);
+}
+
+.aspTextBox {
+    border-radius: 3px;
+    border: 1px solid #CDCDCD;
+    height: 24px;
+    width: 160px;
+    font-size: 14px;
+}
+
+.aspTextBoxShort {
+    border-radius: 3px;
+    border: 1px solid #CDCDCD;
+    height: 25px;
+    width: 100%;
+    font-size: 16px;
 }

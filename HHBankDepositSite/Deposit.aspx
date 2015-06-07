@@ -12,22 +12,22 @@
             datePicker.style.display = 'block';
         }
     </script>
-        <div style=" width:100%; height:100%;">
+        <div style="width:100%; height:100%;">
         <fieldset style="height:inherit; text-align: center;">
             <legend>交易信息</legend>
-            <table align="center" cellpadding="5px" cellspacing="5px">
+            <table align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5; border-spacing: 0px;">
                 <tr>
-                    <td>协议号：</td>
-                    <td><asp:TextBox ID="protocolTxt" runat="server"></asp:TextBox></td>
-                    <td>存单账号：</td>
-                    <td><asp:TextBox ID="billAccountTxt" runat="server"></asp:TextBox></td>
-                    <td>凭证号码：</td>
-                    <td><asp:TextBox ID="billCodeTxt" runat="server"></asp:TextBox></td>
+                    <td><span class="red-star">*</span>协议号：</td>
+                    <td><asp:TextBox ID="protocolTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
+                    <td><span class="red-star">*</span>存单账号：</td>
+                    <td><asp:TextBox ID="billAccountTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
+                    <td><span class="red-star">*</span>凭证号码：</td>
+                    <td><asp:TextBox ID="billCodeTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td>约定存期：</td>
+                    <td><span class="red-star">*</span>约定存期：</td>
                     <td>
-                        <asp:DropDownList ID="periodDrop" runat="server" Height="19px" style="margin-left: 0px" Width="148px" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True">
+                        <asp:DropDownList ID="periodDrop" runat="server" Height="19px" style="margin-left: 0px" Width="148px" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True" CssClass="aspTextBoxShort">
                             <asp:ListItem>三个月</asp:ListItem>
                             <asp:ListItem>六个月</asp:ListItem>
                             <asp:ListItem>一年</asp:ListItem>
@@ -37,16 +37,16 @@
                         </asp:DropDownList>
                     </td>
                     <td>约定利率：</td>
-                    <td><asp:TextBox ID="rateTxt" runat="server" Width="131px" OnTextChanged="rateTxt_TextChanged"></asp:TextBox>%</td>
-                    <td>存入金额：</td>
-                    <td><asp:TextBox ID="moneyTxt" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="rateTxt" runat="server" Width="131px" OnTextChanged="rateTxt_TextChanged" CssClass="aspTextBoxShort"></asp:TextBox>%</td>
+                    <td><span class="red-star">*</span>存入金额：</td>
+                    <td><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td>存入日期：</td>
+                    <td><span class="red-star">*</span>存入日期：</td>
                     <td style="width: 148px;">
                         <div style="display: inline;">
-                            <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" Width="108px"></asp:TextBox>
-                            <img src="Images/calendar.png" width="20px" height="20px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/>
+                            <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" Width="108px" CssClass="aspTextBoxShort"></asp:TextBox>
+                            <img src="Images/calendar.png" width="24px" height="24px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/>
                             <div id="datePicker">
                                 <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged1" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px">
                                 <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
@@ -61,8 +61,8 @@
                         </div>
                         </div>
                     </td>
-                    <td>补息账号：</td>
-                    <td colspan="5" align="left"><asp:TextBox ID="bindAccountTxt" runat="server" style="margin-left: 0px;" Width="247px"></asp:TextBox>
+                    <td><span class="red-star">*</span>补息账号：</td>
+                    <td colspan="5" align="left"><asp:TextBox ID="bindAccountTxt" runat="server" style="margin-left: 0px;" Width="299px" CssClass="aspTextBox"></asp:TextBox>
 
                     </td>
                 </tr>
@@ -72,14 +72,14 @@
             <br />
         <fieldset>
         <legend>经办信息</legend>
-        <table align="center" cellpadding="5px" cellspacing="5px">
+        <table align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5;">
             <tr>
-                <td>客户身份证：</td>
-                <td><asp:TextBox ID="IDCardTxt" runat="server"></asp:TextBox></td>
-                <td>客户姓名：</td>
-                <td><asp:TextBox ID="nameTxt" runat="server"></asp:TextBox></td>
-                <td>经办柜员号：</td>
-                <td><asp:TextBox ID="tellerCodeTxt" runat="server"></asp:TextBox></td>
+                <td><span class="red-star">*</span>客户身份证：</td>
+                <td><asp:TextBox ID="IDCardTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><span class="red-star">*</span>客户姓名：</td>
+                <td><asp:TextBox ID="nameTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><span class="red-star">*</span>经办柜员号：</td>
+                <td><asp:TextBox ID="tellerCodeTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
             </tr>
             <tr>
                 <td>备注</td>
