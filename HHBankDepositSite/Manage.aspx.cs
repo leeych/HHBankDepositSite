@@ -10,7 +10,65 @@ namespace HHBankDepositSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserName"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
+        }
 
+        protected void okBtn_Click(object sender, EventArgs e)
+        {
+            string userName = userNameTxt.Text.Trim();
+            string password = oldpwdTxt.Text.Trim();
+            string newpwd = newpwdTxt.Text.Trim();
+            string surepwd = surepwdTxt.Text.Trim();
+            if (string.IsNullOrEmpty(userName))
+            {
+                Response.Write("<script language='javascript'>alert('请输入用户名！')</script>");
+                return;
+            }
+            if (string.IsNullOrEmpty(password))
+            {
+                Response.Write("<script language='javascript'>alert('请输入原密码！')</script>");
+                return;
+            }
+            if (string.IsNullOrEmpty(newpwd))
+            {
+                Response.Write("<script language='javascript'>alert('请输入新密码！')</script>");
+                return;
+            }
+            if (string.IsNullOrEmpty(surepwd))
+            {
+                Response.Write("<script language='javascript'>alert('请输入确认密码！')</script>");
+                return;
+            }
+            // TODO: left to be done.
+        }
+
+        protected void cancelBtn_Click(object sender, EventArgs e)
+        {
+            if (Session["UserName"] == null)
+            {
+                Session["Password"] = null;
+                Response.Redirect("~/Login.aspx");
+            }
+            ClearTextBox();
+        }
+
+        private void TextBoxDataBind()
+        {
+            userNameTxt.DataBind();
+            oldpwdTxt.DataBind();
+            newpwdTxt.DataBind();
+            surepwdTxt.DataBind();
+        }
+
+        private void ClearTextBox()
+        {
+            userNameTxt.Text = string.Empty;
+            oldpwdTxt.Text = string.Empty;
+            newpwdTxt.Text = string.Empty;
+            surepwdTxt.Text = string.Empty;
         }
     }
 }

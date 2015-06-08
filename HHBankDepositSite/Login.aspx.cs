@@ -9,7 +9,7 @@ using BLL;
 
 namespace HHBankDepositSite
 {
-    public partial class Login2 : System.Web.UI.Page
+    public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         { }
@@ -50,7 +50,7 @@ namespace HHBankDepositSite
                 {
                     Session["UserName"] = userName;
                     Session["Password"] = password;
-                    Response.Redirect("Default.aspx");
+                    Response.Redirect("~/Default.aspx");
                 }
             }
         }

@@ -13,14 +13,15 @@
         }
     </script>
         <div style="width:100%; height:100%;">
-        <fieldset style="height:inherit; text-align: center;">
-            <legend>交易信息</legend>
+            <br />
+        <fieldset class="fieldSetStyle">
+            <legend class="legendStyle">交易信息</legend>
             <table align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5; border-spacing: 0px;">
                 <tr>
                     <td><span class="red-star">*</span>协议号：</td>
                     <td><asp:TextBox ID="protocolTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
                     <td><span class="red-star">*</span>存单账号：</td>
-                    <td><asp:TextBox ID="billAccountTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
+                    <td><asp:TextBox ID="billAccountTxt" runat="server" CssClass="aspBillAccount" Width="200px"></asp:TextBox></td>
                     <td><span class="red-star">*</span>凭证号码：</td>
                     <td><asp:TextBox ID="billCodeTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
                 </tr>
@@ -37,7 +38,7 @@
                         </asp:DropDownList>
                     </td>
                     <td>约定利率：</td>
-                    <td><asp:TextBox ID="rateTxt" runat="server" Width="131px" OnTextChanged="rateTxt_TextChanged" CssClass="aspTextBoxShort"></asp:TextBox>%</td>
+                    <td><asp:TextBox ID="rateTxt" runat="server" Width="131px" OnTextChanged="rateTxt_TextChanged" CssClass="aspTextBoxShort"></asp:TextBox><span class="per-cent">%</span></td>
                     <td><span class="red-star">*</span>存入金额：</td>
                     <td><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort"></asp:TextBox></td>
                 </tr>
@@ -69,26 +70,25 @@
             </table>
         </fieldset>
             <br />
-            <br />
-        <fieldset>
-        <legend>经办信息</legend>
+        <fieldset class="fieldSetStyle">
+        <legend class="legendStyle">经办信息</legend>
         <table align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5;">
             <tr>
-                <td><span class="red-star">*</span>客户身份证：</td>
-                <td><asp:TextBox ID="IDCardTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
                 <td><span class="red-star">*</span>客户姓名：</td>
                 <td><asp:TextBox ID="nameTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
-                <td><span class="red-star">*</span>经办柜员号：</td>
-                <td><asp:TextBox ID="tellerCodeTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><span class="red-star">*</span>客户身份证：</td>
+                <td><asp:TextBox ID="IDCardTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><span class="red-star">*</span>经办柜员：</td>
+                <td><asp:TextBox ID="tellerCodeTxt" runat="server" CssClass="aspTextBox" Width="152px"></asp:TextBox></td>
             </tr>
             <tr>
                 <td>备注</td>
-                <td colspan="5"><asp:TextBox runat="server" Height="63px" Width="623px" TextMode="MultiLine" ID="remarkTxt"></asp:TextBox></td>
+                <td colspan="5"><asp:TextBox runat="server" Height="63px" Width="684px" TextMode="MultiLine" ID="remarkTxt"></asp:TextBox></td>
             </tr>
         </table>
         </fieldset>
-            <fieldset style="vertical-align: middle; text-align: center;">
-                <legend></legend>
+            <fieldset class="fieldSetStyle" style="text-align: center; vertical-align: middle;">
+                <legend class="legendStyle" style="text-align: center; vertical-align: middle; width: 0px;"></legend>
                 <div id="bottom" style="display: inline; margin: 0px auto;">
                     <span><asp:Button ID="depositBtn" runat="server" Text="存入" Height="30px" Width="100px" CssClass="aspBtn" OnClick="depositBtn_Click"/></span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>

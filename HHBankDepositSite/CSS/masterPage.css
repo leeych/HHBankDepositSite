@@ -30,7 +30,6 @@ position:relative;
 
 .background {
 border:solid 1px #000;
-/* background-image:url(../Images/bg-black.gif); */
 background-image: url('../Images/login_bg.jpg');
 height: 60px;
 }
@@ -41,7 +40,6 @@ font-size:18pt;
 color:#FFF;
 font-weight:600;
 z-index:101;
-/* background-image:url(../Images/bg-black.gif); */
 background-image: url(../Images/login_bg.jpg);
 }
 
@@ -58,7 +56,6 @@ padding:0 0 1px;
 
 .menuItemMouseOver,.menuItemSelected {
 border:solid 1px Navy;
-/* background-image:url(../Images/bg-black.gif); */
 background-image: url(../Images/login_bg.jpg);
 }
 
@@ -75,7 +72,7 @@ font-size:10pt;
 }
 
 #footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     margin: 10px auto 0 auto;
@@ -110,6 +107,16 @@ html {
     background-color: rgb(221,241,254);
 }
 
+.legendStyle {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.fieldSetStyle {
+    border: 1px solid rgb(70,132,175);
+}
+
 .aspBtn {
     border-radius: 10px;
     border: double;
@@ -119,15 +126,36 @@ html {
 .aspTextBox {
     border-radius: 3px;
     border: 1px solid #CDCDCD;
-    height: 24px;
+    font-size: 18px;
     width: 160px;
-    font-size: 14px;
+    height: 30px;
 }
 
 .aspTextBoxShort {
     border-radius: 3px;
     border: 1px solid #CDCDCD;
+    width: 100%;
+    height: 30px;
+    font-size: 16px;
+}
+
+.aspBillAccount {
+    border-radius: 3px;
+    border: 1px solid #CDCDCD;
+    width: 180px;
+    height: 30px;
+    font-size: 18px;
+}
+
+.aspMargin {
+    border-radius: 3px;
+    border: 1px solid #CDCDCD;
     height: 25px;
     width: 100%;
-    font-size: 16px;
+    font-size: 20px;
+}
+
+.per-cent {
+    height: 30px;
+    font-size: 18px;
 }

@@ -10,7 +10,7 @@
 namespace HHBankDepositSite {
     
     
-    public partial class Login2 {
+    public partial class Login {
         
         /// <summary>
         /// form1 控件。

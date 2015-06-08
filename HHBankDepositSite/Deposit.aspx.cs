@@ -20,6 +20,8 @@ namespace HHBankDepositSite
         {
             bankRate = BizHandler.Handler.GetBankRateTable(bankRatePath);
             periodDrop_SelectedIndexChanged(sender, e);
+            TextBoxDataBind();
+            ClearEditableCtrls();
         }
 
         protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)
@@ -64,6 +66,17 @@ namespace HHBankDepositSite
 
         protected void depositBtn_Click(object sender, EventArgs e)
         {
+            if (Session["UserName"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+
+            if (ValidatePage())
+            {
+                Response.Write("<script language='javascript'>alert('标 * 的为必填项！')</script>");
+                return;
+            }
             string protocolID = protocolTxt.Text.Trim();
             string billAccount = billAccountTxt.Text.Trim();
             string billCode = billCodeTxt.Text.Trim();
@@ -81,14 +94,96 @@ namespace HHBankDepositSite
             DepositRecord record = new DepositRecord 
                                         {
                                             ProtocolID = protocolID,
-
+                                            BillAccount = billAccount,
+                                            BillCode = billCode,
+                                            DepositDate = depositDate,
+                                            OrgCode = orgCode,
+                                            Period = period,
+                                            TellerCode = tellerCode,
+                                            DepositorIDCard = idCard,
+                                            DepositorName = name,
+                                            DepositMoney = money,
+                                            BindAccount = bindAccount,
+                                            Remark = remark
                                         };
-            // TODO: left to be done.
+            if (BizHandler.Handler.AddDepositRecord(record) == 1)
+            {
+                Response.Write("<script language='javascript'>alert('存款记录添加成功！');</script>");
+                EnableEditableCtrls(false);
+                return;
+            }
         }
 
         protected void cancelBtn_Click(object sender, EventArgs e)
         {
-            // TODO: left to be done.
+            if (Session["UserName"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
+
+            ClearEditableCtrls();
+            EnableEditableCtrls(true);
+        }
+
+        private bool ValidatePage()
+        {
+            if (string.IsNullOrEmpty(protocolTxt.Text.Trim()) || string.IsNullOrEmpty(billAccountTxt.Text.Trim()) || string.IsNullOrEmpty(billCodeTxt.Text.Trim()) 
+                || string.IsNullOrEmpty(rateTxt.Text.Trim()) || string.IsNullOrEmpty(dateTxt.Text.Trim()) || string.IsNullOrEmpty(bindAccountTxt.Text.Trim()) 
+                || string.IsNullOrEmpty(IDCardTxt.Text.Trim()) || string.IsNullOrEmpty(nameTxt.Text.Trim()) || string.IsNullOrEmpty(tellerCodeTxt.Text.Trim()))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void TextBoxDataBind()
+        {
+            protocolTxt.DataBind();
+            billAccountTxt.DataBind();
+            billCodeTxt.DataBind();
+            periodDrop.DataBind();
+            rateTxt.DataBind();
+            moneyTxt.DataBind();
+            dateTxt.DataBind();
+            bindAccountTxt.DataBind();
+            tellerCodeTxt.DataBind();
+            IDCardTxt.DataBind();
+            nameTxt.DataBind();
+            remarkTxt.DataBind();
+        }
+
+        private void ClearEditableCtrls()
+        {
+            protocolTxt.Text = string.Empty;
+            billAccountTxt.Text = string.Empty;
+            billCodeTxt.Text = string.Empty;
+            periodDrop.SelectedIndex = 0;
+            rateTxt.Text = string.Empty;
+            moneyTxt.Text = string.Empty;
+            dateTxt.Text = string.Empty;
+            bindAccountTxt.Text = string.Empty;
+            tellerCodeTxt.Text = string.Empty;
+            IDCardTxt.Text = string.Empty;
+            nameTxt.Text = string.Empty;
+            remarkTxt.Text = string.Empty;
+        }
+
+        private void EnableEditableCtrls(bool enable)
+        {
+            protocolTxt.Enabled = enable;
+            billAccountTxt.Enabled = enable;
+            billCodeTxt.Enabled = enable;
+            periodDrop.Enabled = enable;
+            rateTxt.Enabled = enable;
+            moneyTxt.Enabled = enable;
+            dateTxt.Enabled = enable;
+            bindAccountTxt.Enabled = enable;
+            tellerCodeTxt.Enabled = enable;
+            IDCardTxt.Enabled = enable;
+            nameTxt.Enabled = enable;
+            remarkTxt.Enabled = enable;
+            depositBtn.Enabled = enable;
+            cancelBtn.Enabled = enable;
         }
     }
 }

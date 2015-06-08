@@ -108,5 +108,20 @@ namespace BLL
         {
             return dbHandler.GetUserInfo(userName, password);
         }
+
+        /// <summary>
+        /// 数据库中增加一条存款记录
+        /// </summary>
+        /// <param name="record">存款记录</param>
+        /// <returns>返回影响的行数</returns>
+        public int AddDepositRecord(DepositRecord record)
+        {
+            if (string.IsNullOrEmpty(record.OrgCode))
+            {
+                return -2;
+            }
+            int rows = dbHandler.AddDepositRecord(record, record.OrgCode);
+            return rows;
+        }
     }
 }
