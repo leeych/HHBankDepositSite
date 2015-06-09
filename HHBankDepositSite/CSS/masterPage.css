@@ -118,9 +118,11 @@ html {
 }
 
 .aspBtn {
-    border-radius: 10px;
+    border-radius: 5px;
     border: double;
     background-image: url(../Images/login_bg.jpg);
+    height: 30px;
+    width: 100px;
 }
 
 .aspTextBox {

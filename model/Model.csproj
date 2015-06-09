@@ -39,6 +39,7 @@
     <Compile Include="BankRateNode.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DrawFlag.cs" />
+    <Compile Include="OrgInfo.cs" />
     <Compile Include="Period.cs" />
     <Compile Include="DepositRecord.cs" />
     <Compile Include="PeriodDescriptor.cs" />

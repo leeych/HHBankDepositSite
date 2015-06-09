@@ -18,15 +18,14 @@ namespace HHBankDepositSite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            bankRate = BizHandler.Handler.GetBankRateTable(bankRatePath);
-            periodDrop_SelectedIndexChanged(sender, e);
             TextBoxDataBind();
             ClearEditableCtrls();
+            bankRate = BizHandler.Handler.GetBankRateTable(bankRatePath);
+            periodDrop_SelectedIndexChanged(sender, e);
         }
 
         protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            rateTxt.DataBind();
             switch (periodDrop.SelectedIndex)
             {
                 case 0:
@@ -60,7 +59,6 @@ namespace HHBankDepositSite
 
         protected void Calendar1_SelectionChanged1(object sender, EventArgs e)
         {
-            dateTxt.DataBind();
             dateTxt.Text = Calendar1.SelectedDate.ToString("yyyy-MM-dd");
         }
 

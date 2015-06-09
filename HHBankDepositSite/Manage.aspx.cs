@@ -4,12 +4,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using BLL;
+
 namespace HHBankDepositSite
 {
     public partial class Manage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            TextBoxDataBind();
             if (Session["UserName"] == null)
             {
                 Response.Redirect("~/Login.aspx");
@@ -42,7 +45,21 @@ namespace HHBankDepositSite
                 Response.Write("<script language='javascript'>alert('请输入确认密码！')</script>");
                 return;
             }
-            // TODO: left to be done.
+            if (newpwd != surepwd)
+            {
+                Response.Write("<script language='javascript'>alert('新密码两次输入不一致！')</script>");
+                surepwdTxt.Text = string.Empty;
+            }
+            if (Session["UserName"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+            if (BizHandler.Handler.ChangePassword(userName, password, newpwd) == 1)
+            {
+                Response.Write("<script language='javascript'>alert('密码修改成功！')</script>");
+                return;
+            }
         }
 
         protected void cancelBtn_Click(object sender, EventArgs e)

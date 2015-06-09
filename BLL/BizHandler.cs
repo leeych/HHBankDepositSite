@@ -80,6 +80,22 @@ namespace BLL
         }
 
         /// <summary>
+        /// 确定userName是否在数据库中 
+        /// </summary>
+        /// <param name="userName">用户名</param>
+        /// <returns>返回用户名是否在数据库中</returns>
+        public bool IsUserNameExits(string userName)
+        {
+            DBHandler dbHandler = new DBHandler();
+            UserInfo userInfo = dbHandler.GetUserInfo(userName);
+            if (userInfo != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 判断是否是管理员
         /// </summary>
         /// <param name="userName">用户名</param>
@@ -122,6 +138,38 @@ namespace BLL
             }
             int rows = dbHandler.AddDepositRecord(record, record.OrgCode);
             return rows;
+        }
+
+        /// <summary>
+        /// 修改用户密码
+        /// </summary>
+        /// <param name="userName">用户名</param>
+        /// <param name="oldPwd">老密码</param>
+        /// <param name="newPwd">新密码</param>
+        /// <returns>返回影响的行数</returns>
+        public int ChangePassword(string userName, string oldPwd, string newPwd)
+        {
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(oldPwd) || string.IsNullOrEmpty(newPwd))
+            {
+                return -2;
+            }
+            int rows = dbHandler.ChangePassword(userName, oldPwd, newPwd);
+            return rows;
+        }
+
+        /// <summary>
+        /// 获得机构信息
+        /// </summary>
+        /// <param name="orgCode">机构号</param>
+        /// <returns>机构信息</returns>
+        public OrgInfo GetOrgInfo(string orgCode)
+        {
+            if (string.IsNullOrEmpty(orgCode))
+            {
+                return null;
+            }
+            OrgInfo orgInfo = dbHandler.GetOrgInfoByOrgCode(orgCode);
+            return orgInfo;
         }
     }
 }

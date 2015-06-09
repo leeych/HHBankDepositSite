@@ -52,6 +52,31 @@ namespace BLL
         }
 
         /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="userName">用户名</param>
+        /// <returns>返回用户信息</returns>
+        public UserInfo GetUserInfo(string userName)
+        {
+            string sql = @"select * from UserInfo where UserName='{0}'";
+            string sqlString = string.Format(sql, userName);
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
+            {
+                if (dr.Read())
+                {
+                    var userInfo = new UserInfo { 
+                                        UserName = dr["UserName"].ToString(),
+                                        PassWord = dr["Password"].ToString(),
+                                        OrgCode = dr["OrgCode"].ToString(),
+                                        Role = (UserRole)int.Parse(dr["Priority"].ToString())
+                                   };
+                    return userInfo;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
         /// 新增一条存款记录
         /// </summary>
         /// <param name="record"></param>
@@ -438,6 +463,46 @@ namespace BLL
             string sqlString = string.Format(sql, tableName, protocolID, orgCode);
             int rows = SqlHelper.ExecuteSql(sqlString);
             return rows;
+        }
+
+        /// <summary>
+        /// 修改登录密码
+        /// </summary>
+        /// <param name="userName">用户名</param>
+        /// <param name="oldPwd">原密码</param>
+        /// <param name="newPwd">新密码</param>
+        /// <returns>返回影响行数</returns>
+        public int ChangePassword(string userName, string oldPwd, string newPwd)
+        {
+            string sql = @"update UserInfo set Password='{0}' where UserName='{1}' and Password='{2}'";
+            string sqlString = string.Format(sql, newPwd, userName, oldPwd);
+            int rows = SqlHelper.ExecuteSql(sqlString);
+            return rows;
+        }
+
+        /// <summary>
+        /// 获取机构信息
+        /// </summary>
+        /// <param name="orgCode">机构号</param>
+        /// <returns>机构信息表</returns>
+        public OrgInfo GetOrgInfoByOrgCode(string orgCode)
+        {
+            string sql = @"select * from OrgInfo where OrgCode='{0}'";
+            string sqlString = string.Format(sql, orgCode);
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
+            {
+                if (dr.Read())
+                {
+                    var orgInfo = new OrgInfo { 
+                                        OrgCode = orgCode,
+                                        OrgName= dr["OrgName"].ToString(),
+                                        OrgAddress= dr["OrgAddress"].ToString(),
+                                        OrgPhone = dr["OrgPhone"].ToString()
+                                       };
+                    return orgInfo;
+                }
+            }
+            return null;
         }
     }
 }

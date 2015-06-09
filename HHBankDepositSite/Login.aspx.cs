@@ -36,9 +36,14 @@ namespace HHBankDepositSite
 
             if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(password))
             {
-                if (!BizHandler.Handler.IsUserInDB(userName, password))
+                if (!BizHandler.Handler.IsUserNameExits(userName))
                 {
                     Response.Write("<script language='javascript'>alert('用户名不存在！')</script>");
+                    return;
+                }
+                if (!BizHandler.Handler.IsUserInDB(userName, password))
+                {
+                    Response.Write("<script language='javascript'>alert('密码不正确！')</script>");
                 }
                 else if (BizHandler.Handler.IsAdminUser(userName, password))
                 {
