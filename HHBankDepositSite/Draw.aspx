@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td>约定存期：</td>
-                <td><asp:DropDownList runat="server" ID="periodDrop" CssClass="aspTextBox" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged">
+                <td><asp:DropDownList runat="server" ID="periodDrop" CssClass="aspTextBox" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True">
                     <asp:ListItem>三个月</asp:ListItem>
                     <asp:ListItem>六个月</asp:ListItem>
                     <asp:ListItem>一年</asp:ListItem>

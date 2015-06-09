@@ -8,7 +8,17 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<%--    <script type="text/javascript">
+        if (confirm("exit or not ?")) {
+            __doPostBack('hiddenBtn', '1');
+        }
+        else {
+            alert('online');
+        }
+    </script>--%>
     <div class="mainBody">
+          <br />
+          <br />
         <table width="100%" cellpadding="5" cellspacing="5" align="center">
             <tr>
                 <td class="tdLabel">用户名：</td>
@@ -34,7 +44,7 @@
                 <table align="center">
                     <tr>
                         <td><asp:Button runat="server" ID="logoutBtn" Text="退出登录" CssClass="aspBtn" Height="30px" Width="100px" OnClick="logoutBtn_Click" /></td>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="hiddenLinkBtn" runat="server" OnClick="hiddenLinkBtn_Click" Width="0px">LinkButton</asp:LinkButton> </td>
                         <td><asp:Button runat="server" ID="resetBtn" Text="重置" CssClass="aspBtn" Height="30px" Width="100px" OnClick="resetBtn_Click" /></td>
                     </tr>
                 </table>

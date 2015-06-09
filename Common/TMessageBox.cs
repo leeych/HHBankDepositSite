@@ -20,11 +20,6 @@ namespace Common
             page.ClientScript.RegisterStartupScript(page.GetType(), tag, "alert('" + msg + "');", true);
         }
 
-        //public static void Show(Page page, string key, string msg)
-        //{
-        //    page.RegisterStartupScript(key, "<script language='javascript'>alert('" + msg + "')</script>");
-        //}
-
         public static void ShowMsg(Page page, string key, string msg)
         {
             page.ClientScript.RegisterStartupScript(page.GetType(), key, "<script language='javascript' defer>alert('" + msg + "');</script>");
@@ -56,14 +51,14 @@ namespace Common
             page.ClientScript.RegisterStartupScript(page.GetType(), "message", builder.ToString());
         }
 
-        public static void ShowConfirmAndRedirect(Page page, string msg, string url)
+        public static void ShowConfirmAndRedirect(Page page, string tag, string msg, string url)
         {
             StringBuilder builder = new StringBuilder();
             builder.Append("<script lanuage='javascript' defer>");
-            builder.AppendFormat("return confirm(('{0}');", msg);
+            builder.AppendFormat("confirm('{0}');", msg);
             builder.AppendFormat("top.location.href='{0}'", url);
             builder.Append("</script>");
-            page.ClientScript.RegisterStartupScript(page.GetType(), "message", builder.ToString());
+            page.ClientScript.RegisterStartupScript(page.GetType(), tag, builder.ToString());
         }
 
         /// <summary>

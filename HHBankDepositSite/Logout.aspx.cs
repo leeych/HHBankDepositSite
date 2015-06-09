@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Common;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,11 @@ namespace HHBankDepositSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserName"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
             TextBoxDataBind();
             userNameTxt.Text = Session["UserName"].ToString();
             orgCodeTxt.Text = userNameTxt.Text;
@@ -23,13 +29,7 @@ namespace HHBankDepositSite
 
         protected void logoutBtn_Click(object sender, EventArgs e)
         {
-            if (Session["UserName"] != null)
-            {
-                Session["UserName"] = null;
-                Session["Password"] = null;
-            }
-            Response.Write("<script language='javascript'>alert('退出成功！')</script>");
-            Response.Redirect("~/Login.aspx");
+            this.ClientScript.RegisterStartupScript(this.GetType(), "lgout", "<script language='javascript' defer='defer'> if (confirm('确定退出登录？')){ document.getElementById('" + hiddenLinkBtn.ClientID.ToString() + "').click();}</script>");
         }
 
         protected void resetBtn_Click(object sender, EventArgs e)
@@ -53,6 +53,26 @@ namespace HHBankDepositSite
             orgNameTxt.Text = string.Empty;
             orgAddressTxt.Text = string.Empty;
             phoneTxt.Text = string.Empty;
+        }
+
+        protected void hiddenBtn_Click(object sender, EventArgs e)
+        {
+            if (Session["UserName"] != null)
+            {
+                Session["UserName"] = null;
+                Session["Password"] = null;
+            }
+            Response.Redirect("~/Login.aspx");
+        }
+
+        protected void hiddenLinkBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Login.aspx");
+            if (Session["UserName"] != null)
+            {
+                Session["UserName"] = null;
+                Session["Password"] = null;
+            }
         }
     }
 }
