@@ -33,7 +33,7 @@
             <tr><td colspan="2">&nbsp;</td></tr>
                 <table align="center">
                     <tr>
-                        <td><asp:Button runat="server" ID="logoutBtn" Text="确定" CssClass="aspBtn" Height="30px" Width="100px" OnClick="logoutBtn_Click" /></td>
+                        <td><asp:Button runat="server" ID="logoutBtn" Text="退出登录" CssClass="aspBtn" Height="30px" Width="100px" OnClick="logoutBtn_Click" /></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp; </td>
                         <td><asp:Button runat="server" ID="resetBtn" Text="重置" CssClass="aspBtn" Height="30px" Width="100px" OnClick="resetBtn_Click" /></td>
                     </tr>
