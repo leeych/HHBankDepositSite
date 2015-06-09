@@ -27,6 +27,12 @@
         .txtBox {
             text-align: center;
         }
+        .auto-style2 {
+            height: 24px;
+        }
+        .auto-style3 {
+            height: 36px;
+        }
     </style>
 
     <script type="text/javascript" lang="zh-cn">
@@ -76,12 +82,12 @@
             <td style="padding-top:17px;">
               <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td align="center" height="30">
+                  <td align="center" class="auto-style2">
                       <asp:Button runat="server" CssClass="submit" ID="loginBtn" Font-Bold="True" Font-Size="Medium" ForeColor="White" Text="登录" OnClick="loginBtn_Click" />
                   </td>
                 </tr>
                 <tr>
-                  <td align="center" height="30">
+                  <td align="center" height="30" class="auto-style3">
                     <%--<input name="reset" type="button" class="reset" />--%>
                       <asp:Button runat="server" CssClass="reset" ID="resetBtn" Font-Bold="True" Font-Size="Medium" ForeColor="White" Text="取消" />
                   </td>

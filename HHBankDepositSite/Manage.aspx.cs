@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using BLL;
+using Common;
 
 namespace HHBankDepositSite
 {
@@ -12,10 +13,14 @@ namespace HHBankDepositSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            TextBoxDataBind();
             if (Session["UserName"] == null)
             {
                 Response.Redirect("~/Login.aspx");
+            }
+            else
+            {
+                userNameTxt.Text = Session["UserName"].ToString();
+                userNameTxt.Enabled = false;
             }
         }
 
@@ -27,27 +32,27 @@ namespace HHBankDepositSite
             string surepwd = surepwdTxt.Text.Trim();
             if (string.IsNullOrEmpty(userName))
             {
-                Response.Write("<script language='javascript'>alert('请输入用户名！')</script>");
+                TMessageBox.ShowMsg(this, "UserNameEmpty", "请输入用户名！");
                 return;
             }
             if (string.IsNullOrEmpty(password))
             {
-                Response.Write("<script language='javascript'>alert('请输入原密码！')</script>");
+                TMessageBox.Show(this, "OldPwdEmpty", "请输入原密码！");
                 return;
             }
             if (string.IsNullOrEmpty(newpwd))
             {
-                Response.Write("<script language='javascript'>alert('请输入新密码！')</script>");
+                TMessageBox.Show(this, "NewPwdEmpty", "请输入新密码！");
                 return;
             }
             if (string.IsNullOrEmpty(surepwd))
             {
-                Response.Write("<script language='javascript'>alert('请输入确认密码！')</script>");
+                TMessageBox.Show(this, "SurePwdEmpty", "请确认新密码！");
                 return;
             }
             if (newpwd != surepwd)
             {
-                Response.Write("<script language='javascript'>alert('新密码两次输入不一致！')</script>");
+                TMessageBox.Show(this, "NewPwdNotSame", "新密码两次输入不一致！");
                 surepwdTxt.Text = string.Empty;
             }
             if (Session["UserName"] == null)
@@ -57,9 +62,14 @@ namespace HHBankDepositSite
             }
             if (BizHandler.Handler.ChangePassword(userName, password, newpwd) == 1)
             {
-                Response.Write("<script language='javascript'>alert('密码修改成功！')</script>");
+                TMessageBox.ShowMsg(this, "ChangePwd", "密码修改成功！");
                 return;
             }
+            else
+            {
+                TMessageBox.ShowMsg(this, "OldPwdError", "原密码错误！");
+            }
+            TextBoxDataBind();
         }
 
         protected void cancelBtn_Click(object sender, EventArgs e)
@@ -70,6 +80,7 @@ namespace HHBankDepositSite
                 Response.Redirect("~/Login.aspx");
             }
             ClearTextBox();
+            TextBoxDataBind();
         }
 
         private void TextBoxDataBind()
@@ -82,7 +93,7 @@ namespace HHBankDepositSite
 
         private void ClearTextBox()
         {
-            userNameTxt.Text = string.Empty;
+            //userNameTxt.Text = string.Empty;
             oldpwdTxt.Text = string.Empty;
             newpwdTxt.Text = string.Empty;
             surepwdTxt.Text = string.Empty;

@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script type="text/javascript">
+    <script type="text/javascript" language="javascript">
         function displayCalendar() {
             if (datePicker.style.display == 'block') {
                 datePicker.style.display = 'none';
@@ -12,6 +12,7 @@
             datePicker.style.display = 'block';
         }
     </script>
+
         <div style="width:100%; height:100%;">
             <br />
         <fieldset class="fieldSetStyle">
@@ -19,7 +20,7 @@
             <table align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5; border-spacing: 0px;">
                 <tr>
                     <td><span class="red-star">*</span>协议号：</td>
-                    <td><asp:TextBox ID="protocolTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></td>
+                    <td><span><asp:TextBox ID="protocolTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></span></td>
                     <td><span class="red-star">*</span>存单账号：</td>
                     <td><asp:TextBox ID="billAccountTxt" runat="server" CssClass="aspBillAccount" Width="200px"></asp:TextBox></td>
                     <td><span class="red-star">*</span>凭证号码：</td>
@@ -28,7 +29,7 @@
                 <tr>
                     <td><span class="red-star">*</span>约定存期：</td>
                     <td>
-                        <asp:DropDownList ID="periodDrop" runat="server" Height="19px" style="margin-left: 0px" Width="148px" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True" CssClass="aspTextBoxShort">
+                        <asp:DropDownList ID="periodDrop" runat="server" Height="19px" style="margin-left: 0px" Width="148px" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True" CssClass="aspTextBox">
                             <asp:ListItem>三个月</asp:ListItem>
                             <asp:ListItem>六个月</asp:ListItem>
                             <asp:ListItem>一年</asp:ListItem>
@@ -40,7 +41,7 @@
                     <td>约定利率：</td>
                     <td><asp:TextBox ID="rateTxt" runat="server" Width="131px" OnTextChanged="rateTxt_TextChanged" CssClass="aspTextBoxShort"></asp:TextBox><span class="per-cent">%</span></td>
                     <td><span class="red-star">*</span>存入金额：</td>
-                    <td><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort"></asp:TextBox></td>
+                    <td><span><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort"></asp:TextBox></span></td>
                 </tr>
                 <tr>
                     <td><span class="red-star">*</span>存入日期：</td>
@@ -83,7 +84,7 @@
             </tr>
             <tr>
                 <td>备注</td>
-                <td colspan="5"><asp:TextBox runat="server" Height="63px" Width="684px" TextMode="MultiLine" ID="remarkTxt"></asp:TextBox></td>
+                <td colspan="5"><asp:TextBox runat="server" Height="63px" Width="100%" TextMode="MultiLine" ID="remarkTxt"></asp:TextBox></td>
             </tr>
         </table>
         </fieldset>

@@ -128,17 +128,20 @@ html {
 .aspTextBox {
     border-radius: 3px;
     border: 1px solid #CDCDCD;
-    font-size: 18px;
+    font-size: 16px;
     width: 160px;
     height: 30px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .aspTextBoxShort {
     border-radius: 3px;
     border: 1px solid #CDCDCD;
-    width: 100%;
     height: 30px;
     font-size: 16px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .aspBillAccount {
@@ -146,7 +149,9 @@ html {
     border: 1px solid #CDCDCD;
     width: 180px;
     height: 30px;
-    font-size: 18px;
+    font-size: 16px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .aspMargin {

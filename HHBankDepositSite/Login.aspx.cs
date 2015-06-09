@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using BLL;
+using Common;
 
 namespace HHBankDepositSite
 {
@@ -25,12 +26,13 @@ namespace HHBankDepositSite
             string password = passwordTxt.Text.Trim();
             if (string.IsNullOrEmpty(userName))
             {
-                Response.Write("<script language='javascript'>alert('用户名不能为空！')</script>");
+                //Response.Write("<script>function window.onload() { alert('用户名不能为空！');}</script>");
+                TMessageBox.ShowMsg(this, "UserNameEmpty", "请输入用户名！");
                 return;
             }
             if (string.IsNullOrEmpty(password))
             {
-                Response.Write("<script language='javascript'>alert('密码不能为空！')</script>");
+                TMessageBox.ShowMsg(this, "OldPwdEmpty", "请输入密码！");
                 return;
             }
 
@@ -38,12 +40,12 @@ namespace HHBankDepositSite
             {
                 if (!BizHandler.Handler.IsUserNameExits(userName))
                 {
-                    Response.Write("<script language='javascript'>alert('用户名不存在！')</script>");
+                    TMessageBox.ShowMsg(this, "UserNameNotExists", "用户名不存在！");
                     return;
                 }
                 if (!BizHandler.Handler.IsUserInDB(userName, password))
                 {
-                    Response.Write("<script language='javascript'>alert('密码不正确！')</script>");
+                    TMessageBox.Show(this, "PwdNotExists", "密码不正确！");
                 }
                 else if (BizHandler.Handler.IsAdminUser(userName, password))
                 {

@@ -18,9 +18,8 @@ namespace HHBankDepositSite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            TextBoxDataBind();
-            ClearEditableCtrls();
-            bankRate = BizHandler.Handler.GetBankRateTable(bankRatePath);
+            //TextBoxDataBind();
+            //ClearEditableCtrls();
             periodDrop_SelectedIndexChanged(sender, e);
         }
 
@@ -50,6 +49,7 @@ namespace HHBankDepositSite
                     rateTxt.Text = "--";
                     break;
             }
+            //rateTxt.DataBind();
         }
 
         protected void rateTxt_TextChanged(object sender, EventArgs e)
@@ -70,9 +70,9 @@ namespace HHBankDepositSite
                 return;
             }
 
-            if (ValidatePage())
+            if (!ValidatePage())
             {
-                Response.Write("<script language='javascript'>alert('标 * 的为必填项！')</script>");
+                TMessageBox.ShowMsg(this, "msg", "标 * 的为必填项！");
                 return;
             }
             string protocolID = protocolTxt.Text.Trim();
@@ -106,7 +106,8 @@ namespace HHBankDepositSite
                                         };
             if (BizHandler.Handler.AddDepositRecord(record) == 1)
             {
-                Response.Write("<script language='javascript'>alert('存款记录添加成功！');</script>");
+                TMessageBox.ShowMsg(this, "AddRecord", "存款记录添加成功！");
+                //Response.Write("<script language='javascript'>alert('存款记录添加成功！');</script>");
                 EnableEditableCtrls(false);
                 return;
             }
@@ -139,7 +140,7 @@ namespace HHBankDepositSite
             protocolTxt.DataBind();
             billAccountTxt.DataBind();
             billCodeTxt.DataBind();
-            periodDrop.DataBind();
+            //periodDrop.DataBind();
             rateTxt.DataBind();
             moneyTxt.DataBind();
             dateTxt.DataBind();
@@ -150,13 +151,43 @@ namespace HHBankDepositSite
             remarkTxt.DataBind();
         }
 
+        private int GetDropDownListSelectionIndex(string selValue)
+        {
+            int index = 0;
+            switch (selValue)
+            {
+                case "三个月":
+                    index = 0;
+                    break;
+                case "六个月":
+                    index = 1;
+                    break;
+                case "一年":
+                    index = 2;
+                    break;
+                case "二年":
+                    index = 3;
+                    break;
+                case "三年":
+                    index = 4;
+                    break;
+                case "五年":
+                    index = 5;
+                    break;
+                default:
+                    index = -1;
+                    break;
+            }
+            return index;
+        }
+
         private void ClearEditableCtrls()
         {
             protocolTxt.Text = string.Empty;
             billAccountTxt.Text = string.Empty;
             billCodeTxt.Text = string.Empty;
             periodDrop.SelectedIndex = 0;
-            rateTxt.Text = string.Empty;
+            //rateTxt.Text = string.Empty;
             moneyTxt.Text = string.Empty;
             dateTxt.Text = string.Empty;
             bindAccountTxt.Text = string.Empty;

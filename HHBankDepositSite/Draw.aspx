@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td>约定存期：</td>
-                <td><asp:DropDownList runat="server" ID="periodDrop" CssClass="aspTextBox">
+                <td><asp:DropDownList runat="server" ID="periodDrop" CssClass="aspTextBox" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged">
                     <asp:ListItem>三个月</asp:ListItem>
                     <asp:ListItem>六个月</asp:ListItem>
                     <asp:ListItem>一年</asp:ListItem>
@@ -49,7 +49,7 @@
                     <asp:ListItem>五年</asp:ListItem>
                     </asp:DropDownList></td>
                 <td>执行利率：</td>
-                <td><asp:TextBox runat="server" ID="execRateTxt" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><span><asp:TextBox runat="server" ID="execRateTxt" CssClass="aspTextBox"></asp:TextBox></span><span class="per-cent">%</span></td>
                 <td>到期日期：</td>
                 <td><asp:TextBox runat="server" ID="dueDateTxt" CssClass="aspTextBox"></asp:TextBox></td>
                 <td>存入本金：</td>
@@ -65,7 +65,7 @@
             </tr>
             <tr>
                 <td>备注：</td>
-                <td colspan="5"><asp:TextBox runat="server" ID="remarkTxt" TextMode="MultiLine"></asp:TextBox></td>
+                <td colspan="5"><asp:TextBox runat="server" ID="remarkTxt" TextMode="MultiLine" Width="100%"></asp:TextBox></td>
             </tr>
         </table>
     </fieldset>
