@@ -28,21 +28,38 @@
             </tr>
             <tr>
                 <td colspan="7">
-                    <asp:GridView ID="depositGridView" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" EnableModelValidation="True" Height="121px" Width="867px" AllowPaging="True" EmptyDataText="没有记录！">
+                    <asp:GridView ID="recordGridView" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" EnableModelValidation="True" Height="121px" Width="867px" AllowPaging="True" EmptyDataText="没有记录！">
                         <AlternatingRowStyle BackColor="#F7F7F7" />
                         <Columns>
                             <asp:BoundField HeaderText="协议号" />
-                            <asp:BoundField HeaderText="存单账号" />
+                            <asp:BoundField HeaderText="账号" />
                             <asp:BoundField HeaderText="凭证号" />
-                            <asp:BoundField HeaderText="存入金额" />
-                            <asp:BoundField HeaderText="约定存期" />
-                            <asp:BoundField HeaderText="约定利率" />
-                            <asp:BoundField HeaderText="客户姓名" />
-                            <asp:BoundField HeaderText="客户身份证" />
-                            <asp:BoundField HeaderText="经办柜员" />
+                            <asp:BoundField HeaderText="本金" />
+                            <asp:BoundField HeaderText="存期" />
+                            <asp:BoundField HeaderText="利率" />
+                            <asp:BoundField HeaderText="姓名" />
+                            <asp:BoundField HeaderText="身份证" />
+                            <asp:BoundField HeaderText="经办人" />
                         </Columns>
                         <EmptyDataTemplate>
-                            没有记录！
+                            <table style="width:100%;">
+                                <tr>
+                                    <td>协议号</td>
+                                    <td>账号</td>
+                                    <td>凭证号</td>
+                                    
+                                    <td>本金</td>
+                                    <td>存期</td>
+                                    <td>利率</td>
+
+                                    <td>姓名</td>
+                                    <td>身份证</td>
+                                    <td>经办人</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9">没有记录！</td>
+                                </tr>
+                            </table>
                         </EmptyDataTemplate>
                         <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
                         <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />

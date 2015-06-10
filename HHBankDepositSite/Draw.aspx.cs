@@ -18,6 +18,7 @@ namespace HHBankDepositSite
         protected void Page_Load(object sender, EventArgs e)
         {
             periodDrop_SelectedIndexChanged(sender, e);
+            recordGridView.ShowHeader = true;
         }
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
