@@ -165,4 +165,5 @@ html {
 .per-cent {
     height: 30px;
     font-size: 18px;
+    vertical-align: middle;
 }
