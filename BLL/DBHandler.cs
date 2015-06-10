@@ -436,7 +436,6 @@ namespace BLL
                                 };
                 return record;
             }
-            return null;
         }
 
         /// <summary>

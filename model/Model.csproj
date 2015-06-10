@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="BankRate.cs" />
     <Compile Include="BankRateNode.cs" />
+    <Compile Include="CalcInfo.cs" />
     <Compile Include="CalcResult.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DrawFlag.cs" />
