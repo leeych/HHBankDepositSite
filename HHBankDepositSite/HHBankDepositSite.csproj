@@ -56,6 +56,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Deposit.aspx" />
     <Content Include="Draw.aspx" />
+    <Content Include="Help.aspx" />
     <Content Include="Images\bg-black.gif" />
     <Content Include="Images\bg-black2.gif" />
     <Content Include="Images\bg.jpg" />
@@ -108,6 +109,13 @@
     </Compile>
     <Compile Include="Draw.aspx.designer.cs">
       <DependentUpon>Draw.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help.aspx.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help.aspx.designer.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -179,6 +187,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage.master" />
+    <Content Include="Files\保利存管理办法.doc" />
+    <Content Include="Files\正式协议书.doc" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

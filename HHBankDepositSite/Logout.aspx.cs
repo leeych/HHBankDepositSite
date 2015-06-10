@@ -48,11 +48,11 @@ namespace HHBankDepositSite
 
         private void TextBoxDataBind()
         {
-            userNameTxt.Text = string.Empty;
-            orgCodeTxt.Text = string.Empty;
-            orgNameTxt.Text = string.Empty;
-            orgAddressTxt.Text = string.Empty;
-            phoneTxt.Text = string.Empty;
+            userNameTxt.DataBind();
+            orgCodeTxt.DataBind();
+            orgNameTxt.DataBind();
+            orgAddressTxt.DataBind();
+            phoneTxt.DataBind();
         }
 
         protected void hiddenBtn_Click(object sender, EventArgs e)

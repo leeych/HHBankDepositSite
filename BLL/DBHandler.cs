@@ -407,6 +407,39 @@ namespace BLL
         }
 
         /// <summary>
+        /// 根据协议号、存单账号、凭证号查询保利存记录
+        /// </summary>
+        /// <param name="protocolId">协议号</param>
+        /// <param name="account">存单账号</param>
+        /// <param name="code">凭证号</param>
+        /// <returns>存款记录</returns>
+        public DepositRecord GetRecordByProtocolIdAccountCode(string protocolId, string account, string code, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"select * from {0} where ProtocolID='{1}' and BillAccount='{2}' and BillCode='{3}' and 1=1";
+            string sqlString = string.Format(sql, tableName, protocolId, account, code);
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
+            {
+                var record = new DepositRecord { 
+                                    ProtocolID = dr["ProtocolID"].ToString(),
+                                    BillAccount = dr["BillAccount"].ToString(),
+                                    BillCode = dr["BillCode"].ToString(),
+                                    DepositDate = DateTime.Parse(dr["DepositDate"].ToString()),
+                                    OrgCode = dr["OrgCode"].ToString(),
+                                    TellerCode = dr["TellerCode"].ToString(),
+                                    DepositorName = dr["DepositorName"].ToString(),
+                                    DepositorIDCard = dr["IDCard"].ToString(),
+                                    DepositMoney = decimal.Parse(dr["DepositMoney"].ToString()),
+                                    BindAccount = dr["BindAccount"].ToString(),
+                                    DepositFlag = int.Parse(dr["DepositFlag"].ToString()),
+                                    Remark = dr["Remark"].ToString()
+                                };
+                return record;
+            }
+            return null;
+        }
+
+        /// <summary>
         /// 取款
         /// </summary>
         /// <param name="protocolID">协议号</param>

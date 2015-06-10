@@ -64,5 +64,31 @@ namespace HHBankDepositSite
             }
             execRateTxt.DataBind();
         }
+
+        protected void searchBtn_Click(object sender, EventArgs e)
+        {
+            if (Session["UserName"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+            string protocolId = protocolIDTxt.Text.Trim();
+            string billAccount = billAccountTxt.Text.Trim();
+            string billCode = billCodeTxt.Text.Trim();
+            if (string.IsNullOrEmpty(protocolId) || string.IsNullOrEmpty(billAccount) || string.IsNullOrEmpty(billCode))
+            {
+                TMessageBox.ShowMsg(this, "DrawSearch", "请务必输入协议号、存单账号、凭证号！");
+                return;
+            }
+            DepositRecord record = BizHandler.Handler.GetDepositRecord(protocolId, billAccount, billCode, Session["UserName"].ToString());
+            
+        }
+
+        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+        {
+            bool start = e.Day.Date >= DateTime.Now.Date.AddDays(-1);
+            bool end = e.Day.Date <= DateTime.Now.Date.AddDays(1);
+            e.Day.IsSelectable = (start && end);
+        }
     }
 }

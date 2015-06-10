@@ -39,18 +39,18 @@
                         </asp:DropDownList>
                     </td>
                     <td>约定利率：</td>
-                    <td><asp:TextBox ID="rateTxt" runat="server" Width="131px" OnTextChanged="rateTxt_TextChanged" CssClass="aspTextBoxShort"></asp:TextBox><span class="per-cent">%</span></td>
+                    <td><asp:TextBox ID="rateTxt" runat="server" Width="131px" OnTextChanged="rateTxt_TextChanged" CssClass="aspTextBoxShort" ReadOnly="True"></asp:TextBox><span class="per-cent">%</span></td>
                     <td><span class="red-star">*</span>存入金额：</td>
-                    <td><span><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort"></asp:TextBox></span></td>
+                    <td><span class="per-cent">￥</span><span><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort"></asp:TextBox></span><span class="per-cent">元</span></td>
                 </tr>
                 <tr>
                     <td><span class="red-star">*</span>存入日期：</td>
                     <td style="width: 148px;">
                         <div style="display: inline;">
-                            <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" Width="108px" CssClass="aspTextBoxShort"></asp:TextBox>
+                            <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" Width="108px" CssClass="aspTextBoxShort" OnTextChanged="dateTxt_TextChanged" ReadOnly="True"></asp:TextBox>
                             <img src="Images/calendar.png" width="24px" height="24px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/>
                             <div id="datePicker">
-                                <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged1" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px">
+                                <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged1" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnDayRender="Calendar1_DayRender">
                                 <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
                                 <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
                                 <OtherMonthDayStyle ForeColor="#999999" />

@@ -24,12 +24,26 @@
                 <td><asp:TextBox runat="server" CssClass="aspBillAccount" ID="billAccountTxt"></asp:TextBox></td>
                 <td><span class="red-star">*</span>凭证号：</td>
                 <td><asp:TextBox runat="server" CssClass="aspTextBox" ID="billCodeTxt"></asp:TextBox></td>
-                <td><asp:Button runat="server" Height="30px" Width="100px" CssClass="aspBtn" ID="searchBtn" Text="查询"/></td>
+                <td><asp:Button runat="server" Height="30px" Width="100px" CssClass="aspBtn" ID="searchBtn" Text="查询" OnClick="searchBtn_Click"/></td>
             </tr>
             <tr>
                 <td colspan="7">
-                    <asp:GridView ID="depositGridView" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" EnableModelValidation="True" GridLines="Horizontal" Height="121px" Width="867px">
+                    <asp:GridView ID="depositGridView" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" EnableModelValidation="True" Height="121px" Width="867px" AllowPaging="True" EmptyDataText="没有记录！">
                         <AlternatingRowStyle BackColor="#F7F7F7" />
+                        <Columns>
+                            <asp:BoundField HeaderText="协议号" />
+                            <asp:BoundField HeaderText="存单账号" />
+                            <asp:BoundField HeaderText="凭证号" />
+                            <asp:BoundField HeaderText="存入金额" />
+                            <asp:BoundField HeaderText="约定存期" />
+                            <asp:BoundField HeaderText="约定利率" />
+                            <asp:BoundField HeaderText="客户姓名" />
+                            <asp:BoundField HeaderText="客户身份证" />
+                            <asp:BoundField HeaderText="经办柜员" />
+                        </Columns>
+                        <EmptyDataTemplate>
+                            没有记录！
+                        </EmptyDataTemplate>
                         <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
                         <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
                         <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
@@ -49,23 +63,23 @@
                     <asp:ListItem>五年</asp:ListItem>
                     </asp:DropDownList></td>
                 <td>执行利率：</td>
-                <td><span><asp:TextBox runat="server" ID="execRateTxt" CssClass="aspTextBox"></asp:TextBox></span><span class="per-cent">%</span></td>
+                <td><span><asp:TextBox runat="server" ID="execRateTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></span><span class="per-cent">%</span></td>
                 <td>到期日期：</td>
-                <td><asp:TextBox runat="server" ID="dueDateTxt" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="dueDateTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>存入本金：</td>
-                <td><asp:TextBox runat="server" ID="moneyTxt" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="moneyTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
             </tr>
             <tr>
                 <td>客户姓名：</td>
-                <td><asp:TextBox runat="server" ID="clientName" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="clientName" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>身份证号：</td>
-                <td><asp:TextBox runat="server" ID="clientIDTxt" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="clientIDTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>经办柜员：</td>
-                <td><asp:TextBox runat="server" ID="tellerCodeTxt" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="tellerCodeTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
             </tr>
             <tr>
                 <td>备注：</td>
-                <td colspan="5"><asp:TextBox runat="server" ID="remarkTxt" TextMode="MultiLine" Width="100%"></asp:TextBox></td>
+                <td colspan="5"><asp:TextBox runat="server" ID="remarkTxt" TextMode="MultiLine" Width="100%" ReadOnly="True"></asp:TextBox></td>
             </tr>
         </table>
     </fieldset>
@@ -80,7 +94,7 @@
                         <span><asp:TextBox ID="drawDateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox"></asp:TextBox></span>
                         <span><img src="Images/calendar.png" width="24px" height="24px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/></span>
                         <div id="datePicker">
-                            <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px">
+                            <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnDayRender="Calendar1_DayRender">
                             <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
                             <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
                             <OtherMonthDayStyle ForeColor="#999999" />
@@ -100,15 +114,15 @@
             </tr>
             <tr>
                 <td>靠档方案：</td>
-                <td><asp:TextBox runat="server" ID="sectionTxt" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="sectionTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>系统本息：</td>
-                <td><asp:TextBox runat="server" ID="systemTxt" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="systemTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>靠档本息：</td>
-                <td><asp:TextBox runat="server" ID="totalInterestTxt" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="totalInterestTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
             </tr>
             <tr>
                 <td><h3 style="color:red;">利息差额：</h3></td>
-                <td><asp:TextBox runat="server" ID="marginTxt" CssClass="aspMargin"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="marginTxt" CssClass="aspMargin" ReadOnly="True"></asp:TextBox></td>
             </tr>
         </table>
     </fieldset>

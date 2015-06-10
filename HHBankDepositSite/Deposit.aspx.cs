@@ -18,9 +18,9 @@ namespace HHBankDepositSite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //TextBoxDataBind();
-            //ClearEditableCtrls();
             periodDrop_SelectedIndexChanged(sender, e);
+            dateTxt.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            dateTxt.DataBind();
         }
 
         protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)
@@ -72,9 +72,16 @@ namespace HHBankDepositSite
 
             if (!ValidatePage())
             {
-                TMessageBox.ShowMsg(this, "msg", "标 * 的为必填项！");
+                TMessageBox.ShowMsg(this, "RequiredEmpty", "标 * 的为必填项！");
                 return;
             }
+            DateTime t = new DateTime();
+            if (!DateTime.TryParse(dateTxt.Text.Trim() + "T00:00:00", out t))
+            {
+                TMessageBox.ShowMsg(this, "DateError", "存入日期无效！");
+                return;
+            }
+
             string protocolID = protocolTxt.Text.Trim();
             string billAccount = billAccountTxt.Text.Trim();
             string billCode = billCodeTxt.Text.Trim();
@@ -213,6 +220,18 @@ namespace HHBankDepositSite
             remarkTxt.Enabled = enable;
             depositBtn.Enabled = enable;
             cancelBtn.Enabled = enable;
+        }
+
+        protected void dateTxt_TextChanged(object sender, EventArgs e)
+        {
+            dateTxt.DataBind();
+        }
+
+        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+        {
+            bool startDate = e.Day.Date >= DateTime.Now.Date.AddDays(-1);
+            bool endDate = e.Day.Date <= DateTime.Now.Date;
+            e.Day.IsSelectable = (startDate && endDate);
         }
     }
 }

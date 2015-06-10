@@ -171,5 +171,23 @@ namespace BLL
             OrgInfo orgInfo = dbHandler.GetOrgInfoByOrgCode(orgCode);
             return orgInfo;
         }
+
+        /// <summary>
+        /// 根据协议号、存单账号、凭证号查询存款记录
+        /// </summary>
+        /// <param name="protocolId"></param>
+        /// <param name="billAccount"></param>
+        /// <param name="billCode"></param>
+        /// <param name="orgCode"></param>
+        /// <returns>保利存存款记录</returns>
+        public DepositRecord GetDepositRecord(string protocolId, string billAccount, string billCode, string orgCode)
+        {
+            if (string.IsNullOrEmpty(protocolId) || string.IsNullOrEmpty(billAccount) || string.IsNullOrEmpty(billCode))
+            {
+                return null;
+            }
+            DepositRecord record = dbHandler.GetRecordByProtocolIdAccountCode(protocolId, billAccount, billCode, orgCode);
+            return record;
+        }
     }
 }

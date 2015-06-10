@@ -17,7 +17,7 @@
             <tr>
                 <td class="tdLabel">用户名：</td>
                 <td width="162" class="tdContent">
-                    <asp:TextBox runat="server" ID="userNameTxt" Font-Names="Arial" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="userNameTxt" Font-Names="Arial" Font-Size="20px" CssClass="txtBox" ReadOnly="True"></asp:TextBox>
                 </td>
             </tr>
             <tr>

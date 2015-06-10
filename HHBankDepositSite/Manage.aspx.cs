@@ -20,7 +20,6 @@ namespace HHBankDepositSite
             else
             {
                 userNameTxt.Text = Session["UserName"].ToString();
-                userNameTxt.Enabled = false;
             }
         }
 
