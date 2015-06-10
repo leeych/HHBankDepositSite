@@ -18,6 +18,7 @@ namespace HHBankDepositSite
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            periodDrop.SelectedIndex = 2;
             periodDrop_SelectedIndexChanged(sender, e);
             dateTxt.Text = DateTime.Now.ToString("yyyy-MM-dd");
             dateTxt.DataBind();
@@ -109,12 +110,12 @@ namespace HHBankDepositSite
                                             DepositorName = name,
                                             DepositMoney = money,
                                             BindAccount = bindAccount,
-                                            Remark = remark
+                                            Remark = remark,
+                                            Rate = bankRate
                                         };
             if (BizHandler.Handler.AddDepositRecord(record) == 1)
             {
                 TMessageBox.ShowMsg(this, "AddRecord", "存款记录添加成功！");
-                //Response.Write("<script language='javascript'>alert('存款记录添加成功！');</script>");
                 EnableEditableCtrls(false);
                 return;
             }

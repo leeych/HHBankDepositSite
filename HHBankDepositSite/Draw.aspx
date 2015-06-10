@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="Draw.aspx.cs" Inherits="HHBankDepositSite.Draw" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script type="text/javascript">
+        <script type="text/javascript">
             function displayCalendar() {
                 if (datePicker.style.display == 'block') {
                     datePicker.style.display = 'none';
@@ -12,13 +10,13 @@
                 datePicker.style.display = 'block';
             }
     </script>
-
-    <br />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <fieldset class="fieldSetStyle">
         <legend class="legendStyle">查询</legend>
         <table style="border: 1px solid #E5E5E5; text-align: center; vertical-align: middle;" align="center">
             <tr>
-                <td><span class="red-star">*</span>协议号：</td>
+                <td><span class="red-star">*</span>协议编号：</td>
                 <td><asp:TextBox runat="server" CssClass="aspTextBox" ID="protocolIDTxt"></asp:TextBox></td>
                 <td><span class="red-star">*</span>存单账号：</td>
                 <td><asp:TextBox runat="server" CssClass="aspBillAccount" ID="billAccountTxt"></asp:TextBox></td>
@@ -28,7 +26,7 @@
             </tr>
             <tr>
                 <td colspan="7">
-                    <asp:GridView ID="recordGridView" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" EnableModelValidation="True" Height="121px" Width="867px" AllowPaging="True" EmptyDataText="没有记录！">
+                    <%--<asp:GridView ID="recordGridView" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" EnableModelValidation="True" Height="121px" Width="867px" AllowPaging="True" EmptyDataText="没有记录！">
                         <AlternatingRowStyle BackColor="#F7F7F7" />
                         <Columns>
                             <asp:BoundField HeaderText="协议号" />
@@ -66,7 +64,7 @@
                         <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
                         <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
                         <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
-                    </asp:GridView>
+                    </asp:GridView>--%>
                 </td>
             </tr>
             <tr>
@@ -88,7 +86,7 @@
             </tr>
             <tr>
                 <td>客户姓名：</td>
-                <td><asp:TextBox runat="server" ID="clientName" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="clientNameTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>身份证号：</td>
                 <td><asp:TextBox runat="server" ID="clientIDTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>经办柜员：</td>
@@ -144,8 +142,8 @@
         </table>
     </fieldset>
     <br />
-    <fieldset style="text-align: center;">
-        <legend class="legendStyle">结果列表</legend>
+    <fieldset class="fieldSetStyle" style="text-align: center;">
+        <legend class="legendStyle"></legend>
         <div style="display: inline; margin: 0px auto;">
             <span><asp:Button ID="calcBtn" runat="server" Text="计算" Height="30px" Width="100px" CssClass="aspBtn" OnClick="calcBtn_Click" /></span>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>

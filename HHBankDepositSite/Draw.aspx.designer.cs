@@ -49,15 +49,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.Button searchBtn;
         
         /// <summary>
-        /// recordGridView 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView recordGridView;
-        
-        /// <summary>
         /// periodDrop 控件。
         /// </summary>
         /// <remarks>
@@ -94,13 +85,13 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox moneyTxt;
         
         /// <summary>
-        /// clientName 控件。
+        /// clientNameTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox clientName;
+        protected global::System.Web.UI.WebControls.TextBox clientNameTxt;
         
         /// <summary>
         /// clientIDTxt 控件。

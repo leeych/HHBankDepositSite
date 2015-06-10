@@ -8,7 +8,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<%--    <script type="text/javascript">
+    <%--    <script type="text/javascript">
         if (confirm("exit or not ?")) {
             __doPostBack('hiddenBtn', '1');
         }
@@ -21,7 +21,7 @@
           <br />
         <table width="100%" cellpadding="5" cellspacing="5" align="center">
             <tr>
-                <td class="tdLabel">用户名：用户名：</td>
+                <td class="tdLabel">用户名：</td>
                 <td class="tdContent"><asp:TextBox runat="server" ID="userNameTxt" CssClass="txtBox" ReadOnly="True"></asp:TextBox></td>
             </tr>
             <tr>

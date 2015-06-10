@@ -41,6 +41,7 @@
     <Compile Include="CalcResult.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DrawFlag.cs" />
+    <Compile Include="DrawRecord.cs" />
     <Compile Include="OrgInfo.cs" />
     <Compile Include="Period.cs" />
     <Compile Include="DepositRecord.cs" />

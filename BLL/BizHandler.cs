@@ -190,18 +190,14 @@ namespace BLL
             return record;
         }
 
-        /// <summary>
-        /// 靠档本息计算
-        /// </summary>
-        /// <param name="money"></param>
-        /// <param name="period"></param>
-        /// <param name="drawDate"></param>
-        /// <returns></returns>
-        public CalcResult GetInterestResult(decimal money, Period period, DateTime drawDate)
+        public DrawRecord GetDrawRecord(string protocolId, string account, string code, string orgCode)
         {
-            // TODO: left to be done.
-            CalcResult result = new CalcResult();
-            return result;
+            if (string.IsNullOrEmpty(protocolId) || string.IsNullOrEmpty(account) || string.IsNullOrEmpty(code) || string.IsNullOrEmpty(orgCode))
+            {
+                return null;
+            }
+            DrawRecord record = dbHandler.GetDrawRecordByProtocolIdAccountCode(protocolId, account, code, orgCode);
+            return record;
         }
     }
 }

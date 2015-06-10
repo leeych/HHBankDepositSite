@@ -17,8 +17,8 @@ namespace HHBankDepositSite
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            periodDrop.SelectedIndex = 2;
             periodDrop_SelectedIndexChanged(sender, e);
-            recordGridView.ShowHeader = true;
         }
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
@@ -81,8 +81,23 @@ namespace HHBankDepositSite
                 TMessageBox.ShowMsg(this, "DrawSearch", "请务必输入协议号、存单账号、凭证号！");
                 return;
             }
-            DepositRecord record = BizHandler.Handler.GetDepositRecord(protocolId, billAccount, billCode, Session["UserName"].ToString());
-            
+            DrawRecord record = BizHandler.Handler.GetDrawRecord(protocolId, billAccount, billCode, Session["UserName"].ToString());
+            if (record == null)
+            {
+                TMessageBox.ShowMsg(this, "TradeRecordNotExists", "没有满足条件的交易记录！");
+                return;
+            }
+            UpdatePage(record);
+        }
+
+        private void UpdatePage(DrawRecord record)
+        {
+            dueDateTxt.Text = record.DueDate.ToString("yyyy-MM-dd");
+            moneyTxt.Text = record.CapticalMoney.ToString();
+            clientIDTxt.Text = record.DepositorIDCard;
+            clientNameTxt.Text = record.DepositorName;
+            tellerCodeTxt.Text = record.TellerCode;
+            remarkTxt.Text = record.Remark;
         }
 
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)

@@ -19,7 +19,7 @@
             <legend class="legendStyle">交易信息</legend>
             <table align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5; border-spacing: 0px;">
                 <tr>
-                    <td><span class="red-star">*</span>协议号：</td>
+                    <td><span class="red-star">*</span>协议编号：</td>
                     <td><span><asp:TextBox ID="protocolTxt" runat="server" CssClass="aspTextBox"></asp:TextBox></span></td>
                     <td><span class="red-star">*</span>存单账号：</td>
                     <td><asp:TextBox ID="billAccountTxt" runat="server" CssClass="aspBillAccount" Width="200px"></asp:TextBox></td>
@@ -88,14 +88,15 @@
             </tr>
         </table>
         </fieldset>
-            <fieldset class="fieldSetStyle" style="text-align: center; vertical-align: middle;">
-                <legend class="legendStyle" style="text-align: center; vertical-align: middle; width: 0px;"></legend>
-                <div id="bottom" style="display: inline; margin: 0px auto;">
-                    <span><asp:Button ID="depositBtn" runat="server" Text="存入" Height="30px" Width="100px" CssClass="aspBtn" OnClick="depositBtn_Click"/></span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span><asp:Button ID="cancelBtn" runat="server" Text="取消" Height="30px" Width="100px" CssClass="aspBtn" OnClick="cancelBtn_Click"/></span>
-                </div>
-            </fieldset>
+            <br />
+        <fieldset class="fieldSetStyle" style="text-align: center; vertical-align: middle;">
+            <legend class="legendStyle" style="text-align: center; vertical-align: middle; width: 0px;"></legend>
+            <div id="bottom" style="display: inline; margin: 0px auto;">
+                <span><asp:Button ID="depositBtn" runat="server" Text="存入" Height="30px" Width="100px" CssClass="aspBtn" OnClick="depositBtn_Click"/></span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span><asp:Button ID="cancelBtn" runat="server" Text="取消" Height="30px" Width="100px" CssClass="aspBtn" OnClick="cancelBtn_Click"/></span>
+            </div>
+        </fieldset>
     </div>
 
 </asp:Content>
