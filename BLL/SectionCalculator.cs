@@ -20,7 +20,7 @@ namespace HHBankDepositSite
         /// <summary>
         /// 靠档方案
         /// </summary>
-        private PeriodDescriptor sections = new PeriodDescriptor();
+        private SectionInfo sections = new SectionInfo();
 
         /// <summary>
         /// 根据存入日期和存期，计算应到期日期
@@ -122,9 +122,9 @@ namespace HHBankDepositSite
         /// <param name="start">存入日期</param>
         /// <param name="end">支取日期</param>
         /// <returns>靠档方案</returns>
-        private PeriodDescriptor CalcPeriodInYear(DateTime start, DateTime end)
+        private SectionInfo CalcPeriodInYear(DateTime start, DateTime end)
         {
-            PeriodDescriptor sects = new PeriodDescriptor();
+            SectionInfo sects = new SectionInfo();
             if (IsMonthsLater(start, end, 9))
             {
                 DateTime date09 = start.AddMonths(9);
@@ -198,6 +198,18 @@ namespace HHBankDepositSite
             string desc = sections.ToString();
             sections.Reset();
             return desc;
+        }
+
+        /// <summary>
+        /// 靠档利息计算
+        /// </summary>
+        /// <param name="start">存入日期</param>
+        /// <param name="end">支取日期</param>
+        /// <param name="period">约定存期</param>
+        /// <returns>靠档计息集合</returns>
+        public CalcResult CalcTotalInterest(DateTime start, DateTime end, Period period)
+        {
+            return new CalcResult();
         }
     }
 }

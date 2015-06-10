@@ -189,5 +189,19 @@ namespace BLL
             DepositRecord record = dbHandler.GetRecordByProtocolIdAccountCode(protocolId, billAccount, billCode, orgCode);
             return record;
         }
+
+        /// <summary>
+        /// 靠档本息计算
+        /// </summary>
+        /// <param name="money"></param>
+        /// <param name="period"></param>
+        /// <param name="drawDate"></param>
+        /// <returns></returns>
+        public CalcResult GetInterestResult(decimal money, Period period, DateTime drawDate)
+        {
+            // TODO: left to be done.
+            CalcResult result = new CalcResult();
+            return result;
+        }
     }
 }

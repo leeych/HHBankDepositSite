@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Model
 {
-    public class PeriodDescriptor
+    public class SectionInfo
     {
         /// <summary>
         /// 天数

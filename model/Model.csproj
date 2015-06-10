@@ -37,12 +37,13 @@
   <ItemGroup>
     <Compile Include="BankRate.cs" />
     <Compile Include="BankRateNode.cs" />
+    <Compile Include="CalcResult.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DrawFlag.cs" />
     <Compile Include="OrgInfo.cs" />
     <Compile Include="Period.cs" />
     <Compile Include="DepositRecord.cs" />
-    <Compile Include="PeriodDescriptor.cs" />
+    <Compile Include="SectionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInfo.cs" />
     <Compile Include="UserRole.cs" />
