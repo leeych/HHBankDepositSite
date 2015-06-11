@@ -58,13 +58,13 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox depositDateTxt;
         
         /// <summary>
-        /// periodDrop 控件。
+        /// periodTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList periodDrop;
+        protected global::System.Web.UI.WebControls.TextBox periodTxt;
         
         /// <summary>
         /// execRateTxt 控件。
@@ -121,6 +121,15 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox clientIDTxt;
         
         /// <summary>
+        /// drawStatusTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox drawStatusTxt;
+        
+        /// <summary>
         /// tellerCodeTxt 控件。
         /// </summary>
         /// <remarks>
@@ -128,6 +137,24 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tellerCodeTxt;
+        
+        /// <summary>
+        /// tellerNameTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label tellerNameTxt;
+        
+        /// <summary>
+        /// bindAccountTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox bindAccountTxt;
         
         /// <summary>
         /// remarkTxt 控件。
@@ -164,15 +191,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox moneyDrawTxt;
-        
-        /// <summary>
-        /// bindAccountTxt 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bindAccountTxt;
         
         /// <summary>
         /// sectionTxt 控件。

@@ -144,8 +144,8 @@ namespace BLL
         public int AddDepositRecord(DepositRecord record, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"insert into {0} (ProtocolID, BillAccount, BillCode, DepositDate, OrgCode, TellerCode, TellerName, DepositorName,IDCard,DepositMoney,CalcDueDate,DepositPeriod,SystemInterest,BindAccount,DepositFlag,Remark,CurrentRate,D01Rate,M03Rate, M06Rate, Y01Rate,Y02Rate,Y03Rate,Y05Rate)" + 
-                                    "values('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', {10}, '{11}', {12}, {13}, '{14}', {15}, '{16}', {17}, {18}, {19}, {20}, {21}, {22}, {23}, {24})";
+            string sql = @"if not exists (select * from {0} where ProtocolID='{1}') begin insert into {0} (ProtocolID, BillAccount, BillCode, DepositDate, OrgCode, TellerCode, TellerName, DepositorName,IDCard,DepositMoney,CalcDueDate,DepositPeriod,SystemInterest,BindAccount,DepositFlag,Remark,CurrentRate,D01Rate,M03Rate, M06Rate, Y01Rate,Y02Rate,Y03Rate,Y05Rate)" + 
+                                    "values('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', {10}, '{11}', {12}, {13}, '{14}', {15}, '{16}', {17}, {18}, {19}, {20}, {21}, {22}, {23}, {24}) end";
             string sqlString = string.Format(sql, tableName, record.ProtocolID, record.BillAccount, record.BillCode, record.DepositDate.ToString("yyyy-MM-dd"), record.OrgCode, record.TellerCode, record.TellerName, record.DepositorName, record.DepositorIDCard, record.DepositMoney, record.CalcDueDate.ToString("yyyy-MM-dd"), record.Period,
                 record.SystemInterest, record.BindAccount, record.DepositFlag, record.Remark, record.Rate.CurrRate, record.Rate.D01, record.Rate.M03, record.Rate.M06, record.Rate.Y01, record.Rate.Y02, record.Rate.Y03, record.Rate.Y05);
             return SqlHelper.ExecuteSql(sqlString);
@@ -449,7 +449,7 @@ namespace BLL
         public DrawRecord GetDrawRecordByProtocolIdAccountCode(string protocolId, string account, string code, string orgCode)
         { 
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"select DepositDate, TellerCode, DepositorName, IDCard, DepositMoney, DepositPeriod, BindAccount, Remark, CurrentRate, D01Rate, M03Rate, M06Rate, Y01Rate, " + 
+            string sql = @"select DepositDate, TellerCode, DepositorName, IDCard, DepositMoney, DepositPeriod, BindAccount, SystemInterest, Remark, CurrentRate, D01Rate, M03Rate, M06Rate, Y01Rate, " + 
                 " Y02Rate, Y03Rate, Y05Rate from {0} where ProtocolID = '{1}' and BillAccount='{2}' and BillCode='{3}' and 1=1";
             string sqlString = string.Format(sql, tableName, protocolId, account, code);
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
@@ -466,6 +466,8 @@ namespace BLL
                     record.DepositorIDCard = dr["IDCard"].ToString();
                     record.CapticalMoney = decimal.Parse(dr["DepositMoney"].ToString());
                     record.BindAccount = dr["BindAccount"].ToString();
+                    record.SystemInterest = decimal.Parse(dr["SystemInterest"].ToString());
+                    record.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
                     record.Rate = new BankRate()
                                     {
                                         CurrRate = decimal.Parse(dr["CurrentRate"].ToString()),
@@ -483,7 +485,7 @@ namespace BLL
                     record.SectionInterest = 0;
                     record.MarginInterest = 0;
                     record.BillPeriod = (Period)int.Parse(dr["DepositPeriod"].ToString());
-                    record.DrawDate = DateTime.Now;
+                    record.DrawDate = DateTime.MaxValue;
                     record.Remark = dr["Remark"].ToString();
 
                     //var record = new DrawRecord

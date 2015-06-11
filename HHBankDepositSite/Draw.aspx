@@ -75,14 +75,15 @@
                 <td>存入日期：</td>
                 <td><asp:TextBox runat="server" ID="depositDateTxt" CssClass="aspTextBox" ReadOnly="true"></asp:TextBox></td>
                 <td>约定存期：</td>
-                <td><asp:DropDownList runat="server" ID="periodDrop" CssClass="aspTextBox" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True">
+                <%--<td><asp:DropDownList runat="server" ID="periodDrop" CssClass="aspTextBox" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True">
                     <asp:ListItem>三个月</asp:ListItem>
                     <asp:ListItem>六个月</asp:ListItem>
                     <asp:ListItem>一年</asp:ListItem>
                     <asp:ListItem>二年</asp:ListItem>
                     <asp:ListItem>三年</asp:ListItem>
                     <asp:ListItem>五年</asp:ListItem>
-                    </asp:DropDownList></td>
+                    </asp:DropDownList></td>--%>
+                <td><asp:TextBox runat="server" ID="periodTxt" CssClass="aspTextBox" ReadOnly="true"></asp:TextBox></td>
                 <td>执行利率：</td>
                 <td><span><asp:TextBox runat="server" ID="execRateTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></span><span class="per-cent">%</span></td>
             </tr>
@@ -99,10 +100,18 @@
                 <td><asp:TextBox runat="server" ID="clientNameTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>身份证号：</td>
                 <td><asp:TextBox runat="server" ID="clientIDTxt" CssClass="aspTextBox" ReadOnly="True" MaxLength="18"></asp:TextBox></td>
-                <td>经办柜员：</td>
-                <td><asp:TextBox runat="server" ID="tellerCodeTxt" CssClass="aspTextBox" ReadOnly="True" MaxLength="6"></asp:TextBox></td>
+                <td>是否支取：</td>
+                <td><asp:TextBox runat="server" ID="drawStatusTxt" CssClass="aspTextBox" ReadOnly="true"></asp:TextBox></td>
+                
             </tr>
             <tr style="height: 200%">
+                <td>经办柜员：</td>
+                <td><asp:TextBox runat="server" ID="tellerCodeTxt" CssClass="aspTextBox" ReadOnly="True" MaxLength="6"></asp:TextBox></td>
+                <td><asp:Label runat="server" ID="tellerNameTxt"></asp:Label></td>
+                <td align="right">补息账号：</td>
+                <td colspan="2"><asp:TextBox runat="server" ID="bindAccountTxt" CssClass="aspBillAccount" MaxLength="23" Width="90%"></asp:TextBox></td>
+                </tr>
+            <tr>
                 <td>备注：</td>
                 <td colspan="7"><asp:TextBox runat="server" ID="remarkTxt" TextMode="MultiLine" Width="100%" ReadOnly="True"></asp:TextBox></td>
             </tr>
@@ -112,7 +121,7 @@
 
     <fieldset class="fieldSetStyle">
         <legend class="legendStyle">支取</legend>
-        <table style="border: 1px solid #E5E5E5; text-align: center;" align="center">
+        <table  style="border: 1px solid #E5E5E5; text-align: center;" align="center" >
             <tr>
                 <td><span class="red-star">*</span>支取日期：</td>
                 <td>
@@ -135,12 +144,12 @@
                  </td>
                 <td><span class="red-star">*</span>支取金额：</td>
                 <td><asp:TextBox runat="server" ID="moneyDrawTxt" CssClass="aspTextBox"></asp:TextBox></td>
-                <td>补息账号：</td>
-                <td><asp:TextBox runat="server" ID="bindAccountTxt" CssClass="aspBillAccount" MaxLength="23"></asp:TextBox></td>
             </tr>
             <tr>
                 <td>靠档方案：</td>
-                <td><asp:TextBox runat="server" ID="sectionTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
+                <td align="left" colspan="3"><asp:TextBox runat="server" ID="sectionTxt" CssClass="aspTextBox" ReadOnly="True" Width="100%"></asp:TextBox></td>
+            </tr>
+            <tr>
                 <td>系统本息：</td>
                 <td><asp:TextBox runat="server" ID="systemTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>靠档本息：</td>

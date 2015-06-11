@@ -124,7 +124,7 @@ namespace HHBankDepositSite
             }
             else
             {
-                TMessageBox.ShowMsg(this, "AddRecordErr", "存款记录添加失败！");
+                TMessageBox.ShowMsg(this, "AddRecordErr", "协议编号已存在！记录添加失败！");
             }
         }
 

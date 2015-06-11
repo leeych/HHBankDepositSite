@@ -79,31 +79,31 @@ namespace HHBankDepositSite
 
         protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (periodDrop.SelectedIndex)
-            {
-                case 0:
-                    execRateTxt.Text = (bankRate.M03 * 100).ToString();
-                    break;
-                case 1:
-                    execRateTxt.Text = (bankRate.M06 * 100).ToString();
-                    break;
-                case 2:
-                    execRateTxt.Text = (bankRate.Y01 * 100).ToString();
-                    break;
-                case 3:
-                    execRateTxt.Text = (bankRate.Y02 * 100).ToString();
-                    break;
-                case 4:
-                    execRateTxt.Text = (bankRate.Y03 * 100).ToString();
-                    break;
-                case 5:
-                    execRateTxt.Text = (bankRate.Y05 * 100).ToString();
-                    break;
-                default:
-                    execRateTxt.Text = "--";
-                    break;
-            }
-            execRateTxt.DataBind();
+            //switch (periodDrop.SelectedIndex)
+            //{
+            //    case 0:
+            //        execRateTxt.Text = (bankRate.M03 * 100).ToString();
+            //        break;
+            //    case 1:
+            //        execRateTxt.Text = (bankRate.M06 * 100).ToString();
+            //        break;
+            //    case 2:
+            //        execRateTxt.Text = (bankRate.Y01 * 100).ToString();
+            //        break;
+            //    case 3:
+            //        execRateTxt.Text = (bankRate.Y02 * 100).ToString();
+            //        break;
+            //    case 4:
+            //        execRateTxt.Text = (bankRate.Y03 * 100).ToString();
+            //        break;
+            //    case 5:
+            //        execRateTxt.Text = (bankRate.Y05 * 100).ToString();
+            //        break;
+            //    default:
+            //        execRateTxt.Text = "--";
+            //        break;
+            //}
+            //execRateTxt.DataBind();
         }
 
         protected void searchBtn_Click(object sender, EventArgs e)
@@ -158,15 +158,22 @@ namespace HHBankDepositSite
 
         private void UpdatePage(DrawRecord record)
         {
-            //if (record.DueDate.Date == DateTime.MaxValue.Date)
-            //{
-            //}
+            if (record.DueDate.Date == DateTime.MaxValue.Date)
+            {
+                record.DueDate = SectionCalculator.GetDueDateByPeriod(record.DepositDate, record.BillPeriod);
+            }
+            depositDateTxt.Text = record.DepositDate.ToString("yyyy-MM-dd");
             dueDateTxt.Text = record.DueDate.ToString("yyyy-MM-dd");
             moneyTxt.Text = record.CapticalMoney.ToString();
             clientIDTxt.Text = record.DepositorIDCard;
             clientNameTxt.Text = record.DepositorName;
             tellerCodeTxt.Text = record.TellerCode;
             remarkTxt.Text = record.Remark;
+            bindAccountTxt.Text = record.BindAccount;
+            periodTxt.Text = GetPeriodDesc(record.BillPeriod);
+            execRateTxt.Text = GetBankRateDesc(record.BillPeriod, record.Rate);
+            systemInterestTxt.Text = record.SystemInterest.ToString();
+            drawStatusTxt.Text = GetDrawStatus(record.Status);
         }
 
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
@@ -174,6 +181,87 @@ namespace HHBankDepositSite
             bool start = e.Day.Date >= DateTime.Now.Date.AddDays(-1);
             bool end = e.Day.Date <= DateTime.Now.Date.AddDays(1);
             e.Day.IsSelectable = (start && end);
+        }
+
+        private string GetPeriodDesc(Period period)
+        {
+            string desc = string.Empty;
+            switch (period)
+            {
+                case Period.M03:
+                    desc = "三个月";
+                    break;
+                case Period.M06:
+                    desc = "六个月";
+                    break;
+                case Period.Y01:
+                    desc = "一年";
+                    break;
+                case Period.Y02:
+                    desc = "二年";
+                    break;
+                case Period.Y03:
+                    desc = "三年";
+                    break;
+                case Period.Y05:
+                    desc = "五年";
+                    break;
+                default:
+                    desc = "--";
+                    break;
+            }
+            return desc;
+        }
+
+        private string GetBankRateDesc(Period period, BankRate bankRate)
+        {
+            string desc = string.Empty;
+            switch (period)
+            {
+                case Period.M03:
+                    desc = (bankRate.M03 * 100).ToString();
+                    break;
+                case Period.M06:
+                    desc = (bankRate.M06 * 100).ToString();
+                    break;
+                case Period.Y01:
+                    desc = (bankRate.Y01 * 100).ToString();
+                    break;
+                case Period.Y02:
+                    desc = (bankRate.Y02 * 100).ToString();
+                    break;
+                case Period.Y03:
+                    desc = (bankRate.Y03 * 100).ToString();
+                    break;
+                case Period.Y05:
+                    desc = (bankRate.Y05 * 100).ToString();
+                    break;
+                default:
+                    desc = "--";
+                    break;
+            }
+            return desc;
+        }
+
+        private string GetDrawStatus(DrawFlag flag)
+        {
+            string desc = "--";
+            switch (flag)
+            {
+                case DrawFlag.Deposit:
+                    desc = "存入";
+                    break;
+                case DrawFlag.Draw:
+                    desc = "已支取";
+                    break;
+                case DrawFlag.Remain:
+                    desc = "部分提前支取";
+                    break;
+                default:
+                    desc = "未知";
+                    break;
+            }
+            return desc;
         }
     }
 }
