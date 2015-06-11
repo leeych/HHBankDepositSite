@@ -29,7 +29,47 @@ namespace HHBankDepositSite
 
         protected void calcBtn_Click(object sender, EventArgs e)
         {
+            if (Session["UserName"] == null)
+            {
+                TMessageBox.ShowMsg(this, "SessionExpired", "超时，请重新登录！");
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+            string protocolId= protocolIDTxt.Text.Trim();
+            string billAccount = billAccountTxt.Text.Trim();
+            string billCode = billCodeTxt.Text.Trim();
+            DateTime drawDate = Calendar1.SelectedDate;
+            decimal drawMoney = decimal.Parse(moneyDrawTxt.Text.Trim());
 
+            DrawRecord record = BizHandler.Handler.GetDrawRecord(protocolId, billAccount, billCode, Session["UserName"].ToString());
+            if (record == null)
+            {
+                TMessageBox.ShowMsg(this, "RecordNotExists", "存款记录不存在！");
+                return;
+            }
+            BankRate depositRate = new BankRate {
+                                            D01 = record.Rate.D01,
+                                            M03 = record.Rate.M03,
+                                            M06 = record.Rate.M06,
+                                            Y01 = record.Rate.Y01,
+                                            Y02 = 0,
+                                            Y03 = 0,
+                                            Y05 = 0
+                                        };
+            CalcInfo calcInfo = new CalcInfo { 
+                                        StartDate = record.DepositDate,
+                                        EndDate = drawDate,
+                                        CapitalMoney = drawMoney,
+                                        DepositPeriod = record.BillPeriod
+                                    };
+
+            SectionCalculator calculator = new SectionCalculator();
+            CalcResult result = calculator.CalcTotalResult(calcInfo, depositRate);
+            // TODO: update page
+            sectionTxt.Text = result.SectionDesc;
+            systemTxt.Text = (result.SystemInterest + drawMoney).ToString();
+            totalInterestTxt.Text = (result.SectionInterest + drawMoney).ToString();
+            marginTxt.Text = result.MarginInterest.ToString();
         }
 
         protected void okBtn_Click(object sender, EventArgs e)

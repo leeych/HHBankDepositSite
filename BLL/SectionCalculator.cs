@@ -300,7 +300,7 @@ namespace HHBankDepositSite
         /// <param name="depositInfo"></param>
         /// <param name="bankRate"></param>
         /// <returns></returns>
-        public CalcResult CalcTotalInterest(CalcInfo depositInfo, BankRate bankRate)
+        public CalcResult CalcTotalResult(CalcInfo depositInfo, BankRate bankRate)
         {
             CalcResult result = new CalcResult();
             SectionInfo info = GetSectionPlan(depositInfo.StartDate, depositInfo.EndDate, depositInfo.DepositPeriod);
