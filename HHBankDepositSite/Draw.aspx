@@ -17,11 +17,11 @@
         <table style="border: 1px solid #E5E5E5; text-align: center; vertical-align: middle;" align="center">
             <tr>
                 <td><span class="red-star">*</span>协议编号：</td>
-                <td><asp:TextBox runat="server" CssClass="aspTextBox" ID="protocolIDTxt"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" CssClass="aspTextBox" ID="protocolIDTxt" MaxLength="14"></asp:TextBox></td>
                 <td><span class="red-star">*</span>存单账号：</td>
-                <td><asp:TextBox runat="server" CssClass="aspBillAccount" ID="billAccountTxt"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" CssClass="aspBillAccount" ID="billAccountTxt" Width="200px" MaxLength="23"></asp:TextBox></td>
                 <td><span class="red-star">*</span>凭证号：</td>
-                <td><asp:TextBox runat="server" CssClass="aspTextBox" ID="billCodeTxt"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" CssClass="aspTextBox" ID="billCodeTxt" MaxLength="12"></asp:TextBox></td>
                 <td><asp:Button runat="server" Height="30px" Width="100px" CssClass="aspBtn" ID="searchBtn" Text="查询" OnClick="searchBtn_Click"/></td>
             </tr>
             <tr>
@@ -88,9 +88,9 @@
                 <td>客户姓名：</td>
                 <td><asp:TextBox runat="server" ID="clientNameTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>身份证号：</td>
-                <td><asp:TextBox runat="server" ID="clientIDTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="clientIDTxt" CssClass="aspTextBox" ReadOnly="True" MaxLength="18"></asp:TextBox></td>
                 <td>经办柜员：</td>
-                <td><asp:TextBox runat="server" ID="tellerCodeTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="tellerCodeTxt" CssClass="aspTextBox" ReadOnly="True" MaxLength="6"></asp:TextBox></td>
             </tr>
             <tr>
                 <td>备注：</td>
@@ -125,7 +125,7 @@
                 <td><span class="red-star">*</span>支取金额：</td>
                 <td><asp:TextBox runat="server" ID="moneyDrawTxt" CssClass="aspTextBox"></asp:TextBox></td>
                 <td>补息账号：</td>
-                <td><asp:TextBox runat="server" ID="bindAccountTxt" CssClass="aspBillAccount"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="bindAccountTxt" CssClass="aspBillAccount" MaxLength="23"></asp:TextBox></td>
             </tr>
             <tr>
                 <td>靠档方案：</td>

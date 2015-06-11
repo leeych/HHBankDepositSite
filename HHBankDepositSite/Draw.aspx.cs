@@ -81,6 +81,32 @@ namespace HHBankDepositSite
                 TMessageBox.ShowMsg(this, "DrawSearch", "请务必输入协议号、存单账号、凭证号！");
                 return;
             }
+            string errMsg = string.Empty;
+            if (!PageValidator.IsNumber(protocolId))
+            {
+                errMsg += "协议编号必须全部为数字！\n";
+            }
+            if (!PageValidator.IsNumber(billAccount))
+            {
+                errMsg += "存单账号必须全部为数字！\n";
+            }
+            if (billAccount.Length != 23)
+            {
+                errMsg += "存单账号长度必须为23位！\n";
+            }
+            if (!PageValidator.IsNumber(billCode))
+            {
+                errMsg += "凭证号码必须全部为数字！\n";
+            }
+            if (billCode.Length != 12)
+            {
+                errMsg += "凭证号码长度必须为12位！";
+            }
+            if (!string.IsNullOrEmpty(errMsg))
+            {
+                TMessageBox.ShowMsg(this, "PageValidator", errMsg);
+                return;
+            }
             DrawRecord record = BizHandler.Handler.GetDrawRecord(protocolId, billAccount, billCode, Session["UserName"].ToString());
             if (record == null)
             {

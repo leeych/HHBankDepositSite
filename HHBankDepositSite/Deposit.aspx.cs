@@ -21,7 +21,7 @@ namespace HHBankDepositSite
             periodDrop.SelectedIndex = 2;
             periodDrop_SelectedIndexChanged(sender, e);
             dateTxt.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            dateTxt.DataBind();
+            dateTxt.DataBind();           
         }
 
         protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,11 +71,11 @@ namespace HHBankDepositSite
                 return;
             }
 
-            if (!ValidatePage())
+            if (!ValidateText())
             {
-                TMessageBox.ShowMsg(this, "RequiredEmpty", "标 * 的为必填项！");
                 return;
             }
+
             DateTime t = new DateTime();
             if (!DateTime.TryParse(dateTxt.Text.Trim() + "T00:00:00", out t))
             {
@@ -132,12 +132,52 @@ namespace HHBankDepositSite
             EnableEditableCtrls(true);
         }
 
-        private bool ValidatePage()
+        private bool ValidateText()
         {
-            if (string.IsNullOrEmpty(protocolTxt.Text.Trim()) || string.IsNullOrEmpty(billAccountTxt.Text.Trim()) || string.IsNullOrEmpty(billCodeTxt.Text.Trim()) 
-                || string.IsNullOrEmpty(rateTxt.Text.Trim()) || string.IsNullOrEmpty(dateTxt.Text.Trim()) || string.IsNullOrEmpty(bindAccountTxt.Text.Trim()) 
-                || string.IsNullOrEmpty(IDCardTxt.Text.Trim()) || string.IsNullOrEmpty(nameTxt.Text.Trim()) || string.IsNullOrEmpty(tellerCodeTxt.Text.Trim()))
+            string protocolId = protocolTxt.Text.Trim();
+            string account = billAccountTxt.Text.Trim();
+            string billCode = billCodeTxt.Text.Trim();
+            string rate = rateTxt.Text.Trim();
+            string date = dateTxt.Text.Trim();
+            string bindAccount = bindAccountTxt.Text.Trim();
+            string tellerCode = tellerCodeTxt.Text.Trim();
+            string idCard = IDCardTxt.Text.Trim();
+            string name = nameTxt.Text.Trim();
+            if (string.IsNullOrEmpty(protocolId) || string.IsNullOrEmpty(account) || string.IsNullOrEmpty(billCode) 
+                || string.IsNullOrEmpty(rate) || string.IsNullOrEmpty(date) || string.IsNullOrEmpty(bindAccount) 
+                || string.IsNullOrEmpty(idCard) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(tellerCode))
             {
+                TMessageBox.ShowMsg(this, "InputValidate", "标“*”为必填项！");
+                return false;
+            }
+            string errMsg = string.Empty;
+            if (!PageValidator.IsNumber(protocolId))
+            {
+                errMsg += @"协议编号必须全部为数字！\n";
+            }
+            if (!PageValidator.IsNumber(account))
+            {
+                errMsg += @"存单账号必须全部为数字！\n";
+            }
+            if (!PageValidator.IsNumber(billCode))
+            {
+                errMsg += @"凭证号码必须全部为数字！\n";
+            }
+            if (!PageValidator.IsNumber(idCard))
+            {
+                errMsg += @"身份证号码必须全部为数字！\n";
+            }
+            if (!PageValidator.IsHasCHZN(name))
+            {
+                errMsg += @"客户姓名必须为中文！\n";
+            }
+            if (!PageValidator.IsNumber(tellerCode))
+            {
+                errMsg += @"柜员号必须全部为数字！";
+            }
+            if (!string.IsNullOrEmpty(errMsg))
+            {
+                TMessageBox.ShowMsg(this, "NumberValidate", errMsg);
                 return false;
             }
             return true;
@@ -233,6 +273,117 @@ namespace HHBankDepositSite
             bool startDate = e.Day.Date >= DateTime.Now.Date.AddDays(-1);
             bool endDate = e.Day.Date <= DateTime.Now.Date;
             e.Day.IsSelectable = (startDate && endDate);
+        }
+
+        protected void protocolTxt_TextChanged(object sender, EventArgs e)
+        {
+            string protocolId = protocolTxt.Text.Trim();
+            if (!PageValidator.IsNumber(protocolId))
+            {
+                TMessageBox.ShowMsg(this, "ProtocolIdNotNumber", "协议编号必须全部为数字！");
+                TMessageBox.SetFocus(protocolTxt, this);
+                return;
+            }
+            if (protocolId.Length != protocolTxt.MaxLength)
+            {
+                TMessageBox.ShowMsg(this, "ProtocolIdLenErr", "协议编号长度不对！");
+                TMessageBox.SetFocus(protocolTxt, this);
+                return;
+            }
+        }
+
+        protected void billAccountTxt_TextChanged(object sender, EventArgs e)
+        {
+            NumberCheck("BillAccountMsg", "存单账号必须全部为数字！", billAccountTxt);
+            MaxLenCheckTemplate("BillAccountLenErr", "存单账号长度不够！", billAccountTxt);
+        }
+
+        private bool NumberCheck(string tag, string desc, TextBox ctrl)
+        {
+            string content = ctrl.Text.Trim();
+            if (!PageValidator.IsNumber(content))
+            {
+                TMessageBox.ShowMsg(this, tag, desc);
+                return false;
+            }
+            return true;
+        }
+
+        private bool DecimalCheck(string tag, string desc, TextBox ctrl)
+        {
+            string content = ctrl.Text.Trim();
+            if (!PageValidator.IsNumber(content))
+            {
+                TMessageBox.ShowMsg(this, tag, desc);
+                return false;
+            }
+            return true;
+        }
+
+        private bool MaxLenCheckTemplate(string tag, string desc, TextBox ctrl)
+        {
+            string content = ctrl.Text.Trim();
+            if (!PageValidator.IsDecimal(content))
+            {
+                TMessageBox.ShowMsg(this, tag, desc);
+                return false;
+            }
+            return true;
+        }
+
+        private bool ZHCNCheckTemplate(string tag, string desc, TextBox ctrl)
+        {
+            string content = ctrl.Text.Trim();
+            if (!PageValidator.IsHasCHZN(content))
+            {
+                TMessageBox.ShowMsg(this, tag, desc);
+                return false;
+            }
+            return true;
+        }
+
+        protected void billCodeTxt_TextChanged(object sender, EventArgs e)
+        {
+            if (!NumberCheck("BillCodeMsg", "凭证号码必须全部为数字！", billCodeTxt))
+            {
+                MaxLenCheckTemplate("BillCodeLenErr", "凭证号码长度不够！", billCodeTxt);
+            }
+        }
+
+        protected void moneyTxt_TextChanged(object sender, EventArgs e)
+        {
+            DecimalCheck("MoneyMsg", "本金输入错误！", moneyTxt);
+        }
+
+        protected void bindAccountTxt_TextChanged(object sender, EventArgs e)
+        {
+            if (NumberCheck("BindAccountMsg", "补息账号必须全部为数字！", bindAccountTxt))
+            {
+                MaxLenCheckTemplate("BindAccountLenErr", "补息账号长度不够！", bindAccountTxt);
+            }
+        }
+
+        protected void nameTxt_TextChanged(object sender, EventArgs e)
+        {
+            ZHCNCheckTemplate("NameMsg", "客户姓名中不含汉字！", nameTxt);
+        }
+
+        protected void IDCardTxt_TextChanged(object sender, EventArgs e)
+        {
+            MaxLenCheckTemplate("IDCardLenErr", "身份证号码长度不够！", IDCardTxt);
+        }
+
+        protected void tellerCodeTxt_TextChanged(object sender, EventArgs e)
+        {
+            if (NumberCheck("TellerCodeMsg", "柜员号必须全部为数字！", tellerCodeTxt))
+            {
+                MaxLenCheckTemplate("TellerCodeLenErr", "柜员号长度不够！", tellerCodeTxt);
+            }
+        }
+
+        protected void checkID()
+        {
+            Response.Write("<script language='javascript'>alert('onblur')</script>");
         }
     }
 }

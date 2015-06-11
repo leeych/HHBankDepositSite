@@ -74,7 +74,7 @@ namespace Common
 
         public static void SetFocus(Control ctrl, Page page)
         {
-            string s = "<script language='javascript' defer>document.getElementById('" + ctrl.ID + "').focus() </script>";
+            string s = "<script language='javascript' defer>document.getElementById('" + ctrl.ClientID + "').focus() </script>";
             page.ClientScript.RegisterStartupScript(page.GetType(), "message", s);
         }
     }
