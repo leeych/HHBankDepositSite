@@ -96,7 +96,7 @@ namespace HHBankDepositSite
             string name = nameTxt.Text.Trim();
             string remark = remarkTxt.Text.Trim();
             DateTime dueDate = SectionCalculator.GetDueDateByPeriod(depositDate, (Period)period);
-            decimal systemInterest = SectionCalculator.CalcDueDrawInterest(money, (Period)period, bankRate);
+            //decimal systemInterest = SectionCalculator.CalcDueDrawInterest(money, (Period)period, bankRate);
 
             DepositRecord record = new DepositRecord 
                                         {
@@ -114,7 +114,7 @@ namespace HHBankDepositSite
                                             Remark = remark,
                                             Rate = bankRate,
                                             CalcDueDate = dueDate,
-                                            SystemInterest = systemInterest
+                                            //SystemInterest = systemInterest
                                         };
             if (BizHandler.Handler.AddDepositRecord(record) == 1)
             {

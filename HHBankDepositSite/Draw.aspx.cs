@@ -15,6 +15,8 @@ namespace HHBankDepositSite
         private string bankRatePath = ConfigUtil.GetValue(WebConfigName.BankRateTable, "");
         private BankRate bankRate = BizHandler.Handler.GetBankRateTable(ConfigUtil.GetValue(WebConfigName.BankRateTable, ""));
 
+        private DrawRecord drawRecord = new DrawRecord();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             periodDrop_SelectedIndexChanged(sender, e);
@@ -41,9 +43,20 @@ namespace HHBankDepositSite
             decimal drawMoney = decimal.Parse(moneyDrawTxt.Text.Trim());
 
             DrawRecord record = BizHandler.Handler.GetDrawRecord(protocolId, billAccount, billCode, Session["UserName"].ToString());
+            drawRecord = record;
             if (record == null)
             {
                 TMessageBox.ShowMsg(this, "RecordNotExists", "存款记录不存在！");
+                return;
+            }
+            if (record.Status == DrawFlag.Draw)
+            {
+                TMessageBox.ShowMsg(this, "DrawRecordErr", "存款已被支取！");
+                return;
+            }
+            if (record.Status == DrawFlag.Remain && record.CapticalMoney < 5000)
+            {
+                TMessageBox.ShowMsg(this, "Draw5000Less", "存款已被部分提前支取，余额不足5000，不再享受保利存补息！");
                 return;
             }
             BankRate depositRate = new BankRate {
@@ -62,10 +75,8 @@ namespace HHBankDepositSite
                                         CapitalMoney = drawMoney,
                                         DepositPeriod = record.BillPeriod
                                     };
-
             SectionCalculator calculator = new SectionCalculator();
             CalcResult result = calculator.CalcTotalResult(calcInfo, depositRate);
-            // TODO: update page
             sectionTxt.Text = (result.SectionDesc ?? "-");
             systemTxt.Text = (result.SystemInterest + drawMoney).ToString();
             totalInterestTxt.Text = (result.SectionInterest + drawMoney).ToString();
@@ -74,7 +85,26 @@ namespace HHBankDepositSite
 
         protected void okBtn_Click(object sender, EventArgs e)
         {
-
+            DrawInfo info = new DrawInfo();
+            info.DrawDate = drawRecord.DrawDate;
+            info.DrawMoney = drawRecord.DrawMoney;
+            info.ProtocolId = drawRecord.ProtocolID;
+            info.SystemInterest = drawRecord.SystemInterest;
+            info.SectionInterest = drawRecord.SectionInterest;
+            info.RemainMoney = drawRecord.CapticalMoney - drawRecord.DrawMoney;
+            info.MarginInterest = drawRecord.SectionInterest - drawRecord.SystemInterest;
+            // TODO: store in database
+            bool res = BizHandler.Handler.DrawDepositRecord(info, Session["UserName"].ToString());
+            if (!res)
+            {
+                TMessageBox.ShowMsg(this, "DrawMoneyErr", "支取失败！");
+                return;
+            }
+            else
+            {
+                TMessageBox.ShowMsg(this, "DrawMoneySuccess", "支取成功！");
+                return;
+            }
         }
 
         protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)
@@ -172,7 +202,7 @@ namespace HHBankDepositSite
             bindAccountTxt.Text = record.BindAccount;
             periodTxt.Text = GetPeriodDesc(record.BillPeriod);
             execRateTxt.Text = GetBankRateDesc(record.BillPeriod, record.Rate);
-            systemInterestTxt.Text = record.SystemInterest.ToString();
+            systemInterestTxt.Text = SectionCalculator.CalcDueDrawInterest(record.CapticalMoney, record.BillPeriod, record.Rate).ToString();
             drawStatusTxt.Text = GetDrawStatus(record.Status);
         }
 

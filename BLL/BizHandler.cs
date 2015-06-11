@@ -200,5 +200,15 @@ namespace BLL
             DrawRecord record = dbHandler.GetDrawRecordByProtocolIdAccountCode(protocolId, account, code, orgCode);
             return record;
         }
+
+        public bool DrawDepositRecord(DrawInfo info, string orgCode)
+        {
+            if (string.IsNullOrEmpty(orgCode))
+            {
+                return false;
+            }
+            bool res = dbHandler.DrawDepositRecord(info, orgCode);
+            return res;
+        }
     }
 }

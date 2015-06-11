@@ -144,10 +144,10 @@ namespace BLL
         public int AddDepositRecord(DepositRecord record, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"if not exists (select * from {0} where ProtocolID='{1}') begin insert into {0} (ProtocolID, BillAccount, BillCode, DepositDate, OrgCode, TellerCode, TellerName, DepositorName,IDCard,DepositMoney,CalcDueDate,DepositPeriod,SystemInterest,BindAccount,DepositFlag,Remark,CurrentRate,D01Rate,M03Rate, M06Rate, Y01Rate,Y02Rate,Y03Rate,Y05Rate)" + 
-                                    "values('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', {10}, '{11}', {12}, {13}, '{14}', {15}, '{16}', {17}, {18}, {19}, {20}, {21}, {22}, {23}, {24}) end";
+            string sql = @"if not exists (select * from {0} where ProtocolID='{1}') begin insert into {0} (ProtocolID, BillAccount, BillCode, DepositDate, OrgCode, TellerCode, TellerName, DepositorName,IDCard,DepositMoney,CalcDueDate,DepositPeriod,BindAccount,DepositFlag,Remark,CurrentRate,D01Rate,M03Rate, M06Rate, Y01Rate,Y02Rate,Y03Rate,Y05Rate)" + 
+                                    "values('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', {10}, '{11}', {12}, '{13}', {14}, '{15}', {16}, {17}, {18}, {19}, {20}, {21}, {22}, {23}) end";
             string sqlString = string.Format(sql, tableName, record.ProtocolID, record.BillAccount, record.BillCode, record.DepositDate.ToString("yyyy-MM-dd"), record.OrgCode, record.TellerCode, record.TellerName, record.DepositorName, record.DepositorIDCard, record.DepositMoney, record.CalcDueDate.ToString("yyyy-MM-dd"), record.Period,
-                record.SystemInterest, record.BindAccount, record.DepositFlag, record.Remark, record.Rate.CurrRate, record.Rate.D01, record.Rate.M03, record.Rate.M06, record.Rate.Y01, record.Rate.Y02, record.Rate.Y03, record.Rate.Y05);
+                record.BindAccount, record.DepositFlag, record.Remark, record.Rate.CurrRate, record.Rate.D01, record.Rate.M03, record.Rate.M06, record.Rate.Y01, record.Rate.Y02, record.Rate.Y03, record.Rate.Y05);
             return SqlHelper.ExecuteSql(sqlString);
         }
 
@@ -466,7 +466,7 @@ namespace BLL
                     record.DepositorIDCard = dr["IDCard"].ToString();
                     record.CapticalMoney = decimal.Parse(dr["DepositMoney"].ToString());
                     record.BindAccount = dr["BindAccount"].ToString();
-                    record.SystemInterest = decimal.Parse(dr["SystemInterest"].ToString());
+                    //record.SystemInterest = decimal.Parse(dr["SystemInterest"].ToString());
                     record.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
                     record.Rate = new BankRate()
                                     {
@@ -481,6 +481,7 @@ namespace BLL
                                     };
                     record.DueDate = DateTime.MaxValue;
                     record.DrawMoney = 0;
+                    record.SystemInterest = 0;
                     record.SectionInterest = 0;
                     record.MarginInterest = 0;
                     record.BillPeriod = (Period)int.Parse(dr["DepositPeriod"].ToString());
@@ -620,6 +621,24 @@ namespace BLL
                 }
             }
             return null;
+        }
+
+        public bool DrawDepositRecord(DrawInfo info, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"update {0} set EarlierDrawDate='{1}' and EarlierDrawMoney={2} and RemainMoney={3} and EarlierInterest={4} and SystemInterest={5} and " +
+                " MarginInterest={6} and DepositFlag={7} where ProtocolID={8} and 1=1";
+            string sqlString = string.Format(sql, tableName, info.DrawDate.ToString("yyyy-MM-dd"), info.DrawMoney, info.RemainMoney, info.SectionInterest, info.SystemInterest, info.MarginInterest, (int)info.DrawStatus,
+                info.ProtocolId);
+            int rows = SqlHelper.ExecuteSql(sqlString);
+            if (rows == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -151,7 +151,7 @@
             </tr>
             <tr>
                 <td>系统本息：</td>
-                <td><asp:TextBox runat="server" ID="systemTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
+                <td align="left"><asp:TextBox runat="server" ID="systemTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>靠档本息：</td>
                 <td><asp:TextBox runat="server" ID="totalInterestTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
             </tr>

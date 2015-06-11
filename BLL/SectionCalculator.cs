@@ -74,6 +74,7 @@ namespace HHBankDepositSite
         /// <returns>靠档方案</returns>
         public SectionInfo GetSectionPlan(DateTime start, DateTime end, Period period)
         {
+            sectionInfo.Reset();
             DateTime dueDate = GetDueDate(start, period);
             if (dueDate.Date <= end.Date)
             {
