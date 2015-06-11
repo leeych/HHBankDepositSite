@@ -81,10 +81,10 @@ namespace Model
         ///// </summary>
         //public DateTime EarlierDrawDate { get; set; }
 
-        ///// <summary>
-        ///// 最大靠档日期
-        ///// </summary>
-        //public DateTime CalcDueDate { get; set; }
+        /// <summary>
+        /// 到期日期
+        /// </summary>
+        public DateTime CalcDueDate { get; set; }
 
         ///// <summary>
         ///// 到期支取金额
@@ -96,10 +96,10 @@ namespace Model
         ///// </summary>
         //public decimal EarlierInterest { get; set; }
 
-        ///// <summary>
-        ///// 综合业务系统计算的利息
-        ///// </summary>
-        //public decimal SystemInterest { get; set; }
+        /// <summary>
+        /// 综合业务系统计算的利息
+        /// </summary>
+        public decimal SystemInterest { get; set; }
 
         ///// <summary>
         ///// 靠档利息 - 综合业务系统利息

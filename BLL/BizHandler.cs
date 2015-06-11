@@ -43,6 +43,7 @@ namespace BLL
             xmlDoc.Load(fileName);
             string xpath = "/" + BankRateNode.BankRate + "/" + BankRateNode.ExecRate + "/";
             XmlNode node = xmlDoc.SelectSingleNode(xpath + "/" + BankRateNode.Current);
+            rate.CurrRate = decimal.Parse(node.InnerText.Trim()) / 100;
             rate.D01 = decimal.Parse(node.InnerText.Trim()) / 360 / 100;
             node = xmlDoc.SelectSingleNode(xpath + "/" + BankRateNode.Month03);
             rate.M03 = decimal.Parse(node.InnerText.Trim()) / 100;

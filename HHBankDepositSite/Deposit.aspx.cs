@@ -18,7 +18,6 @@ namespace HHBankDepositSite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            periodDrop.SelectedIndex = 2;
             periodDrop_SelectedIndexChanged(sender, e);
             dateTxt.Text = DateTime.Now.ToString("yyyy-MM-dd");
             dateTxt.DataBind();           
@@ -96,6 +95,8 @@ namespace HHBankDepositSite
             string idCard = IDCardTxt.Text.Trim();
             string name = nameTxt.Text.Trim();
             string remark = remarkTxt.Text.Trim();
+            DateTime dueDate = SectionCalculator.GetDueDateByPeriod(depositDate, (Period)period);
+            decimal systemInterest = SectionCalculator.CalcDueDrawInterest(money, (Period)period, bankRate);
 
             DepositRecord record = new DepositRecord 
                                         {
@@ -111,13 +112,19 @@ namespace HHBankDepositSite
                                             DepositMoney = money,
                                             BindAccount = bindAccount,
                                             Remark = remark,
-                                            Rate = bankRate
+                                            Rate = bankRate,
+                                            CalcDueDate = dueDate,
+                                            SystemInterest = systemInterest
                                         };
             if (BizHandler.Handler.AddDepositRecord(record) == 1)
             {
                 TMessageBox.ShowMsg(this, "AddRecord", "存款记录添加成功！");
                 EnableEditableCtrls(false);
                 return;
+            }
+            else
+            {
+                TMessageBox.ShowMsg(this, "AddRecordErr", "存款记录添加失败！");
             }
         }
 
@@ -294,8 +301,10 @@ namespace HHBankDepositSite
 
         protected void billAccountTxt_TextChanged(object sender, EventArgs e)
         {
-            NumberCheck("BillAccountMsg", "存单账号必须全部为数字！", billAccountTxt);
-            MaxLenCheckTemplate("BillAccountLenErr", "存单账号长度不够！", billAccountTxt);
+            if (NumberCheck("BillAccountMsg", "存单账号必须全部为数字！", billAccountTxt))
+            {
+                MaxLenCheckTemplate("BillAccountLenErr", "存单账号长度不够！", billAccountTxt);
+            }
         }
 
         private bool NumberCheck(string tag, string desc, TextBox ctrl)
@@ -312,7 +321,7 @@ namespace HHBankDepositSite
         private bool DecimalCheck(string tag, string desc, TextBox ctrl)
         {
             string content = ctrl.Text.Trim();
-            if (!PageValidator.IsNumber(content))
+            if (!PageValidator.IsDecimal(content))
             {
                 TMessageBox.ShowMsg(this, tag, desc);
                 return false;

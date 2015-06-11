@@ -136,12 +136,48 @@ namespace HHBankDepositSite
         }
 
         /// <summary>
+        /// 计算刚好到期支取利息
+        /// </summary>
+        /// <param name="money"></param>
+        /// <param name="period"></param>
+        /// <param name="bankRate"></param>
+        /// <returns></returns>
+        public static decimal CalcDueDrawInterest(decimal money, Period period, BankRate bankRate)
+        {
+            decimal lv = 0;
+            switch (period)
+            {
+                case Period.M03:
+                    lv = money * bankRate.M03 / 4;
+                    break;
+                case Period.M06:
+                    lv = money * bankRate.M06 / 2;
+                    break;
+                case Period.Y01:
+                    lv = money * bankRate.Y01;
+                    break;
+                case Period.Y02:
+                    lv = money * bankRate.Y02;
+                    break;
+                case Period.Y03:
+                    lv = money * bankRate.Y03;
+                    break;
+                case Period.Y05:
+                    lv = money * bankRate.Y05;
+                    break;
+                default:
+                    break;
+            }
+            return lv;
+        }
+
+        /// <summary>
         /// 按照约定存期计算到期日期
         /// </summary>
         /// <param name="start"></param>
         /// <param name="period"></param>
         /// <returns></returns>
-        private static DateTime GetDueDateByPeriod(DateTime start, Period period)
+        public static DateTime GetDueDateByPeriod(DateTime start, Period period)
         {
             DateTime mid = start;
             switch (period)
@@ -309,7 +345,7 @@ namespace HHBankDepositSite
                 // TODO: 系统利息
                 result.DueDate = GetDueDateByPeriod(depositInfo.StartDate, depositInfo.DepositPeriod);
                 result.SectionDesc = info.ToString();
-                result.SystemInterest = depositInfo.CapitalMoney * (info.Y01 * bankRate.Y01 + info.M06 * bankRate.M06 + info.M03 * bankRate.M03 + info.D01 * bankRate.D01 / 360);
+                result.SystemInterest = depositInfo.CapitalMoney * (info.Y01 * bankRate.Y01 + info.M06 * bankRate.M06 + info.M03 * bankRate.M03 + info.D01 * bankRate.CurrRate / 360);
                 result.SectionInterest = result.SystemInterest;
                 result.MarginInterest = result.SectionInterest - result.SystemInterest;
             }
@@ -320,7 +356,7 @@ namespace HHBankDepositSite
                 result.SectionDesc = info.ToString();
                 // 计算两个日期间的天数
                 TimeSpan ts = depositInfo.EndDate.Date - depositInfo.StartDate.Date;
-                result.SystemInterest = depositInfo.CapitalMoney * (ts.Days * bankRate.D01 / 360);
+                result.SystemInterest = depositInfo.CapitalMoney * (ts.Days * bankRate.CurrRate / 360);
                 result.SectionInterest = depositInfo.CapitalMoney * (info.Y01 * bankRate.Y01 + info.M06 * bankRate.M06 + info.M03 * bankRate.M03);
                 result.MarginInterest = result.SectionInterest - result.SystemInterest;
             }

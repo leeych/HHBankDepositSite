@@ -17,7 +17,6 @@ namespace HHBankDepositSite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            periodDrop.SelectedIndex = 2;
             periodDrop_SelectedIndexChanged(sender, e);
         }
 
@@ -48,13 +47,14 @@ namespace HHBankDepositSite
                 return;
             }
             BankRate depositRate = new BankRate {
+                                            CurrRate = record.Rate.CurrRate,
                                             D01 = record.Rate.D01,
                                             M03 = record.Rate.M03,
                                             M06 = record.Rate.M06,
                                             Y01 = record.Rate.Y01,
-                                            Y02 = 0,
-                                            Y03 = 0,
-                                            Y05 = 0
+                                            Y02 = record.Rate.Y02,
+                                            Y03 = record.Rate.Y03,
+                                            Y05 = record.Rate.Y05
                                         };
             CalcInfo calcInfo = new CalcInfo { 
                                         StartDate = record.DepositDate,
@@ -66,7 +66,7 @@ namespace HHBankDepositSite
             SectionCalculator calculator = new SectionCalculator();
             CalcResult result = calculator.CalcTotalResult(calcInfo, depositRate);
             // TODO: update page
-            sectionTxt.Text = result.SectionDesc;
+            sectionTxt.Text = (result.SectionDesc ?? "-");
             systemTxt.Text = (result.SystemInterest + drawMoney).ToString();
             totalInterestTxt.Text = (result.SectionInterest + drawMoney).ToString();
             marginTxt.Text = result.MarginInterest.ToString();
@@ -158,6 +158,9 @@ namespace HHBankDepositSite
 
         private void UpdatePage(DrawRecord record)
         {
+            //if (record.DueDate.Date == DateTime.MaxValue.Date)
+            //{
+            //}
             dueDateTxt.Text = record.DueDate.ToString("yyyy-MM-dd");
             moneyTxt.Text = record.CapticalMoney.ToString();
             clientIDTxt.Text = record.DepositorIDCard;
