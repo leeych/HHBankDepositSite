@@ -277,9 +277,9 @@ namespace HHBankDepositSite
 
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
         {
-            bool startDate = e.Day.Date >= DateTime.Now.Date.AddDays(-1);
-            bool endDate = e.Day.Date <= DateTime.Now.Date;
-            e.Day.IsSelectable = (startDate && endDate);
+            //bool startDate = e.Day.Date >= DateTime.Now.Date.AddDays(-1);
+            //bool endDate = e.Day.Date <= DateTime.Now.Date;
+            //e.Day.IsSelectable = (startDate && endDate);
         }
 
         protected void protocolTxt_TextChanged(object sender, EventArgs e)

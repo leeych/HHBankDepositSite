@@ -449,7 +449,7 @@ namespace BLL
         public DrawRecord GetDrawRecordByProtocolIdAccountCode(string protocolId, string account, string code, string orgCode)
         { 
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"select DepositDate, TellerCode, DepositorName, IDCard, DepositMoney, DepositPeriod, BindAccount, SystemInterest, Remark, CurrentRate, D01Rate, M03Rate, M06Rate, Y01Rate, " + 
+            string sql = @"select DepositDate, TellerCode, DepositorName, IDCard, DepositMoney, DepositPeriod, DepositFlag, BindAccount, SystemInterest, Remark, CurrentRate, D01Rate, M03Rate, M06Rate, Y01Rate, " + 
                 " Y02Rate, Y03Rate, Y05Rate from {0} where ProtocolID = '{1}' and BillAccount='{2}' and BillCode='{3}' and 1=1";
             string sqlString = string.Format(sql, tableName, protocolId, account, code);
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
@@ -481,7 +481,6 @@ namespace BLL
                                     };
                     record.DueDate = DateTime.MaxValue;
                     record.DrawMoney = 0;
-                    record.SystemInterest = 0;
                     record.SectionInterest = 0;
                     record.MarginInterest = 0;
                     record.BillPeriod = (Period)int.Parse(dr["DepositPeriod"].ToString());

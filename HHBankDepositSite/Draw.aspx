@@ -88,10 +88,10 @@
                 <td><span><asp:TextBox runat="server" ID="execRateTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></span><span class="per-cent">%</span></td>
             </tr>
             <tr>
-                <td>存入本金：</td>
-                <td><asp:TextBox runat="server" ID="moneyTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>到期日期：</td>
                 <td><asp:TextBox runat="server" ID="dueDateTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
+                <td>存入本金：</td>
+                <td><asp:TextBox runat="server" ID="moneyTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>系统利息：</td>
                 <td><asp:TextBox runat="server" ID="systemInterestTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
             </tr>
