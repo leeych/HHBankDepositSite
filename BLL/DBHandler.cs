@@ -449,9 +449,9 @@ namespace BLL
         public DrawRecord GetDrawRecordByProtocolIdAccountCode(string protocolId, string account, string code, string orgCode)
         { 
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"select DepositDate, TellerCode, DepositorName, IDCard, DepositMoney, DepositPeriod, DepositFlag, BindAccount, SystemInterest, Remark, CurrentRate, D01Rate, M03Rate, M06Rate, Y01Rate, " + 
-                " Y02Rate, Y03Rate, Y05Rate from {0} where ProtocolID = '{1}' and BillAccount='{2}' and BillCode='{3}' and 1=1";
-            string sqlString = string.Format(sql, tableName, protocolId, account, code);
+            string sql = @"select DepositDate, TellerCode, DepositorName, IDCard, DepositMoney, RemainMoney, DepositPeriod, DepositFlag, BindAccount, SystemInterest, Remark, CurrentRate, D01Rate, M03Rate, M06Rate, Y01Rate, " + 
+                " Y02Rate, Y03Rate, Y05Rate from {0} where ProtocolID = '{1}' and BillAccount='{2}' and 1=1";
+            string sqlString = string.Format(sql, tableName, protocolId, account);
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
             {
                 if (dr.Read())
@@ -464,10 +464,18 @@ namespace BLL
                     record.TellerCode = dr["TellerCode"].ToString();
                     record.DepositorName = dr["DepositorName"].ToString();
                     record.DepositorIDCard = dr["IDCard"].ToString();
+                    record.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
+                    if (record.Status == DrawFlag.Remain)
+                    {
+                        record.RemainMoney = decimal.Parse(dr["RemainMoney"].ToString());
+                    }
+                    else
+                    {
+                        record.RemainMoney = decimal.Zero;
+                    }
                     record.CapticalMoney = decimal.Parse(dr["DepositMoney"].ToString());
                     record.BindAccount = dr["BindAccount"].ToString();
                     //record.SystemInterest = decimal.Parse(dr["SystemInterest"].ToString());
-                    record.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
                     record.Rate = new BankRate()
                                     {
                                         CurrRate = decimal.Parse(dr["CurrentRate"].ToString()),
@@ -629,6 +637,24 @@ namespace BLL
             string sql = @"update {0} set EarlierDrawDate='{1}' and EarlierDrawMoney={2} and RemainMoney={3} and EarlierInterest={4} and SystemInterest={5} and " +
                 " MarginInterest={6} and DepositFlag={7} where ProtocolID={8} and 1=1";
             string sqlString = string.Format(sql, tableName, info.DrawDate.ToString("yyyy-MM-dd"), info.DrawMoney, info.RemainMoney, info.SectionInterest, info.SystemInterest, info.MarginInterest, (int)info.DrawStatus,
+                info.ProtocolId);
+            int rows = SqlHelper.ExecuteSql(sqlString);
+            if (rows == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool FinalDrawDepositRecord(DrawInfo info, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"update {0} set FinalDrawDate={1} and EarlierDrawMoney={2} and RemainMoney={3} and EarlierInterest={4} and SystemInterest={5} and " +
+                " MarginInterest={6} and DepositFlag={7} where ProtocolID={8} and 1=1";
+            string sqlString = string.Format(sql, tableName, info.FinalDrawDate, info.DrawMoney, info.RemainMoney, info.SectionInterest, info.MarginInterest, (int)info.DrawStatus,
                 info.ProtocolId);
             int rows = SqlHelper.ExecuteSql(sqlString);
             if (rows == 1)

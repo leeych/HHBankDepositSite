@@ -36,9 +36,28 @@ namespace HHBankDepositSite
                 Response.Redirect("~/Login.aspx");
                 return;
             }
+
             string protocolId= protocolIDTxt.Text.Trim();
             string billAccount = billAccountTxt.Text.Trim();
             string billCode = billCodeTxt.Text.Trim();
+            if (string.IsNullOrEmpty(drawDateTxt.Text.Trim()))
+            {
+                TMessageBox.ShowMsg(this, "DrawDateEmpty", "请输入支取日期！");
+                return;
+            }
+            if (string.IsNullOrEmpty(moneyDrawTxt.Text.Trim()))
+            {
+                TMessageBox.ShowMsg(this, "DrawMoneyEmpty", "请输入支取金额！");
+                return;
+            }
+            if (!PageValidator.IsDecimal(moneyDrawTxt.Text.Trim()))
+            {
+                TMessageBox.ShowMsg(this, "DrawMoneyInvalid", "请输入取款金额！");
+                moneyDrawTxt.Text = string.Empty;
+                TMessageBox.SetFocus(moneyDrawTxt, this);
+                return;
+            }
+
             DateTime drawDate = Calendar1.SelectedDate;
             decimal drawMoney = decimal.Parse(moneyDrawTxt.Text.Trim());
 
@@ -59,6 +78,23 @@ namespace HHBankDepositSite
                 TMessageBox.ShowMsg(this, "Draw5000Less", "存款已被部分提前支取，余额不足5000，不再享受保利存补息！");
                 return;
             }
+            if (record.Status == DrawFlag.Deposit)
+            {
+                if (drawMoney > record.CapticalMoney)
+                {
+                    TMessageBox.ShowMsg(this, "DrawMoneyOverflowCalc", "支取金额不能大于账户留存金额！");
+                    moneyDrawTxt.Text = string.Empty;
+                }
+            }
+            if (record.Status == DrawFlag.Remain)
+            {
+                if (drawMoney > record.RemainMoney)
+                {
+                    TMessageBox.ShowMsg(this, "DrawMoneyOverflowRemain", "支取金额不能大于账户金额！");
+                    moneyDrawTxt.Text = string.Empty;
+                }
+            }
+
             BankRate depositRate = new BankRate {
                                             CurrRate = record.Rate.CurrRate,
                                             D01 = record.Rate.D01,
@@ -77,7 +113,7 @@ namespace HHBankDepositSite
                                     };
             SectionCalculator calculator = new SectionCalculator();
             CalcResult result = calculator.CalcTotalResult(calcInfo, depositRate);
-            sectionTxt.Text = (result.SectionDesc ?? "-");
+            sectionTxt.Text = (string.IsNullOrEmpty(result.SectionDesc) ? "--" : result.SectionDesc);
             systemTxt.Text = (result.SystemInterest + drawMoney).ToString();
             totalInterestTxt.Text = (result.SectionInterest + drawMoney).ToString();
             marginTxt.Text = result.MarginInterest.ToString();
@@ -93,8 +129,18 @@ namespace HHBankDepositSite
             info.SectionInterest = drawRecord.SectionInterest;
             info.RemainMoney = drawRecord.CapticalMoney - drawRecord.DrawMoney;
             info.MarginInterest = drawRecord.SectionInterest - drawRecord.SystemInterest;
-            // TODO: store in database
-            bool res = BizHandler.Handler.DrawDepositRecord(info, Session["UserName"].ToString());
+            bool res = false;
+            if (info.RemainMoney > decimal.Zero)
+            {
+                info.DrawStatus = DrawFlag.Draw;
+                info.FinalDrawDate = drawRecord.DrawDate;
+                res = BizHandler.Handler.FinalDrawDepsoitRecord(info, Session["UserName"].ToString());
+            }
+            else
+            {
+                res = BizHandler.Handler.DrawDepositRecord(info, Session["UserName"].ToString());
+            }
+            
             if (!res)
             {
                 TMessageBox.ShowMsg(this, "DrawMoneyErr", "支取失败！");
@@ -154,27 +200,27 @@ namespace HHBankDepositSite
             string errMsg = string.Empty;
             if (!PageValidator.IsNumber(protocolId))
             {
-                errMsg += "协议编号必须全部为数字！\n";
+                errMsg += @"协议编号必须全部为数字！\n";
             }
             if (!PageValidator.IsNumber(billAccount))
             {
-                errMsg += "存单账号必须全部为数字！\n";
+                errMsg += @"存单账号必须全部为数字！\n";
             }
             if (billAccount.Length != 23)
             {
-                errMsg += "存单账号长度必须为23位！\n";
+                errMsg += @"存单账号长度必须为23位！\n";
             }
             if (!PageValidator.IsNumber(billCode))
             {
-                errMsg += "凭证号码必须全部为数字！\n";
+                errMsg += @"凭证号码必须全部为数字！\n";
             }
             if (billCode.Length != 12)
             {
-                errMsg += "凭证号码长度必须为12位！";
+                errMsg += @"凭证号码长度必须为12位！";
             }
             if (!string.IsNullOrEmpty(errMsg))
             {
-                TMessageBox.ShowMsg(this, "PageValidator", errMsg);
+                TMessageBox.ShowMsg(this, "TotalPageValidator", errMsg);
                 return;
             }
             DrawRecord record = BizHandler.Handler.GetDrawRecord(protocolId, billAccount, billCode, Session["UserName"].ToString());
@@ -194,7 +240,15 @@ namespace HHBankDepositSite
             }
             depositDateTxt.Text = record.DepositDate.ToString("yyyy-MM-dd");
             dueDateTxt.Text = record.DueDate.ToString("yyyy-MM-dd");
-            moneyTxt.Text = record.CapticalMoney.ToString();
+            //moneyTxt.Text = record.CapticalMoney.ToString();
+            if (record.Status == DrawFlag.Remain)
+            {
+                moneyTxt.Text = record.RemainMoney.ToString();
+            }
+            else
+            {
+                moneyTxt.Text = record.CapticalMoney.ToString();
+            }
             clientIDTxt.Text = record.DepositorIDCard;
             clientNameTxt.Text = record.DepositorName;
             tellerCodeTxt.Text = record.TellerCode;
@@ -279,10 +333,10 @@ namespace HHBankDepositSite
             switch (flag)
             {
                 case DrawFlag.Deposit:
-                    desc = "存入";
+                    desc = "存入未支取";
                     break;
                 case DrawFlag.Draw:
-                    desc = "已支取";
+                    desc = "已全部支取";
                     break;
                 case DrawFlag.Remain:
                     desc = "部分提前支取";
@@ -292,6 +346,33 @@ namespace HHBankDepositSite
                     break;
             }
             return desc;
+        }
+
+        protected void moneyDrawTxt_TextChanged(object sender, EventArgs e)
+        {
+            string content = moneyDrawTxt.Text.Trim();
+            if (string.IsNullOrEmpty(content))
+            {
+                return;
+            }
+            if (!PageValidator.IsDecimal(content))
+            {
+                TMessageBox.ShowMsg(this, "DrawMoneyNotDecimal", "请输入取款金额！");
+                moneyDrawTxt.Text = string.Empty;
+                TMessageBox.SetFocus(moneyDrawTxt, this);
+                return;
+            }
+            if (!string.IsNullOrEmpty(content))
+            {
+                decimal money = decimal.Parse(content);
+                decimal principal = decimal.Parse(moneyTxt.Text.Trim());
+                if (money > principal)
+                {
+                    TMessageBox.ShowMsg(this, "MoneyOverflow", "取款金额不能大于存入金额！");
+                    moneyDrawTxt.Text = string.Empty;
+                    TMessageBox.SetFocus(moneyDrawTxt, this);
+                }
+            }
         }
     }
 }

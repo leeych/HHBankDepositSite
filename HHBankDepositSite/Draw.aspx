@@ -72,9 +72,9 @@
 
         <table style="border: 1px solid #E5E5E5; text-align: center; vertical-align: middle;" align="center">
             <tr>
-                <td>存入日期：</td>
+                <td align="right">存入日期：</td>
                 <td><asp:TextBox runat="server" ID="depositDateTxt" CssClass="aspTextBox" ReadOnly="true"></asp:TextBox></td>
-                <td>约定存期：</td>
+                <td align="right">约定存期：</td>
                 <%--<td><asp:DropDownList runat="server" ID="periodDrop" CssClass="aspTextBox" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True">
                     <asp:ListItem>三个月</asp:ListItem>
                     <asp:ListItem>六个月</asp:ListItem>
@@ -84,23 +84,23 @@
                     <asp:ListItem>五年</asp:ListItem>
                     </asp:DropDownList></td>--%>
                 <td><asp:TextBox runat="server" ID="periodTxt" CssClass="aspTextBox" ReadOnly="true"></asp:TextBox></td>
-                <td>执行利率：</td>
+                <td align="right">执行利率：</td>
                 <td><span><asp:TextBox runat="server" ID="execRateTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></span><span class="per-cent">%</span></td>
             </tr>
             <tr>
-                <td>到期日期：</td>
+                <td align="right">到期日期：</td>
                 <td><asp:TextBox runat="server" ID="dueDateTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
-                <td>存入本金：</td>
+                <td align="right">存入本金：</td>
                 <td><asp:TextBox runat="server" ID="moneyTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
-                <td>系统利息：</td>
-                <td><asp:TextBox runat="server" ID="systemInterestTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
+                <td align="right">到期利息：</td>
+                <td><span><asp:TextBox runat="server" ID="systemInterestTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></span></td>
             </tr>
             <tr>
-                <td>客户姓名：</td>
+                <td align="right">客户姓名：</td>
                 <td><asp:TextBox runat="server" ID="clientNameTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
-                <td>身份证号：</td>
+                <td align="right">身份证号：</td>
                 <td><asp:TextBox runat="server" ID="clientIDTxt" CssClass="aspTextBox" ReadOnly="True" MaxLength="18"></asp:TextBox></td>
-                <td>是否支取：</td>
+                <td align="right">是否支取：</td>
                 <td><asp:TextBox runat="server" ID="drawStatusTxt" CssClass="aspTextBox" ReadOnly="true"></asp:TextBox></td>
                 
             </tr>
@@ -143,20 +143,20 @@
                     </div>
                  </td>
                 <td><span class="red-star">*</span>支取金额：</td>
-                <td><asp:TextBox runat="server" ID="moneyDrawTxt" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="moneyDrawTxt" CssClass="aspTextBox" AutoPostBack="True" OnTextChanged="moneyDrawTxt_TextChanged"></asp:TextBox></td>
             </tr>
             <tr>
                 <td>靠档方案：</td>
                 <td align="left" colspan="3"><asp:TextBox runat="server" ID="sectionTxt" CssClass="aspTextBox" ReadOnly="True" Width="100%"></asp:TextBox></td>
             </tr>
-            <tr>
+            <tr width="200%">
                 <td>系统本息：</td>
                 <td align="left"><asp:TextBox runat="server" ID="systemTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
                 <td>靠档本息：</td>
                 <td><asp:TextBox runat="server" ID="totalInterestTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
             </tr>
             <tr>
-                <td><h3 style="color:red;">利息差额：</h3></td>
+                <td><h3 style="color:red;">应补利息：</h3></td>
                 <td><asp:TextBox runat="server" ID="marginTxt" CssClass="aspMargin" ReadOnly="True"></asp:TextBox></td>
             </tr>
         </table>

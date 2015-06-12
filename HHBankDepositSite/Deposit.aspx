@@ -48,7 +48,7 @@
                     <td><span class="red-star">*</span>存入日期：</td>
                     <td style="width: 148px;">
                         <div style="display: inline;">
-                            <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" Width="108px" CssClass="aspTextBoxShort" OnTextChanged="dateTxt_TextChanged" ReadOnly="True"></asp:TextBox>
+                            <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" Width="108px" CssClass="aspTextBoxShort" ReadOnly="True"></asp:TextBox>
                             <img src="Images/calendar.png" width="24px" height="24px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/>
                             <div id="datePicker">
                                 <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged1" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnDayRender="Calendar1_DayRender">

@@ -210,5 +210,15 @@ namespace BLL
             bool res = dbHandler.DrawDepositRecord(info, orgCode);
             return res;
         }
+
+        public bool FinalDrawDepsoitRecord(DrawInfo info, string orgCode)
+        {
+            if (string.IsNullOrEmpty(orgCode))
+            {
+                return false;
+            }
+            bool res = dbHandler.FinalDrawDepositRecord(info, orgCode);
+            return res;
+        }
     }
 }

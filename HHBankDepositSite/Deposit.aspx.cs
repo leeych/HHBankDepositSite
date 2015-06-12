@@ -19,8 +19,8 @@ namespace HHBankDepositSite
         protected void Page_Load(object sender, EventArgs e)
         {
             periodDrop_SelectedIndexChanged(sender, e);
-            dateTxt.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            dateTxt.DataBind();           
+            //dateTxt.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            //dateTxt.DataBind();
         }
 
         protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)

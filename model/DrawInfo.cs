@@ -45,5 +45,10 @@ namespace Model
         /// 支取状态
         /// </summary>
         public DrawFlag DrawStatus { get; set; }
+
+        /// <summary>
+        /// 如果支取状态为“部分提前支取”，此字段表示第二次全部支取，否则不填
+        /// </summary>
+        public DateTime? FinalDrawDate { get; set; }
     }
 }

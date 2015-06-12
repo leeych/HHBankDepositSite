@@ -100,5 +100,10 @@ namespace Model
         /// 存入||部分提前支取||支取
         /// </summary>
         public DrawFlag Status { get; set; }
+
+        /// <summary>
+        /// 部分提前支取剩余金额
+        /// </summary>
+        public decimal RemainMoney { get; set; }
     }
 }
