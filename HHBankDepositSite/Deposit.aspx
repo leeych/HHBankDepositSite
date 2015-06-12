@@ -1,19 +1,32 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="Deposit.aspx.cs" Inherits="HHBankDepositSite.Deposit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script type="text/javascript" language="javascript">
-        function displayCalendar() {
-            if (datePicker.style.display == 'block') {
-                datePicker.style.display = 'none';
-                return;
+        <script type="text/javascript" language="javascript">
+            function displayCalendar() {
+                if (datePicker.style.display == 'block') {
+                    datePicker.style.display = 'none';
+                    return;
+                }
+                var dataPicker = document.getElementById('datePicker');
+                datePicker.style.display = 'block';
             }
-            var dataPicker = document.getElementById('datePicker');
-            datePicker.style.display = 'block';
-        }
+
+            function onlyNumber() {
+                var key = window.event.keyCode;
+                if ((key == 46) || (key==8) || (key == 189) || (key==109) || (key==190)||(key==110)||(key>=48 && key<=57) 
+                    || (key >= 96 && key <= 105) || (key >= 37 && key <= 40)) {
+
+                }
+                else if (key == 13) {
+                    window.event.keyCode = 9;
+                }
+                else {
+                    window.event.returnValue = false;
+                }
+            }
 
     </script>
-
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <div style="width:100%; height:100%;">
             <br />
         <fieldset class="fieldSetStyle">
@@ -21,11 +34,11 @@
             <table align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5; border-spacing: 0px;">
                 <tr>
                     <td><span class="red-star">*</span>协议编号：</td>
-                    <td><span><asp:TextBox ID="protocolTxt" runat="server" CssClass="aspTextBox" AutoPostBack="True" MaxLength="14" OnTextChanged="protocolTxt_TextChanged" onblur="checkID()"></asp:TextBox></span></td>
+                    <td><span><asp:TextBox ID="protocolTxt" runat="server" CssClass="aspTextBox" MaxLength="14"></asp:TextBox></span></td>
                     <td><span class="red-star">*</span>存单账号：</td>
-                    <td><asp:TextBox ID="billAccountTxt" runat="server" CssClass="aspBillAccount" Width="200px" AutoPostBack="True" MaxLength="23" OnTextChanged="billAccountTxt_TextChanged"></asp:TextBox></td>
+                    <td><asp:TextBox ID="billAccountTxt" runat="server" CssClass="aspBillAccount" Width="200px" MaxLength="23"></asp:TextBox></td>
                     <td><span class="red-star">*</span>凭证号码：</td>
-                    <td><asp:TextBox ID="billCodeTxt" runat="server" CssClass="aspTextBox" AutoPostBack="True" MaxLength="12" OnTextChanged="billCodeTxt_TextChanged"></asp:TextBox></td>
+                    <td><asp:TextBox ID="billCodeTxt" runat="server" CssClass="aspTextBox" MaxLength="12"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td><span class="red-star">*</span>约定存期：</td>
@@ -42,7 +55,7 @@
                     <td>约定利率：</td>
                     <td><asp:TextBox ID="rateTxt" runat="server" Width="131px" OnTextChanged="rateTxt_TextChanged" CssClass="aspTextBoxShort" ReadOnly="True"></asp:TextBox><span class="per-cent">%</span></td>
                     <td><span class="red-star">*</span>存入金额：</td>
-                    <td><span class="per-cent">￥</span><span><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort" AutoPostBack="True" OnTextChanged="moneyTxt_TextChanged"></asp:TextBox></span><span class="per-cent">元</span></td>
+                    <td><span class="per-cent">￥</span><span><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort" ></asp:TextBox></span><span class="per-cent">元</span></td>
                 </tr>
                 <tr>
                     <td><span class="red-star">*</span>存入日期：</td>
@@ -65,7 +78,7 @@
                         </div>
                     </td>
                     <td><span class="red-star">*</span>补息账号：</td>
-                    <td colspan="5" align="left"><asp:TextBox ID="bindAccountTxt" runat="server" style="margin-left: 0px;" Width="299px" CssClass="aspTextBox" AutoPostBack="True" MaxLength="23" OnTextChanged="bindAccountTxt_TextChanged"></asp:TextBox>
+                    <td colspan="5" align="left"><asp:TextBox ID="bindAccountTxt" runat="server" style="margin-left: 0px;" Width="299px" CssClass="aspTextBox" MaxLength="23" ></asp:TextBox>
 
                     </td>
                 </tr>
@@ -77,11 +90,11 @@
         <table align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5;">
             <tr>
                 <td><span class="red-star">*</span>客户姓名：</td>
-                <td><asp:TextBox ID="nameTxt" runat="server" CssClass="aspTextBox" AutoPostBack="True" OnTextChanged="nameTxt_TextChanged"></asp:TextBox></td>
+                <td><asp:TextBox ID="nameTxt" runat="server" CssClass="aspTextBox" ></asp:TextBox></td>
                 <td><span class="red-star">*</span>客户身份证：</td>
-                <td><asp:TextBox ID="IDCardTxt" runat="server" CssClass="aspTextBox" AutoPostBack="True" MaxLength="18" OnTextChanged="IDCardTxt_TextChanged"></asp:TextBox></td>
+                <td><asp:TextBox ID="IDCardTxt" runat="server" CssClass="aspTextBox" MaxLength="18"></asp:TextBox></td>
                 <td><span class="red-star">*</span>经办柜员：</td>
-                <td><asp:TextBox ID="tellerCodeTxt" runat="server" CssClass="aspTextBox" Width="152px" AutoPostBack="True" MaxLength="6" OnTextChanged="tellerCodeTxt_TextChanged"></asp:TextBox></td>
+                <td><asp:TextBox ID="tellerCodeTxt" runat="server" CssClass="aspTextBox" Width="152px" MaxLength="6" ></asp:TextBox></td>
             </tr>
             <tr>
                 <td>备注</td>

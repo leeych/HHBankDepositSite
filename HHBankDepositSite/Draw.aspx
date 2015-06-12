@@ -143,7 +143,7 @@
                     </div>
                  </td>
                 <td><span class="red-star">*</span>支取金额：</td>
-                <td><asp:TextBox runat="server" ID="moneyDrawTxt" CssClass="aspTextBox" AutoPostBack="True" OnTextChanged="moneyDrawTxt_TextChanged"></asp:TextBox></td>
+                <td><asp:TextBox runat="server" ID="moneyDrawTxt" CssClass="aspTextBox" OnTextChanged="moneyDrawTxt_TextChanged"></asp:TextBox></td>
             </tr>
             <tr>
                 <td>靠档方案：</td>

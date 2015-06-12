@@ -37,6 +37,12 @@ namespace HHBankDepositSite
                 return;
             }
 
+            if (string.IsNullOrEmpty(drawRecord.ProtocolID))
+            {
+                TMessageBox.ShowMsg(this, "DrawRecordExistsSure", "请先点“查询”！");
+                return;
+            }
+
             string protocolId= protocolIDTxt.Text.Trim();
             string billAccount = billAccountTxt.Text.Trim();
             string billCode = billCodeTxt.Text.Trim();
@@ -47,7 +53,7 @@ namespace HHBankDepositSite
             }
             if (string.IsNullOrEmpty(moneyDrawTxt.Text.Trim()))
             {
-                TMessageBox.ShowMsg(this, "DrawMoneyEmpty", "请输入支取金额！");
+                TMessageBox.ShowMsg(this, "DrawMoneyEmpty", "请输入取款金额！");
                 return;
             }
             if (!PageValidator.IsDecimal(moneyDrawTxt.Text.Trim()))
@@ -121,6 +127,19 @@ namespace HHBankDepositSite
 
         protected void okBtn_Click(object sender, EventArgs e)
         {
+            if (Session["UserName"] == null)
+            {
+                TMessageBox.ShowMsg(this, "SessionExiredDraw", "登录超时，请重新登录！");
+                Session["UserName"] = null;
+                Session["Password"] = null;
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+            if (string.IsNullOrEmpty(drawRecord.ProtocolID))
+            {
+                TMessageBox.ShowMsg(this, "DrawRecordNotSearch2", "请先点“查询”！");
+                return;
+            }
             DrawInfo info = new DrawInfo();
             info.DrawDate = drawRecord.DrawDate;
             info.DrawMoney = drawRecord.DrawMoney;
@@ -364,6 +383,11 @@ namespace HHBankDepositSite
             }
             if (!string.IsNullOrEmpty(content))
             {
+                if (string.IsNullOrEmpty(drawRecord.ProtocolID))
+                {
+                    TMessageBox.ShowMsg(this, "DrawRecordNotSearch", "请先点“查询”！");
+                    return;
+                }
                 decimal money = decimal.Parse(content);
                 decimal principal = decimal.Parse(moneyTxt.Text.Trim());
                 if (money > principal)

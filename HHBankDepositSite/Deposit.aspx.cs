@@ -19,8 +19,7 @@ namespace HHBankDepositSite
         protected void Page_Load(object sender, EventArgs e)
         {
             periodDrop_SelectedIndexChanged(sender, e);
-            //dateTxt.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            //dateTxt.DataBind();
+            protocolTxt.Attributes.Add("onblur", "onlyNumber()");
         }
 
         protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)
@@ -154,7 +153,7 @@ namespace HHBankDepositSite
                 || string.IsNullOrEmpty(rate) || string.IsNullOrEmpty(date) || string.IsNullOrEmpty(bindAccount) 
                 || string.IsNullOrEmpty(idCard) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(tellerCode))
             {
-                TMessageBox.ShowMsg(this, "InputValidate", "标“*”为必填项！");
+                TMessageBox.ShowMsg(this, "InputValidate", "请输入必填项！标“*”为必填项！");
                 return false;
             }
             string errMsg = string.Empty;
@@ -282,30 +281,30 @@ namespace HHBankDepositSite
             //e.Day.IsSelectable = (startDate && endDate);
         }
 
-        protected void protocolTxt_TextChanged(object sender, EventArgs e)
-        {
-            string protocolId = protocolTxt.Text.Trim();
-            if (!PageValidator.IsNumber(protocolId))
-            {
-                TMessageBox.ShowMsg(this, "ProtocolIdNotNumber", "协议编号必须全部为数字！");
-                TMessageBox.SetFocus(protocolTxt, this);
-                return;
-            }
-            if (protocolId.Length != protocolTxt.MaxLength)
-            {
-                TMessageBox.ShowMsg(this, "ProtocolIdLenErr", "协议编号长度不对！");
-                TMessageBox.SetFocus(protocolTxt, this);
-                return;
-            }
-        }
+        //protected void protocolTxt_TextChanged(object sender, EventArgs e)
+        //{
+        //    string protocolId = protocolTxt.Text.Trim();
+        //    if (!PageValidator.IsNumber(protocolId))
+        //    {
+        //        TMessageBox.ShowMsg(this, "ProtocolIdNotNumber", "协议编号必须全部为数字！");
+        //        TMessageBox.SetFocus(protocolTxt, this);
+        //        return;
+        //    }
+        //    if (protocolId.Length != protocolTxt.MaxLength)
+        //    {
+        //        TMessageBox.ShowMsg(this, "ProtocolIdLenErr", "协议编号长度不对！");
+        //        TMessageBox.SetFocus(protocolTxt, this);
+        //        return;
+        //    }
+        //}
 
-        protected void billAccountTxt_TextChanged(object sender, EventArgs e)
-        {
-            if (NumberCheck("BillAccountMsg", "存单账号必须全部为数字！", billAccountTxt))
-            {
-                MaxLenCheckTemplate("BillAccountLenErr", "存单账号长度不够！", billAccountTxt);
-            }
-        }
+        //protected void billAccountTxt_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (NumberCheck("BillAccountMsg", "存单账号必须全部为数字！", billAccountTxt))
+        //    {
+        //        MaxLenCheckTemplate("BillAccountLenErr", "存单账号长度不够！", billAccountTxt);
+        //    }
+        //}
 
         private bool NumberCheck(string tag, string desc, TextBox ctrl)
         {
@@ -351,48 +350,43 @@ namespace HHBankDepositSite
             return true;
         }
 
-        protected void billCodeTxt_TextChanged(object sender, EventArgs e)
-        {
-            if (!NumberCheck("BillCodeMsg", "凭证号码必须全部为数字！", billCodeTxt))
-            {
-                MaxLenCheckTemplate("BillCodeLenErr", "凭证号码长度不够！", billCodeTxt);
-            }
-        }
+        //protected void billCodeTxt_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (!NumberCheck("BillCodeMsg", "凭证号码必须全部为数字！", billCodeTxt))
+        //    {
+        //        MaxLenCheckTemplate("BillCodeLenErr", "凭证号码长度不够！", billCodeTxt);
+        //    }
+        //}
 
-        protected void moneyTxt_TextChanged(object sender, EventArgs e)
-        {
-            DecimalCheck("MoneyMsg", "本金输入错误！", moneyTxt);
-        }
+        //protected void moneyTxt_TextChanged(object sender, EventArgs e)
+        //{
+        //    DecimalCheck("MoneyMsg", "本金输入错误！", moneyTxt);
+        //}
 
-        protected void bindAccountTxt_TextChanged(object sender, EventArgs e)
-        {
-            if (NumberCheck("BindAccountMsg", "补息账号必须全部为数字！", bindAccountTxt))
-            {
-                MaxLenCheckTemplate("BindAccountLenErr", "补息账号长度不够！", bindAccountTxt);
-            }
-        }
+        //protected void bindAccountTxt_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (NumberCheck("BindAccountMsg", "补息账号必须全部为数字！", bindAccountTxt))
+        //    {
+        //        MaxLenCheckTemplate("BindAccountLenErr", "补息账号长度不够！", bindAccountTxt);
+        //    }
+        //}
 
-        protected void nameTxt_TextChanged(object sender, EventArgs e)
-        {
-            ZHCNCheckTemplate("NameMsg", "客户姓名中不含汉字！", nameTxt);
-        }
+        //protected void nameTxt_TextChanged(object sender, EventArgs e)
+        //{
+        //    ZHCNCheckTemplate("NameMsg", "客户姓名中不含汉字！", nameTxt);
+        //}
 
-        protected void IDCardTxt_TextChanged(object sender, EventArgs e)
-        {
-            MaxLenCheckTemplate("IDCardLenErr", "身份证号码长度不够！", IDCardTxt);
-        }
+        //protected void IDCardTxt_TextChanged(object sender, EventArgs e)
+        //{
+        //    MaxLenCheckTemplate("IDCardLenErr", "身份证号码长度不够！", IDCardTxt);
+        //}
 
-        protected void tellerCodeTxt_TextChanged(object sender, EventArgs e)
-        {
-            if (NumberCheck("TellerCodeMsg", "柜员号必须全部为数字！", tellerCodeTxt))
-            {
-                MaxLenCheckTemplate("TellerCodeLenErr", "柜员号长度不够！", tellerCodeTxt);
-            }
-        }
-
-        protected void checkID()
-        {
-            Response.Write("<script language='javascript'>alert('onblur')</script>");
-        }
+        //protected void tellerCodeTxt_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (NumberCheck("TellerCodeMsg", "柜员号必须全部为数字！", tellerCodeTxt))
+        //    {
+        //        MaxLenCheckTemplate("TellerCodeLenErr", "柜员号长度不够！", tellerCodeTxt);
+        //    }
+        //}
     }
 }
