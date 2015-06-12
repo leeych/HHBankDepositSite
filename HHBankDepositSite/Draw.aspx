@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="Draw.aspx.cs" Inherits="HHBankDepositSite.Draw" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="Draw.aspx.cs" Inherits="HHBankDepositSite.Draw" MaintainScrollPositionOnPostback="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <script type="text/javascript">
             function displayCalendar() {
@@ -124,7 +124,7 @@
         <table  style="border: 1px solid #E5E5E5; text-align: center;" align="center" >
             <tr>
                 <td><span class="red-star">*</span>支取日期：</td>
-                <td>
+                <td align="left">
                     <div style="display: inline;">
                         <span><asp:TextBox ID="drawDateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></span>
                         <span><img src="Images/calendar.png" width="24px" height="24px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/></span>
