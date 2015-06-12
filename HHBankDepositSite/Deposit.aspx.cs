@@ -157,21 +157,24 @@ namespace HHBankDepositSite
                 return false;
             }
             string errMsg = string.Empty;
-            if (!PageValidator.IsNumber(protocolId))
+            string orgCode = Session["UserName"].ToString();
+
+            if (!BizValidator.IsProtocolId(orgCode, protocolId))
             {
-                errMsg += @"协议编号必须全部为数字！\n";
+                string str = @"协议编号编码规则：{0}{1}+6位顺序号！\n";
+                errMsg += string.Format(str, orgCode.Substring(6), DateTime.Now.Year.ToString());
             }
-            if (!PageValidator.IsNumber(account))
+            if (!BizValidator.CheckBillAccount(account))
             {
-                errMsg += @"存单账号必须全部为数字！\n";
+                errMsg += @"存单账号格式不对！\n";
             }
-            if (!PageValidator.IsNumber(billCode))
+            if (!BizValidator.CheckBillCode(billCode))
             {
-                errMsg += @"凭证号码必须全部为数字！\n";
+                errMsg += @"凭证号码必须是以“50”开头的12位数字！\n";
             }
-            if (!PageValidator.IsNumber(idCard))
+            if (!BizValidator.CheckIDCard(idCard))
             {
-                errMsg += @"身份证号码必须全部为数字！\n";
+                errMsg += @"身份证号码非法！\n";
             }
             if (!PageValidator.IsHasCHZN(name))
             {
@@ -179,11 +182,15 @@ namespace HHBankDepositSite
             }
             if (!PageValidator.IsNumber(tellerCode))
             {
-                errMsg += @"柜员号必须全部为数字！";
+                errMsg += @"柜员号必须全部为数字！\n";
+            }
+            if (tellerCode.Length != 6)
+            {
+                errMsg += @"柜员号长度必须是6位！";
             }
             if (!string.IsNullOrEmpty(errMsg))
             {
-                TMessageBox.ShowMsg(this, "NumberValidate", errMsg);
+                TMessageBox.ShowMsg(this, "NumberValidateTotal", errMsg);
                 return false;
             }
             return true;

@@ -205,6 +205,8 @@ namespace HHBankDepositSite
         {
             if (Session["UserName"] == null)
             {
+                TMessageBox.ShowMsg(this, "SessionExpiredSearchRecord", "登录超时，请重新登录！");
+                Session["Password"] = null;
                 Response.Redirect("~/Login.aspx");
                 return;
             }
@@ -217,29 +219,23 @@ namespace HHBankDepositSite
                 return;
             }
             string errMsg = string.Empty;
-            if (!PageValidator.IsNumber(protocolId))
+            string orgcode = Session["UserName"].ToString();
+            if (!BizValidator.IsProtocolId(orgcode, protocolId))
             {
-                errMsg += @"协议编号必须全部为数字！\n";
+                string str = @"协议编号编码规则：{0}{1}+6位顺序号！\n";
+                errMsg += string.Format(str, orgcode.Substring(6), DateTime.Now.Year.ToString());
             }
-            if (!PageValidator.IsNumber(billAccount))
+            if (!BizValidator.CheckBillAccount(billAccount))
             {
-                errMsg += @"存单账号必须全部为数字！\n";
+                errMsg += @"存单账号格式不对！\n";
             }
-            if (billAccount.Length != 23)
+            if (!BizValidator.CheckBillCode(billCode))
             {
-                errMsg += @"存单账号长度必须为23位！\n";
-            }
-            if (!PageValidator.IsNumber(billCode))
-            {
-                errMsg += @"凭证号码必须全部为数字！\n";
-            }
-            if (billCode.Length != 12)
-            {
-                errMsg += @"凭证号码长度必须为12位！";
+                errMsg += @"凭证号码必须是以“50”开头的12位数字！\n";
             }
             if (!string.IsNullOrEmpty(errMsg))
             {
-                TMessageBox.ShowMsg(this, "TotalPageValidator", errMsg);
+                TMessageBox.ShowMsg(this, "TotalPageValidator1", errMsg);
                 return;
             }
             DrawRecord record = BizHandler.Handler.GetDrawRecord(protocolId, billAccount, billCode, Session["UserName"].ToString());

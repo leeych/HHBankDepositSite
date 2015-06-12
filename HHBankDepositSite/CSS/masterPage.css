@@ -127,7 +127,7 @@ html {
 .aspTextBox {
     border-radius: 3px;
     border: 1px solid #CDCDCD;
-    font-size: 16px;
+    font-size: 15px;
     width: 160px;
     height: 20px;
     text-align: center;
@@ -138,7 +138,7 @@ html {
     border-radius: 3px;
     border: 1px solid #CDCDCD;
     height: 20px;
-    font-size: 16px;
+    font-size: 15px;
     text-align: center;
     vertical-align: middle;
 }
@@ -148,7 +148,7 @@ html {
     border: 1px solid #CDCDCD;
     width: 180px;
     height: 20px;
-    font-size: 16px;
+    font-size: 15px;
     text-align: center;
     vertical-align: middle;
 }
