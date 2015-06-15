@@ -191,13 +191,13 @@ namespace BLL
             return record;
         }
 
-        public DrawRecord GetDrawRecord(string protocolId, string account, string code, string orgCode)
+        public DrawRecord GetDrawRecord(string protocolId, string account, string orgCode)
         {
-            if (string.IsNullOrEmpty(protocolId) || string.IsNullOrEmpty(account) || string.IsNullOrEmpty(code) || string.IsNullOrEmpty(orgCode))
+            if (string.IsNullOrEmpty(protocolId) || string.IsNullOrEmpty(account) || string.IsNullOrEmpty(orgCode))
             {
                 return null;
             }
-            DrawRecord record = dbHandler.GetDrawRecordByProtocolIdAccountCode(protocolId, account, code, orgCode);
+            DrawRecord record = dbHandler.GetDrawRecordByProtocolIdAccountCode(protocolId, account, orgCode);
             return record;
         }
 
@@ -219,6 +219,24 @@ namespace BLL
             }
             bool res = dbHandler.FinalDrawDepositRecord(info, orgCode);
             return res;
+        }
+
+        public string GetMaxProtocolId(string orgCode)
+        {
+            if (string.IsNullOrEmpty(orgCode))
+            {
+                return string.Empty;
+            }
+            return dbHandler.GetMaxProtocolID(orgCode);
+        }
+
+        public SearchDraftInfo GetDraftSearchInfo(string orgCode)
+        {
+            if (string.IsNullOrEmpty(orgCode))
+            {
+                return null;
+            }
+            return dbHandler.GetDraftSearchInfo(orgCode);
         }
     }
 }

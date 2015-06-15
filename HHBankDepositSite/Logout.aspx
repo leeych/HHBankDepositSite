@@ -8,37 +8,29 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%--    <script type="text/javascript">
-        if (confirm("exit or not ?")) {
-            __doPostBack('hiddenBtn', '1');
-        }
-        else {
-            alert('online');
-        }
-    </script>--%>
     <div class="mainBody">
           <br />
           <br />
         <table width="100%" cellpadding="5" cellspacing="5" align="center">
             <tr>
                 <td class="tdLabel">用户名：</td>
-                <td class="tdContent"><asp:TextBox runat="server" ID="userNameTxt" CssClass="txtBox" ReadOnly="True"></asp:TextBox></td>
+                <td class="tdContent"><asp:TextBox runat="server" ID="userNameTxt" CssClass="txtBox" ReadOnly="True" BackColor="#ddf1fe"></asp:TextBox></td>
             </tr>
             <tr>
                 <td class="tdLabel">机构号：
-                <td class="tdContent"><asp:TextBox runat="server" ID="orgCodeTxt" CssClass="txtBox" ReadOnly="True"></asp:TextBox></td>
+                <td class="tdContent"><asp:TextBox runat="server" ID="orgCodeTxt" CssClass="txtBox" ReadOnly="True" BackColor="#ddf1fe"></asp:TextBox></td>
             </tr>
             <tr>
                 <td class="tdLabel">机构名：</td>
-                <td class="tdContent"><asp:TextBox runat="server" ID="orgNameTxt" CssClass="txtBox" ReadOnly="True"></asp:TextBox></td>
+                <td class="tdContent"><asp:TextBox runat="server" ID="orgNameTxt" CssClass="txtBox" ReadOnly="True" BackColor="#ddf1fe"></asp:TextBox></td>
             </tr>
             <tr>
                 <td class="tdLabel">地址：</td>
-                <td class="tdContent"><asp:TextBox runat="server" ID="orgAddressTxt" CssClass="txtBox" ReadOnly="True"></asp:TextBox></td>
+                <td class="tdContent"><asp:TextBox runat="server" ID="orgAddressTxt" CssClass="txtBox" ReadOnly="True" BackColor="#ddf1fe"></asp:TextBox></td>
             </tr>
             <tr>
                 <td class="tdLabel">电话：</td>
-                <td class="tdContent"><asp:TextBox runat="server" ID="phoneTxt" CssClass="txtBox" ReadOnly="True"></asp:TextBox></td>
+                <td class="tdContent"><asp:TextBox runat="server" ID="phoneTxt" CssClass="txtBox" ReadOnly="True" BackColor="#ddf1fe"></asp:TextBox></td>
             </tr>
             <tr><td colspan="2">&nbsp;</td></tr>
                 <table align="center">

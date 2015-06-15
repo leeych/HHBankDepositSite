@@ -66,45 +66,15 @@ namespace Model
         /// </summary>
         public BankRate Rate { get; set; }
 
-        ///// <summary>
-        ///// 提前支取金额
-        ///// </summary>
-        //public decimal EarlierDrawMoney { get; set; }
-
-        ///// <summary>
-        ///// 结存金额
-        ///// </summary>
-        //public decimal RemainMoney { get; set; }
-
-        ///// <summary>
-        ///// 提前支取日期
-        ///// </summary>
-        //public DateTime EarlierDrawDate { get; set; }
-
         /// <summary>
         /// 到期日期
         /// </summary>
-        public DateTime CalcDueDate { get; set; }
-
-        ///// <summary>
-        ///// 到期支取金额
-        ///// </summary>
-        //public decimal DueDateDrawMoney { get; set; }
-
-        ///// <summary>
-        ///// 靠档利息
-        ///// </summary>
-        //public decimal EarlierInterest { get; set; }
+        public DateTime DueDate { get; set; }
 
         /// <summary>
         /// 综合业务系统计算的利息
         /// </summary>
         public decimal SystemInterest { get; set; }
-
-        ///// <summary>
-        ///// 靠档利息 - 综合业务系统利息
-        ///// </summary>
-        //public decimal MarginInterest { get; set; }
 
         /// <summary>
         /// 补息账号

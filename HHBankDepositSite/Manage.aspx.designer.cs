@@ -22,6 +22,15 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox userNameTxt;
         
         /// <summary>
+        /// userNameValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator userNameValidator;
+        
+        /// <summary>
         /// oldpwdTxt 控件。
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox oldpwdTxt;
+        
+        /// <summary>
+        /// oldpwdValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator oldpwdValidator;
         
         /// <summary>
         /// newpwdTxt 控件。
@@ -40,6 +58,15 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox newpwdTxt;
         
         /// <summary>
+        /// newpwdValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator newpwdValidator;
+        
+        /// <summary>
         /// surepwdTxt 控件。
         /// </summary>
         /// <remarks>
@@ -47,6 +74,15 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox surepwdTxt;
+        
+        /// <summary>
+        /// surepwdValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator surepwdValidator;
         
         /// <summary>
         /// okBtn 控件。

@@ -74,27 +74,27 @@ namespace Model
         /// <summary>
         /// 支取日期
         /// </summary>
-        public DateTime DrawDate { get; set; }
+        public DateTime FirstDrawDate { get; set; }
 
         /// <summary>
         /// 支取金额
         /// </summary>
-        public decimal DrawMoney { get; set; }
+        public decimal FirstDrawMoney { get; set; }
 
         /// <summary>
         /// 综合业务系统利息
         /// </summary>
-        public decimal SystemInterest { get; set; }
+        public decimal FirstSysInterest { get; set; }
 
         /// <summary>
         /// 靠档利息
         /// </summary>
-        public decimal SectionInterest { get; set; }
+        public decimal FirstSectionInterest { get; set; }
 
         /// <summary>
         /// 应补利息
         /// </summary>
-        public decimal MarginInterest { get; set; }
+        public decimal FirstMarginInterest { get; set; }
 
         /// <summary>
         /// 存入||部分提前支取||支取
@@ -105,5 +105,30 @@ namespace Model
         /// 部分提前支取剩余金额
         /// </summary>
         public decimal RemainMoney { get; set; }
+
+        /// <summary>
+        /// 最后一次支取日期
+        /// </summary>
+        public DateTime FinalDrawDate { get; set; }
+
+        /// <summary>
+        /// 最后一次支取金额
+        /// </summary>
+        public decimal FinalDrawMoney { get; set; }
+
+        /// <summary>
+        /// 最后一次支取：系统利息
+        /// </summary>
+        public decimal FinalSysInterest { get; set; }
+
+        /// <summary>
+        /// 最后一次支取：靠档利息
+        /// </summary>
+        public decimal FinalSectionInterest { get; set; }
+
+        /// <summary>
+        /// 最后一次支取补息金额
+        /// </summary>
+        public decimal FinalMarginInterest { get; set; }
     }
 }

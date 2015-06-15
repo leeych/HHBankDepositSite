@@ -12,6 +12,7 @@ namespace Common
         private static Regex RegNumberSign = new Regex("^[+-]?[0-9]+$");
         private static Regex RegDecimal = new Regex("^[0-9]+[.]?[0-9]+$");
         private static Regex RegDecimalSign = new Regex("^[+-]?[0-9]+[.]?[0-9]+$");
+        private static Regex RegDigitAlpha = new Regex("^[a-zA-Z0-9]+$");
         private static Regex RegEmail = new Regex("^[\\w-]+@[\\w-]+\\.(com|net|org|edu|mil|tv|biz|tv|info)$");
         private static Regex RegCHZN = new Regex("[\u4e00-\u9fa5]");
 
@@ -93,6 +94,17 @@ namespace Common
         public static bool IsDecimalSign(string inputData)
         {
             Match m = RegDecimalSign.Match(inputData);
+            return m.Success;
+        }
+
+        /// <summary>
+        /// 验证数字和字母字符串
+        /// </summary>
+        /// <param name="inputData"></param>
+        /// <returns></returns>
+        public static bool IsDigitAlpha(string inputData)
+        {
+            Match m = RegDigitAlpha.Match(inputData);
             return m.Success;
         }
 

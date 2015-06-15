@@ -146,7 +146,7 @@ namespace BLL
             string tableName = Constants.OrgCodeToTableName[orgCode];
             string sql = @"if not exists (select * from {0} where ProtocolID='{1}') begin insert into {0} (ProtocolID, BillAccount, BillCode, DepositDate, OrgCode, TellerCode, TellerName, DepositorName,IDCard,DepositMoney,CalcDueDate,DepositPeriod,BindAccount,DepositFlag,Remark,CurrentRate,D01Rate,M03Rate, M06Rate, Y01Rate,Y02Rate,Y03Rate,Y05Rate)" + 
                                     "values('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', {10}, '{11}', {12}, '{13}', {14}, '{15}', {16}, {17}, {18}, {19}, {20}, {21}, {22}, {23}) end";
-            string sqlString = string.Format(sql, tableName, record.ProtocolID, record.BillAccount, record.BillCode, record.DepositDate.ToString("yyyy-MM-dd"), record.OrgCode, record.TellerCode, record.TellerName, record.DepositorName, record.DepositorIDCard, record.DepositMoney, record.CalcDueDate.ToString("yyyy-MM-dd"), record.Period,
+            string sqlString = string.Format(sql, tableName, record.ProtocolID, record.BillAccount, record.BillCode, record.DepositDate.ToString("yyyy-MM-dd"), record.OrgCode, record.TellerCode, record.TellerName, record.DepositorName, record.DepositorIDCard, record.DepositMoney, record.DueDate.ToString("yyyy-MM-dd"), record.Period,
                 record.BindAccount, record.DepositFlag, record.Remark, record.Rate.CurrRate, record.Rate.D01, record.Rate.M03, record.Rate.M06, record.Rate.Y01, record.Rate.Y02, record.Rate.Y03, record.Rate.Y05);
             return SqlHelper.ExecuteSql(sqlString);
         }
@@ -446,7 +446,7 @@ namespace BLL
         /// <param name="code">凭证号</param>
         /// <param name="orgCode">机构号</param>
         /// <returns>存款记录</returns>
-        public DrawRecord GetDrawRecordByProtocolIdAccountCode(string protocolId, string account, string code, string orgCode)
+        public DrawRecord GetDrawRecordByProtocolIdAccountCode(string protocolId, string account, string orgCode)
         { 
             string tableName = Constants.OrgCodeToTableName[orgCode];
             string sql = @"select DepositDate, TellerCode, DepositorName, IDCard, DepositMoney, RemainMoney, DepositPeriod, DepositFlag, BindAccount, SystemInterest, Remark, CurrentRate, D01Rate, M03Rate, M06Rate, Y01Rate, " + 
@@ -459,7 +459,7 @@ namespace BLL
                     DrawRecord record = new DrawRecord();
                     record.ProtocolID = protocolId;
                     record.BillAccount = account;
-                    record.BillCode = code;
+                    //record.BillCode = dr["BillCode"].ToString();
                     record.DepositDate = DateTime.Parse(dr["DepositDate"].ToString());
                     record.TellerCode = dr["TellerCode"].ToString();
                     record.DepositorName = dr["DepositorName"].ToString();
@@ -488,12 +488,12 @@ namespace BLL
                                         Y05 = decimal.Parse(dr["Y05Rate"].ToString())
                                     };
                     record.DueDate = DateTime.MaxValue;
-                    record.DrawMoney = 0;
-                    record.SystemInterest = 0;
-                    record.SectionInterest = 0;
-                    record.MarginInterest = 0;
+                    record.FirstDrawMoney = 0;
+                    record.FirstSysInterest = 0;
+                    record.FirstSectionInterest = 0;
+                    record.FirstMarginInterest = 0;
                     record.BillPeriod = (Period)int.Parse(dr["DepositPeriod"].ToString());
-                    record.DrawDate = DateTime.MaxValue;
+                    record.FirstDrawDate = DateTime.MaxValue;
                     record.Remark = dr["Remark"].ToString();
 
                     //var record = new DrawRecord
@@ -664,6 +664,47 @@ namespace BLL
             else
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// 查询最大协议编号
+        /// </summary>
+        /// <param name="orgCode"></param>
+        /// <returns></returns>
+        public string GetMaxProtocolID(string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"select max(ProtocolID) from {0}";
+            string sqlString = string.Format(sql, tableName);
+            string protocolId = SqlHelper.ExecuteSqlObj(sqlString).ToString();
+            return protocolId;
+        }
+
+        /// <summary>
+        /// 查询机构所办业务总数
+        /// </summary>
+        /// <param name="orgCode"></param>
+        /// <returns></returns>
+        public SearchDraftInfo GetDraftSearchInfo(string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"select max(ProtocolID) as MaxID, count(ProtocolID) as TotalID, org.OrgName from {0} as r inner join " +
+                "OrgInfo as org on r.OrgCode=org.OrgCode group by org.OrgName";
+            string sqlString = string.Format(sql, tableName);
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
+            {
+                if (dr.Read())
+                {
+                    SearchDraftInfo info = new SearchDraftInfo { 
+                                                    OrgCode = orgCode,
+                                                    OrgName = dr["OrgName"].ToString(),
+                                                    MaxProtocolId = dr["MaxID"].ToString(),
+                                                    RecordCount = long.Parse(dr["TotalID"].ToString())
+                                                };
+                    return info;
+                }
+                return null;
             }
         }
     }

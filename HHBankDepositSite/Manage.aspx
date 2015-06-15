@@ -4,7 +4,7 @@
         .mainContent { background:#DDF1FE; width:640px; height:400px; border:1px dotted #000; text-align: center; margin: 0 auto; }
         .txtBox { text-align: center; width: 80%; height: 30px; font-size: 18px;}
         .tdLabel { width: 30%; text-align: right; height: 30px; }
-        .tdContent { width: 70%; height: 30px; }
+        .tdContent { width: 60%; height: 30px; }
         .auto-style5 { width: 30%; }
     </style>
 </asp:Content>
@@ -16,27 +16,31 @@
         <table width="100%" cellpadding="5" cellspacing="5" align="center">
             <tr>
                 <td class="tdLabel">用户名：</td>
-                <td width="162" class="tdContent">
+                <td class="tdContent">
                     <asp:TextBox runat="server" ID="userNameTxt" Font-Names="Arial" Font-Size="20px" CssClass="txtBox" ReadOnly="True"></asp:TextBox>
                 </td>
+                <td><asp:RequiredFieldValidator runat="server" ID="userNameValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="userNameTxt" CssClass="validator"></asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td class="tdLabel">原 密 码：</td>
-                <td width="162" class="tdContent">
+                <td class="tdContent">
                     <asp:TextBox runat="server" ID="oldpwdTxt" TextMode="Password" Font-Names="Arial" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
                 </td>
+                <td><asp:RequiredFieldValidator runat="server" ID="oldpwdValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="oldpwdTxt" CssClass="validator"></asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td class="tdLabel">新 密 码：</td>
-                <td width="162" class="tdContent">
+                <td class="tdContent">
                     <asp:TextBox runat="server" ID="newpwdTxt" TextMode="Password" Font-Names="Arial" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
                 </td>
+                <td><asp:RequiredFieldValidator runat="server" ID="newpwdValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="newpwdTxt" CssClass="validator"></asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td class="tdLabel">确认新密码：</td>
-                <td width="162" class="tdContent">
+                <td class="tdContent">
                     <asp:TextBox runat="server" ID="surepwdTxt" TextMode="Password" Font-Names="Arial" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
                 </td>
+                <td><asp:RequiredFieldValidator runat="server" ID="surepwdValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="surepwdTxt" CssClass="validator"></asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td class="auto-style5">

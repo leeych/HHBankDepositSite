@@ -21,6 +21,7 @@ namespace HHBankDepositSite
             {
                 userNameTxt.Text = Session["UserName"].ToString();
             }
+            TextBoxDataBind();
         }
 
         protected void okBtn_Click(object sender, EventArgs e)
@@ -29,30 +30,21 @@ namespace HHBankDepositSite
             string password = oldpwdTxt.Text.Trim();
             string newpwd = newpwdTxt.Text.Trim();
             string surepwd = surepwdTxt.Text.Trim();
-            if (string.IsNullOrEmpty(userName))
+
+            if (!PageValidator.IsDigitAlpha(password))
             {
-                TMessageBox.ShowMsg(this, "UserNameEmpty", "请输入用户名！");
-                return;
+                TMessageBox.ShowMsg(this, "OldPwdNotValid", "密码只能包含数字和字母！");
             }
-            if (string.IsNullOrEmpty(password))
+            if (!PageValidator.IsDigitAlpha(newpwd))
             {
-                TMessageBox.Show(this, "OldPwdEmpty", "请输入原密码！");
-                return;
-            }
-            if (string.IsNullOrEmpty(newpwd))
-            {
-                TMessageBox.Show(this, "NewPwdEmpty", "请输入新密码！");
-                return;
-            }
-            if (string.IsNullOrEmpty(surepwd))
-            {
-                TMessageBox.Show(this, "SurePwdEmpty", "请确认新密码！");
+                TMessageBox.ShowMsg(this, "NewPwdNotValid", "新密码只能包含数字和字母！");
                 return;
             }
             if (newpwd != surepwd)
             {
                 TMessageBox.Show(this, "NewPwdNotSame", "新密码两次输入不一致！");
                 surepwdTxt.Text = string.Empty;
+                return;
             }
             if (Session["UserName"] == null)
             {
@@ -67,8 +59,8 @@ namespace HHBankDepositSite
             else
             {
                 TMessageBox.ShowMsg(this, "OldPwdError", "原密码错误！");
+                return;
             }
-            TextBoxDataBind();
         }
 
         protected void cancelBtn_Click(object sender, EventArgs e)

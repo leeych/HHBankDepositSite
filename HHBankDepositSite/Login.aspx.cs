@@ -35,6 +35,16 @@ namespace HHBankDepositSite
                 TMessageBox.ShowMsg(this, "OldPwdEmpty", "请输入密码！");
                 return;
             }
+            if (!PageValidator.IsDigitAlpha(userName))
+            {
+                TMessageBox.ShowMsg(this, "UserNameInvalid", "用户名只能包含数字和字母！");
+                return;
+            }
+            if (!PageValidator.IsDigitAlpha(password))
+            {
+                TMessageBox.ShowMsg(this, "OldPwdInvalid", "密码只能包含数字和字母！");
+                return;
+            }
 
             if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(password))
             {

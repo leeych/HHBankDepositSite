@@ -22,6 +22,15 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox protocolIDTxt;
         
         /// <summary>
+        /// protocolIdValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator protocolIdValidator;
+        
+        /// <summary>
         /// billAccountTxt 控件。
         /// </summary>
         /// <remarks>
@@ -31,13 +40,13 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox billAccountTxt;
         
         /// <summary>
-        /// billCodeTxt 控件。
+        /// accountValidator 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox billCodeTxt;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator accountValidator;
         
         /// <summary>
         /// searchBtn 控件。
@@ -184,6 +193,15 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.Calendar Calendar1;
         
         /// <summary>
+        /// dateValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator dateValidator;
+        
+        /// <summary>
         /// moneyDrawTxt 控件。
         /// </summary>
         /// <remarks>
@@ -191,6 +209,24 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox moneyDrawTxt;
+        
+        /// <summary>
+        /// moneyValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator moneyValidator;
+        
+        /// <summary>
+        /// earlierDrawChk 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox earlierDrawChk;
         
         /// <summary>
         /// sectionTxt 控件。

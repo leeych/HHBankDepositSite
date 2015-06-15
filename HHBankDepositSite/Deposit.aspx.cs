@@ -95,8 +95,7 @@ namespace HHBankDepositSite
             string name = nameTxt.Text.Trim();
             string remark = remarkTxt.Text.Trim();
             DateTime dueDate = SectionCalculator.GetDueDateByPeriod(depositDate, (Period)period);
-            //decimal systemInterest = SectionCalculator.CalcDueDrawInterest(money, (Period)period, bankRate);
-
+            
             DepositRecord record = new DepositRecord 
                                         {
                                             ProtocolID = protocolID,
@@ -112,13 +111,11 @@ namespace HHBankDepositSite
                                             BindAccount = bindAccount,
                                             Remark = remark,
                                             Rate = bankRate,
-                                            CalcDueDate = dueDate,
-                                            //SystemInterest = systemInterest
+                                            DueDate = dueDate,
                                         };
             if (BizHandler.Handler.AddDepositRecord(record) == 1)
             {
                 TMessageBox.ShowMsg(this, "AddRecord", "存款记录添加成功！");
-                EnableEditableCtrls(false);
                 return;
             }
             else
@@ -286,6 +283,16 @@ namespace HHBankDepositSite
             //bool startDate = e.Day.Date >= DateTime.Now.Date.AddDays(-1);
             //bool endDate = e.Day.Date <= DateTime.Now.Date;
             //e.Day.IsSelectable = (startDate && endDate);
+        }
+
+        public string TextInputCheck()
+        {
+            string content = protocolTxt.Text.Trim();
+            if (!PageValidator.IsNumber(content))
+            {
+                return "协议编号不正确";
+            }
+            return "";
         }
 
         //protected void protocolTxt_TextChanged(object sender, EventArgs e)

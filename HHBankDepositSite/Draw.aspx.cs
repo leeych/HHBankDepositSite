@@ -36,16 +36,13 @@ namespace HHBankDepositSite
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-
             if (string.IsNullOrEmpty(drawRecord.ProtocolID))
             {
                 TMessageBox.ShowMsg(this, "DrawRecordExistsSure", "请先点“查询”！");
                 return;
             }
-
             string protocolId= protocolIDTxt.Text.Trim();
             string billAccount = billAccountTxt.Text.Trim();
-            string billCode = billCodeTxt.Text.Trim();
             if (string.IsNullOrEmpty(drawDateTxt.Text.Trim()))
             {
                 TMessageBox.ShowMsg(this, "DrawDateEmpty", "请输入支取日期！");
@@ -67,7 +64,7 @@ namespace HHBankDepositSite
             DateTime drawDate = Calendar1.SelectedDate;
             decimal drawMoney = decimal.Parse(moneyDrawTxt.Text.Trim());
 
-            DrawRecord record = BizHandler.Handler.GetDrawRecord(protocolId, billAccount, billCode, Session["UserName"].ToString());
+            DrawRecord record = BizHandler.Handler.GetDrawRecord(protocolId, billAccount, Session["UserName"].ToString());
             drawRecord = record;
             if (record == null)
             {
@@ -120,9 +117,9 @@ namespace HHBankDepositSite
             SectionCalculator calculator = new SectionCalculator();
             CalcResult result = calculator.CalcTotalResult(calcInfo, depositRate);
             sectionTxt.Text = (string.IsNullOrEmpty(result.SectionDesc) ? "--" : result.SectionDesc);
-            systemTxt.Text = (result.SystemInterest + drawMoney).ToString();
-            totalInterestTxt.Text = (result.SectionInterest + drawMoney).ToString();
-            marginTxt.Text = result.MarginInterest.ToString();
+            systemTxt.Text = (result.SystemInterest + drawMoney).ToString("f2");
+            totalInterestTxt.Text = (result.SectionInterest + drawMoney).ToString("f2");
+            marginTxt.Text = result.MarginInterest.ToString("f2");
         }
 
         protected void okBtn_Click(object sender, EventArgs e)
@@ -141,18 +138,18 @@ namespace HHBankDepositSite
                 return;
             }
             DrawInfo info = new DrawInfo();
-            info.DrawDate = drawRecord.DrawDate;
-            info.DrawMoney = drawRecord.DrawMoney;
+            info.DrawDate = drawRecord.FirstDrawDate;
+            info.DrawMoney = drawRecord.FirstDrawMoney;
             info.ProtocolId = drawRecord.ProtocolID;
-            info.SystemInterest = drawRecord.SystemInterest;
-            info.SectionInterest = drawRecord.SectionInterest;
-            info.RemainMoney = drawRecord.CapticalMoney - drawRecord.DrawMoney;
-            info.MarginInterest = drawRecord.SectionInterest - drawRecord.SystemInterest;
+            info.SystemInterest = drawRecord.FirstSysInterest;
+            info.SectionInterest = drawRecord.FirstSectionInterest;
+            info.RemainMoney = drawRecord.CapticalMoney - drawRecord.FirstDrawMoney;
+            info.MarginInterest = drawRecord.FirstSectionInterest - drawRecord.FirstSysInterest;
             bool res = false;
             if (info.RemainMoney > decimal.Zero)
             {
                 info.DrawStatus = DrawFlag.Draw;
-                info.FinalDrawDate = drawRecord.DrawDate;
+                info.FinalDrawDate = drawRecord.FirstDrawDate;
                 res = BizHandler.Handler.FinalDrawDepsoitRecord(info, Session["UserName"].ToString());
             }
             else
@@ -212,10 +209,9 @@ namespace HHBankDepositSite
             }
             string protocolId = protocolIDTxt.Text.Trim();
             string billAccount = billAccountTxt.Text.Trim();
-            string billCode = billCodeTxt.Text.Trim();
-            if (string.IsNullOrEmpty(protocolId) || string.IsNullOrEmpty(billAccount) || string.IsNullOrEmpty(billCode))
+            if (string.IsNullOrEmpty(protocolId) || string.IsNullOrEmpty(billAccount))
             {
-                TMessageBox.ShowMsg(this, "DrawSearch", "请务必输入协议号、存单账号、凭证号！");
+                TMessageBox.ShowMsg(this, "DrawSearch", "请务必输入协议号、存单账号！");
                 return;
             }
             string errMsg = string.Empty;
@@ -229,16 +225,12 @@ namespace HHBankDepositSite
             {
                 errMsg += @"存单账号格式不对！\n";
             }
-            if (!BizValidator.CheckBillCode(billCode))
-            {
-                errMsg += @"凭证号码必须是以“50”开头的12位数字！\n";
-            }
             if (!string.IsNullOrEmpty(errMsg))
             {
                 TMessageBox.ShowMsg(this, "TotalPageValidator1", errMsg);
                 return;
             }
-            DrawRecord record = BizHandler.Handler.GetDrawRecord(protocolId, billAccount, billCode, Session["UserName"].ToString());
+            DrawRecord record = BizHandler.Handler.GetDrawRecord(protocolId, billAccount, Session["UserName"].ToString());
             if (record == null)
             {
                 TMessageBox.ShowMsg(this, "TradeRecordNotExists", "没有满足条件的交易记录！");
@@ -271,7 +263,7 @@ namespace HHBankDepositSite
             bindAccountTxt.Text = record.BindAccount;
             periodTxt.Text = GetPeriodDesc(record.BillPeriod);
             execRateTxt.Text = GetBankRateDesc(record.BillPeriod, record.Rate);
-            systemInterestTxt.Text = SectionCalculator.CalcDueDrawInterest(record.CapticalMoney, record.BillPeriod, record.Rate).ToString();
+            systemInterestTxt.Text = SectionCalculator.CalcDueDrawInterest(record.CapticalMoney, record.BillPeriod, record.Rate).ToString("f2");
             drawStatusTxt.Text = GetDrawStatus(record.Status);
         }
 

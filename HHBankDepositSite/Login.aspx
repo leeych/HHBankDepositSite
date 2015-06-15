@@ -68,13 +68,13 @@
                 <tr>
                   <td align="right" height="27">用户名：</td>
                   <td align="right" width="161">
-                      <asp:TextBox runat="server" ID="userNameTxt" Font-Names="Arial" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
+                      <asp:TextBox runat="server" ID="userNameTxt" Font-Names="Arial" Font-Size="20px" CssClass="txtBox" MaxLength="10"></asp:TextBox>
                   </td>
                 </tr>
                 <tr>
                   <td align="right" height="27">密 码：</td>
                   <td align="right" width="161">
-                      <asp:TextBox runat="server" ID="passwordTxt" TextMode="Password" Font-Names="Arial" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
+                      <asp:TextBox runat="server" ID="passwordTxt" TextMode="Password" Font-Names="Arial" Font-Size="20px" CssClass="txtBox" MaxLength="20"></asp:TextBox>
                   </td>
                 </tr>
               </table>

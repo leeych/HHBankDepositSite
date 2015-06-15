@@ -46,6 +46,7 @@
     <Compile Include="OrgInfo.cs" />
     <Compile Include="Period.cs" />
     <Compile Include="DepositRecord.cs" />
+    <Compile Include="SearchDraftInfo.cs" />
     <Compile Include="SectionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TellerInfo.cs" />
