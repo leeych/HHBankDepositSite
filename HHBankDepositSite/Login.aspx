@@ -26,6 +26,8 @@
 
         .txtBox {
             text-align: center;
+            vertical-align: middle;
+            padding-top: 5px;
         }
         .auto-style2 {
             height: 24px;

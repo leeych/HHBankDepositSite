@@ -449,7 +449,7 @@ namespace BLL
         public DrawRecord GetDrawRecordByProtocolIdAccountCode(string protocolId, string account, string orgCode)
         { 
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"select DepositDate,BillPeriod,DueDate,DepositMoney,DepositorName,DepositorIDCard,DepositFlag,TellerCode,BindAccount,Remark,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate,FirstDrawMoney,RemainMoney,FirstSysInterest,FirstCalcInterest,FirstMarginInterest from "
+            string sql = @"select DepositDate,BillPeriod,DueDate,DepositMoney,DepositorName,DepositorIDCard,DepositFlag,TellerCode,BindAccount,Remark,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate,FirstDrawDate,FirstDrawMoney,RemainMoney,FirstSysInterest,FirstCalcInterest,FirstMarginInterest from "
                 + "{0} where ProtocolID='{1}' and BillAccount='{2}' and 1=1";
             string sqlString = string.Format(sql, tableName, protocolId, account);
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
@@ -603,11 +603,11 @@ namespace BLL
             return null;
         }
 
-        public bool DrawDepositRecord(DrawInfo info, string orgCode)
+        public bool FirstDrawRecord(DrawInfo info, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"update {0} set EarlierDrawDate='{1}' and EarlierDrawMoney={2} and RemainMoney={3} and EarlierInterest={4} and SystemInterest={5} and " +
-                " MarginInterest={6} and DepositFlag={7} where ProtocolID={8} and 1=1";
+            string sql = @"update {0} set FirstDrawDate='{1}', FirstDrawMoney={2}, RemainMoney={3}, FirstCalcInterest={4}, FirstSysInterest={5}, " +
+                " FirstMarginInterest={6}, DepositFlag={7} where ProtocolID='{8}' and 1=1";
             string sqlString = string.Format(sql, tableName, info.DrawDate.ToString("yyyy-MM-dd"), info.DrawMoney, info.RemainMoney, info.SectionInterest, info.SystemInterest, info.MarginInterest, (int)info.DrawStatus,
                 info.ProtocolId);
             int rows = SqlHelper.ExecuteSql(sqlString);
@@ -624,9 +624,9 @@ namespace BLL
         public bool FinalDrawDepositRecord(DrawInfo info, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"update {0} set FinalDrawDate={1} and EarlierDrawMoney={2} and RemainMoney={3} and EarlierInterest={4} and SystemInterest={5} and " +
-                " MarginInterest={6} and DepositFlag={7} where ProtocolID={8} and 1=1";
-            string sqlString = string.Format(sql, tableName, info.FinalDrawDate, info.DrawMoney, info.RemainMoney, info.SectionInterest, info.MarginInterest, (int)info.DrawStatus,
+            string sql = @"update {0} set FinalDrawDate={1}, FinalDrawMoney={2}, RemainMoney={3}, FinalCalcInterest={4}, FinalSysInterest={5}, " +
+                " FinalMarginInterest={6}, DepositFlag={7} where ProtocolID='{8}' and 1=1";
+            string sqlString = string.Format(sql, tableName, info.DrawDate, info.DrawMoney, info.RemainMoney, info.SectionInterest, info.SystemInterest, info.MarginInterest, (int)info.DrawStatus,
                 info.ProtocolId);
             int rows = SqlHelper.ExecuteSql(sqlString);
             if (rows == 1)

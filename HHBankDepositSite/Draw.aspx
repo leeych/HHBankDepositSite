@@ -90,7 +90,7 @@
                 <td align="right"><span class="red-star">*</span>支取日期：</td>
                 <td align="left">
                     <div style="display: inline;">
-                        <span><asp:TextBox ID="drawDateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></span>
+                        <span><asp:TextBox ID="drawDateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox" ReadOnly="True" Width="130px"></asp:TextBox></span>
                         <span><img src="Images/calendar.png" width="24px" height="24px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/></span>
                         <div id="datePicker">
                             <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnDayRender="Calendar1_DayRender">
@@ -108,13 +108,13 @@
                  </td>
                 <td align="left"><span><asp:RequiredFieldValidator runat="server" ID="dateValidator" CssClass="validator" ControlToValidate="drawDateTxt" Display="Dynamic" ErrorMessage="必填！"></asp:RequiredFieldValidator></span></td>
                 <td align="right"><span class="red-star">*</span>支取金额：</td>
-                <td align="left"><asp:TextBox runat="server" ID="moneyDrawTxt" CssClass="aspTextBox" OnTextChanged="moneyDrawTxt_TextChanged"></asp:TextBox></td>
+                <td align="left"><asp:TextBox runat="server" ID="moneyDrawTxt" CssClass="aspTextBox"></asp:TextBox></td>
                 <td align="left"><span><asp:RequiredFieldValidator runat="server" ID="moneyValidator" CssClass="validator" ControlToValidate="moneyDrawTxt" Display="Dynamic" ErrorMessage="必填！"></asp:RequiredFieldValidator></span></td>
                 <td align="right">部分提前支取：</td>
                 <td align="left"><asp:CheckBox runat="server" ID="earlierDrawChk" /></td>
             </tr>
             <tr>
-                <td align="right">靠档方案：</td>
+                <td align="right" style="height:200%">靠档方案：</td>
                 <td align="left" colspan="7"><asp:TextBox runat="server" ID="sectionTxt" CssClass="aspTextBox" ReadOnly="True" Width="100%"></asp:TextBox></td>
             </tr>
             <tr>

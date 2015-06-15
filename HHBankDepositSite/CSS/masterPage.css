@@ -92,7 +92,7 @@ font-size:10pt;
 .red-star {
     color: red;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .content {
@@ -119,7 +119,7 @@ html {
 .aspBtn {
     border-radius: 5px;
     border: double;
-    background-image: url(../Images/login_bg.jpg);
+    background: url(../Images/login_bg.jpg);
     height: 30px;
     width: 100px;
 }
@@ -132,6 +132,8 @@ html {
     height: 20px;
     text-align: center;
     vertical-align: middle;
+    padding-top: 3px;
+    behavior: url(ie-css3.htc);
 }
 
 .aspTextBoxShort {
@@ -141,6 +143,7 @@ html {
     font-size: 15px;
     text-align: center;
     vertical-align: middle;
+    padding-top: 3px;
 }
 
 .aspBillAccount {
@@ -151,14 +154,17 @@ html {
     font-size: 15px;
     text-align: center;
     vertical-align: middle;
+    padding-top: 3px;
 }
 
 .aspMargin {
-    border-radius: 3px;
+    border-radius: 5px;
     border: 1px solid #CDCDCD;
-    height: 25px;
-    width: 100%;
+    height: 30px;
+    width: 90%;
     font-size: 20px;
+    text-align: center;
+    padding-top: 3px;
 }
 
 .per-cent {

@@ -31,6 +31,8 @@ namespace BLL
 
         private DBHandler dbHandler = new DBHandler();
 
+        public DrawRecord DrawRecordInfo { get; set; }
+
         /// <summary>
         /// 读取.xml利率表中的利率
         /// </summary>
@@ -197,8 +199,8 @@ namespace BLL
             {
                 return null;
             }
-            DrawRecord record = dbHandler.GetDrawRecordByProtocolIdAccountCode(protocolId, account, orgCode);
-            return record;
+            DrawRecordInfo = dbHandler.GetDrawRecordByProtocolIdAccountCode(protocolId, account, orgCode);
+            return DrawRecordInfo;
         }
 
         public bool DrawDepositRecord(DrawInfo info, string orgCode)
@@ -207,11 +209,11 @@ namespace BLL
             {
                 return false;
             }
-            bool res = dbHandler.DrawDepositRecord(info, orgCode);
+            bool res = dbHandler.FirstDrawRecord(info, orgCode);
             return res;
         }
 
-        public bool FinalDrawDepsoitRecord(DrawInfo info, string orgCode)
+        public bool FinalDrawDepositRecord(DrawInfo info, string orgCode)
         {
             if (string.IsNullOrEmpty(orgCode))
             {

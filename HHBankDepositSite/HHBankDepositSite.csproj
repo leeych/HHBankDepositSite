@@ -57,6 +57,7 @@
     <Content Include="Deposit.aspx" />
     <Content Include="Draw.aspx" />
     <Content Include="Help.aspx" />
+    <Content Include="ie-css3.htc" />
     <Content Include="Images\bg-black.gif" />
     <Content Include="Images\bg-black2.gif" />
     <Content Include="Images\bg.jpg" />
