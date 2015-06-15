@@ -14,7 +14,6 @@
                 var key = window.event.keyCode;
                 if ((key == 46) || (key==8) || (key == 189) || (key==109) || (key==190)||(key==110)||(key>=48 && key<=57) 
                     || (key >= 96 && key <= 105) || (key >= 37 && key <= 40)) {
-
                 }
                 else if (key == 13) {
                     window.event.keyCode = 9;
@@ -39,7 +38,7 @@
             <table width="85%" align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5; border-spacing: 0px;">
                 <tr>
                     <td align="right"><span class="red-star">*</span>协议编号：</td>
-                    <td width="22%" align="left"><span><asp:TextBox ID="protocolTxt" runat="server" CssClass="aspTextBox" MaxLength="14" onblur="mouse_leave()"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="protocolIdValidator" ControlToValidate="protocolTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span></td>
+                    <td width="22%" align="left"><span><asp:TextBox ID="protocolTxt" runat="server" CssClass="aspTextBox" MaxLength="14"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="protocolIdValidator" ControlToValidate="protocolTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span></td>
                     <td align="right"><span class="red-star">*</span>存单账号：</td>
                     <td width="25%" align="left"><span><asp:TextBox ID="billAccountTxt" runat="server" CssClass="aspBillAccount" Width="200px" MaxLength="23"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="billAccountValidator" ControlToValidate="billAccountTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span></td>
                     <td align="right"><span class="red-star">*</span>凭证号码：</td>

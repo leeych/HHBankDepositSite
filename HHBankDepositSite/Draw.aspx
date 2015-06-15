@@ -19,12 +19,10 @@
         <table width="80%" style="border: 1px solid #E5E5E5; text-align: center; vertical-align: middle;" align="center">
             <tr>
                 <td><span class="red-star">*</span>协议编号：</td>
-                <td><asp:TextBox runat="server" CssClass="aspTextBox" ID="protocolIDTxt" MaxLength="14"></asp:TextBox></td>
-                <td><asp:RequiredFieldValidator runat="server" ID="protocolIdValidator" CssClass="validator" ControlToValidate="protocolIDTxt" Display="Dynamic" ErrorMessage="必填！" ValidationGroup="grpSearch"></asp:RequiredFieldValidator></td>
+                <td align="left"><asp:TextBox runat="server" CssClass="aspTextBox" ID="protocolIDTxt" MaxLength="14"></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="protocolIdValidator" CssClass="validator" ControlToValidate="protocolIDTxt" Display="Dynamic" ErrorMessage="必填！" ValidationGroup="grpSearch"></asp:RequiredFieldValidator></span></td>
                 <td><span class="red-star">*</span>存单账号：</td>
-                <td><asp:TextBox runat="server" CssClass="aspBillAccount" ID="billAccountTxt" Width="200px" MaxLength="23"></asp:TextBox></td>
-                <td><asp:RequiredFieldValidator runat="server" ID="accountValidator" CssClass="validator" ControlToValidate="billAccountTxt" Display="Dynamic" ErrorMessage="必填！" ValidationGroup="grpSearch"></asp:RequiredFieldValidator></td>
-                <td><asp:Button runat="server" Height="30px" Width="100px" CssClass="aspBtn" ID="searchBtn" Text="查询" ValidationGroup="grpSearch" OnClick="searchBtn_Click"/></td>
+                <td align="left"><asp:TextBox runat="server" CssClass="aspBillAccount" ID="billAccountTxt" Width="200px" MaxLength="23"></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="accountValidator" CssClass="validator" ControlToValidate="billAccountTxt" Display="Dynamic" ErrorMessage="必填！" ValidationGroup="grpSearch"></asp:RequiredFieldValidator></span></td>
+                <td align="left"><asp:Button runat="server" Height="30px" Width="100px" CssClass="aspBtn" ID="searchBtn" Text="查询" ValidationGroup="grpSearch" OnClick="searchBtn_Click"/></td>
             </tr>
             </table>
 
@@ -33,14 +31,6 @@
                 <td align="right">存入日期：</td>
                 <td><asp:TextBox runat="server" ID="depositDateTxt" CssClass="aspTextBox" ReadOnly="true" BackColor="#ddf1fe"></asp:TextBox></td>
                 <td align="right">约定存期：</td>
-                <%--<td><asp:DropDownList runat="server" ID="periodDrop" CssClass="aspTextBox" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True">
-                    <asp:ListItem>三个月</asp:ListItem>
-                    <asp:ListItem>六个月</asp:ListItem>
-                    <asp:ListItem>一年</asp:ListItem>
-                    <asp:ListItem>二年</asp:ListItem>
-                    <asp:ListItem>三年</asp:ListItem>
-                    <asp:ListItem>五年</asp:ListItem>
-                    </asp:DropDownList></td>--%>
                 <td><asp:TextBox runat="server" ID="periodTxt" CssClass="aspTextBox" ReadOnly="true" BackColor="#ddf1fe"></asp:TextBox></td>
                 <td align="right">执行利率：</td>
                 <td><span><asp:TextBox runat="server" ID="execRateTxt" CssClass="aspTextBox" ReadOnly="True" BackColor="#ddf1fe"></asp:TextBox></span><span class="per-cent">%</span></td>
@@ -69,6 +59,22 @@
                 <td align="right">补息账号：</td>
                 <td colspan="2"><asp:TextBox runat="server" ID="bindAccountTxt" CssClass="aspBillAccount" MaxLength="23" Width="90%" BackColor="#ddf1fe"></asp:TextBox></td>
                 </tr>
+            <tr>
+                <td align="right">已部提本金：</td>
+                <td><asp:TextBox runat="server" ID="adDrawMoneyTxt" CssClass="aspTextBox"  ReadOnly="true" BackColor="#ddf1fe"></asp:TextBox></td>
+                <td align="right">部提日期：</td>
+                <td><asp:TextBox runat="server" ID="adDrawDateTxt" CssClass="aspTextBox" ReadOnly="true" BackColor="#ddf1fe"></asp:TextBox></td>
+                <td align="right">余留本金：</td>
+                <td><asp:TextBox runat="server" ID="remainMoneyTxt" CssClass="aspTextBox" ReadOnly="true" BackColor="#ddf1fe"></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td align="right">系统利息：</td>
+                <td><asp:TextBox runat="server" ID="adSysInterestTxt" CssClass="aspTextBox" ReadOnly="true" BackColor="#ddf1fe"></asp:TextBox></td>
+                <td align="right">已靠档利息：</td>
+                <td><asp:TextBox runat="server" ID="adSectionInterestTxt" CssClass="aspTextBox" ReadOnly="true" BackColor="#ddf1fe"></asp:TextBox></td>
+                <td align="right">已补息金额：</td>
+                <td><asp:TextBox runat="server" ID="adMarginInterestTxt" CssClass="aspTextBox" ReadOnly="true" BackColor="#ddf1fe"></asp:TextBox></td>
+            </tr>
             <tr>
                 <td>备注：</td>
                 <td colspan="7"><asp:TextBox runat="server" ID="remarkTxt" TextMode="MultiLine" Width="95%" ReadOnly="True" BackColor="#ddf1fe"></asp:TextBox></td>

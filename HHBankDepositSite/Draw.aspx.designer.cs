@@ -166,6 +166,60 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox bindAccountTxt;
         
         /// <summary>
+        /// adDrawMoneyTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox adDrawMoneyTxt;
+        
+        /// <summary>
+        /// adDrawDateTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox adDrawDateTxt;
+        
+        /// <summary>
+        /// remainMoneyTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox remainMoneyTxt;
+        
+        /// <summary>
+        /// adSysInterestTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox adSysInterestTxt;
+        
+        /// <summary>
+        /// adSectionInterestTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox adSectionInterestTxt;
+        
+        /// <summary>
+        /// adMarginInterestTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox adMarginInterestTxt;
+        
+        /// <summary>
         /// remarkTxt 控件。
         /// </summary>
         /// <remarks>

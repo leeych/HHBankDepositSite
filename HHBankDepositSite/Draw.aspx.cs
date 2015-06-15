@@ -247,15 +247,7 @@ namespace HHBankDepositSite
             }
             depositDateTxt.Text = record.DepositDate.ToString("yyyy-MM-dd");
             dueDateTxt.Text = record.DueDate.ToString("yyyy-MM-dd");
-            //moneyTxt.Text = record.CapticalMoney.ToString();
-            if (record.Status == DrawFlag.Remain)
-            {
-                moneyTxt.Text = record.RemainMoney.ToString();
-            }
-            else
-            {
-                moneyTxt.Text = record.CapticalMoney.ToString();
-            }
+            moneyTxt.Text = record.CapticalMoney.ToString("f2");
             clientIDTxt.Text = record.DepositorIDCard;
             clientNameTxt.Text = record.DepositorName;
             tellerCodeTxt.Text = record.TellerCode;
@@ -265,6 +257,24 @@ namespace HHBankDepositSite
             execRateTxt.Text = GetBankRateDesc(record.BillPeriod, record.Rate);
             systemInterestTxt.Text = SectionCalculator.CalcDueDrawInterest(record.CapticalMoney, record.BillPeriod, record.Rate).ToString("f2");
             drawStatusTxt.Text = GetDrawStatus(record.Status);
+            if (record.Status == DrawFlag.Remain)
+            {
+                adDrawMoneyTxt.Text = (record.CapticalMoney - record.RemainMoney).ToString("f2");
+                adDrawDateTxt.Text = record.FirstDrawDate.ToString("yyyy-MM-dd");
+                remainMoneyTxt.Text = record.RemainMoney.ToString("f2");
+                adSysInterestTxt.Text = record.FirstSysInterest.ToString("f2");
+                adSectionInterestTxt.Text = record.FirstSectionInterest.ToString("f2");
+                adMarginInterestTxt.Text = record.FirstMarginInterest.ToString("f2");
+            }
+            else if (record.Status == DrawFlag.Deposit)
+            {
+                adDrawMoneyTxt.Text = "--";
+                adDrawDateTxt.Text = "--";
+                adSysInterestTxt.Text = "--";
+                adSectionInterestTxt.Text = "--";
+                adMarginInterestTxt.Text = "--";
+                remainMoneyTxt.Text = record.CapticalMoney.ToString("f2");
+            }
         }
 
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
