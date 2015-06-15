@@ -19,7 +19,6 @@ namespace HHBankDepositSite
         protected void Page_Load(object sender, EventArgs e)
         {
             periodDrop_SelectedIndexChanged(sender, e);
-            protocolTxt.Attributes.Add("onblur", "onlyNumber()");
         }
 
         protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,13 +47,10 @@ namespace HHBankDepositSite
                     rateTxt.Text = "--";
                     break;
             }
-            //rateTxt.DataBind();
         }
 
         protected void rateTxt_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        { }
 
         protected void Calendar1_SelectionChanged1(object sender, EventArgs e)
         {
@@ -68,12 +64,10 @@ namespace HHBankDepositSite
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-
             if (!ValidateText())
             {
                 return;
             }
-
             DateTime t = new DateTime();
             if (!DateTime.TryParse(dateTxt.Text.Trim() + "T00:00:00", out t))
             {
@@ -120,7 +114,7 @@ namespace HHBankDepositSite
             }
             else
             {
-                TMessageBox.ShowMsg(this, "AddRecordErr", "协议编号已存在！记录添加失败！");
+                TMessageBox.ShowMsg(this, "AddRecordErr", "协议编号已存在！单笔交易不得重复提交！");
             }
         }
 
@@ -130,7 +124,6 @@ namespace HHBankDepositSite
             {
                 Response.Redirect("~/Login.aspx");
             }
-
             ClearEditableCtrls();
             EnableEditableCtrls(true);
         }
