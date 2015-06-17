@@ -2,6 +2,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Xml;
 
@@ -239,6 +240,113 @@ namespace BLL
                 return null;
             }
             return dbHandler.GetDraftSearchInfo(orgCode);
+        }
+
+        public SearchInfo SearchRecordByProtocolID(string protocolID, string orgCode)
+        {
+            if (string.IsNullOrEmpty(protocolID))
+            {
+                return null;
+            }
+            return dbHandler.GetSearchRecordByProtocolID(protocolID, orgCode);
+        }
+
+        public List<SearchInfo> SearchRecordByIDCard(string idCard, string orgCode)
+        {
+            if (string.IsNullOrEmpty(idCard))
+            {
+                return null;
+            }
+            return dbHandler.GetSearchRecordByIDCard(idCard, orgCode);
+        }
+
+        public SearchInfo SearchRecordByBillAccount(string account, string orgCode)
+        {
+            if (string.IsNullOrEmpty(account))
+            {
+                return null;
+            }
+            return dbHandler.GetSearchRecordByBillAccount(account, orgCode);
+        }
+
+        public static string GetDepositStatusDesc(DrawFlag flag)
+        {
+            string desc = "--";
+            switch (flag)
+            {
+                case DrawFlag.Deposit:
+                    desc = "存入未支取";
+                    break;
+                case DrawFlag.Draw:
+                    desc = "已全部支取";
+                    break;
+                case DrawFlag.Remain:
+                    desc = "部分提前支取";
+                    break;
+                default:
+                    desc = "未知";
+                    break;
+            }
+            return desc;
+        }
+
+        public static string GetBillPeriodDesc(Period period)
+        {
+            string desc = string.Empty;
+            switch (period)
+            {
+                case Period.M03:
+                    desc = "三个月";
+                    break;
+                case Period.M06:
+                    desc = "六个月";
+                    break;
+                case Period.Y01:
+                    desc = "一年";
+                    break;
+                case Period.Y02:
+                    desc = "二年";
+                    break;
+                case Period.Y03:
+                    desc = "三年";
+                    break;
+                case Period.Y05:
+                    desc = "五年";
+                    break;
+                default:
+                    desc = "--";
+                    break;
+            }
+            return desc;
+        }
+
+        public static decimal GetExecRate(Period period, BankRate rate)
+        {
+            decimal r = 0;
+            switch (period)
+            {
+                case Period.M03:
+                    r = rate.M03;
+                    break;
+                case Period.M06:
+                    r = rate.M06;
+                    break;
+                case Period.Y01:
+                    r = rate.Y01;
+                    break;
+                case Period.Y02:
+                    r = rate.Y02;
+                    break;
+                case Period.Y03:
+                    r = rate.Y03;
+                    break;
+                case Period.Y05:
+                    r = rate.Y05;
+                    break;
+                default:
+                    break;
+            }
+            return r;
         }
     }
 }

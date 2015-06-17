@@ -679,5 +679,123 @@ namespace BLL
                 return null;
             }
         }
+
+        public SearchInfo GetSearchRecordByProtocolID(string protocolId, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"select ProtocolID, BillAccount, BillCode, DepositMoney, DepositDate, BillPeriod,DepositorName, DepositorIDCard,TellerCode,DepositFlag,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate " +
+                " from {0} where ProtocolID='{1}' and 1=1";
+            string sqlString = string.Format(sql, tableName, protocolId);
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
+            {
+                if (dr.Read())
+                {
+                    SearchInfo info = new SearchInfo();
+                    
+                    info.ProtocolID = protocolId;
+                    info.BillAccount = dr["BillAccount"].ToString();
+                    info.BillCode = dr["BillCode"].ToString();
+                    info.DepositMoney = decimal.Parse(dr["DepositMoney"].ToString());
+                    info.BillPeriod = (Period)int.Parse(dr["BillPeriod"].ToString());
+                    info.ClientName = dr["DepositorName"].ToString();
+                    info.ClientID = dr["DepositorIDCard"].ToString();
+                    info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
+                    info.TellerCode = dr["TellerCode"].ToString();
+                    info.ExecRate = new BankRate
+                    {
+                        CurrRate = decimal.Parse(dr["CurrentRate"].ToString()),
+                        D01 = decimal.Parse(dr["D01Rate"].ToString()),
+                        M03 = decimal.Parse(dr["M03Rate"].ToString()),
+                        M06 = decimal.Parse(dr["M06Rate"].ToString()),
+                        Y01 = decimal.Parse(dr["Y01Rate"].ToString()),
+                        Y02 = decimal.Parse(dr["Y02Rate"].ToString()),
+                        Y03 = decimal.Parse(dr["Y03Rate"].ToString()),
+                        Y05 = decimal.Parse(dr["Y05Rate"].ToString())
+                    };
+                    return info;
+                }
+                return null;
+            }
+        }
+
+        public SearchInfo GetSearchRecordByBillAccount(string account, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"select ProtocolID, BillAccount, BillCode, DepositMoney, DepositDate, BillPeriod,DepositorName, DepositorIDCard,TellerCode,DepositFlag,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate " +
+                " from {0} where BillAccount='{1}' and 1=1";
+            string sqlString = string.Format(sql, tableName, account);
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
+            {
+                if (dr.Read())
+                {
+                    SearchInfo info = new SearchInfo();
+                    info.ProtocolID = dr["ProtocolID"].ToString();
+                    info.BillAccount = dr["BillAccount"].ToString();
+                    info.BillCode = dr["BillCode"].ToString();
+                    info.DepositMoney = decimal.Parse(dr["DepositMoney"].ToString());
+                    info.BillPeriod = (Period)int.Parse(dr["BillPeriod"].ToString());
+                    info.ClientName = dr["DepositorName"].ToString();
+                    info.ClientID = dr["DepositorIDCard"].ToString();
+                    info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
+                    info.TellerCode = dr["TellerCode"].ToString();
+                    info.ExecRate = new BankRate
+                    {
+                        CurrRate = decimal.Parse(dr["CurrentRate"].ToString()),
+                        D01 = decimal.Parse(dr["D01Rate"].ToString()),
+                        M03 = decimal.Parse(dr["M03Rate"].ToString()),
+                        M06 = decimal.Parse(dr["M06Rate"].ToString()),
+                        Y01 = decimal.Parse(dr["Y01Rate"].ToString()),
+                        Y02 = decimal.Parse(dr["Y02Rate"].ToString()),
+                        Y03 = decimal.Parse(dr["Y03Rate"].ToString()),
+                        Y05 = decimal.Parse(dr["Y05Rate"].ToString())
+                    };
+                    return info;
+                }
+                return null;
+            }
+        }
+
+        public List<SearchInfo> GetSearchRecordByIDCard(string idCard, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"select ProtocolID, BillAccount, BillCode, DepositMoney, DepositDate, BillPeriod,DepositorName, DepositorIDCard,TellerCode,DepositFlag,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate " +
+                " from {0} where DepositorIDCard='{1}' and 1=1";
+            string sqlString = string.Format(sql, tableName, idCard);
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
+            {
+                List<SearchInfo> infoList = new List<SearchInfo>();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        SearchInfo info = new SearchInfo();
+
+                        info.ProtocolID = dr["ProtocolID"].ToString();
+                        info.BillAccount = dr["BillAccount"].ToString();
+                        info.BillCode = dr["BillCode"].ToString();
+                        info.DepositMoney = decimal.Parse(dr["DepositMoney"].ToString());
+                        info.BillPeriod = (Period)int.Parse(dr["BillPeriod"].ToString());
+                        info.ClientName = dr["DepositorName"].ToString();
+                        info.ClientID = dr["DepositorIDCard"].ToString();
+                        info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
+                        info.TellerCode = dr["TellerCode"].ToString();
+                        info.ExecRate = new BankRate
+                        {
+                            CurrRate = decimal.Parse(dr["CurrentRate"].ToString()),
+                            D01 = decimal.Parse(dr["D01Rate"].ToString()),
+                            M03 = decimal.Parse(dr["M03Rate"].ToString()),
+                            M06 = decimal.Parse(dr["M06Rate"].ToString()),
+                            Y01 = decimal.Parse(dr["Y01Rate"].ToString()),
+                            Y02 = decimal.Parse(dr["Y02Rate"].ToString()),
+                            Y03 = decimal.Parse(dr["Y03Rate"].ToString()),
+                            Y05 = decimal.Parse(dr["Y05Rate"].ToString())
+                        };
+                        infoList.Add(info);
+                    }
+                    return infoList;
+                }
+                return null;
+            }
+        }
     }
 }

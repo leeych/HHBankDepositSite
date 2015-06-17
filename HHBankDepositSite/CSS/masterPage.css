@@ -177,3 +177,25 @@ html {
     font-size: 11px;
     text-align: left;
 }
+
+.gridview {
+    background: #006699;
+    border-width: 1px;
+    border-color: #cccccc;
+    color: #FFFFFF;
+    font: bold 16px arial, verdana;
+}
+
+
+.fixedHeader {
+    position: relative;
+    top: expression(this.offsetParent.scrollTop);
+    background-color: blue;
+    height: 25px;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #5D7B9D;
+}
