@@ -15,7 +15,7 @@
     <div width="100%">
         <br />
     <fieldset class="fieldSetStyle">
-        <legend class="legendStyle">查询</legend>
+        <legend align="center" class="legendStyle">查询</legend>
         <table width="80%" style="border: 1px solid #E5E5E5; text-align: center; vertical-align: middle;" align="center">
             <tr>
                 <td><span class="red-star">*</span>协议编号：</td>
@@ -84,7 +84,7 @@
     </div>
 
     <fieldset class="fieldSetStyle">
-        <legend class="legendStyle">支取</legend>
+        <legend align="center" class="legendStyle">支取</legend>
         <table width="80%" style="border: 1px solid #E5E5E5; text-align: center;" align="center" >
             <tr>
                 <td align="right"><span class="red-star">*</span>支取日期：</td>

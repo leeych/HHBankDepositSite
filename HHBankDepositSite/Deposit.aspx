@@ -34,7 +34,7 @@
         <div style="width:100%; height:100%;">
             <br />
         <fieldset class="fieldSetStyle">
-            <legend class="legendStyle">交易信息</legend>
+            <legend class="legendStyle" align="center">交易信息</legend>
             <table width="85%" align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5; border-spacing: 0px;">
                 <tr>
                     <td align="right"><span class="red-star">*</span>协议编号：</td>
@@ -91,7 +91,7 @@
         </fieldset>
             <br />
         <fieldset class="fieldSetStyle">
-        <legend class="legendStyle">经办信息</legend>
+        <legend class="legendStyle" align="center">经办信息</legend>
         <table width="85%" align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5;">
             <tr>
                 <td align="right"><span class="red-star">*</span>客户姓名：</td>
