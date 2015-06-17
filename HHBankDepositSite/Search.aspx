@@ -30,19 +30,20 @@
         <table style="border: 1px solid #E5E5E5; text-align: center; vertical-align: middle;" align="center">
             <tr>
                 <td>协议编号：</td>
-                <td><asp:TextBox runat="server" ID="protocolIdTxt" CssClass="aspTextBox" MaxLength="14" PlaceHolder="协议编号"></asp:TextBox></td>
-            
-            
+                <td><asp:TextBox runat="server" ID="protocolIdTxt" CssClass="aspTextBox" MaxLength="14" ></asp:TextBox></td>
                 <td><span class="red-star">*</span>存单账号：</td>
-                <td><asp:TextBox runat="server" ID="billAccountTxt" CssClass="aspBillAccount" MaxLength="23" PlaceHolder="存单账号"></asp:TextBox></td>
-            
-            
+                <td><asp:TextBox runat="server" ID="billAccountTxt" CssClass="aspBillAccount" MaxLength="23" ></asp:TextBox></td>
                 <td><span class="red-star">*</span>身份证号：</td>
-                <td><asp:TextBox runat="server" ID="idCardTxt" CssClass="aspTextBox" MaxLength="18" PlaceHolder="身份证号码"></asp:TextBox></td>
-            
-            
+                <td><asp:TextBox runat="server" ID="idCardTxt" CssClass="aspTextBox" MaxLength="18" ></asp:TextBox></td>            
                 <td><span class="red-star">*</span>客户姓名：</td>
                 <td><asp:TextBox runat="server" ID="clientNameTxt" CssClass="aspTextBox"></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td>起始日期：</td>
+                <td><asp:TextBox runat="server" ID="startDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></td>
+                <td>截止日期：</td>
+                <td><asp:TextBox runat="server" ID="endDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></td>
+                <td><asp:Button runat="server" ID="searchBtn" CssClass="aspBtn" Text="查询" Height="30px" Width="100px" OnClick="searchBtn_Click" /></td>
             </tr>
         </table>
             </div>
@@ -263,11 +264,14 @@
                     <asp:TableCell ID="TableCell109" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell110" runat="server"></asp:TableCell>
                 </asp:TableRow>
+                <asp:TableFooterRow ID="TableFooterRow1" runat="server">
+                    <asp:TableCell ID="footerCell" runat="server" ColumnSpan="11"></asp:TableCell>
+                </asp:TableFooterRow>
             </asp:Table>
         </div>
 
         <div style="clear: both;">
-            <div style="text-align:center;"><asp:Button runat="server" ID="searchBtn" CssClass="s" Text="查询" OnClick="searchBtn_Click" /></div>
+            <div style="text-align:center;"></div>
         </div>
         </div>
 </asp:Content>

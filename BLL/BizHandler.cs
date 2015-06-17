@@ -269,6 +269,15 @@ namespace BLL
             return dbHandler.GetSearchRecordByBillAccount(account, orgCode);
         }
 
+        public List<SearchInfo> SearchRecordByDuration(DateTime start, DateTime end, string orgCode)
+        {
+            if (start.Date > end.Date)
+            {
+                return null;
+            }
+            return dbHandler.GetSearchRecordByDuration(start, end, orgCode);
+        }
+
         public static string GetDepositStatusDesc(DrawFlag flag)
         {
             string desc = "--";

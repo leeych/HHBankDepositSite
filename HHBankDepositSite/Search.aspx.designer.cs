@@ -85,6 +85,33 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox clientNameTxt;
         
         /// <summary>
+        /// startDateTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox startDateTxt;
+        
+        /// <summary>
+        /// endDateTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox endDateTxt;
+        
+        /// <summary>
+        /// searchBtn 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button searchBtn;
+        
+        /// <summary>
         /// resultTable 控件。
         /// </summary>
         /// <remarks>
@@ -1282,12 +1309,21 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TableCell TableCell110;
         
         /// <summary>
-        /// searchBtn 控件。
+        /// TableFooterRow1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button searchBtn;
+        protected global::System.Web.UI.WebControls.TableFooterRow TableFooterRow1;
+        
+        /// <summary>
+        /// footerCell 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell footerCell;
     }
 }

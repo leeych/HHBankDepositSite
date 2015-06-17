@@ -153,7 +153,7 @@ namespace HHBankDepositSite
 
         private void ClearTable()
         {
-            for (int i = 1; i < resultTable.Rows.Count; i++)
+            for (int i = 1; i < resultTable.Rows.Count - 1; i++)
             {
                 for (int j = 0; j < resultTable.Rows[0].Cells.Count; j++)
                 {
