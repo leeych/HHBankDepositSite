@@ -274,13 +274,13 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator moneyValidator;
         
         /// <summary>
-        /// earlierDrawChk 控件。
+        /// calcBtn 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox earlierDrawChk;
+        protected global::System.Web.UI.WebControls.Button calcBtn;
         
         /// <summary>
         /// sectionTxt 控件。
@@ -317,15 +317,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox marginTxt;
-        
-        /// <summary>
-        /// calcBtn 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button calcBtn;
         
         /// <summary>
         /// okBtn 控件。

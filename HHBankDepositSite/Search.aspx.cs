@@ -1,8 +1,11 @@
 ﻿using BLL;
+using Common;
 using HHBankDepositSite.Data;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -69,12 +72,34 @@ namespace HHBankDepositSite
                 return;
             }
             ClearTable();
-            string protocolId = maxProtocolIdTxt.Text.Trim();
-            string orgCode = Session["UserName"].ToString();
-            SearchInfo info = BizHandler.Handler.SearchRecordByProtocolID(protocolId, orgCode);
-            if (info != null)
+            SearchParam param = new SearchParam();
+            param.ProtocolID = protocolIdTxt.Text.Trim();
+            param.BillAccount = billAccountTxt.Text.Trim();
+            //param.StartDate = DateTime.Parse(startDateTxt.Text.Trim());
+            //param.EndDate = DateTime.Parse(endDateTxt.Text.Trim());
+            if (string.IsNullOrEmpty(param.ProtocolID) && string.IsNullOrEmpty(param.BillAccount))
             {
-                InsertToTable(info, 1);
+                List<SearchInfo> infoList = BizHandler.Handler.SearchRecordByDuration(new DateTime(DateTime.Now.Year, 01, 01), DateTime.Now, Session["UserName"].ToString());
+                if (infoList == null)
+                {
+                    return;
+                }
+                if (infoList.Count > 10)
+                {
+                    this.ClientScript.RegisterStartupScript(this.GetType(), "download", "<script language='javascript' defer='defer'> if (confirm('记录条数较多是否下载继续查看？')){ document.getElementById('" + linkBtn.ClientID.ToString() + "').click();}</script>");
+                    string filePath = Server.MapPath("~/Downloads/" + Session["UserName"].ToString() + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
+                    StreamWriter sw = new StreamWriter(filePath, false, System.Text.Encoding.UTF8);
+                    for (int i = 0; i < infoList.Count; i++)
+                    {
+                        sw.WriteLine(GenString(infoList[i]));
+                    }
+                    sw.Flush();
+                    sw.Close();
+                }
+                else
+                {
+                    UpdateTable(infoList);
+                }
             }
         }
 
@@ -82,7 +107,7 @@ namespace HHBankDepositSite
         {
             for (int i = 1; i <= infoList.Count; i++)
             {
-                InsertToTable(infoList[i], i);
+                InsertToTable(infoList[i-1], i);
             }
         }
 
@@ -160,6 +185,35 @@ namespace HHBankDepositSite
                     resultTable.Rows[i].Cells[j].Text = string.Empty;
                 }
             }
+        }
+
+        protected void linkBtn_Click(object sender, EventArgs e)
+        {
+            TMessageBox.ShowMsg(this, "ExportMsg", "导出成功！");
+            string filePath = Server.MapPath("~/Downloads/"+ Session["UserName"].ToString() + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
+            FileInfo fileInfo = new FileInfo(filePath);
+            Response.Clear();
+            Response.ClearHeaders();
+            Response.Buffer = false;
+            Response.ContentType = "application/octet-stream";
+            Response.AppendHeader("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode(filePath, System.Text.Encoding.UTF8));
+            Response.AppendHeader("Content-Length", fileInfo.Length.ToString());
+            Response.AppendHeader("Content-Transfer-Encoding", "binary");
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            Response.TransmitFile(filePath);
+            Response.Flush();
+            Response.End();
+
+        }
+
+        private string GenString(SearchInfo info)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10}", info.ProtocolID, info.BillAccount, info.BillCode,
+                info.DepositMoney.ToString("f2"), info.DepositDate.ToString("yyyy-MM-dd"), BizHandler.GetBillPeriodDesc(info.BillPeriod),
+                BizHandler.GetExecRate(info.BillPeriod, info.ExecRate).ToString("f5"), BizHandler.GetDepositStatusDesc(info.Status),
+                info.ClientName, info.ClientID, info.TellerCode);
+            return sb.ToString();
         }
     }
 }

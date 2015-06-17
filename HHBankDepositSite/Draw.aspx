@@ -105,13 +105,14 @@
                             </asp:Calendar>
                         </div>
                     </div>
+                    <span><asp:RequiredFieldValidator runat="server" ID="dateValidator" CssClass="validator" ControlToValidate="drawDateTxt" Display="Dynamic" ErrorMessage="必填！"></asp:RequiredFieldValidator></span>
                  </td>
-                <td align="left"><span><asp:RequiredFieldValidator runat="server" ID="dateValidator" CssClass="validator" ControlToValidate="drawDateTxt" Display="Dynamic" ErrorMessage="必填！"></asp:RequiredFieldValidator></span></td>
+                <td align="left"></td>
                 <td align="right"><span class="red-star">*</span>支取金额：</td>
-                <td align="left"><asp:TextBox runat="server" ID="moneyDrawTxt" CssClass="aspTextBox"></asp:TextBox></td>
-                <td align="left"><span><asp:RequiredFieldValidator runat="server" ID="moneyValidator" CssClass="validator" ControlToValidate="moneyDrawTxt" Display="Dynamic" ErrorMessage="必填！"></asp:RequiredFieldValidator></span></td>
-                <td align="right">部分提前支取：</td>
-                <td align="left"><asp:CheckBox runat="server" ID="earlierDrawChk" /></td>
+                <td align="left"><span><asp:TextBox runat="server" ID="moneyDrawTxt" CssClass="aspTextBox"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="moneyValidator" CssClass="validator" ControlToValidate="moneyDrawTxt" Display="Dynamic" ErrorMessage="必填！"></asp:RequiredFieldValidator></span></td>
+                <%--<td align="left"></td>--%>
+                <td align="right"><asp:Button ID="calcBtn" runat="server" Text="计算" Height="30px" Width="100px" CssClass="aspBtn" OnClick="calcBtn_Click" /></td>
+                <td align="left">&nbsp;</td>
             </tr>
             <tr>
                 <td align="right" style="height:200%">靠档方案：</td>
@@ -123,9 +124,9 @@
                 <td></td>
                 <td align="right">靠档本息：</td>
                 <td align="left"><asp:TextBox runat="server" ID="totalInterestTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
-                <td></td>
+                <%--<td></td>--%>
                 <td align="right"><h3 style="color:red;">应补利息：</h3></td>
-                <td align="left"><asp:TextBox runat="server" ID="marginTxt" CssClass="aspMargin" ReadOnly="True"></asp:TextBox></td>
+                <td align="left"><asp:TextBox runat="server" ID="marginTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
             </tr>
             </table>
     </fieldset>
@@ -133,7 +134,7 @@
     <fieldset class="fieldSetStyle" style="text-align: center;">
         <legend class="legendStyle"></legend>
         <div style="display: inline; margin: 0px auto;">
-            <span><asp:Button ID="calcBtn" runat="server" Text="计算" Height="30px" Width="100px" CssClass="aspBtn" OnClick="calcBtn_Click" /></span>
+            <span></span>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span><asp:Button ID="okBtn" runat="server" Text="支取" Height="30px" Width="100px" CssClass="aspBtn" OnClick="okBtn_Click" /></span>
         </div>

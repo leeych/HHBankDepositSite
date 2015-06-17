@@ -22,7 +22,7 @@ namespace Common
 
         public static void ShowMsg(Page page, string key, string msg)
         {
-            page.ClientScript.RegisterStartupScript(page.GetType(), key, "<script language='javascript' defer>alert('" + msg + "');</script>");
+            page.ClientScript.RegisterStartupScript(page.GetType(), key, @"<script language='javascript' defer>alert('" + msg + "');</script>");
         }
 
         /// <summary>

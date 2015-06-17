@@ -624,9 +624,9 @@ namespace BLL
         public bool FinalDrawDepositRecord(DrawInfo info, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"update {0} set FinalDrawDate={1}, FinalDrawMoney={2}, RemainMoney={3}, FinalCalcInterest={4}, FinalSysInterest={5}, " +
+            string sql = @"update {0} set FinalDrawDate='{1}', FinalDrawMoney={2}, RemainMoney={3}, FinalCalcInterest={4}, FinalSysInterest={5}, " +
                 " FinalMarginInterest={6}, DepositFlag={7} where ProtocolID='{8}' and 1=1";
-            string sqlString = string.Format(sql, tableName, info.DrawDate, info.DrawMoney, info.RemainMoney, info.SectionInterest, info.SystemInterest, info.MarginInterest, (int)info.DrawStatus,
+            string sqlString = string.Format(sql, tableName, info.DrawDate.ToString("yyyy-MM-dd"), info.DrawMoney, info.RemainMoney, info.SectionInterest, info.SystemInterest, info.MarginInterest, (int)info.DrawStatus,
                 info.ProtocolId);
             int rows = SqlHelper.ExecuteSql(sqlString);
             if (rows == 1)
@@ -805,7 +805,7 @@ namespace BLL
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
             string sql = @"select ProtocolID, BillAccount, BillCode, DepositMoney, DepositDate, BillPeriod,DepositorName, DepositorIDCard,TellerCode,DepositFlag,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate " +
-                " from {0} where DepositDate between '{1}' and '{2}' 1=1";
+                " from {0} where DepositDate between '{1}' and '{2}' and 1=1";
             string sqlString = string.Format(sql, tableName, start.ToString("yyyy-MM-dd"), end.ToString("yyyy-MM-dd"));
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
             {

@@ -43,83 +43,16 @@
                 <td><asp:TextBox runat="server" ID="startDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></td>
                 <td>截止日期：</td>
                 <td><asp:TextBox runat="server" ID="endDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></td>
+                <td>
+                    <asp:LinkButton ID="linkBtn" runat="server" OnClick="linkBtn_Click" Width="1px"></asp:LinkButton>
+                </td>
                 <td><asp:Button runat="server" ID="searchBtn" CssClass="aspBtn" Text="查询" Height="30px" Width="100px" OnClick="searchBtn_Click" /></td>
             </tr>
         </table>
             </div>
         <div>
-<%--                <Lee:TGridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" EnableModelValidation="True" Height="321px" Width="710px" HeaderStyle-CssClass="fixedHeader" Font-Size="12px">
-                <Columns>
-                    <asp:BoundField DataField="ProtocolID" HeaderText="协议编号" />
-                    <asp:BoundField DataField="BillAccount" HeaderText="存单账号" />
-                    <asp:BoundField DataField="BillCode" HeaderText="凭证号码" />
-                    <asp:BoundField DataField="DepositMoney" HeaderText="本金" />
-                    <asp:BoundField DataField="ClientName" HeaderText="客户姓名" />
-                    <asp:BoundField DataField="ClientID" HeaderText="客户身份证" />
-                    <asp:BoundField DataField="DepositDate" HeaderText="存入日期" />
-                    <asp:BoundField DataField="BillPeriod" HeaderText="存期" />
-                    <asp:BoundField DataField="ExecRate" HeaderText="利率" />
-                    <asp:BoundField DataField="DueInterest" HeaderText="到期利息" />
-                    <asp:BoundField DataField="TellerCode" HeaderText="经办人" />
-                </Columns>
-                <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
-                <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
-                <PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />
-                <RowStyle BackColor="White" ForeColor="#003399" />
-                <SelectedRowStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-            </Lee:TGridView>--%>
-
-<%--            <Lee:SmartGridView ID="sgv" runat="server" AllowPaging="true" AllowSorting="true" PageSize="20" MouseOverCssClass="OverRow" OnPageIndexChanging="sgv_PageIndexChanging"
-                 DataKeyNames="ProtocolID" Width="1200" BoundRowDoubleClickCommandName="DoubleClick" OnRowCommand="sgv_RowCommand" ContextMenuCssClass="RightMenu">
-                <Columns>
-                    <asp:TemplateField ItemStyle-Width="50px">
-                        <HeaderTemplate>
-                            序号
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <%# Container.DataItemIndex+1 %>>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField ItemStyle-Width="50px">
-                        <HeaderTemplate>
-                            <asp:CheckBox ID="all2" runat="server" />
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <asp:CheckBox ID="item2" runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="ProtocolID" HeaderText="协议编号" SortExpression="ProtocolID" />
-                    <asp:BoundField DataField="BillAccount" HeaderText="存单账号" />
-                    <asp:BoundField DataField="BillCode" HeaderText="凭证号" />
-                    <asp:BoundField DataField="DepositDate" HeaderText="存入日期" />
-                    <asp:BoundField DataField="DepositMoney" HeaderText="本金" />
-                    <asp:BoundField DataField="BillPeriod" HeaderText="存期" />
-                    <asp:BoundField DataField="ExecRate" HeaderText="利率" />
-                    <asp:BoundField DataField="DueInterest" HeaderText="到期利息" />
-                    <asp:BoundField DataField="ClientName" HeaderText="客户姓名" />
-                    <asp:BoundField DataField="ClientID" HeaderText="身份证号" />
-                    <asp:BoundField DataField="Status" HeaderText="状态" />
-                    <asp:ButtonField CommandName="DoubleClick" Visible="false" />
-                    <asp:ButtonField CommandName="RightMenuClick" Visible="false" />
-                </Columns>
-                <SmartSorting AllowMultiSorting="true" AllowSortTip="true" />
-                <ClientButtons>
-                    <Lee:ClientButton BoundCommandName="Sort" Position="First" AttributeKey="onclick"
-                         AttributeValue="return confirm('确认对字段“{1}”排序吗？')" />
-                </ClientButtons>
-                <CascadeCheckboxes>
-                    <Lee:CascadeCheckbox ChildCheckboxID="item2" ParentCheckboxID="all2" />
-                </CascadeCheckboxes>
-                <FixRowColumn FixRowType="Header,Pager" FixRows="0" FixColumns="0,1" />
-                <CheckedRowCssClass CheckBoxID="item2" CssClass="SelectedRow" />
-                <ContextMenus>
-                    <Lee:ContextMenu Text="RightMenuClick" BoundCommandName="RightMenuClick" />
-                    <Lee:ContextMenu Text="<br />" />
-                </ContextMenus>
-                <CustomPagerSettings PagingMode="Webabcd" TextFormat="每页{0}条/共{1}条&nbsp;&nbsp;&nbsp;&nbsp;第{2}页/共{3}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
-                <PagerSettings Position="Top" PageButtonCount="13" FirstPageText="首页" PreviousPageText="上一页" NextPageText="下一页"
-                     LastPageText="尾页" />
-            </Lee:SmartGridView>--%>
+            <%--<%@ Register Assembly="HHBankDepositSite" Namespace="HHBankDepositSite" TagPrefix="Lee"%>--%>
+<%--<%@ Register Assembly="jzlib" Namespace="jzlib.asp.net.Controls" TagPrefix="Lee" %>--%>
             <asp:Table ID="resultTable" runat="server" CellSpacing="3" CellPadding="3" Width="100%" GridLines="Both" BorderColor="Black" BorderStyle="Solid">
                 <asp:TableHeaderRow ID="resHeader" runat="server" BackColor="#669cc0" ForeColor="#FFFFFF" CssClass="tableHeader">
                     <asp:TableHeaderCell ID="protocolIdCell" Wrap="false" runat="server" Text="协议编号"></asp:TableHeaderCell>
