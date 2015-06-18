@@ -17,7 +17,7 @@
         .login { background:#DDF1FE; width:468px; height:262px; border:1px solid #000;}
         .top { background:url(images/login_bg.jpg) repeat-x; width:464px; height:113px; border:1px solid #2376B1; margin-top:1px;}
         .logo { background:url(images/hhbank.png) no-repeat; width:214px; height:42px; float:left; margin:29px 0 0 14px;}
-        .lable { background:url(images/lable.png) no-repeat; width:157px; height:32px; float:right; margin:81px 31px 0 0;}
+        .lable { background:url(images/label.png) no-repeat; width:157px; height:32px; float:right; margin:81px 31px 0 0;}
         .submit { background:url(images/btn-bg.png) no-repeat; width:71px; height:24px; border:0;} 
         .reset { background:url(images/btn-bg.png) no-repeat; width:71px; height:24px; border:0;} 
         .auto-style1 {

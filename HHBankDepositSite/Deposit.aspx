@@ -37,15 +37,15 @@
             <legend class="legendStyle" align="center">交易信息</legend>
             <table width="85%" align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5; border-spacing: 0px;">
                 <tr>
-                    <td align="right"><span class="red-star">*</span>协议编号：</td>
+                    <td align="right"><span class="red-star">*</span><span class="label">协议编号：</span></td>
                     <td width="22%" align="left"><span><asp:TextBox ID="protocolTxt" runat="server" CssClass="aspTextBox" MaxLength="14"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="protocolIdValidator" ControlToValidate="protocolTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span></td>
-                    <td align="right"><span class="red-star">*</span>存单账号：</td>
+                    <td align="right"><span class="red-star">*</span><span class="label">存单账号：</span></td>
                     <td width="25%" align="left"><span><asp:TextBox ID="billAccountTxt" runat="server" CssClass="aspBillAccount" Width="200px" MaxLength="23"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="billAccountValidator" ControlToValidate="billAccountTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span></td>
-                    <td align="right"><span class="red-star">*</span>凭证号码：</td>
+                    <td align="right"><span class="red-star">*</span><span class="label">凭证号码：</span></td>
                     <td align="left"><span><asp:TextBox ID="billCodeTxt" runat="server" CssClass="aspTextBox" MaxLength="12"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="billCodeValidator" ControlToValidate="billCodeTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span></td>
                 </tr>
                 <tr>
-                    <td align="right"><span class="red-star">*</span>约定存期：</td>
+                    <td align="right"><span class="red-star">*</span><span class="label">约定存期：</span></td>
                     <td align="left"><span>
                         <asp:DropDownList ID="periodDrop" runat="server" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True" CssClass="aspTextBox">
                             <asp:ListItem>三个月</asp:ListItem>
@@ -58,13 +58,13 @@
                         </span>
                         <span><asp:RequiredFieldValidator runat="server" ID="periodDropValidator" ControlToValidate="periodDrop" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
                     </td>
-                    <td align="right"><span class="red-star">*</span>约定利率：</td>
+                    <td align="right"><span class="red-star">*</span><span class="label">约定利率：</span></td>
                     <td align="left"><span><asp:TextBox ID="rateTxt" runat="server" Width="131px" OnTextChanged="rateTxt_TextChanged" CssClass="aspTextBoxShort" ReadOnly="True"></asp:TextBox></span><span class="per-cent">%</span></td>
-                    <td align="right"><span class="red-star">*</span>存入金额：</td>
+                    <td align="right"><span class="red-star">*</span><span class="label">存入金额：</span></td>
                     <td align="left"><span><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="moneyValidator" ControlToValidate="moneyTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span></td>
                 </tr>
                 <tr>
-                    <td align="right"><span class="red-star">*</span>存入日期：</td>
+                    <td align="right"><span class="red-star">*</span><span class="lable">存入日期：</span></td>
                     <td align="left">
                         <div style="display: inline;">
                             <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox" ReadOnly="True" Width="130px"></asp:TextBox>
@@ -84,7 +84,7 @@
                         </div>
                         <span><asp:RequiredFieldValidator runat="server" ID="depositDateValidator" ControlToValidate="dateTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
                     </td>
-                    <td align="right"><span class="red-star">*</span>补息账号：</td>
+                    <td align="right"><span class="red-star">*</span><span class="label">补息账号：</span></td>
                     <td align="left" colspan="2"><asp:TextBox ID="bindAccountTxt" runat="server" style="margin-left: 0px;" Width="200px" CssClass="aspBillAccount" MaxLength="23" ></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="bindAccountValidator" ControlToValidate="bindAccountTxt" Display="Dynamic" ErrorMessage="必填！" SetFocusOnError="True" CssClass="validator"></asp:RequiredFieldValidator></span></td>
                 </tr>
             </table>
@@ -94,11 +94,11 @@
         <legend class="legendStyle" align="center">经办信息</legend>
         <table width="85%" align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5;">
             <tr>
-                <td align="right"><span class="red-star">*</span>客户姓名：</td>
+                <td align="right"><span class="red-star">*</span><span class="label">客户姓名：</span></td>
                 <td align="left"><asp:TextBox ID="nameTxt" runat="server" CssClass="aspTextBox" ></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="nameValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="nameTxt"></asp:RequiredFieldValidator></span></td>
-                <td align="right"><span class="red-star">*</span>客户身份证：</td>
+                <td align="right"><span class="red-star">*</span><span class="label">客户身份证：</span></td>
                 <td align="left"><asp:TextBox ID="IDCardTxt" runat="server" CssClass="aspTextBox" MaxLength="18"></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="idValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="IDCardTxt"></asp:RequiredFieldValidator></span></td>
-                <td align="right"><span class="red-star">*</span>经办柜员：</td>
+                <td align="right"><span class="red-star">*</span><span class="label">经办柜员号：</span></td>
                 <td align="left"><asp:TextBox ID="tellerCodeTxt" runat="server" CssClass="aspTextBox" Width="152px" MaxLength="6" ></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="tellerValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="tellerCodeTxt"></asp:RequiredFieldValidator></span></td>
             </tr>
             <tr>

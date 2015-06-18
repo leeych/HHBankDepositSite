@@ -21,6 +21,7 @@ namespace HHBankDepositSite
                 orgCodeTxt.Text = Session["UserName"].ToString();
                 SearchDraftInfo info = BizHandler.Handler.GetDraftSearchInfo(Session["UserName"].ToString());
                 UpdateDraftInfo(info);
+                footerCell.Visible = false;
             }
             //GridView1.DataSource = BizHandler.Handler.SearchRecord("14772015000001", Session["UserName"].ToString());
             //GridView1.DataBind();
@@ -86,7 +87,6 @@ namespace HHBankDepositSite
                 }
                 if (infoList.Count > 10)
                 {
-                    this.ClientScript.RegisterStartupScript(this.GetType(), "download", "<script language='javascript' defer='defer'> if (confirm('记录条数较多是否下载继续查看？')){ document.getElementById('" + linkBtn.ClientID.ToString() + "').click();}</script>");
                     string filePath = Server.MapPath("~/Downloads/" + Session["UserName"].ToString() + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
                     StreamWriter sw = new StreamWriter(filePath, false, System.Text.Encoding.UTF8);
                     for (int i = 0; i < infoList.Count; i++)
@@ -95,6 +95,15 @@ namespace HHBankDepositSite
                     }
                     sw.Flush();
                     sw.Close();
+                    this.ClientScript.RegisterStartupScript(this.GetType(), "download", "<script language='javascript' defer='defer'> if (confirm('记录条数较多是否下载继续查看？')){ document.getElementById('" + linkBtn.ClientID.ToString() + "').click();}</script>");
+                    for (int i = 1; i <= 10; i++)
+                    {
+                        InsertToTable(infoList[i-1], i);
+                    }
+                    string fileName = Session["UserName"].ToString() + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
+                    string hyperUrl = "仅显示10条记录，详细请点此下载...<a href=\"{0}\">{1}</a>";
+                    footerCell.Text = string.Format(hyperUrl, "./Downloads/" + fileName, fileName);
+                    footerCell.Visible = true;
                 }
                 else
                 {
@@ -189,7 +198,6 @@ namespace HHBankDepositSite
 
         protected void linkBtn_Click(object sender, EventArgs e)
         {
-            TMessageBox.ShowMsg(this, "ExportMsg", "导出成功！");
             string filePath = Server.MapPath("~/Downloads/"+ Session["UserName"].ToString() + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
             FileInfo fileInfo = new FileInfo(filePath);
             Response.Clear();

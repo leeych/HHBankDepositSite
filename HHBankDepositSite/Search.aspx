@@ -6,6 +6,9 @@
         .tableHeader {
             padding: 3px 6px 3px 6px;
         }
+        .tableTr {
+            border-collapse:collapse;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -51,7 +54,7 @@
         </table>
             </div>
         <div>
-            <asp:Table ID="resultTable" runat="server" CellSpacing="3" CellPadding="3" Width="100%" GridLines="Both" BorderColor="Black" BorderStyle="Solid">
+            <asp:Table ID="resultTable" runat="server" CellSpacing="3" CellPadding="3" Width="100%" GridLines="Both" BorderColor="Black" BorderStyle="Solid" CssClass="tableTr">
                 <asp:TableHeaderRow ID="resHeader" runat="server" BackColor="#669cc0" ForeColor="#FFFFFF" CssClass="tableHeader">
                     <asp:TableHeaderCell ID="protocolIdCell" Wrap="false" runat="server" Text="协议编号"></asp:TableHeaderCell>
                     <asp:TableHeaderCell ID="billAccountCell" Wrap="false" runat="server" Text="存单账号"></asp:TableHeaderCell>
