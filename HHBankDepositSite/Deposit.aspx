@@ -110,6 +110,11 @@
             <br />
         <fieldset class="fieldSetStyle" style="text-align: center; vertical-align: middle;">
             <legend class="legendStyle" style="text-align: center; vertical-align: middle; width: 0px;"></legend>
+            <div style="border: 1px;">
+                <h5 align="left">协议编号：机构号末4位 + 年份4位 + 6位编号</h5>
+                <h5 align="left">存单账号：综合业务系统生成的23位账号</h5>
+                <h5 align="left">凭证号码：“50” + 10位编码</h5>
+            </div>
             <div id="bottom" style="display: inline; margin: 0px auto;">
                 <span><asp:Button ID="depositBtn" runat="server" Text="存入" Height="30px" Width="100px" CssClass="aspBtn" OnClick="depositBtn_Click"/></span>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>

@@ -242,6 +242,15 @@ namespace BLL
             return dbHandler.GetDraftSearchInfo(orgCode);
         }
 
+        public string GetOrgNameByOrgCode(string orgCode)
+        {
+            if (string.IsNullOrEmpty(orgCode))
+            {
+                return null;
+            }
+            return dbHandler.GetOrgName(orgCode);
+        }
+
         public SearchInfo SearchRecordByProtocolID(string protocolID, string orgCode)
         {
             if (string.IsNullOrEmpty(protocolID))

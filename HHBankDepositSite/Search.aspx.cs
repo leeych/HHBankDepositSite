@@ -58,9 +58,9 @@ namespace HHBankDepositSite
             else
             {
                 orgCodeTxt.Text = Session["UserName"].ToString();
-                orgNameTxt.Text = "--";
+                orgNameTxt.Text = BizHandler.Handler.GetOrgNameByOrgCode(Session["UserName"].ToString());
                 maxProtocolIdTxt.Text = "--";
-                protocolCountTxt.Text = "--";
+                protocolCountTxt.Text = "0";
             }
         }
 

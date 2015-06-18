@@ -449,7 +449,7 @@ namespace BLL
         public DrawRecord GetDrawRecordByProtocolIdAccountCode(string protocolId, string account, string orgCode)
         { 
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"select DepositDate,BillPeriod,DueDate,DepositMoney,DepositorName,DepositorIDCard,DepositFlag,TellerCode,BindAccount,Remark,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate,FirstDrawDate,FirstDrawMoney,RemainMoney,FirstSysInterest,FirstCalcInterest,FirstMarginInterest from "
+            string sql = @"select DepositDate,BillPeriod,DueDate,DepositMoney,DepositorName,DepositorIDCard,DepositFlag,TellerCode,BindAccount,Remark,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate,FirstDrawDate,FirstDrawMoney,RemainMoney,FirstSysInterest,FirstCalcInterest,FirstMarginInterest,FinalDrawDate,FinalDrawMoney,FinalSysInterest,FinalCalcInterest,FinalMarginInterest from "
                 + "{0} where ProtocolID='{1}' and BillAccount='{2}' and 1=1";
             string sqlString = string.Format(sql, tableName, protocolId, account);
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
@@ -475,7 +475,7 @@ namespace BLL
                         record.FirstMarginInterest = decimal.Zero;
                         record.RemainMoney = record.CapticalMoney;
                     }
-                    else
+                    else if (record.Status == DrawFlag.Remain)
                     {
                         record.RemainMoney = decimal.Parse(dr["RemainMoney"].ToString());
                         record.FirstDrawDate = DateTime.Parse(dr["FirstDrawDate"].ToString());
@@ -483,6 +483,15 @@ namespace BLL
                         record.FirstSysInterest = decimal.Parse(dr["FirstSysInterest"].ToString());
                         record.FirstSectionInterest = decimal.Parse(dr["FirstCalcInterest"].ToString());
                         record.FirstMarginInterest = decimal.Parse(dr["FirstMarginInterest"].ToString());
+                    }
+                    else
+                    {
+                        record.RemainMoney = decimal.Parse(dr["RemainMoney"].ToString());
+                        record.FinalDrawDate = DateTime.Parse(dr["FinalDrawDate"].ToString());
+                        record.FinalDrawMoney = decimal.Parse(dr["FinalDrawMoney"].ToString());
+                        record.FinalSysInterest = decimal.Parse(dr["FinalSysInterest"].ToString());
+                        record.FinalSectionInterest = decimal.Parse(dr["FinalCalcInterest"].ToString());
+                        record.FinalMarginInterest = decimal.Parse(dr["FinalMarginInterest"].ToString());
                     }
                     record.TellerCode = dr["TellerCode"].ToString();
                     record.BindAccount = dr["BindAccount"].ToString();
@@ -722,8 +731,7 @@ namespace BLL
         public SearchInfo GetSearchRecordByBillAccount(string account, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"select ProtocolID, BillAccount, BillCode, DepositMoney, DepositDate, BillPeriod,DepositorName, DepositorIDCard,TellerCode,DepositFlag,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate " +
-                " from {0} where BillAccount='{1}' and 1=1";
+            string sql = @"select * from {0} where BillAccount='{1}' and 1=1";
             string sqlString = string.Format(sql, tableName, account);
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
             {
@@ -751,6 +759,19 @@ namespace BLL
                         Y03 = decimal.Parse(dr["Y03Rate"].ToString()),
                         Y05 = decimal.Parse(dr["Y05Rate"].ToString())
                     };
+
+                    info.FirstDrawDate = (dr["FirstDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FirstDrawDate"].ToString());
+                    info.FirstDrawMoney = (dr["FirstDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstDrawMoney"].ToString());
+                    info.FirstSysInterest = (dr["FirstSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstSysInterest"].ToString());
+                    info.FirstCalcInterest = (dr["FirstCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstCalcInterest"].ToString());
+                    info.FirstMarginInterest = (dr["FirstMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstMarginInterest"].ToString());
+
+                    info.FinalDrawDate = (dr["FinalDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FinalDrawDate"].ToString());
+                    info.FinalDrawMoney = (dr["FinalDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalDrawMoney"].ToString());
+                    info.FinalSysInterest = (dr["FinalSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalSysInterest"].ToString());
+                    info.FinalCalcInterest = (dr["FinalCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalCalcInterest"].ToString());
+                    info.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
+
                     return info;
                 }
                 return null;
@@ -793,6 +814,18 @@ namespace BLL
                             Y03 = decimal.Parse(dr["Y03Rate"].ToString()),
                             Y05 = decimal.Parse(dr["Y05Rate"].ToString())
                         };
+
+                        info.FirstDrawDate = (dr["FirstDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FirstDrawDate"].ToString());
+                        info.FirstDrawMoney = (dr["FirstDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstDrawMoney"].ToString());
+                        info.FirstSysInterest = (dr["FirstSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstSysInterest"].ToString());
+                        info.FirstCalcInterest = (dr["FirstCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstCalcInterest"].ToString());
+                        info.FirstMarginInterest = (dr["FirstMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstMarginInterest"].ToString());
+
+                        info.FinalDrawDate = (dr["FinalDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FinalDrawDate"].ToString());
+                        info.FinalDrawMoney = (dr["FinalDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalDrawMoney"].ToString());
+                        info.FinalSysInterest = (dr["FinalSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalSysInterest"].ToString());
+                        info.FinalCalcInterest = (dr["FinalCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalCalcInterest"].ToString());
+                        info.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
                         infoList.Add(info);
                     }
                     return infoList;
@@ -804,8 +837,7 @@ namespace BLL
         public List<SearchInfo> GetSearchRecordByDuration(DateTime start, DateTime end, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"select ProtocolID, BillAccount, BillCode, DepositMoney, DepositDate, BillPeriod,DepositorName, DepositorIDCard,TellerCode,DepositFlag,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate " +
-                " from {0} where DepositDate between '{1}' and '{2}' and 1=1";
+            string sql = @"select * from {0} where DepositDate between '{1}' and '{2}' and 1=1";
             string sqlString = string.Format(sql, tableName, start.ToString("yyyy-MM-dd"), end.ToString("yyyy-MM-dd"));
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
             {
@@ -837,12 +869,33 @@ namespace BLL
                             Y03 = decimal.Parse(dr["Y03Rate"].ToString()),
                             Y05 = decimal.Parse(dr["Y05Rate"].ToString())
                         };
+
+                        info.FirstDrawDate = (dr["FirstDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FirstDrawDate"].ToString());
+                        info.FirstDrawMoney = (dr["FirstDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstDrawMoney"].ToString());
+                        info.FirstSysInterest = (dr["FirstSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstSysInterest"].ToString());
+                        info.FirstCalcInterest = (dr["FirstCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstCalcInterest"].ToString());
+                        info.FirstMarginInterest = (dr["FirstMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstMarginInterest"].ToString());
+
+                        info.FinalDrawDate = (dr["FinalDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FinalDrawDate"].ToString());
+                        info.FinalDrawMoney = (dr["FinalDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalDrawMoney"].ToString());
+                        info.FinalSysInterest = (dr["FinalSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalSysInterest"].ToString());
+                        info.FinalCalcInterest = (dr["FinalCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalCalcInterest"].ToString());
+                        info.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
                         infoList.Add(info);
                     }
                     return infoList;
                 }
                 return null;
             }
+        }
+
+        public string GetOrgName(string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"select OrgName from OrgInfo where OrgCode='{1}'";
+            string sqlString = string.Format(sql, tableName, orgCode);
+            string orgName = SqlHelper.ExecuteSqlObj(sqlString).ToString();
+            return orgName;
         }
     }
 }

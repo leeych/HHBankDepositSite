@@ -18,5 +18,17 @@ namespace Model
         public decimal DueInterest { get; set; }
         public string TellerCode { get; set; }
         public DrawFlag Status { get; set; }
+
+        public DateTime FirstDrawDate { get; set; }
+        public decimal FirstDrawMoney { get; set; }
+        public decimal FirstSysInterest { get; set; }
+        public decimal FirstCalcInterest { get; set; }
+        public decimal FirstMarginInterest { get; set; }
+
+        public DateTime FinalDrawDate { get; set; }
+        public decimal FinalDrawMoney { get; set; }
+        public decimal FinalSysInterest { get; set; }
+        public decimal FinalCalcInterest { get; set; }
+        public decimal FinalMarginInterest { get; set; }
     }
 }

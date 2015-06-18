@@ -57,7 +57,7 @@
                 <td><asp:TextBox runat="server" ID="tellerCodeTxt" CssClass="aspTextBox" ReadOnly="True" MaxLength="6" BackColor="#ddf1fe"></asp:TextBox></td>
                 <td><asp:Label runat="server" ID="tellerNameTxt"></asp:Label></td>
                 <td align="right">补息账号：</td>
-                <td colspan="2"><asp:TextBox runat="server" ID="bindAccountTxt" CssClass="aspBillAccount" MaxLength="23" Width="90%" BackColor="#ddf1fe"></asp:TextBox></td>
+                <td colspan="2"><asp:TextBox runat="server" ID="bindAccountTxt" ReadOnly="true" CssClass="aspBillAccount" MaxLength="23" Width="90%" BackColor="#ddf1fe"></asp:TextBox></td>
                 </tr>
             <tr>
                 <td align="right">已部提本金：</td>
@@ -111,8 +111,8 @@
                 <td align="right"><span class="red-star">*</span>支取金额：</td>
                 <td align="left"><span><asp:TextBox runat="server" ID="moneyDrawTxt" CssClass="aspTextBox"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="moneyValidator" CssClass="validator" ControlToValidate="moneyDrawTxt" Display="Dynamic" ErrorMessage="必填！"></asp:RequiredFieldValidator></span></td>
                 <%--<td align="left"></td>--%>
-                <td align="right"><asp:Button ID="calcBtn" runat="server" Text="计算" Height="30px" Width="100px" CssClass="aspBtn" OnClick="calcBtn_Click" /></td>
-                <td align="left">&nbsp;</td>
+                <td align="left" colspan="2"><asp:Button ID="calcBtn" runat="server" Text="计算" Height="30px" Width="100px" CssClass="aspBtn" OnClick="calcBtn_Click" /></td>
+
             </tr>
             <tr>
                 <td align="right" style="height:200%">靠档方案：</td>

@@ -76,12 +76,12 @@ namespace HHBankDepositSite
             }
             if (record.Status == DrawFlag.Draw)
             {
-                TMessageBox.ShowMsg(this, "DrawRecordErr", "存款已被支取！");
+                TMessageBox.ShowMsg(this, "DrawRecordErr", "存款已被全部支取！");
                 return;
             }
             if (record.Status == DrawFlag.Remain && record.CapticalMoney < 5000)
             {
-                TMessageBox.ShowMsg(this, "Draw5000Less", "存款已被部分提前支取，余额不足5000，不再享受保利存补息！");
+                TMessageBox.ShowMsg(this, "Draw5000Less", "存款已被部分提前支取，余额不足5000元，不再享受保利存补息！");
                 return;
             }
             if (record.Status == DrawFlag.Deposit)
@@ -287,6 +287,7 @@ namespace HHBankDepositSite
             if (record == null)
             {
                 TMessageBox.ShowMsg(this, "TradeRecordNotExists", "没有满足条件的交易记录！");
+                ClearTextBox();
                 return;
             }
             UpdatePage(record);
@@ -294,10 +295,6 @@ namespace HHBankDepositSite
 
         private void UpdatePage(DrawRecord record)
         {
-            if (record.DueDate.Date == DateTime.MaxValue.Date)
-            {
-                record.DueDate = SectionCalculator.GetDueDateByPeriod(record.DepositDate, record.BillPeriod);
-            }
             depositDateTxt.Text = record.DepositDate.ToString("yyyy-MM-dd");
             dueDateTxt.Text = record.DueDate.ToString("yyyy-MM-dd");
             moneyTxt.Text = record.CapticalMoney.ToString("f2");
@@ -312,7 +309,7 @@ namespace HHBankDepositSite
             drawStatusTxt.Text = GetDrawStatus(record.Status);
             if (record.Status == DrawFlag.Remain)
             {
-                adDrawMoneyTxt.Text = (record.CapticalMoney - record.RemainMoney).ToString("f2");
+                adDrawMoneyTxt.Text = record.FirstDrawMoney.ToString("f2");
                 adDrawDateTxt.Text = record.FirstDrawDate.ToString("yyyy-MM-dd");
                 remainMoneyTxt.Text = record.RemainMoney.ToString("f2");
                 adSysInterestTxt.Text = record.FirstSysInterest.ToString("f2");
@@ -328,6 +325,15 @@ namespace HHBankDepositSite
                 adMarginInterestTxt.Text = "--";
                 remainMoneyTxt.Text = record.CapticalMoney.ToString("f2");
             }
+            else
+            {
+                adDrawMoneyTxt.Text = record.FinalDrawMoney.ToString("f2");
+                adDrawDateTxt.Text = record.FinalDrawDate.ToString("yyyy-MM-dd");
+                remainMoneyTxt.Text = record.RemainMoney.ToString("f2");
+                adSysInterestTxt.Text = record.FinalSysInterest.ToString("f2");
+                adSectionInterestTxt.Text = record.FinalSectionInterest.ToString("f2");
+                adMarginInterestTxt.Text = record.FinalMarginInterest.ToString("f2");
+            }
         }
 
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
@@ -335,6 +341,28 @@ namespace HHBankDepositSite
             bool start = e.Day.Date >= DateTime.Now.Date.AddDays(-1);
             bool end = e.Day.Date <= DateTime.Now.Date.AddDays(1);
             e.Day.IsSelectable = (start && end);
+        }
+
+        private void ClearTextBox()
+        {
+            depositDateTxt.Text = string.Empty;
+            dueDateTxt.Text = string.Empty;
+            moneyTxt.Text = string.Empty;
+            clientIDTxt.Text = string.Empty;
+            clientNameTxt.Text = string.Empty;
+            tellerCodeTxt.Text = string.Empty;
+            remarkTxt.Text = string.Empty;
+            remainMoneyTxt.Text = string.Empty;
+            bindAccountTxt.Text = string.Empty;
+            periodTxt.Text = string.Empty;
+            execRateTxt.Text = string.Empty;
+            systemInterestTxt.Text = string.Empty;
+            drawStatusTxt.Text = string.Empty;
+            adDrawDateTxt.Text = string.Empty;
+            adDrawMoneyTxt.Text = string.Empty;
+            adSysInterestTxt.Text = string.Empty;
+            adSectionInterestTxt.Text = string.Empty;
+            adMarginInterestTxt.Text = string.Empty;
         }
 
         private string GetPeriodDesc(Period period)
@@ -417,37 +445,5 @@ namespace HHBankDepositSite
             }
             return desc;
         }
-
-        //protected void moneyDrawTxt_TextChanged(object sender, EventArgs e)
-        //{
-        //    string content = moneyDrawTxt.Text.Trim();
-        //    if (string.IsNullOrEmpty(content))
-        //    {
-        //        return;
-        //    }
-        //    if (!PageValidator.IsDecimal(content))
-        //    {
-        //        TMessageBox.ShowMsg(this, "DrawMoneyNotDecimal", "请输入取款金额！");
-        //        moneyDrawTxt.Text = string.Empty;
-        //        TMessageBox.SetFocus(moneyDrawTxt, this);
-        //        return;
-        //    }
-        //    if (!string.IsNullOrEmpty(content))
-        //    {
-        //        if (string.IsNullOrEmpty(drawRecord.ProtocolID))
-        //        {
-        //            TMessageBox.ShowMsg(this, "DrawRecordNotSearch", "请先点“查询”！");
-        //            return;
-        //        }
-        //        decimal money = decimal.Parse(content);
-        //        decimal principal = decimal.Parse(moneyTxt.Text.Trim());
-        //        if (money > principal)
-        //        {
-        //            TMessageBox.ShowMsg(this, "MoneyOverflow", "取款金额不能大于存入金额！");
-        //            moneyDrawTxt.Text = string.Empty;
-        //            TMessageBox.SetFocus(moneyDrawTxt, this);
-        //        }
-        //    }
-        //}
     }
 }
