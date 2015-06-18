@@ -13,7 +13,7 @@ namespace HHBankDepositSite
         /// <param name="orgCode"></param>
         /// <param name="protocolId"></param>
         /// <returns></returns>
-        public static bool IsProtocolId(string orgCode, string protocolId)
+        public static bool CheckProtocolID(string orgCode, string protocolId)
         {
             string pattern = orgCode.Substring(6) + DateTime.Now.Year.ToString();
             Regex reg = new Regex(@"^" + pattern + @"\d{6}$");

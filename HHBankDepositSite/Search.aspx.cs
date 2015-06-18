@@ -74,41 +74,142 @@ namespace HHBankDepositSite
             }
             ClearTable();
             SearchParam param = new SearchParam();
+            string startDateStr = startDateTxt.Text.Trim();
+            string endDateStr = endDateTxt.Text.Trim();
             param.ProtocolID = protocolIdTxt.Text.Trim();
             param.BillAccount = billAccountTxt.Text.Trim();
+            param.ClientID = idCardTxt.Text.Trim();
             //param.StartDate = DateTime.Parse(startDateTxt.Text.Trim());
             //param.EndDate = DateTime.Parse(endDateTxt.Text.Trim());
-            if (string.IsNullOrEmpty(param.ProtocolID) && string.IsNullOrEmpty(param.BillAccount))
+            DateTime startDate = new DateTime();
+            DateTime endDate = new DateTime();
+            if (string.IsNullOrEmpty(param.ProtocolID) && string.IsNullOrEmpty(param.BillAccount) 
+                && string.IsNullOrEmpty(startDateStr) && string.IsNullOrEmpty(endDateStr))
             {
                 List<SearchInfo> infoList = BizHandler.Handler.SearchRecordByDuration(new DateTime(DateTime.Now.Year, 01, 01), DateTime.Now, Session["UserName"].ToString());
-                if (infoList == null)
+                if (infoList == null || infoList.Count == 0)
                 {
                     return;
                 }
-                if (infoList.Count > 10)
+                ShowRecord(infoList);
+            }
+            else if (!string.IsNullOrEmpty(param.ProtocolID))
+            {
+                if (!BizValidator.CheckProtocolID(Session["UserName"].ToString(),param.ProtocolID))
                 {
-                    string filePath = Server.MapPath("~/Downloads/" + Session["UserName"].ToString() + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
-                    StreamWriter sw = new StreamWriter(filePath, false, System.Text.Encoding.UTF8);
-                    for (int i = 0; i < infoList.Count; i++)
-                    {
-                        sw.WriteLine(GenString(infoList[i]));
-                    }
-                    sw.Flush();
-                    sw.Close();
-                    this.ClientScript.RegisterStartupScript(this.GetType(), "download", "<script language='javascript' defer='defer'> if (confirm('记录条数较多是否下载继续查看？')){ document.getElementById('" + linkBtn.ClientID.ToString() + "').click();}</script>");
-                    for (int i = 1; i <= 10; i++)
-                    {
-                        InsertToTable(infoList[i-1], i);
-                    }
-                    string fileName = Session["UserName"].ToString() + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
-                    string hyperUrl = "仅显示10条记录，详细请点此下载...<a href=\"{0}\">{1}</a>";
-                    footerCell.Text = string.Format(hyperUrl, "./Downloads/" + fileName, fileName);
-                    footerCell.Visible = true;
+                    string errmsg = @"协议编号格式不对！{0} + {1} + 6位顺序号！";
+                    TMessageBox.ShowMsg(this, "SearchProtocolIDInvalid", string.Format(errmsg, Session["UserName"].ToString().Substring(6), DateTime.Now.Year));
+                    return;
                 }
                 else
                 {
-                    UpdateTable(infoList);
+                    SearchInfo info = BizHandler.Handler.SearchRecordByProtocolID(param.ProtocolID, Session["UserName"].ToString());
+                    if (info == null)
+                    {
+                        TMessageBox.ShowMsg(this, "SearchByProtocolIDNone", "找不到存款记录！");
+                        return;
+                    }
+                    else
+                    {
+                        InsertToTable(info, 1);
+                    }
                 }
+            }
+            else if (!string.IsNullOrEmpty(param.BillAccount))
+            {
+                if (!BizValidator.CheckBillAccount(param.BillAccount))
+                {
+                    TMessageBox.ShowMsg(this, "SearchBillAccountInvalid", "存单账号无效！请确认后重新输入！");
+                    return;
+                }
+                else
+                {
+                    SearchInfo info = BizHandler.Handler.SearchRecordByBillAccount(param.BillAccount, Session["UserName"].ToString());
+                    if (info == null)
+                    {
+                        TMessageBox.ShowMsg(this, "SearchBillAccountNone", "找不到存款记录！");
+                        return;
+                    }
+                    else
+                    {
+                        InsertToTable(info, 1);
+                    }
+                }
+            }
+            else if (!string.IsNullOrEmpty(param.ClientID))
+            {
+                if (!BizValidator.CheckIDCard(param.ClientID))
+                {
+                    TMessageBox.ShowMsg(this, "SearchIDInvalid", "身份证号码无效！");
+                    return;
+                }
+                else
+                {
+                    List<SearchInfo> infoList = BizHandler.Handler.SearchRecordByIDCard(param.ClientID, Session["UserName"].ToString());
+                    if (infoList == null || infoList.Count == 0)
+                    {
+                        TMessageBox.ShowMsg(this, "SearchIDNone", "找不到存款记录！");
+                        return;
+                    }
+                    else
+                    {
+                        UpdateTable(infoList);
+                    }
+                }
+            }
+            else if (DateTime.TryParse(startDateStr, out startDate) && DateTime.TryParse(endDateStr, out endDate))
+            {
+                if (endDate.Date < startDate.Date)
+                {
+                    TMessageBox.ShowMsg(this, "DateDurationInvalid", "截止日期不能早于开始日期！");
+                    return;
+                }
+                else
+                {
+                    List<SearchInfo> infoLst = BizHandler.Handler.SearchRecordByDuration(startDate, endDate, Session["UserName"].ToString());
+                    if (infoLst == null || infoLst.Count == 0)
+                    {
+                        TMessageBox.ShowMsg(this, "DurationNone", "此时间段里无存款记录！");
+                        return;
+                    }
+                    else
+                    {
+                        ShowRecord(infoLst);
+                    }
+                }
+            }
+            else
+            {
+                TMessageBox.ShowMsg(this, "StartOrEndDateInvalid", "请输入合法的开始日期/截止日期！");
+                return;
+            }
+        }
+
+        private void ShowRecord(List<SearchInfo> infoList)
+        {
+            if (infoList.Count > 10)
+            {
+                string filePath = Server.MapPath("~/Downloads/" + Session["UserName"].ToString() + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
+                StreamWriter sw = new StreamWriter(filePath, false, System.Text.Encoding.UTF8);
+                for (int i = 0; i < infoList.Count; i++)
+                {
+                    sw.WriteLine(GenString(infoList[i]));
+                }
+                sw.Flush();
+                sw.Close();
+                this.ClientScript.RegisterStartupScript(this.GetType(), "download", "<script language='javascript' defer='defer'> if (confirm('记录条数较多是否下载继续查看？')){ document.getElementById('" + linkBtn.ClientID.ToString() + "').click();}</script>");
+                for (int i = 1; i <= 10; i++)
+                {
+                    InsertToTable(infoList[i - 1], i);
+                }
+                string fileName = Session["UserName"].ToString() + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
+                string hyperUrl = "仅显示10条记录，详细请点此下载...<a href=\"{0}\">{1}</a>";
+                footerCell.Text = string.Format(hyperUrl, "./Downloads/" + fileName, fileName);
+                footerCell.Visible = true;
+            }
+            else
+            {
+                UpdateTable(infoList);
             }
         }
 
@@ -217,10 +318,15 @@ namespace HHBankDepositSite
         private string GenString(SearchInfo info)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10}", info.ProtocolID, info.BillAccount, info.BillCode,
+            sb.AppendFormat("{0}  {1}  {2}  {3}  {4}  {5}  {6}  {7}  {8}  {9}  {10}", info.ProtocolID, info.BillAccount, info.BillCode,
                 info.DepositMoney.ToString("f2"), info.DepositDate.ToString("yyyy-MM-dd"), BizHandler.GetBillPeriodDesc(info.BillPeriod),
                 BizHandler.GetExecRate(info.BillPeriod, info.ExecRate).ToString("f5"), BizHandler.GetDepositStatusDesc(info.Status),
                 info.ClientName, info.ClientID, info.TellerCode);
+            StringBuilder sb2 = new StringBuilder();
+            sb2.AppendFormat("  {0}  {1}  {2}  {3}  {4}  {5}  {6}  {7}", info.FirstDrawDate.ToString("yyyy-MM-dd"), info.FirstDrawMoney.ToString("f2"), info.FirstSysInterest.ToString("f2"),
+                info.FirstCalcInterest.ToString("f2"), info.FirstMarginInterest.ToString("f2"), info.FinalDrawDate.ToString("yyyy-MM-dd"), info.FinalDrawMoney.ToString("f2"),
+                info.FinalSysInterest.ToString("f2"), info.FinalCalcInterest.ToString("f2"), info.FinalMarginInterest.ToString("f2"));
+            sb.Append(sb2);
             return sb.ToString();
         }
     }

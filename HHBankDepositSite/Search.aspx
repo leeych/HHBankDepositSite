@@ -9,6 +9,10 @@
         .tableTr {
             border-collapse:collapse;
         }
+        .note {
+            font-size:13px;
+            color: blue;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -34,18 +38,19 @@
             <tr>
                 <td>协议编号：</td>
                 <td><asp:TextBox runat="server" ID="protocolIdTxt" CssClass="aspTextBox" MaxLength="14" ></asp:TextBox></td>
-                <td><span class="red-star">*</span>存单账号：</td>
+                <td>存单账号：</td>
                 <td><asp:TextBox runat="server" ID="billAccountTxt" CssClass="aspBillAccount" MaxLength="23" ></asp:TextBox></td>
-                <td><span class="red-star">*</span>身份证号：</td>
+                <td>身份证号：</td>
                 <td><asp:TextBox runat="server" ID="idCardTxt" CssClass="aspTextBox" MaxLength="18" ></asp:TextBox></td>            
-                <td><span class="red-star">*</span>客户姓名：</td>
-                <td><asp:TextBox runat="server" ID="clientNameTxt" CssClass="aspTextBox"></asp:TextBox></td>
+                <td><span class="note">(仅需输入一项)</span></td>
+                <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>起始日期：</td>
                 <td><asp:TextBox runat="server" ID="startDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></td>
                 <td>截止日期：</td>
                 <td><asp:TextBox runat="server" ID="endDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></td>
+                <td><span class="note">(示例:2015-06-01)</span></td>
                 <td>
                     <asp:LinkButton ID="linkBtn" runat="server" OnClick="linkBtn_Click" Width="1px"></asp:LinkButton>
                 </td>

@@ -148,7 +148,7 @@ namespace HHBankDepositSite
             string errMsg = string.Empty;
             string orgCode = Session["UserName"].ToString();
 
-            if (!BizValidator.IsProtocolId(orgCode, protocolId))
+            if (!BizValidator.CheckProtocolID(orgCode, protocolId))
             {
                 string str = @"协议编号编码规则：{0}{1}+6位顺序号！\n";
                 errMsg += string.Format(str, orgCode.Substring(6), DateTime.Now.Year.ToString());

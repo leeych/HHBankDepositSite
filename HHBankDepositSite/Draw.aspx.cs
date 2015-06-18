@@ -162,6 +162,11 @@ namespace HHBankDepositSite
                 Response.Redirect("~/Login.aspx");
                 return;
             }
+            if (string.IsNullOrEmpty(sectionTxt.Text.Trim()))
+            {
+                TMessageBox.ShowMsg(this, "DrawRecordNotCalc", "请先点“计算”！");
+                return;
+            }
             DrawRecord record = BizHandler.Handler.DrawRecordInfo;
             if (string.IsNullOrEmpty(record.ProtocolID))
             {
@@ -269,7 +274,7 @@ namespace HHBankDepositSite
             }
             string errMsg = string.Empty;
             string orgcode = Session["UserName"].ToString();
-            if (!BizValidator.IsProtocolId(orgcode, protocolId))
+            if (!BizValidator.CheckProtocolID(orgcode, protocolId))
             {
                 string str = @"协议编号编码规则：{0}{1}+6位顺序号！\n";
                 errMsg += string.Format(str, orgcode.Substring(6), DateTime.Now.Year.ToString());

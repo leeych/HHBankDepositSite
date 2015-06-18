@@ -8,6 +8,7 @@ namespace Model
     {
         public string ProtocolID { get; set; }
         public string BillAccount { get; set; }
+        public string ClientID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }

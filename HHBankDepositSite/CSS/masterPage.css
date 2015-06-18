@@ -137,8 +137,6 @@ html {
     font-size: 15px;
     width: 160px;
     height: 20px;
-    text-align: center;
-    vertical-align: middle;
     padding-top: 3px;
     behavior: url(ie-css3.htc);
 }
@@ -148,8 +146,6 @@ html {
     border: 1px solid #CDCDCD;
     height: 20px;
     font-size: 15px;
-    text-align: center;
-    vertical-align: middle;
     padding-top: 3px;
 }
 
@@ -159,8 +155,6 @@ html {
     width: 180px;
     height: 20px;
     font-size: 15px;
-    text-align: center;
-    vertical-align: middle;
     padding-top: 3px;
 }
 
@@ -170,7 +164,6 @@ html {
     height: 30px;
     width: 90%;
     font-size: 20px;
-    text-align: center;
     padding-top: 3px;
 }
 
