@@ -191,6 +191,7 @@ namespace HHBankDepositSite
             {
                 string filePath = Server.MapPath("~/Downloads/" + Session["UserName"].ToString() + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
                 StreamWriter sw = new StreamWriter(filePath, false, System.Text.Encoding.UTF8);
+                sw.WriteLine("协议编号         存单账号                 凭证号码      存入本金     存入日期    存期          利率      状态            姓名           身份证号码           补息账号             柜员号  首次支取日期 首次支取金额 系统利息    靠档利息     补息金额     最后支取日期 最后支取金额  系统利息  靠档利息  补息");
                 for (int i = 0; i < infoList.Count; i++)
                 {
                     sw.WriteLine(GenString(infoList[i]));
@@ -312,20 +313,37 @@ namespace HHBankDepositSite
             Response.TransmitFile(filePath);
             Response.Flush();
             Response.End();
+        }
 
+        private string InvalidDate(DateTime date)
+        {
+            if (date.Date == DateTime.MaxValue.Date)
+            {
+                return "NULL";
+            }
+            return date.ToString("yyyy-MM-dd");
+        }
+
+        private string NoneMoney(decimal money)
+        {
+            if (money == decimal.Zero)
+            {
+                return "NULL";
+            }
+            return money.ToString("f2");
         }
 
         private string GenString(SearchInfo info)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("{0}  {1}  {2}  {3}  {4}  {5}  {6}  {7}  {8}  {9}  {10}", info.ProtocolID, info.BillAccount, info.BillCode,
-                info.DepositMoney.ToString("f2"), info.DepositDate.ToString("yyyy-MM-dd"), BizHandler.GetBillPeriodDesc(info.BillPeriod),
-                BizHandler.GetExecRate(info.BillPeriod, info.ExecRate).ToString("f5"), BizHandler.GetDepositStatusDesc(info.Status),
-                info.ClientName, info.ClientID, info.TellerCode);
+            sb.AppendFormat("{0}  {1}  {2}  {3}  {4}  {5}  {6}  {7}  {8}  {9}  {10}  {11}", info.ProtocolID, info.BillAccount, info.BillCode,
+                string.Format("{0,-10}",info.DepositMoney.ToString("f2")), string.Format("{0,-10}",info.DepositDate.ToString("yyyy-MM-dd")), string.Format("{0,-10}", BizHandler.GetBillPeriodDesc(info.BillPeriod)),
+                BizHandler.GetExecRate(info.BillPeriod, info.ExecRate).ToString("f5"), string.Format("{0,-10}", BizHandler.GetDepositStatusDesc(info.Status)),
+                string.Format("{0,-10}", info.ClientName), info.ClientID, info.BindAccount, info.TellerCode);
             StringBuilder sb2 = new StringBuilder();
-            sb2.AppendFormat("  {0}  {1}  {2}  {3}  {4}  {5}  {6}  {7}", info.FirstDrawDate.ToString("yyyy-MM-dd"), info.FirstDrawMoney.ToString("f2"), info.FirstSysInterest.ToString("f2"),
-                info.FirstCalcInterest.ToString("f2"), info.FirstMarginInterest.ToString("f2"), info.FinalDrawDate.ToString("yyyy-MM-dd"), info.FinalDrawMoney.ToString("f2"),
-                info.FinalSysInterest.ToString("f2"), info.FinalCalcInterest.ToString("f2"), info.FinalMarginInterest.ToString("f2"));
+            sb2.AppendFormat("  {0}    {1}    {2}    {3}    {4}    {5}    {6}    {7}    {8}    {9}", string.Format("{0,-10}", InvalidDate(info.FirstDrawDate)), string.Format("{0,-10}", NoneMoney(info.FirstDrawMoney)),
+                string.Format("{0,-10}", NoneMoney(info.FirstSysInterest)), string.Format("{0,-10}", NoneMoney(info.FirstCalcInterest)), string.Format("{0,-10}", NoneMoney(info.FirstMarginInterest)), string.Format("{0,-10}", InvalidDate(info.FinalDrawDate)), string.Format("{0,-10}",NoneMoney(info.FinalDrawMoney)),
+                string.Format("{0,-10}", NoneMoney(info.FinalSysInterest)), string.Format("{0,-10}", NoneMoney(info.FinalCalcInterest)), string.Format("{0,-10}", NoneMoney(info.FinalMarginInterest)));
             sb.Append(sb2);
             return sb.ToString();
         }

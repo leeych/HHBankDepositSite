@@ -15,7 +15,7 @@ namespace Model
         public BankRate ExecRate { get; set; }
         public string ClientName { get; set; }
         public string ClientID { get; set; }
-        public decimal DueInterest { get; set; }
+        public string BindAccount { get; set; }
         public string TellerCode { get; set; }
         public DrawFlag Status { get; set; }
 

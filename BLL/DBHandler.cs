@@ -746,6 +746,7 @@ namespace BLL
                     info.BillPeriod = (Period)int.Parse(dr["BillPeriod"].ToString());
                     info.ClientName = dr["DepositorName"].ToString();
                     info.ClientID = dr["DepositorIDCard"].ToString();
+                    info.BindAccount = dr["BindAccount"].ToString();
                     info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
                     info.TellerCode = dr["TellerCode"].ToString();
                     info.ExecRate = new BankRate
@@ -801,6 +802,7 @@ namespace BLL
                         info.BillPeriod = (Period)int.Parse(dr["BillPeriod"].ToString());
                         info.ClientName = dr["DepositorName"].ToString();
                         info.ClientID = dr["DepositorIDCard"].ToString();
+                        info.BindAccount = dr["BindAccount"].ToString();
                         info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
                         info.TellerCode = dr["TellerCode"].ToString();
                         info.ExecRate = new BankRate
@@ -856,6 +858,7 @@ namespace BLL
                         info.BillPeriod = (Period)int.Parse(dr["BillPeriod"].ToString());
                         info.ClientName = dr["DepositorName"].ToString();
                         info.ClientID = dr["DepositorIDCard"].ToString();
+                        info.BindAccount = dr["BindAccount"].ToString();
                         info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
                         info.TellerCode = dr["TellerCode"].ToString();
                         info.ExecRate = new BankRate
@@ -892,7 +895,7 @@ namespace BLL
         public string GetOrgName(string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"select OrgName from OrgInfo where OrgCode='{1}'";
+            string sql = @"select OrgName from OrgInfo where OrgCode='{1}' and 1=1";
             string sqlString = string.Format(sql, tableName, orgCode);
             string orgName = SqlHelper.ExecuteSqlObj(sqlString).ToString();
             return orgName;
