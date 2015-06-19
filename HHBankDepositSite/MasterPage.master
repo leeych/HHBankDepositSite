@@ -27,7 +27,7 @@
                 DataSourceID="MenuSource"
                 runat="server" Height="61px">
 
-                <StaticMenuItemStyle ItemSpacing="50px" CssClass="staticMenuItemStyle" Font-Names="仿宋" VerticalPadding="20px" />
+                <StaticMenuItemStyle ItemSpacing="50px" CssClass="staticMenuItemStyle" Font-Names="黑体" VerticalPadding="20px" />
                 <StaticHoverStyle CssClass="staticHoverStyle" />
                 <StaticSelectedStyle CssClass="staticMenuItemSelectedStyle" />
                 <DynamicMenuItemStyle CssClass="dynamicMenuItemStyle" />

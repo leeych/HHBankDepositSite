@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode>
+    <siteMapNode url="Default.aspx" title="用户管理" description="机构用户管理" accesskey="H" />
+    <siteMapNode url="Deposit.aspx" title="柜员管理" description="柜员管理" accesskey="C" />
+    <siteMapNode url="Draw.aspx" title="修改利率" description="修改利率" accesskey="Q" />
+    <siteMapNode url="Search.aspx" title="查询统计" description="查询全辖交易记录" accesskey="S" />
+    <siteMapNode url="Manage.aspx" title="管理" description="用户管理" accesskey="M" />
+    <siteMapNode url="Logout.aspx" title="退出" description="退出系统" accesskey="E" />
+    <siteMapNode url="Help.aspx" title="帮助" description="帮助" accsskey="?" />
+  </siteMapNode>
+</siteMap>

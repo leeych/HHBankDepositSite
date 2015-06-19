@@ -1,0 +1,62 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMasterPage.master.cs" Inherits="HHBankDepositSite.Admin.AdminMasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="AdminHeader" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="background">
+        <asp:SiteMapDataSource ID="AdminMenuSource" runat="server" SiteMapProvider="BackEndSiteMapProvider" />
+        <asp:Menu ID="AdminNavigationMenu" CssClass="NavigationMenu"
+             StaticDisplayLevels="2" DynamicHorizontalOffset="1"
+             StaticSubMenuIndent="1px" MaximumDynamicDisplayLevels="4"
+             Orientation="Horizontal" DynamicPopOutImageUrl="../Images/right-arrow.gif"
+             StaticPopOutImageUrl="../Images/drop-arrow.gif"
+             DataSourceID="AdminMenuSource" runat="server" Height="60px" OnMenuItemDataBound="AdminNavigationMenu_MenuItemDataBound">
+
+            <StaticMenuItemStyle ItemSpacing="50" CssClass="staticMenuItemStyle" />
+            <StaticHoverStyle CssClass="staticHoverStyle" />
+            <StaticSelectedStyle CssClass="staticMenuItemSelectedStyle" />
+            <DynamicMenuItemStyle CssClass="dynamicMeneItemStyle" />
+            <dynamicHoverStyle CssClass="menuItemMouseOver" />
+            <DynamicMenuStyle CssClass="menuItem" />
+            <DynamicSelectedStyle CssClass="menuItemSelected" />
+
+            <DataBindings>
+                <asp:MenuItemBinding DataMember="siteMapNode" NavigateUrlField="url" TextField="title"
+                     ToolTipField="description" />
+            </DataBindings>
+        </asp:Menu>
+        </div>
+        <div id="e">
+        <asp:SiteMapPath ID="AdminSiteMapPath" runat="server"
+             RenderCurrentNodeAsLink="true" CssClass="currentNodeStyle"
+             PathSeparator=">>" SiteMapProvider="BackEndSiteMapProvider">
+            <PathSeparatorStyle ForeColor="#5D7B9D" CssClass="currentNodeStyle" />
+            <CurrentNodeStyle ForeColor="#333333" CssClass="currentNodeStyle" />
+            <NodeStyle ForeColor="#7C6F57" CssClass="currentNodeStyle" />
+            <RootNodeStyle ForeColor="#5D7B9D" CssClass="currentNodeStyle" />
+        </asp:SiteMapPath>
+        </div>
+        <asp:Panel ID="AdminAccessKeyPanel" runat="server">
+        </asp:Panel>
+        <script type="text/javascript">
+            function navigateTo(url) {
+                window.location = url;
+            }
+        </script>
+
+        <div>
+        <asp:ContentPlaceHolder ID="AdminContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

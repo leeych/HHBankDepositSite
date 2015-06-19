@@ -191,7 +191,7 @@ namespace HHBankDepositSite
             {
                 string filePath = Server.MapPath("~/Downloads/" + Session["UserName"].ToString() + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
                 StreamWriter sw = new StreamWriter(filePath, false, System.Text.Encoding.UTF8);
-                sw.WriteLine("协议编号         存单账号                 凭证号码      存入本金     存入日期    存期          利率      状态            姓名           身份证号码           补息账号             柜员号  首次支取日期 首次支取金额 系统利息    靠档利息     补息金额     最后支取日期 最后支取金额  系统利息  靠档利息  补息");
+                sw.WriteLine("协议编号         存单账号                 凭证号码      存入本金     存入日期    存期          利率      状态            姓名           身份证号码           补息账号             柜员号  首次支取日期   首次支取金额   系统利息       靠档利息      补息金额      最后支取日期   最后支取金额  系统利息       靠档利息       补息");
                 for (int i = 0; i < infoList.Count; i++)
                 {
                     sw.WriteLine(GenString(infoList[i]));

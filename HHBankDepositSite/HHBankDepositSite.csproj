@@ -59,6 +59,7 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\UserManage.aspx" />
     <Content Include="App_Themes\Default\SmartGridView.css" />
     <Content Include="CSS\css.css" />
     <Content Include="CSS\masterPage.css" />
@@ -100,6 +101,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AdminMasterPage.Master.cs">
+      <DependentUpon>AdminMasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminMasterPage.Master.designer.cs">
+      <DependentUpon>AdminMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserManage.aspx.cs">
+      <DependentUpon>UserManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserManage.aspx.designer.cs">
+      <DependentUpon>UserManage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Data\TestDatas.cs" />
     <Compile Include="Data\WebConfigName.cs" />
     <Compile Include="Default.aspx.cs">
@@ -206,6 +221,10 @@
     <Content Include="Files\保利存管理办法.doc" />
     <Content Include="Files\正式协议书.doc" />
     <Content Include="App_Themes\Default\SmartGridView.skin" />
+    <Content Include="Admin\Web.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Admin\AdminMasterPage.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
