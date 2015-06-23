@@ -65,9 +65,6 @@
         </asp:ContentPlaceHolder>
         </div>
 
-        
-
-
     <div id="footer">
         <asp:Label ID="Label1" runat="server" Font-Size="Small" Text="Copyright 2015 @ hhBank：淮南淮河农村商业银行股份有限公司 地址：淮南市潘集区黄山路53号 电话：0554-4977159"
             Width="100%"></asp:Label>

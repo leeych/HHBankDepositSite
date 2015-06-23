@@ -296,6 +296,21 @@ namespace BLL
             return dbHandler.GetTellerInfoList(orgCode);
         }
 
+        public bool ChangeTellerOrg(TellerInfo teller)
+        {
+            return dbHandler.ChangeTellerOrg(teller);
+        }
+
+        public bool AddTellerInfo(TellerInfo teller)
+        {
+            return dbHandler.AddTellerInfo(teller);
+        }
+
+        public bool ResetUserPassword(string userName, string password, string orgCode)
+        {
+            return dbHandler.ResetUserPassword(userName, password, orgCode);
+        }
+
         public static string GetDepositStatusDesc(DrawFlag flag)
         {
             string desc = "--";

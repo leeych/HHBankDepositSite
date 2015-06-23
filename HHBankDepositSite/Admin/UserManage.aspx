@@ -6,7 +6,7 @@
         }
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="AdminContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="AdminContentPlaceHolder" runat="server">
     <div>
         <h1>用户管理</h1>
     </div>

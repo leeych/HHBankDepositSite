@@ -59,12 +59,13 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AdminSummary.aspx" />
     <Content Include="Admin\UserManage.aspx" />
     <Content Include="App_Themes\Default\SmartGridView.css" />
     <Content Include="CSS\css.css" />
     <Content Include="CSS\masterPage.css" />
     <Content Include="CSS\navStyle.css" />
-    <Content Include="CSS\style.css" />
+    <Content Include="CSS\Adminstyle.css" />
     <Content Include="Default.aspx" />
     <Content Include="Deposit.aspx" />
     <Content Include="Draw.aspx" />
@@ -83,10 +84,8 @@
     <Content Include="Images\left03.gif" />
     <Content Include="Images\login_bg.jpg" />
     <Content Include="Images\logo.jpg" />
-    <Content Include="Images\reset.gif" />
     <Content Include="Images\right-arrow.gif" />
     <Content Include="Images\sub.gif" />
-    <Content Include="Images\submit.gif" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Manage.aspx" />
@@ -107,6 +106,13 @@
     </Compile>
     <Compile Include="Admin\AdminMasterPage.Master.designer.cs">
       <DependentUpon>AdminMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminSummary.aspx.cs">
+      <DependentUpon>AdminSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminSummary.aspx.designer.cs">
+      <DependentUpon>AdminSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\UserManage.aspx.cs">
       <DependentUpon>UserManage.aspx</DependentUpon>

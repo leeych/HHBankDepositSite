@@ -31,15 +31,6 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// AdminMenuSource 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapDataSource AdminMenuSource;
-        
-        /// <summary>
         /// AdminNavigationMenu 控件。
         /// </summary>
         /// <remarks>
@@ -47,6 +38,15 @@ namespace HHBankDepositSite.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Menu AdminNavigationMenu;
+        
+        /// <summary>
+        /// AdminNavigationTreeView 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TreeView AdminNavigationTreeView;
         
         /// <summary>
         /// AdminSiteMapPath 控件。
@@ -67,12 +67,21 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.Panel AdminAccessKeyPanel;
         
         /// <summary>
-        /// AdminContentPlaceHolder1 控件。
+        /// AdminMenuSource 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder AdminContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.SiteMapDataSource AdminMenuSource;
+        
+        /// <summary>
+        /// AdminContentPlaceHolder 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder AdminContentPlaceHolder;
     }
 }

@@ -921,5 +921,46 @@ namespace BLL
                 return tellerList;
             }
         }
+
+        public bool ChangeTellerOrg(TellerInfo teller)
+        {
+            string sql = @"update TellerInfo set OrgCode='{0}' where TellerCode='{1}' and 1=1";
+            string sqlString = string.Format(sql, teller.OrgCode, teller.TellerCode);
+            int rows = (int)SqlHelper.ExecuteSqlObj(sqlString);
+            if (rows == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool AddTellerInfo(TellerInfo teller)
+        {
+            string sql = @"if not exists (select * from TellerInfo where TellerCode='{0}') insert into TellerInfo(TellerCode, TellerName, OrgCode) values('{1}','{2}','{3}')";
+            string sqlString = string.Format(sql, teller.TellerCode, teller.TellerCode, teller.TellerName, teller.OrgCode);
+            int rows = (int)SqlHelper.ExecuteSqlObj(sqlString);
+            if (rows == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool ResetUserPassword(string userName, string password, string orgCode)
+        {
+            string sql = @"update UserInfo set Password='{0}' where UserName='{1}' and OrgCode='{2}' and 1=1";
+            string sqlString = string.Format(sql, password, userName, orgCode);
+            int rows = (int)SqlHelper.ExecuteSqlObj(sqlString);
+            if (rows == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        //public List<SearchInfo> GetAllOrgRecord(DateTime start, DateTime end)
+        //{ 
+        //    string sql = @"select * from {0} where DepositDate between '{1}' and '{2}' union select * from {3}"
+        //}
     }
 }

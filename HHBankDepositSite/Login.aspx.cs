@@ -61,7 +61,7 @@ namespace HHBankDepositSite
                 {
                     Session["UserName"] = userName;
                     Session["Password"] = password;
-                    Response.Redirect("~/Admin/Administor.aspx");
+                    Response.Redirect("~/Admin/AdminSummary.aspx");
                 }
                 else
                 {
