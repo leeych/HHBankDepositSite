@@ -287,6 +287,15 @@ namespace BLL
             return dbHandler.GetSearchRecordByDuration(start, end, orgCode);
         }
 
+        public List<TellerInfo> GetTellerInfoListByOrgCode(string orgCode)
+        {
+            if (string.IsNullOrEmpty(orgCode))
+            {
+                return null;
+            }
+            return dbHandler.GetTellerInfoList(orgCode);
+        }
+
         public static string GetDepositStatusDesc(DrawFlag flag)
         {
             string desc = "--";

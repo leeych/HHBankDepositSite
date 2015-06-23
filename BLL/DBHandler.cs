@@ -900,5 +900,26 @@ namespace BLL
             string orgName = SqlHelper.ExecuteSqlObj(sqlString).ToString();
             return orgName;
         }
+
+        public List<TellerInfo> GetTellerInfoList(string orgCode)
+        {
+            string sql = @"select * from TellerInfo where OrgCode='{0}' and 1=1";
+            string sqlString = string.Format(sql, orgCode);
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
+            {
+                List<TellerInfo> tellerList = new List<TellerInfo>();
+                while (dr.Read())
+                {
+                    TellerInfo teller = new TellerInfo();
+                    teller.TellerCode = dr["TellerCode"].ToString();
+                    teller.TellerName = dr["TellerName"].ToString();
+                    teller.OrgCode = orgCode;
+                    teller.Role = (RoleFlag)int.Parse(dr["Role"].ToString());
+
+                    tellerList.Add(teller);
+                }
+                return tellerList;
+            }
+        }
     }
 }

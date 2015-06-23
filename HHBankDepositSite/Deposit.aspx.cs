@@ -18,6 +18,7 @@ namespace HHBankDepositSite
         protected void Page_Load(object sender, EventArgs e)
         {
             periodDrop_SelectedIndexChanged(sender, e);
+            //GenTellerNameDropDownList(Session["UserName"].ToString());
         }
 
         protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)
@@ -200,6 +201,18 @@ namespace HHBankDepositSite
             nameTxt.DataBind();
             remarkTxt.DataBind();
         }
+
+        //private void GenTellerNameDropDownList(string orgCode)
+        //{
+        //    List<TellerInfo> tellerList = BizHandler.Handler.GetTellerInfoListByOrgCode(orgCode);
+        //    if (tellerList != null && tellerList.Count > 0)
+        //    {
+        //        for (int i = 0; i < tellerList.Count; i++)
+        //        {
+        //            tellerNameDrop.Items.Add(tellerList[i].TellerName);
+        //        }
+        //    }
+        //}
 
         private int GetDropDownListSelectionIndex(string selValue)
         {

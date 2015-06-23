@@ -99,7 +99,9 @@
                 <td align="right"><span class="red-star">*</span><span class="label">客户身份证：</span></td>
                 <td align="left"><asp:TextBox ID="IDCardTxt" runat="server" CssClass="aspTextBox" MaxLength="18"></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="idValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="IDCardTxt"></asp:RequiredFieldValidator></span></td>
                 <td align="right"><span class="red-star">*</span><span class="label">经办柜员号：</span></td>
-                <td align="left"><asp:TextBox ID="tellerCodeTxt" runat="server" CssClass="aspTextBox" Width="152px" MaxLength="6" ></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="tellerValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="tellerCodeTxt"></asp:RequiredFieldValidator></span></td>
+                <td align="left"><asp:TextBox ID="tellerCodeTxt" runat="server" CssClass="aspTextBox" Width="152px" MaxLength="6" ></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="tellerValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="tellerCodeTxt"></asp:RequiredFieldValidator></span>
+                    <%--<span><asp:DropDownList ID="tellerNameDrop" runat="server" CssClass="aspTextBox"></asp:DropDownList></span>--%>
+                </td>
             </tr>
             <tr>
                 <td align="right">备注</td>

@@ -19,28 +19,30 @@
                 <td class="tdContent">
                     <asp:TextBox runat="server" ID="userNameTxt" Font-Names="Arial" Font-Size="20px" CssClass="txtBox" ReadOnly="True"></asp:TextBox>
                 </td>
-                <td><asp:RequiredFieldValidator runat="server" ID="userNameValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="userNameTxt" CssClass="validator"></asp:RequiredFieldValidator></td>
+                <td align="left"><asp:RequiredFieldValidator runat="server" ID="userNameValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="userNameTxt" CssClass="validator"></asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td class="tdLabel">原 密 码：</td>
                 <td class="tdContent">
                     <asp:TextBox runat="server" ID="oldpwdTxt" TextMode="Password" Font-Names="Arial" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
                 </td>
-                <td><asp:RequiredFieldValidator runat="server" ID="oldpwdValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="oldpwdTxt" CssClass="validator"></asp:RequiredFieldValidator></td>
+                <td align="left"><asp:RequiredFieldValidator runat="server" ID="oldpwdValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="oldpwdTxt" CssClass="validator"></asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td class="tdLabel">新 密 码：</td>
                 <td class="tdContent">
                     <asp:TextBox runat="server" ID="newpwdTxt" TextMode="Password" Font-Names="Arial" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
                 </td>
-                <td><asp:RequiredFieldValidator runat="server" ID="newpwdValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="newpwdTxt" CssClass="validator"></asp:RequiredFieldValidator></td>
+                <td align="left"><asp:RequiredFieldValidator runat="server" ID="newpwdValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="newpwdTxt" CssClass="validator"></asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td class="tdLabel">确认新密码：</td>
                 <td class="tdContent">
                     <asp:TextBox runat="server" ID="surepwdTxt" TextMode="Password" Font-Names="Arial" Font-Size="20px" CssClass="txtBox"></asp:TextBox>
                 </td>
-                <td><asp:RequiredFieldValidator runat="server" ID="surepwdValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="surepwdTxt" CssClass="validator"></asp:RequiredFieldValidator></td>
+                <td align="left"><span><asp:RequiredFieldValidator runat="server" ID="surepwdValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="surepwdTxt" CssClass="validator"></asp:RequiredFieldValidator></span>
+                    <span><asp:CompareValidator ID="compareValidator" runat="server" ErrorMessage="两次密码不一致！" Display="Dynamic" ControlToCompare="newpwdTxt" ControlToValidate="surepwdTxt" CssClass="validator"></asp:CompareValidator></span>
+                </td>
             </tr>
             <tr>
                 <td class="auto-style5">

@@ -25,6 +25,7 @@
                 <td align="left"><asp:Button runat="server" Height="30px" Width="100px" CssClass="aspBtn" ID="searchBtn" Text="查询" ValidationGroup="grpSearch" OnClick="searchBtn_Click"/></td>
             </tr>
             </table>
+        <hr />
 
         <table width="80%" style="border: 1px solid #E5E5E5; text-align: center; vertical-align: middle;" align="center">
             <tr>

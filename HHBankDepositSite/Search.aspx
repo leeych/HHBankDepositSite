@@ -47,9 +47,13 @@
             </tr>
             <tr>
                 <td>起始日期：</td>
-                <td><asp:TextBox runat="server" ID="startDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></td>
+                <td><span><asp:TextBox runat="server" ID="startDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></span>
+                    <span><asp:RangeValidator runat="server" ID="startDateValidator" ControlToValidate="startDateTxt" MaximumValue="2020-06-01" MinimumValue="2015-06-01" ErrorMessage="您输入的日期有误！" CssClass="validator"></asp:RangeValidator></span>
+                </td>
                 <td>截止日期：</td>
-                <td><asp:TextBox runat="server" ID="endDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></td>
+                <td><span><asp:TextBox runat="server" ID="endDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></span>
+                    <span><asp:RangeValidator runat="server" ID="endDateValidator" ControlToValidate="endDateTxt" MaximumValue="2025-06-01" MinimumValue="2015-06-01" ErrorMessage="您输入的日期有误！" CssClass="validator"></asp:RangeValidator></span>
+                </td>
                 <td><span class="note">(示例:2015-06-01)</span></td>
                 <td>
                     <asp:LinkButton ID="linkBtn" runat="server" OnClick="linkBtn_Click" Width="1px"></asp:LinkButton>
