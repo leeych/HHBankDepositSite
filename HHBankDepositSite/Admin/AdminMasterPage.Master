@@ -29,9 +29,9 @@
         DynamicPopOutImageUrl="../Images/right-arrow.gif" 
         StaticPopOutImageUrl="../Images/drop-arrow.gif"
         DataSourceID="AdminMenuSource"    
-        runat="server" Height="30px">
+        runat="server" Height="50px">
 
-        <staticmenuitemstyle ItemSpacing="10" CssClass="staticMenuItemStyle"/>
+        <staticmenuitemstyle ItemSpacing="50" CssClass="staticMenuItemStyle"/>
         <statichoverstyle CssClass="staticHoverStyle" />
         <StaticSelectedStyle CssClass="staticMenuItemSelectedStyle"/> 
         <DynamicMenuItemStyle CssClass="dynamicMenuItemStyle" />      
