@@ -139,6 +139,8 @@ html {
     height: 20px;
     padding-top: 3px;
     behavior: url(ie-css3.htc);
+    text-align: center;
+    vertical-align: middle;
 }
 
 .aspTextBoxShort {
@@ -147,6 +149,8 @@ html {
     height: 20px;
     font-size: 15px;
     padding-top: 3px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .aspBillAccount {
@@ -156,6 +160,8 @@ html {
     height: 20px;
     font-size: 15px;
     padding-top: 3px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .aspMargin {
@@ -165,6 +171,8 @@ html {
     width: 90%;
     font-size: 20px;
     padding-top: 3px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .per-cent {

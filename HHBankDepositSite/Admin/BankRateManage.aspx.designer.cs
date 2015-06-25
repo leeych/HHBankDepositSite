@@ -10,61 +10,151 @@
 namespace HHBankDepositSite.Admin {
     
     
-    public partial class UserManage {
+    public partial class BankRateManage {
         
         /// <summary>
-        /// newUserNameTxt 控件。
+        /// currentRateTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox newUserNameTxt;
+        protected global::System.Web.UI.WebControls.TextBox currentRateTxt;
         
         /// <summary>
-        /// newPasswordTxt 控件。
+        /// currRateValidator 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox newPasswordTxt;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator currRateValidator;
         
         /// <summary>
-        /// normalRbn 控件。
+        /// m03RateTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton normalRbn;
+        protected global::System.Web.UI.WebControls.TextBox m03RateTxt;
         
         /// <summary>
-        /// adminRbn 控件。
+        /// m03RateValidator 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton adminRbn;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator m03RateValidator;
         
         /// <summary>
-        /// orgDrop 控件。
+        /// m06RateTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList orgDrop;
+        protected global::System.Web.UI.WebControls.TextBox m06RateTxt;
         
         /// <summary>
-        /// tellerTable 控件。
+        /// m06RateValidator 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tellerTable;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator m06RateValidator;
+        
+        /// <summary>
+        /// y01RateTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox y01RateTxt;
+        
+        /// <summary>
+        /// y01RateValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator y01RateValidator;
+        
+        /// <summary>
+        /// y02RateTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox y02RateTxt;
+        
+        /// <summary>
+        /// y02RateValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator y02RateValidator;
+        
+        /// <summary>
+        /// y03RateTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox y03RateTxt;
+        
+        /// <summary>
+        /// y03RateValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator y03RateValidator;
+        
+        /// <summary>
+        /// y05RateTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox y05RateTxt;
+        
+        /// <summary>
+        /// y05RateValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator y05RateValidator;
+        
+        /// <summary>
+        /// okBtn 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button okBtn;
+        
+        /// <summary>
+        /// bankRateTable 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table bankRateTable;
         
         /// <summary>
         /// resHeader 控件。
@@ -76,49 +166,85 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TableHeaderRow resHeader;
         
         /// <summary>
-        /// tellerCodeCell 控件。
+        /// bankRateDateCell 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell tellerCodeCell;
+        protected global::System.Web.UI.WebControls.TableHeaderCell bankRateDateCell;
         
         /// <summary>
-        /// tellerNameCell 控件。
+        /// currentRateCell 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell tellerNameCell;
+        protected global::System.Web.UI.WebControls.TableHeaderCell currentRateCell;
         
         /// <summary>
-        /// orgCodeCell 控件。
+        /// m03RateCell 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell orgCodeCell;
+        protected global::System.Web.UI.WebControls.TableHeaderCell m03RateCell;
         
         /// <summary>
-        /// orgNameCell 控件。
+        /// m06RateCell 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell orgNameCell;
+        protected global::System.Web.UI.WebControls.TableHeaderCell m06RateCell;
         
         /// <summary>
-        /// tableRow1 控件。
+        /// y01RateCell 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow tableRow1;
+        protected global::System.Web.UI.WebControls.TableHeaderCell y01RateCell;
+        
+        /// <summary>
+        /// y02RateCell 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableHeaderCell y02RateCell;
+        
+        /// <summary>
+        /// y03RateCell 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableHeaderCell y03RateCell;
+        
+        /// <summary>
+        /// y05RateCell 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableHeaderCell y05RateCell;
+        
+        /// <summary>
+        /// TableRow1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow TableRow1;
         
         /// <summary>
         /// TableCell1 控件。
@@ -157,15 +283,6 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TableCell TableCell4;
         
         /// <summary>
-        /// tableRow2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow tableRow2;
-        
-        /// <summary>
         /// TableCell5 控件。
         /// </summary>
         /// <remarks>
@@ -202,13 +319,13 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TableCell TableCell8;
         
         /// <summary>
-        /// tableRow3 控件。
+        /// TableRow2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow tableRow3;
+        protected global::System.Web.UI.WebControls.TableRow TableRow2;
         
         /// <summary>
         /// TableCell9 控件。
@@ -247,15 +364,6 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TableCell TableCell12;
         
         /// <summary>
-        /// tableRow4 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow tableRow4;
-        
-        /// <summary>
         /// TableCell13 控件。
         /// </summary>
         /// <remarks>
@@ -292,13 +400,13 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TableCell TableCell16;
         
         /// <summary>
-        /// tableRow5 控件。
+        /// TableRow3 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow tableRow5;
+        protected global::System.Web.UI.WebControls.TableRow TableRow3;
         
         /// <summary>
         /// TableCell17 控件。
@@ -337,15 +445,6 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TableCell TableCell20;
         
         /// <summary>
-        /// tableRow6 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow tableRow6;
-        
-        /// <summary>
         /// TableCell21 控件。
         /// </summary>
         /// <remarks>
@@ -382,13 +481,13 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TableCell TableCell24;
         
         /// <summary>
-        /// tableRow7 控件。
+        /// TableRow4 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow tableRow7;
+        protected global::System.Web.UI.WebControls.TableRow TableRow4;
         
         /// <summary>
         /// TableCell25 控件。
@@ -427,15 +526,6 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TableCell TableCell28;
         
         /// <summary>
-        /// tableRow8 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow tableRow8;
-        
-        /// <summary>
         /// TableCell29 控件。
         /// </summary>
         /// <remarks>
@@ -472,13 +562,13 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TableCell TableCell32;
         
         /// <summary>
-        /// tableRow9 控件。
+        /// TableRow5 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow tableRow9;
+        protected global::System.Web.UI.WebControls.TableRow TableRow5;
         
         /// <summary>
         /// TableCell33 控件。
@@ -517,15 +607,6 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TableCell TableCell36;
         
         /// <summary>
-        /// tableRow10 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow tableRow10;
-        
-        /// <summary>
         /// TableCell37 控件。
         /// </summary>
         /// <remarks>
@@ -562,102 +643,408 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TableCell TableCell40;
         
         /// <summary>
-        /// userNameTxt 控件。
+        /// TableRow6 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox userNameTxt;
+        protected global::System.Web.UI.WebControls.TableRow TableRow6;
         
         /// <summary>
-        /// passwordTxt 控件。
+        /// TableCell41 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passwordTxt;
+        protected global::System.Web.UI.WebControls.TableCell TableCell41;
         
         /// <summary>
-        /// surepwdTxt 控件。
+        /// TableCell42 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox surepwdTxt;
+        protected global::System.Web.UI.WebControls.TableCell TableCell42;
         
         /// <summary>
-        /// pwdBtn 控件。
+        /// TableCell43 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button pwdBtn;
+        protected global::System.Web.UI.WebControls.TableCell TableCell43;
         
         /// <summary>
-        /// newTellerCodeTxt 控件。
+        /// TableCell44 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox newTellerCodeTxt;
+        protected global::System.Web.UI.WebControls.TableCell TableCell44;
         
         /// <summary>
-        /// newTellerNameTxt 控件。
+        /// TableCell45 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox newTellerNameTxt;
+        protected global::System.Web.UI.WebControls.TableCell TableCell45;
         
         /// <summary>
-        /// tellerOrgNameDrop 控件。
+        /// TableCell46 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tellerOrgNameDrop;
+        protected global::System.Web.UI.WebControls.TableCell TableCell46;
         
         /// <summary>
-        /// orgCodeTxt 控件。
+        /// TableCell47 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox orgCodeTxt;
+        protected global::System.Web.UI.WebControls.TableCell TableCell47;
         
         /// <summary>
-        /// addTellerRbn 控件。
+        /// TableCell48 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton addTellerRbn;
+        protected global::System.Web.UI.WebControls.TableCell TableCell48;
         
         /// <summary>
-        /// changeTellerRbn 控件。
+        /// TableRow7 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton changeTellerRbn;
+        protected global::System.Web.UI.WebControls.TableRow TableRow7;
         
         /// <summary>
-        /// tellerBtn 控件。
+        /// TableCell49 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button tellerBtn;
+        protected global::System.Web.UI.WebControls.TableCell TableCell49;
+        
+        /// <summary>
+        /// TableCell50 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell50;
+        
+        /// <summary>
+        /// TableCell51 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell51;
+        
+        /// <summary>
+        /// TableCell52 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell52;
+        
+        /// <summary>
+        /// TableCell53 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell53;
+        
+        /// <summary>
+        /// TableCell54 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell54;
+        
+        /// <summary>
+        /// TableCell55 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell55;
+        
+        /// <summary>
+        /// TableCell56 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell56;
+        
+        /// <summary>
+        /// TableRow8 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow TableRow8;
+        
+        /// <summary>
+        /// TableCell57 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell57;
+        
+        /// <summary>
+        /// TableCell58 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell58;
+        
+        /// <summary>
+        /// TableCell59 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell59;
+        
+        /// <summary>
+        /// TableCell60 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell60;
+        
+        /// <summary>
+        /// TableCell61 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell61;
+        
+        /// <summary>
+        /// TableCell62 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell62;
+        
+        /// <summary>
+        /// TableCell63 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell63;
+        
+        /// <summary>
+        /// TableCell64 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell64;
+        
+        /// <summary>
+        /// TableRow9 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow TableRow9;
+        
+        /// <summary>
+        /// TableCell65 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell65;
+        
+        /// <summary>
+        /// TableCell66 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell66;
+        
+        /// <summary>
+        /// TableCell67 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell67;
+        
+        /// <summary>
+        /// TableCell68 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell68;
+        
+        /// <summary>
+        /// TableCell69 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell69;
+        
+        /// <summary>
+        /// TableCell70 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell70;
+        
+        /// <summary>
+        /// TableCell71 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell71;
+        
+        /// <summary>
+        /// TableCell72 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell72;
+        
+        /// <summary>
+        /// TableRow10 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow TableRow10;
+        
+        /// <summary>
+        /// TableCell73 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell73;
+        
+        /// <summary>
+        /// TableCell74 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell74;
+        
+        /// <summary>
+        /// TableCell75 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell75;
+        
+        /// <summary>
+        /// TableCell76 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell76;
+        
+        /// <summary>
+        /// TableCell77 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell77;
+        
+        /// <summary>
+        /// TableCell78 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell78;
+        
+        /// <summary>
+        /// TableCell79 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell79;
+        
+        /// <summary>
+        /// TableCell80 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell TableCell80;
     }
 }

@@ -38,6 +38,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=1.0.20229.20821, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET 2.0 AJAX Extensions\v1.0.61025\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="AJAXExtensionsToolbox, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\AJAXExtensionsToolbox.dll</HintPath>
@@ -60,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\AdminSummary.aspx" />
+    <Content Include="Admin\BankRateManage.aspx" />
     <Content Include="Admin\UserManage.aspx" />
     <Content Include="App_Themes\Default\SmartGridView.css" />
     <Content Include="CSS\css.css" />
@@ -114,6 +119,13 @@
     <Compile Include="Admin\AdminSummary.aspx.designer.cs">
       <DependentUpon>AdminSummary.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\BankRateManage.aspx.cs">
+      <DependentUpon>BankRateManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\BankRateManage.aspx.designer.cs">
+      <DependentUpon>BankRateManage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UserManage.aspx.cs">
       <DependentUpon>UserManage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -123,6 +135,7 @@
     </Compile>
     <Compile Include="Data\TestDatas.cs" />
     <Compile Include="Data\WebConfigName.cs" />
+    <Compile Include="Data\WebDataCenter.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -268,7 +281,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>6392</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:18002/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -76,15 +76,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.DropDownList periodDrop;
         
         /// <summary>
-        /// periodDropValidator 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator periodDropValidator;
-        
-        /// <summary>
         /// rateTxt 控件。
         /// </summary>
         /// <remarks>
@@ -193,22 +184,31 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator idValidator;
         
         /// <summary>
-        /// tellerCodeTxt 控件。
+        /// tellerNameTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tellerCodeTxt;
+        protected global::System.Web.UI.WebControls.TextBox tellerNameTxt;
         
         /// <summary>
-        /// tellerValidator 控件。
+        /// tellerCodeDrop 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator tellerValidator;
+        protected global::System.Web.UI.WebControls.DropDownList tellerCodeDrop;
+        
+        /// <summary>
+        /// tellerNameValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator tellerNameValidator;
         
         /// <summary>
         /// remarkTxt 控件。

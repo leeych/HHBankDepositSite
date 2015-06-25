@@ -63,6 +63,29 @@ namespace BLL
             return rate;
         }
 
+        public bool SetNewBankRateTable(string fileName, BankRate rate)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(fileName);
+            string xpath = "/" + BankRateNode.BankRate + "/" + BankRateNode.ExecRate + "/";
+            XmlNode node = xmlDoc.SelectSingleNode(xpath + "/" + BankRateNode.Current);
+            node.InnerText = (rate.CurrRate * 100).ToString();
+            node = xmlDoc.SelectSingleNode(xpath + "/" + BankRateNode.Month03);
+            node.InnerText = (rate.M03 * 100).ToString();
+            node = xmlDoc.SelectSingleNode(xpath + "/" + BankRateNode.Month06);
+            node.InnerText = (rate.M06 * 100).ToString();
+            node = xmlDoc.SelectSingleNode(xpath + "/" + BankRateNode.Year01);
+            node.InnerText = (rate.Y01 * 100).ToString();
+            node = xmlDoc.SelectSingleNode(xpath + "/" + BankRateNode.Year02);
+            node.InnerText = (rate.Y02 * 100).ToString();
+            node = xmlDoc.SelectSingleNode(xpath + "/" + BankRateNode.Year03);
+            node.InnerText = (rate.Y03 * 100).ToString();
+            node = xmlDoc.SelectSingleNode(xpath + "/" + BankRateNode.Year05);
+            node.InnerText = (rate.Y05 * 100).ToString();
+            xmlDoc.Save(fileName);
+            return true;
+        }
+
         /// <summary>
         /// 判断用户名和密码是否在数据库里
         /// </summary>
@@ -309,6 +332,51 @@ namespace BLL
         public bool ResetUserPassword(string userName, string password, string orgCode)
         {
             return dbHandler.ResetUserPassword(userName, password, orgCode);
+        }
+
+        public List<BankRateInfo> GetBankRateInfoList()
+        {
+            return dbHandler.GetAllBankRate();
+        }
+
+        public List<OrgInfo> GetAllOrgInfoList()
+        {
+            List<OrgInfo> orgList = dbHandler.GetOrgInfoList();
+            if (orgList == null || orgList.Count == 0)
+            {
+                return null;
+            }
+            return orgList;
+        }
+
+        public List<TellerInfo> GetAllTellerInfoList()
+        {
+            List<TellerInfo> tellerList = dbHandler.GetAllTellerInfo();
+            if (tellerList == null || tellerList.Count == 0)
+            {
+                return null;
+            }
+            return tellerList;
+        }
+
+        public List<BankRateInfo> GetAllBankRateInfo()
+        {
+            return dbHandler.GetAllBankRateInfoList();
+        }
+
+        public bool AddBankRateInfo(BankRateInfo info)
+        {
+            return dbHandler.AddBankRateInfo(info);
+        }
+
+        public bool AddNewTeller(string tellerCode, string tellerName, string orgCode)
+        {
+            return dbHandler.AddNewTeller(tellerCode, tellerName, orgCode);
+        }
+
+        public bool ChangeTellerOrg(string tellerCode, string tellerName, string orgCode)
+        {
+            return dbHandler.ChangeTellerOrg(tellerCode, tellerName, orgCode);
         }
 
         public static string GetDepositStatusDesc(DrawFlag flag)

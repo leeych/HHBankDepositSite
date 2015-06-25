@@ -29,7 +29,8 @@ position: relative;
 
 .background {
 border:solid 1px #000;
-background-image:url(../Images/nav_bg.gif);
+background-image:url(../Images/nav_bg.png);
+height:50px;
 }
 
 .NavigationMenu {
@@ -38,7 +39,7 @@ font-size:18px;
 color:#FFF;
 font-weight:600;
 z-index:101;
-background-image:url(../Images/nav_bg.gif);
+background-image:url(../Images/nav_bg.png);
 }
 
 #h {
@@ -54,7 +55,7 @@ padding:0 0 1px;
 
 .menuItemMouseOver,.menuItemSelected {
 border:solid 1px Navy;
-background-image:url(../Images/nav_bg.gif);
+background-image:url(../Images/nav_bg.png);
 }
 
 .NavigationMenu A:link,.NavigationMenu A:visited,.NavigationMenu A:active {
@@ -67,4 +68,86 @@ display:block;
 text-decoration:none;
 font-family:Verdana;
 font-size:14px;
+}
+
+.legendStyle {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    /*border: 1px solid rgb(70,132,175);*/
+}
+
+.fieldSetStyle {
+    border: 1px solid rgb(70,132,175);
+}
+
+.aspBtn {
+    border-radius: 5px;
+    border: double;
+    background: url(../Images/login_bg.jpg);
+    height: 30px;
+    width: 100px;
+}
+
+.aspTextBox {
+    border-radius: 3px;
+    border: 1px solid #CDCDCD;
+    font-size: 15px;
+    width: 160px;
+    height: 20px;
+    padding-top: 3px;
+    behavior: url(ie-css3.htc);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.aspTextBoxShort {
+    border-radius: 3px;
+    border: 1px solid #CDCDCD;
+    height: 20px;
+    font-size: 15px;
+    padding-top: 3px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.aspBillAccount {
+    border-radius: 3px;
+    border: 1px solid #CDCDCD;
+    width: 180px;
+    height: 20px;
+    font-size: 15px;
+    padding-top: 3px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.aspMargin {
+    border-radius: 5px;
+    border: 1px solid #CDCDCD;
+    height: 30px;
+    width: 90%;
+    font-size: 20px;
+    padding-top: 3px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.per-cent {
+    height: 30px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.validator {
+    font-size: 11px;
+    text-align: left;
+}
+
+.gridview {
+    background: #006699;
+    border-width: 1px;
+    border-color: #cccccc;
+    color: #FFFFFF;
+    font: bold 16px arial, verdana;
 }

@@ -18,7 +18,7 @@ namespace HHBankDepositSite
         protected void Page_Load(object sender, EventArgs e)
         {
             periodDrop_SelectedIndexChanged(sender, e);
-            //GenTellerNameDropDownList(Session["UserName"].ToString());
+            GenTellerCodeDropDownList(Session["UserName"].ToString());
         }
 
         protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)
@@ -84,7 +84,10 @@ namespace HHBankDepositSite
             DateTime depositDate = DateTime.Parse(dateTxt.Text.Trim() + "T00:00:00");
             string bindAccount = bindAccountTxt.Text.Trim();
             string orgCode = Session["UserName"].ToString();
-            string tellerCode = tellerCodeTxt.Text.Trim();
+
+            string tellerCode = tellerCodeDrop.SelectedValue.Trim();
+            string tellerName = tellerNameTxt.Text.Trim();
+
             string idCard = IDCardTxt.Text.Trim();
             string name = nameTxt.Text.Trim();
             string remark = remarkTxt.Text.Trim();
@@ -99,6 +102,7 @@ namespace HHBankDepositSite
                                             OrgCode = orgCode,
                                             Period = period,
                                             TellerCode = tellerCode,
+                                            TellerName = tellerName,
                                             DepositorIDCard = idCard,
                                             DepositorName = name,
                                             DepositMoney = money,
@@ -136,12 +140,12 @@ namespace HHBankDepositSite
             string rate = rateTxt.Text.Trim();
             string date = dateTxt.Text.Trim();
             string bindAccount = bindAccountTxt.Text.Trim();
-            string tellerCode = tellerCodeTxt.Text.Trim();
+            //string tellerCode = tellerNameTxt.Text.Trim();
             string idCard = IDCardTxt.Text.Trim();
             string name = nameTxt.Text.Trim();
             if (string.IsNullOrEmpty(protocolId) || string.IsNullOrEmpty(account) || string.IsNullOrEmpty(billCode) 
                 || string.IsNullOrEmpty(rate) || string.IsNullOrEmpty(date) || string.IsNullOrEmpty(bindAccount) 
-                || string.IsNullOrEmpty(idCard) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(tellerCode))
+                || string.IsNullOrEmpty(idCard) || string.IsNullOrEmpty(name))
             {
                 TMessageBox.ShowMsg(this, "InputValidate", "请输入必填项！标“*”为必填项！");
                 return false;
@@ -170,14 +174,14 @@ namespace HHBankDepositSite
             {
                 errMsg += @"客户姓名必须为中文！\n";
             }
-            if (!PageValidator.IsNumber(tellerCode))
-            {
-                errMsg += @"柜员号必须全部为数字！\n";
-            }
-            if (tellerCode.Length != 6)
-            {
-                errMsg += @"柜员号长度必须是6位！";
-            }
+            //if (!PageValidator.IsNumber(tellerCode))
+            //{
+            //    errMsg += @"柜员号必须全部为数字！\n";
+            //}
+            //if (tellerCode.Length != 6)
+            //{
+            //    errMsg += @"柜员号长度必须是6位！";
+            //}
             if (!string.IsNullOrEmpty(errMsg))
             {
                 TMessageBox.ShowMsg(this, "NumberValidateTotal", errMsg);
@@ -196,23 +200,27 @@ namespace HHBankDepositSite
             moneyTxt.DataBind();
             dateTxt.DataBind();
             bindAccountTxt.DataBind();
-            tellerCodeTxt.DataBind();
+            //tellerNameTxt.DataBind();
             IDCardTxt.DataBind();
             nameTxt.DataBind();
             remarkTxt.DataBind();
         }
 
-        //private void GenTellerNameDropDownList(string orgCode)
-        //{
-        //    List<TellerInfo> tellerList = BizHandler.Handler.GetTellerInfoListByOrgCode(orgCode);
-        //    if (tellerList != null && tellerList.Count > 0)
-        //    {
-        //        for (int i = 0; i < tellerList.Count; i++)
-        //        {
-        //            tellerNameDrop.Items.Add(tellerList[i].TellerName);
-        //        }
-        //    }
-        //}
+        private void GenTellerCodeDropDownList(string orgCode)
+        {
+            List<TellerInfo> tellerList = BizHandler.Handler.GetTellerInfoListByOrgCode(orgCode);
+            if (tellerList != null && tellerList.Count > 0)
+            {
+                for (int i = 0; i < tellerList.Count; i++)
+                {
+                    if (tellerCodeDrop.Items.Contains(new ListItem(tellerList[i].TellerCode)))
+                    {
+                        continue;
+                    }
+                    tellerCodeDrop.Items.Add(tellerList[i].TellerCode);
+                }
+            }
+        }
 
         private int GetDropDownListSelectionIndex(string selValue)
         {
@@ -254,7 +262,7 @@ namespace HHBankDepositSite
             moneyTxt.Text = string.Empty;
             dateTxt.Text = string.Empty;
             bindAccountTxt.Text = string.Empty;
-            tellerCodeTxt.Text = string.Empty;
+            tellerNameTxt.Text = string.Empty;
             IDCardTxt.Text = string.Empty;
             nameTxt.Text = string.Empty;
             remarkTxt.Text = string.Empty;
@@ -270,7 +278,7 @@ namespace HHBankDepositSite
             moneyTxt.Enabled = enable;
             dateTxt.Enabled = enable;
             bindAccountTxt.Enabled = enable;
-            tellerCodeTxt.Enabled = enable;
+            tellerNameTxt.Enabled = enable;
             IDCardTxt.Enabled = enable;
             nameTxt.Enabled = enable;
             remarkTxt.Enabled = enable;
@@ -299,31 +307,6 @@ namespace HHBankDepositSite
             }
             return "";
         }
-
-        //protected void protocolTxt_TextChanged(object sender, EventArgs e)
-        //{
-        //    string protocolId = protocolTxt.Text.Trim();
-        //    if (!PageValidator.IsNumber(protocolId))
-        //    {
-        //        TMessageBox.ShowMsg(this, "ProtocolIdNotNumber", "协议编号必须全部为数字！");
-        //        TMessageBox.SetFocus(protocolTxt, this);
-        //        return;
-        //    }
-        //    if (protocolId.Length != protocolTxt.MaxLength)
-        //    {
-        //        TMessageBox.ShowMsg(this, "ProtocolIdLenErr", "协议编号长度不对！");
-        //        TMessageBox.SetFocus(protocolTxt, this);
-        //        return;
-        //    }
-        //}
-
-        //protected void billAccountTxt_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (NumberCheck("BillAccountMsg", "存单账号必须全部为数字！", billAccountTxt))
-        //    {
-        //        MaxLenCheckTemplate("BillAccountLenErr", "存单账号长度不够！", billAccountTxt);
-        //    }
-        //}
 
         private bool NumberCheck(string tag, string desc, TextBox ctrl)
         {
@@ -367,6 +350,12 @@ namespace HHBankDepositSite
                 return false;
             }
             return true;
+        }
+
+        protected void tellerCodeDrop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string tellerCode = tellerCodeDrop.SelectedValue.Trim();
+            tellerNameTxt.Text = WebDataCenter.TellerDict[tellerCode].TellerName;
         }
 
         //protected void billCodeTxt_TextChanged(object sender, EventArgs e)

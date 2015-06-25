@@ -9,43 +9,39 @@
 <link rel="stylesheet" type="text/css" href="../CSS/AdminStyle.css" />
         
 <script type="text/javascript">
-
     function navigateTo(url) {
         window.location = url;
     }
 </script>
     <asp:ContentPlaceHolder id="AdminHeader" runat="server">
     </asp:ContentPlaceHolder>
-
 </head>
 <body>
     <form id="form1" runat="server">
-    <div><img src="../Images/logo.jpg" width="100%" alt="hhbanklogo" /></div>
+    <div><img src="../Images/adminlogo.jpg" width="100%" alt="hhbanklogo" /></div>
     <div class="background">
-    <asp:menu id="AdminNavigationMenu" CssClass="NavigationMenu"  
-        staticdisplaylevels="2" DynamicHorizontalOffset="1"
-        staticsubmenuindent="1px" MaximumDynamicDisplayLevels="4"
-        orientation="Horizontal"   
-        DynamicPopOutImageUrl="../Images/right-arrow.gif" 
-        StaticPopOutImageUrl="../Images/drop-arrow.gif"
-        DataSourceID="AdminMenuSource"    
-        runat="server" Height="50px">
+        <asp:menu id="AdminNavigationMenu" CssClass="NavigationMenu"  
+            staticdisplaylevels="2" DynamicHorizontalOffset="1"
+            staticsubmenuindent="1px" MaximumDynamicDisplayLevels="4"
+            orientation="Horizontal"   
+            DynamicPopOutImageUrl="../Images/right-arrow.gif" 
+            StaticPopOutImageUrl="../Images/drop-arrow.gif"
+            DataSourceID="AdminMenuSource"    
+            runat="server" Height="50px">
 
-        <staticmenuitemstyle ItemSpacing="50" CssClass="staticMenuItemStyle"/>
-        <statichoverstyle CssClass="staticHoverStyle" />
-        <StaticSelectedStyle CssClass="staticMenuItemSelectedStyle"/> 
-        <DynamicMenuItemStyle CssClass="dynamicMenuItemStyle" />      
-        <dynamichoverstyle CssClass="menuItemMouseOver" />
-        <DynamicMenuStyle CssClass="menuItem" />
-        <DynamicSelectedStyle CssClass="menuItemSelected" />
-     
-        <DataBindings>        
-             <asp:MenuItemBinding DataMember="siteMapNode" 
-                NavigateUrlField="url" TextField="title"  
-                    ToolTipField="description" />
-        </DataBindings>
-
-      </asp:menu>
+            <staticmenuitemstyle ItemSpacing="50" CssClass="staticMenuItemStyle"/>
+            <statichoverstyle CssClass="staticHoverStyle" />
+            <StaticSelectedStyle CssClass="staticMenuItemSelectedStyle"/> 
+            <DynamicMenuItemStyle CssClass="dynamicMenuItemStyle" />      
+            <dynamichoverstyle CssClass="menuItemMouseOver" />
+            <DynamicMenuStyle CssClass="menuItem" />
+            <DynamicSelectedStyle CssClass="menuItemSelected" />
+            <DataBindings>        
+                 <asp:MenuItemBinding DataMember="siteMapNode" 
+                    NavigateUrlField="url" TextField="title"  
+                        ToolTipField="description" />
+            </DataBindings>
+          </asp:menu>
     </div>
 
     <asp:TreeView ID="AdminNavigationTreeView" runat="server" Visible="false" DataSourceID="AdminMenuSource" />

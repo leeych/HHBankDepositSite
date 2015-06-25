@@ -926,7 +926,7 @@ namespace BLL
         {
             string sql = @"update TellerInfo set OrgCode='{0}' where TellerCode='{1}' and 1=1";
             string sqlString = string.Format(sql, teller.OrgCode, teller.TellerCode);
-            int rows = (int)SqlHelper.ExecuteSqlObj(sqlString);
+            int rows = SqlHelper.ExecuteSql(sqlString);
             if (rows == 1)
             {
                 return true;
@@ -950,7 +950,129 @@ namespace BLL
         {
             string sql = @"update UserInfo set Password='{0}' where UserName='{1}' and OrgCode='{2}' and 1=1";
             string sqlString = string.Format(sql, password, userName, orgCode);
-            int rows = (int)SqlHelper.ExecuteSqlObj(sqlString);
+            int rows = SqlHelper.ExecuteSql(sqlString);
+            if (rows == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public List<BankRateInfo> GetAllBankRate()
+        {
+            string sql = @"select * from BankRateInfo where 1=1";
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sql))
+            {
+                List<BankRateInfo> rateList = new List<BankRateInfo>();
+                while (dr.Read())
+                {
+                    BankRateInfo rate = new BankRateInfo();
+                    rate.EffectDate = DateTime.Parse(dr["EffectDate"].ToString());
+                    rate.Rate.CurrRate = decimal.Parse(dr["CurrentRate"].ToString());
+                    rate.Rate.M03 = decimal.Parse(dr["M03Rate"].ToString());
+                    rate.Rate.M06 = decimal.Parse(dr["M06Rate"].ToString());
+                    rate.Rate.Y01 = decimal.Parse(dr["Y01Rate"].ToString());
+                    rate.Rate.Y02 = decimal.Parse(dr["Y02Rate"].ToString());
+                    rate.Rate.Y03 = decimal.Parse(dr["Y03Rate"].ToString());
+                    rate.Rate.Y05 = decimal.Parse(dr["Y05Rate"].ToString());
+                    rateList.Add(rate);
+                }
+                return rateList;
+            }
+        }
+
+        public List<OrgInfo> GetOrgInfoList()
+        {
+            string sql = @"select * from OrgInfo where 1=1 order by OrgCode";
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sql))
+            {
+                List<OrgInfo> orgList = new List<OrgInfo>();
+                while (dr.Read())
+                {
+                    OrgInfo org = new OrgInfo();
+                    org.OrgCode = dr["OrgCode"].ToString();
+                    org.OrgName = dr["OrgName"].ToString();
+                    org.OrgAddress = dr["OrgAddress"].ToString();
+                    org.OrgPhone = dr["OrgPhone"].ToString();
+                    orgList.Add(org);
+                }
+                return orgList;
+            }
+        }
+
+        public List<TellerInfo> GetAllTellerInfo()
+        {
+            string sql = @"select * from TellerInfo where 1=1";
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sql))
+            {
+                List<TellerInfo> tellerList = new List<TellerInfo>();
+                while (dr.Read())
+                {
+                    TellerInfo teller = new TellerInfo();
+                    teller.TellerCode = dr["TellerCode"].ToString();
+                    teller.TellerName = dr["TellerName"].ToString();
+                    teller.OrgCode = dr["OrgCode"].ToString();
+                    teller.Role = (RoleFlag)int.Parse(dr["Role"].ToString());
+                    tellerList.Add(teller);
+                }
+                return tellerList;
+            }
+        }
+
+        public List<BankRateInfo> GetAllBankRateInfoList()
+        {
+            string sql = @"select * from BankRateInfo where 1=1 order by EffectDate desc";
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sql))
+            {
+                List<BankRateInfo> rateList = new List<BankRateInfo>();
+                while (dr.Read())
+                {
+                    BankRateInfo rate = new BankRateInfo();
+                    rate.EffectDate = DateTime.Parse(dr["EffectDate"].ToString());
+                    rate.Rate = new BankRate();
+                    rate.Rate.CurrRate = decimal.Parse(dr["CurrentRate"].ToString());
+                    rate.Rate.M03 = decimal.Parse(dr["M03Rate"].ToString());
+                    rate.Rate.M06 = decimal.Parse(dr["M06Rate"].ToString());
+                    rate.Rate.Y01 = decimal.Parse(dr["Y01Rate"].ToString());
+                    rate.Rate.Y02 = decimal.Parse(dr["Y02Rate"].ToString());
+                    rate.Rate.Y03 = decimal.Parse(dr["Y03Rate"].ToString());
+                    rate.Rate.Y05 = decimal.Parse(dr["Y05Rate"].ToString());
+                    rateList.Add(rate);
+                }
+                return rateList;
+            }
+        }
+
+        public bool AddBankRateInfo(BankRateInfo rateInfo)
+        {
+            string sql = @"insert into BankRateInfo(EffectDate,CurrentRate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate) values('{0}',{1},{2},{3},{4},{5},{6},{7})";
+            string sqlString = string.Format(sql, rateInfo.EffectDate.ToString("yyyy-MM-dd"), rateInfo.Rate.CurrRate, rateInfo.Rate.M03, rateInfo.Rate.M06, rateInfo.Rate.Y01,
+                rateInfo.Rate.Y02, rateInfo.Rate.Y03, rateInfo.Rate.Y05);
+            int rows = SqlHelper.ExecuteSql(sqlString);
+            if (rows == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool AddNewTeller(string tellerCode, string tellerName, string orgCode)
+        {
+            string sql = @"insert into TellerInfo(TellerCode,TellerName,OrgCode,Role) values('{0}','{1}','{2}',0)";
+            string sqlString = string.Format(sql, tellerCode, tellerName, orgCode);
+            int rows = SqlHelper.ExecuteSql(sqlString);
+            if (rows == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool ChangeTellerOrg(string tellerCode, string tellerName, string orgCode)
+        {
+            string sql = @"update TellerInfo set OrgCode='{0}' where TellerCode='{1}' and TellerName='{2}'";
+            string sqlString = string.Format(sql, orgCode, tellerCode, tellerName);
+            int rows = SqlHelper.ExecuteSql(sqlString);
             if (rows == 1)
             {
                 return true;

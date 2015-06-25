@@ -17,9 +17,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
-    <div style="float: left;">
-        <div id="gridHeader" style="margin-bottom:10px;">
-        <table>
+    <div style="text-align: center; vertical-align: middle;" align="center">
+        <div style="margin-bottom:10px; text-align: center;" align="center">
+        <table align="center" style="width:90%">
             <tr>
                 <td>机构号：</td>
                 <td><asp:TextBox runat="server" ID="orgCodeTxt" CssClass="aspTextBox" ReadOnly="true" MaxLength="10" BackColor="#ddf1fe"></asp:TextBox></td>
@@ -33,37 +33,37 @@
         </table>
         </div>
 
-        <div>
-        <table style="border: 1px solid #E5E5E5; text-align: center; vertical-align: middle;" align="center">
+        <div align="center" style="width: 100%; margin: 0 auto;">
+        <table style="border: 1px solid #E5E5E5; text-align: center; width:90%" align="center">
             <tr>
                 <td>协议编号：</td>
-                <td><asp:TextBox runat="server" ID="protocolIdTxt" CssClass="aspTextBox" MaxLength="14" ></asp:TextBox></td>
+                <td align="left"><asp:TextBox runat="server" ID="protocolIdTxt" CssClass="aspTextBox" MaxLength="14" ></asp:TextBox></td>
                 <td>存单账号：</td>
-                <td><asp:TextBox runat="server" ID="billAccountTxt" CssClass="aspBillAccount" MaxLength="23" ></asp:TextBox></td>
+                <td align="left"><asp:TextBox runat="server" ID="billAccountTxt" CssClass="aspBillAccount" MaxLength="23" ></asp:TextBox></td>
                 <td>身份证号：</td>
-                <td><asp:TextBox runat="server" ID="idCardTxt" CssClass="aspTextBox" MaxLength="18" ></asp:TextBox></td>            
+                <td align="left"><asp:TextBox runat="server" ID="idCardTxt" CssClass="aspTextBox" MaxLength="18" ></asp:TextBox></td>            
                 <td><span class="note">(仅需输入一项)</span></td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>起始日期：</td>
-                <td><span><asp:TextBox runat="server" ID="startDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></span>
+                <td align="left"><span><asp:TextBox runat="server" ID="startDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></span>
                     <span><asp:RangeValidator runat="server" ID="startDateValidator" ControlToValidate="startDateTxt" MaximumValue="2020-06-01" MinimumValue="2015-06-01" ErrorMessage="您输入的日期有误！" CssClass="validator"></asp:RangeValidator></span>
                 </td>
                 <td>截止日期：</td>
-                <td><span><asp:TextBox runat="server" ID="endDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></span>
+                <td align="left"><span><asp:TextBox runat="server" ID="endDateTxt" CssClass="aspTextBoxShort"></asp:TextBox></span>
                     <span><asp:RangeValidator runat="server" ID="endDateValidator" ControlToValidate="endDateTxt" MaximumValue="2025-06-01" MinimumValue="2015-06-01" ErrorMessage="您输入的日期有误！" CssClass="validator"></asp:RangeValidator></span>
                 </td>
                 <td><span class="note">(示例:2015-06-01)</span></td>
-                <td>
+                <td align="left">
                     <asp:LinkButton ID="linkBtn" runat="server" OnClick="linkBtn_Click" Width="1px"></asp:LinkButton>
                 </td>
                 <td><asp:Button runat="server" ID="searchBtn" CssClass="aspBtn" Text="查询" Height="30px" Width="100px" OnClick="searchBtn_Click" /></td>
             </tr>
         </table>
             </div>
-        <div>
-            <asp:Table ID="resultTable" runat="server" CellSpacing="3" CellPadding="3" Width="100%" GridLines="Both" BorderColor="Black" BorderStyle="Solid" CssClass="tableTr">
+        <div style="text-align:center;" align="center">
+            <asp:Table ID="resultTable" runat="server" CellSpacing="3" CellPadding="3" Width="90%" GridLines="Both" BorderColor="Black" BorderStyle="Solid" CssClass="tableTr" HorizontalAlign="Center">
                 <asp:TableHeaderRow ID="resHeader" runat="server" BackColor="#669cc0" ForeColor="#FFFFFF" CssClass="tableHeader">
                     <asp:TableHeaderCell ID="protocolIdCell" Wrap="false" runat="server" Text="协议编号"></asp:TableHeaderCell>
                     <asp:TableHeaderCell ID="billAccountCell" Wrap="false" runat="server" Text="存单账号"></asp:TableHeaderCell>
