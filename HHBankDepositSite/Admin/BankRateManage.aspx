@@ -54,11 +54,11 @@
             </table>
         </fieldset>
     </div>
-    <div>
+    <div style="text-align: center;">
         <fieldset>
             <legend>历史利率</legend>
             <asp:Table ID="bankRateTable" runat="server" CellSpacing="3" CellPadding="3" Width="100%" GridLines="Both" BorderColor="Black" BorderStyle="Solid" CssClass="tableTr">
-                <asp:TableHeaderRow ID="resHeader" runat="server" BackColor="#669cc0" ForeColor="#FFFFFF" CssClass="tableHeader">
+                <asp:TableHeaderRow ID="resHeader" runat="server" BackColor="#669cc0" ForeColor="#FFFFFF" CssClass="tableHeader" HorizontalAlign="Center">
                     <asp:TableHeaderCell ID="bankRateDateCell" Wrap="false" runat="server" Text="生效日期"></asp:TableHeaderCell>
                     <asp:TableHeaderCell ID="currentRateCell" Wrap="false" runat="server" Text="活期利率(%)"></asp:TableHeaderCell>
                     <asp:TableHeaderCell ID="m03RateCell" Wrap="false" runat="server" Text="三个月(%)"></asp:TableHeaderCell>
@@ -68,7 +68,7 @@
                     <asp:TableHeaderCell ID="y03RateCell" Wrap="false" runat="server" Text="三年(%)"></asp:TableHeaderCell>
                     <asp:TableHeaderCell ID="y05RateCell" Wrap="false" runat="server" Text="五年(%)"></asp:TableHeaderCell>
                 </asp:TableHeaderRow>
-                <asp:TableRow ID="TableRow1" runat="server" Height="30px" HorizontalAlign="Center">
+                <asp:TableRow ID="TableRow1" runat="server" Height="30px">
                     <asp:TableCell ID="TableCell1" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell2" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell3" runat="server"></asp:TableCell>
@@ -78,7 +78,7 @@
                     <asp:TableCell ID="TableCell7" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell8" runat="server"></asp:TableCell>
                 </asp:TableRow>
-                <asp:TableRow ID="TableRow2" runat="server" Height="30px" HorizontalAlign="Center">
+                <asp:TableRow ID="TableRow2" runat="server" Height="30px">
                     <asp:TableCell ID="TableCell9" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell10" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell11" runat="server"></asp:TableCell>
@@ -88,7 +88,7 @@
                     <asp:TableCell ID="TableCell15" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell16" runat="server"></asp:TableCell>
                 </asp:TableRow>
-                <asp:TableRow ID="TableRow3" runat="server" Height="30px" HorizontalAlign="Center">
+                <asp:TableRow ID="TableRow3" runat="server" Height="30px">
                     <asp:TableCell ID="TableCell17" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell18" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell19" runat="server"></asp:TableCell>
@@ -98,7 +98,7 @@
                     <asp:TableCell ID="TableCell23" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell24" runat="server"></asp:TableCell>
                 </asp:TableRow>
-                <asp:TableRow ID="TableRow4" runat="server" Height="30px" HorizontalAlign="Center">
+                <asp:TableRow ID="TableRow4" runat="server" Height="30px">
                     <asp:TableCell ID="TableCell25" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell26" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell27" runat="server"></asp:TableCell>
@@ -108,7 +108,7 @@
                     <asp:TableCell ID="TableCell31" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell32" runat="server"></asp:TableCell>
                 </asp:TableRow>
-                <asp:TableRow ID="TableRow5" runat="server" Height="30px" HorizontalAlign="Center">
+                <asp:TableRow ID="TableRow5" runat="server" Height="30px">
                     <asp:TableCell ID="TableCell33" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell34" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell35" runat="server"></asp:TableCell>
@@ -118,7 +118,7 @@
                     <asp:TableCell ID="TableCell39" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell40" runat="server"></asp:TableCell>
                 </asp:TableRow>
-                <asp:TableRow ID="TableRow6" runat="server" Height="30px" HorizontalAlign="Center">
+                <asp:TableRow ID="TableRow6" runat="server" Height="30px">
                     <asp:TableCell ID="TableCell41" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell42" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell43" runat="server"></asp:TableCell>
@@ -128,7 +128,7 @@
                     <asp:TableCell ID="TableCell47" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell48" runat="server"></asp:TableCell>
                 </asp:TableRow>
-               <asp:TableRow ID="TableRow7" runat="server" Height="30px" HorizontalAlign="Center">
+               <asp:TableRow ID="TableRow7" runat="server" Height="30px">
                     <asp:TableCell ID="TableCell49" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell50" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell51" runat="server"></asp:TableCell>
@@ -138,7 +138,7 @@
                     <asp:TableCell ID="TableCell55" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell56" runat="server"></asp:TableCell>
                 </asp:TableRow>
-                <asp:TableRow ID="TableRow8" runat="server" Height="30px" HorizontalAlign="Center">
+                <asp:TableRow ID="TableRow8" runat="server" Height="30px">
                     <asp:TableCell ID="TableCell57" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell58" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell59" runat="server"></asp:TableCell>
@@ -148,7 +148,7 @@
                     <asp:TableCell ID="TableCell63" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell64" runat="server"></asp:TableCell>
                 </asp:TableRow>
-                <asp:TableRow ID="TableRow9" runat="server" Height="30px" HorizontalAlign="Center">
+                <asp:TableRow ID="TableRow9" runat="server" Height="30px">
                     <asp:TableCell ID="TableCell65" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell66" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell67" runat="server"></asp:TableCell>
@@ -158,7 +158,7 @@
                     <asp:TableCell ID="TableCell71" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell72" runat="server"></asp:TableCell>
                 </asp:TableRow>
-                <asp:TableRow ID="TableRow10" runat="server" Height="30px" HorizontalAlign="Center">
+                <asp:TableRow ID="TableRow10" runat="server" Height="30px">
                     <asp:TableCell ID="TableCell73" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell74" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell75" runat="server"></asp:TableCell>
