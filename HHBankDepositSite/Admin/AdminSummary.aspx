@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterPage.Master" AutoEventWireup="true" CodeBehind="AdminSummary.aspx.cs" Inherits="HHBankDepositSite.Admin.AdminSummary" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminHeader" runat="server">
     <style type="text/css">
@@ -31,9 +33,17 @@
 
 
                 <td>起始日期：</td>
-                <td><asp:TextBox ID="startDateTxt" runat="server"></asp:TextBox></td>
+                <td>
+                    <asp:TextBox ID="startDateTxt" runat="server"></asp:TextBox>
+                    <cc1:calendarextender id="calendarExtenderStart" runat="server" TargetControlID="startDateTxt"
+                         Format="yyyy-MM-dd"></cc1:calendarextender>
+                </td>
+                <td></td>
                 <td>截止日期：</td>
-                <td><asp:TextBox ID="endDateTxt" runat="server"></asp:TextBox></td>
+                <td>
+                    <asp:TextBox ID="endDateTxt" runat="server"></asp:TextBox>
+                    <cc1:calendarextender ID="calendarExtenderEnd" runat="server" TargetControlID="endDateTxt"></cc1:calendarextender>
+                </td>
                 <td><asp:Button ID="searchBtn" runat="server" Text="查询" /></td>
             </tr>
 
