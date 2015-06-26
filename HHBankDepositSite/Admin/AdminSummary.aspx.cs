@@ -20,11 +20,17 @@ namespace HHBankDepositSite.Admin
                     orgNameDrop.Items.Add(orgList[i].OrgName);
                 }
             }
+            //ScriptManager smg = ScriptManager.GetCurrent(this.Page);
+            //if (smg.IsInAsyncPostBack)
+            //{
+            //    orgCodeTxt.Text = "hello";
+            //}
         }
 
         protected void orgNameDrop_SelectedIndexChanged(object sender, EventArgs e)
         {
             orgCodeTxt.Text = WebDataCenter.OrgDict[orgNameDrop.SelectedValue.Trim()];
+            orgCodeTxt.DataBind();
         }
     }
     

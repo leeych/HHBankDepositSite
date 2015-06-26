@@ -1,13 +1,13 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AdminMasterPage.master.cs" Inherits="HHBankDepositSite.Admin.AdminMasterPage" %>
 
+<%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI" TagPrefix="asp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>“保利存”后台管理系统</title>
-
 <link rel="stylesheet" type="text/css" href="../CSS/AdminStyle.css" />
-        
 <script type="text/javascript">
     function navigateTo(url) {
         window.location = url;
@@ -61,7 +61,9 @@
     <asp:Panel ID="AdminAccessKeyPanel" runat="server">
     </asp:Panel>
        <asp:SiteMapDataSource id="AdminMenuSource" runat="server" StartFromCurrentNode="false" ShowStartingNode="true" SiteMapProvider="AdminSiteMapProvider" />
-        
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
         <asp:ContentPlaceHolder id="AdminContentPlaceHolder" runat="server">
         </asp:ContentPlaceHolder>
 

@@ -49,23 +49,29 @@
                 <tr>
                     <td align="right"><span class="red-star">*</span><span class="label">约定存期：</span></td>
                     <td align="left">
-                        <%--<span>--%>
-                                    <asp:DropDownList ID="periodDrop" runat="server" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True" CssClass="aspTextBox">
-                                        <asp:ListItem>三个月</asp:ListItem>
-                                        <asp:ListItem>六个月</asp:ListItem>
-                                        <asp:ListItem>一年</asp:ListItem>
-                                        <asp:ListItem>二年</asp:ListItem>
-                                        <asp:ListItem>三年</asp:ListItem>
-                                        <asp:ListItem>五年</asp:ListItem>
-                                    </asp:DropDownList>
-                        <%--<span><asp:RequiredFieldValidator runat="server" ID="periodDropValidator" ControlToValidate="periodDrop" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>--%>
+                        <asp:DropDownList ID="periodDrop" runat="server" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True" CssClass="aspTextBox">
+                            <asp:ListItem>三个月</asp:ListItem>
+                            <asp:ListItem>六个月</asp:ListItem>
+                            <asp:ListItem>一年</asp:ListItem>
+                            <asp:ListItem>二年</asp:ListItem>
+                            <asp:ListItem>三年</asp:ListItem>
+                            <asp:ListItem>五年</asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                     <td align="right"><span class="red-star">*</span><span class="label">约定利率：</span></td>
                     <td align="left">
-                        <span>
-                              <asp:TextBox ID="rateTxt" runat="server" Width="131px" OnTextChanged="rateTxt_TextChanged" CssClass="aspTextBoxShort" ReadOnly="True"></asp:TextBox>
-                        </span>
-                        <span class="per-cent">%</span></td>
+                        <asp:UpdatePanel ID="UpdatePanelRate" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <span>
+                                  <asp:TextBox ID="rateTxt" runat="server" Width="131px" CssClass="aspTextBoxShort" ReadOnly="True"></asp:TextBox>
+                                </span>
+                                <span class="per-cent">%</span></td>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="periodDrop" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+                        </td>
                     <td align="right"><span class="red-star">*</span><span class="label">存入金额：</span></td>
                     <td align="left"><span><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="moneyValidator" ControlToValidate="moneyTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span></td>
                 </tr>
@@ -73,8 +79,17 @@
                     <td align="right"><span class="red-star">*</span><span class="lable">存入日期：</span></td>
                     <td align="left">
                         <div style="display: inline;">
-                            <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox" ReadOnly="True" Width="130px"></asp:TextBox>
-                            <img src="Images/calendar.png" width="24px" height="24px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/>
+<%--                            <asp:UpdatePanel ID="UpdatePanelDate" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>--%>
+                                    <span>
+                                    <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox" ReadOnly="True" Width="130px"></asp:TextBox>
+                                    </span>
+                                    <span><img src="Images/calendar.png" width="24px" height="24px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/></span>
+<%--                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="Calendar1" />
+                                </Triggers>
+                                </asp:UpdatePanel>--%>
                             <div id="datePicker">
                                 <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged1" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnDayRender="Calendar1_DayRender">
                                 <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
@@ -106,7 +121,16 @@
                 <td align="left"><asp:TextBox ID="IDCardTxt" runat="server" CssClass="aspTextBox" MaxLength="18"></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="idValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="IDCardTxt"></asp:RequiredFieldValidator></span></td>
                 <td align="right"><span class="red-star">*</span><span class="label">经办柜员号：</span></td>
                 <td align="left">
-                    <asp:TextBox ID="tellerNameTxt" runat="server" CssClass="aspTextBox" Width="80px" MaxLength="6" ReadOnly="true"></asp:TextBox>
+                <span>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <asp:TextBox ID="tellerNameTxt" runat="server" CssClass="aspTextBox" Width="80px" MaxLength="6" ReadOnly="true"></asp:TextBox>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="tellerCodeDrop" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                    </span>
                     <span><asp:DropDownList ID="tellerCodeDrop" runat="server" Width="80px" CssClass="aspTextBox" AutoPostBack="True" OnSelectedIndexChanged="tellerCodeDrop_SelectedIndexChanged"></asp:DropDownList></span>
                     <span><asp:RequiredFieldValidator ID="tellerNameValidator" runat="server" ControlToValidate="tellerNameTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
                 </td>
