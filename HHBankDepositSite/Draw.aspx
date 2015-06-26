@@ -92,7 +92,8 @@
                 <td align="left">
                     <div style="display: inline;">
                         <span><asp:TextBox ID="drawDateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox" ReadOnly="True" Width="130px"></asp:TextBox></span>
-                        <span><img src="Images/calendar.png" width="24px" height="24px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/></span>
+                        <ajaxtoolkit:calendarextender ID="calendarDrawDate" runat="server" TargetControlID="drawDateTxt" Format="yyyy-MM-dd"></ajaxtoolkit:calendarextender>
+                        <%--<span><img src="Images/calendar.png" width="24px" height="24px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/></span>
                         <div id="datePicker">
                             <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnDayRender="Calendar1_DayRender">
                             <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
@@ -104,7 +105,7 @@
                             <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
                             <WeekendDayStyle BackColor="#CCCCFF" />
                             </asp:Calendar>
-                        </div>
+                        </div>--%>
                     </div>
                     <span><asp:RequiredFieldValidator runat="server" ID="dateValidator" CssClass="validator" ControlToValidate="drawDateTxt" Display="Dynamic" ErrorMessage="必填！"></asp:RequiredFieldValidator></span>
                  </td>

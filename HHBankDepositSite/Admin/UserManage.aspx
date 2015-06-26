@@ -44,6 +44,8 @@
                         <td><asp:DropDownList ID="orgDrop" runat="server" AutoPostBack="True" OnSelectedIndexChanged="orgDrop_SelectedIndexChanged"></asp:DropDownList></td>
                     </tr>
                 </table>
+                <asp:UpdatePanel id="UpdatePanelBankRateTable" runat="server">
+                    <ContentTemplate>
                 <asp:Table ID="tellerTable" runat="server" CellSpacing="3" CellPadding="3" Width="90%" GridLines="Both" BorderColor="Black" BorderStyle="Solid" CssClass="tableTr">
                     <asp:TableHeaderRow ID="resHeader" runat="server" BackColor="#669cc0" ForeColor="#FFFFFF" CssClass="tableHeader">
                         <asp:TableHeaderCell ID="tellerCodeCell" runat="server" Wrap="false" Text="柜员号"></asp:TableHeaderCell>
@@ -112,6 +114,11 @@
                         <asp:TableCell ID="TableCell40" runat="server"></asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>
+                        </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="orgDrop" />
+                    </Triggers>
+                    </asp:UpdatePanel>
             </div>
             <div style="width: 35%; float: right;">
                 <br />
@@ -153,7 +160,16 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td><asp:TextBox ID="orgCodeTxt" runat="server" ReadOnly="true" Visible="false"></asp:TextBox></td>
+                            <td>
+                                <asp:UpdatePanel id="UpdatePanelOrgCode" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                    <asp:TextBox ID="orgCodeTxt" runat="server" ReadOnly="true" Visible="false"></asp:TextBox>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="tellerOrgNameDrop" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                            </td>
                         </tr>
                         <tr>
                             <td><asp:RadioButton ID="addTellerRbn" runat="server" Text="新增" GroupName="TellerManage" /></td>
@@ -167,5 +183,6 @@
             </div>
         </fieldset>
     </div>
+            </div>
 </asp:Content>
 

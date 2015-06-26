@@ -2,6 +2,8 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
+<%--<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>--%>
+
 <%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI" TagPrefix="asp" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -63,8 +65,6 @@
     <asp:Panel ID="AdminAccessKeyPanel" runat="server">
     </asp:Panel>
        <asp:SiteMapDataSource id="AdminMenuSource" runat="server" StartFromCurrentNode="false" ShowStartingNode="true" SiteMapProvider="AdminSiteMapProvider" />
-
-        <%--<cc1:toolkitscriptmanager ID="toolkitScriptManagerAdmin" runat="server"></cc1:toolkitscriptmanager>--%>
         <asp:ScriptManager ID="ScriptManagerAdmin" EnableScriptGlobalization="true" runat="server"></asp:ScriptManager>
         <asp:ContentPlaceHolder id="AdminContentPlaceHolder" runat="server">
         </asp:ContentPlaceHolder>

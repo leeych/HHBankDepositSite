@@ -20,11 +20,11 @@ namespace HHBankDepositSite
             periodDrop_SelectedIndexChanged(sender, e);
         }
 
-        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
-        {
-            drawDateTxt.DataBind();
-            drawDateTxt.Text = Calendar1.SelectedDate.ToString("yyyy-MM-dd");
-        }
+        //protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        //{
+        //    drawDateTxt.DataBind();
+        //    drawDateTxt.Text = Calendar1.SelectedDate.ToString("yyyy-MM-dd");
+        //}
 
         protected void calcBtn_Click(object sender, EventArgs e)
         {

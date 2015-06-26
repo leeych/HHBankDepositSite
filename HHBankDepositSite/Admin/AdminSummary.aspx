@@ -1,13 +1,45 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterPage.Master" AutoEventWireup="true" CodeBehind="AdminSummary.aspx.cs" Inherits="HHBankDepositSite.Admin.AdminSummary" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 <%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminHeader" runat="server">
     <style type="text/css">
         .auto-style1 {
             width: 64px;
         }
+.myCalendar .ajax__calendar_container
+{
+    border:1px solid #646464;
+    background-color:Lemonchiffon;
+    width:200px;
+    text-align:center;
+    color:purple;   
+    }
+    .myCalendar .ajax__calendar_header
+    {
+        background-color:#0060F8;
+        color:white;
+    }
+.myCalendar .ajax__calendar_other .ajax__calendar_day
+{
+    font-size:12px;
+    color:#faac38;
+}
+.myCalendar .ajax__calendar_other .ajax__calendar_year
+{
+    color:green;
+}
+.myCalendar .ajax__calendar_hover .ajax__calendar_day
+{
+color:red;
+background-color:yellow;
+}
+
+.myCalendar .ajax__calendar_active .ajax__calendar_day
+{
+color:maroon;
+font-weight:bolder;
+background-color:#e8e8e8;
+}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="AdminContentPlaceHolder" runat="server">
@@ -34,15 +66,15 @@
 
                 <td>起始日期：</td>
                 <td>
-                    <asp:TextBox ID="startDateTxt" runat="server"></asp:TextBox>
-                    <cc1:calendarextender id="calendarExtenderStart" runat="server" TargetControlID="startDateTxt"
-                         Format="yyyy-MM-dd"></cc1:calendarextender>
+                    <asp:TextBox ID="startDateTxt" runat="server" ReadOnly="true"></asp:TextBox>
+                    <ajaxToolkit:calendarextender id="calendarExtenderStart" runat="server" TargetControlID="startDateTxt"
+                         Format="yyyy-MM-dd"></ajaxToolkit:calendarextender>
                 </td>
                 <td></td>
                 <td>截止日期：</td>
                 <td>
-                    <asp:TextBox ID="endDateTxt" runat="server"></asp:TextBox>
-                    <cc1:calendarextender ID="calendarExtenderEnd" runat="server" TargetControlID="endDateTxt"></cc1:calendarextender>
+                    <asp:TextBox ID="endDateTxt" runat="server" ReadOnly="true"></asp:TextBox>
+                    <ajaxToolkit:calendarextender ID="calendarExtenderEnd" runat="server" TargetControlID="endDateTxt" Format="yyyy-MM-dd"></ajaxToolkit:calendarextender>
                 </td>
                 <td><asp:Button ID="searchBtn" runat="server" Text="查询" /></td>
             </tr>

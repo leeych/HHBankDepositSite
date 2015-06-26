@@ -52,10 +52,10 @@ namespace HHBankDepositSite
         protected void rateTxt_TextChanged(object sender, EventArgs e)
         { }
 
-        protected void Calendar1_SelectionChanged1(object sender, EventArgs e)
-        {
-            dateTxt.Text = Calendar1.SelectedDate.ToString("yyyy-MM-dd");
-        }
+        //protected void Calendar1_SelectionChanged1(object sender, EventArgs e)
+        //{
+        //    dateTxt.Text = Calendar1.SelectedDate.ToString("yyyy-MM-dd");
+        //}
 
         protected void depositBtn_Click(object sender, EventArgs e)
         {

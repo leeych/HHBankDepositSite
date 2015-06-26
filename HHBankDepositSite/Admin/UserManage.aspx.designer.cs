@@ -58,6 +58,15 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.DropDownList orgDrop;
         
         /// <summary>
+        /// UpdatePanelBankRateTable 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelBankRateTable;
+        
+        /// <summary>
         /// tellerTable 控件。
         /// </summary>
         /// <remarks>
@@ -623,6 +632,15 @@ namespace HHBankDepositSite.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList tellerOrgNameDrop;
+        
+        /// <summary>
+        /// UpdatePanelOrgCode 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelOrgCode;
         
         /// <summary>
         /// orgCodeTxt 控件。
