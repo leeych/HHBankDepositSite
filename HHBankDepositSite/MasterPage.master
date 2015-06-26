@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>欢迎使用淮河银行“保利存”管理系统</title>
+    <title>淮河银行“保利存”管理系统</title>
     <link rel="stylesheet" type="text/css" href="CSS/masterPage.css" />
     <script type="text/javascript">
         function navigateTo(url) {
@@ -18,8 +18,7 @@
 <body>
     <div id="whole">
     <form id="form1" runat="server">
-        <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
-        <div><img src="./Images/logo.jpg" alt="logo" style="width: 100%; height: 100px; opacity: 1;"/></div>
+        <div><img src="./Images/logo.jpg" alt="logo" style="width:100%; height: 100px; opacity: 1;"/></div>
         <div class="background">
             <asp:Menu ID="NavigationMenu" CssClass="NavigationMenu"
                 StaticDisplayLevels="2" DynamicHorizontalOffset="1"

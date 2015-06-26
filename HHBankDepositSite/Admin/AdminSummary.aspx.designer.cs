@@ -130,13 +130,22 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TextBox dueDrawMoneyTxt;
         
         /// <summary>
-        /// remainTxt 控件。
+        /// remainNumTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox remainTxt;
+        protected global::System.Web.UI.WebControls.TextBox remainNumTxt;
+        
+        /// <summary>
+        /// remainMoneyTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox remainMoneyTxt;
         
         /// <summary>
         /// marginNumTxt 控件。
@@ -155,5 +164,41 @@ namespace HHBankDepositSite.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox marginMoneyTxt;
+        
+        /// <summary>
+        /// sysNumTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox sysNumTxt;
+        
+        /// <summary>
+        /// sysMoneyTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox sysMoneyTxt;
+        
+        /// <summary>
+        /// calcNumTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox calcNumTxt;
+        
+        /// <summary>
+        /// calcMoneyTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox calcMoneyTxt;
     }
 }

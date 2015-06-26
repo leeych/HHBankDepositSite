@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterPage.Master" AutoEventWireup="true" CodeBehind="AdminSummary.aspx.cs" Inherits="HHBankDepositSite.Admin.AdminSummary" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminHeader" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            width: 64px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="AdminContentPlaceHolder" runat="server">
    
@@ -7,7 +12,7 @@
         <table>
             <tr>
                 <td>机构名：</td>
-                <td><asp:DropDownList ID="orgNameDrop" runat="server" AutoPostBack="true"></asp:DropDownList></td>
+                <td><asp:DropDownList ID="orgNameDrop" runat="server" AutoPostBack="true" OnSelectedIndexChanged="orgNameDrop_SelectedIndexChanged"></asp:DropDownList></td>
                 <td>机构号：</td>
                 <td><asp:TextBox ID="orgCodeTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                 <td>起始日期：</td>
@@ -27,7 +32,7 @@
                     <td>金额：<asp:TextBox ID="newMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                     <td></td>
 
-                    <td>部提</td>
+                    <td class="auto-style1">部提</td>
                     <td>笔数：<asp:TextBox ID="adNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                     <td>金额：<asp:TextBox ID="adMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                 </tr>
@@ -36,17 +41,27 @@
                     <td>笔数：<asp:TextBox ID="drawNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                     <td>金额：<asp:TextBox ID="drawMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                     <td></td>
-                    <td>到期支取</td>
+                    <td class="auto-style1">到期支取</td>
                     <td>笔数：<asp:TextBox ID="dueDrawNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                     <td>金额：<asp:TextBox ID="dueDrawMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td>余留本金：</td>
-                    <td><asp:TextBox ID="remainTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td>余留本金</td>
+                    <td>笔数：<asp:TextBox ID="remainNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td>金额：<asp:TextBox ID="remainMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                     <td></td>
-                    <td>补息</td>
+                    <td class="auto-style1">补息</td>
                     <td>笔数：<asp:TextBox ID="marginNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                     <td>金额：<asp:TextBox ID="marginMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>系统利息</td>
+                    <td>笔数：<asp:TextBox ID="sysNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td>金额：<asp:TextBox ID="sysMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td></td>
+                    <td>靠档利息</td>
+                    <td>笔数：<asp:TextBox ID="calcNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td>金额：<asp:TextBox ID="calcMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                 </tr>
             </table>
         </fieldset>
