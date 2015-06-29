@@ -35,8 +35,8 @@ namespace HHBankDepositSite.Admin
         protected void searchBtn_Click(object sender, EventArgs e)
         {
             string orgCode = orgCodeTxt.Text.Trim();
-            DateTime startDate = DateTime.Parse(startDateTxt.Text.Trim());
-            DateTime endDate = DateTime.Parse(endDateTxt.Text.Trim());
+            DateTime startDate = DateTime.Parse(startDateAdminTxt.Text.Trim());
+            DateTime endDate = DateTime.Parse(endDateAdminTxt.Text.Trim());
             List<SearchInfo> recordList = BizHandler.Handler.SearchRecordByDuration(startDate, endDate, orgCode);
             if (recordList == null || recordList.Count == 0)
             {
@@ -51,8 +51,8 @@ namespace HHBankDepositSite.Admin
 
         private bool ValidatePage()
         {
-            DateTime startDate = DateTime.Parse(startDateTxt.Text.Trim());
-            DateTime endDate = DateTime.Parse(endDateTxt.Text.Trim());
+            DateTime startDate = DateTime.Parse(startDateAdminTxt.Text.Trim());
+            DateTime endDate = DateTime.Parse(endDateAdminTxt.Text.Trim());
             if (startDate > endDate)
             {
                 TMessageBox.ShowMsg(this, "DateTimeValidate", "起始时间不能大于结束时间！");

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="Deposit.aspx.cs" Inherits="HHBankDepositSite.Deposit" MaintainScrollPositionOnPostback="true" %>
 
-<%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI" TagPrefix="asp" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <script type="text/javascript" language="javascript">
             function displayCalendar() {
@@ -23,11 +23,6 @@
                 else {
                     window.event.returnValue = false;
                 }
-            }
-
-            function mouse_leave(){
-                var t = '<%= TextInputCheck() %>'
-                alert(t)
             }
 
     </script>
@@ -60,6 +55,7 @@
                     </td>
                     <td align="right"><span class="red-star">*</span><span class="label">约定利率：</span></td>
                     <td align="left">
+                                  
                         <asp:UpdatePanel ID="UpdatePanelRate" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <span>
@@ -80,7 +76,7 @@
                     <td align="left">
                         <div style="display: inline;">
                             <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox"></asp:TextBox>
-                            <ajaxtoolkit:calendarextender ID="calenderDepositDate" runat="server" TargetControlID="dateTxt" Format="yyyy-MM-dd"></ajaxtoolkit:calendarextender>
+                            <ajaxToolkit:CalendarExtender ID="CalendarExtenderDate" runat="server" TargetControlID="dateTxt" Format="yyyy-MM-dd"></ajaxToolkit:CalendarExtender>
                             <span><asp:RequiredFieldValidator runat="server" ID="depositDateValidator" ControlToValidate="dateTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
                         </div>
                     </td>
@@ -109,7 +105,9 @@
                             <asp:AsyncPostBackTrigger ControlID="tellerCodeDrop" />
                         </Triggers>
                     </asp:UpdatePanel>
+                    
                     </span>
+                    
                     <span><asp:DropDownList ID="tellerCodeDrop" runat="server" Width="80px" CssClass="aspTextBox" AutoPostBack="True" OnSelectedIndexChanged="tellerCodeDrop_SelectedIndexChanged"></asp:DropDownList></span>
                     <span><asp:RequiredFieldValidator ID="tellerNameValidator" runat="server" ControlToValidate="tellerNameTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
                 </td>

@@ -176,11 +176,11 @@ namespace HHBankDepositSite
                     }
                 }
             }
-            else
-            {
-                TMessageBox.ShowMsg(this, "StartOrEndDateInvalid", "请输入合法的开始日期/截止日期！");
-                return;
-            }
+            //else
+            //{
+            //    TMessageBox.ShowMsg(this, "StartOrEndDateInvalid", "请输入合法的开始日期/截止日期！");
+            //    return;
+            //}
         }
 
         private void ShowRecord(List<SearchInfo> infoList)

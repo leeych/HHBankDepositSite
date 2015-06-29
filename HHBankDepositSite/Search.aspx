@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="HHBankDepositSite.Search" %>
-<%--<%@ Register Assembly="HHBankDepositSite" Namespace="HHBankDepositSite" TagPrefix="Lee"%>--%>
-<%--<%@ Register Assembly="jzlib" Namespace="jzlib.asp.net.Controls" TagPrefix="Lee" %>--%>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .tableHeader {
@@ -46,10 +47,11 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
+                
                 <td>起始日期：</td>
                 <td align="left">
                     <span>
-                        <asp:TextBox runat="server" ID="startDateTxt" CssClass="aspTextBoxShort" ReadOnly="true"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="startDateTxt" CssClass="aspTextBoxShort"></asp:TextBox>
                         <ajaxtoolkit:calendarextender id="calendarExStartDate" runat="server" TargetControlID="startDateTxt" Format="yyyy-MM-dd"></ajaxtoolkit:calendarextender>
                     </span>
                     <span><asp:RangeValidator runat="server" ID="startDateValidator" ControlToValidate="startDateTxt" MaximumValue="2020-06-01" MinimumValue="2015-06-01" ErrorMessage="您输入的日期有误！" CssClass="validator"></asp:RangeValidator></span>
