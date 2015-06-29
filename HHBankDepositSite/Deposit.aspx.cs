@@ -17,8 +17,16 @@ namespace HHBankDepositSite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            periodDrop_SelectedIndexChanged(sender, e);
-            GenTellerCodeDropDownList(Session["UserName"].ToString());
+            if (Session["UserName"] == null)
+            {
+                Response.Redirect("~/Login.apsx");
+                return;
+            }
+            if (!IsPostBack)
+            {
+                periodDrop_SelectedIndexChanged(sender, e);
+                GenTellerCodeDropDownList(Session["UserName"].ToString());
+            }
         }
 
         protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)

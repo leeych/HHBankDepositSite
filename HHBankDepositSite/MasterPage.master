@@ -63,7 +63,7 @@
        <asp:SiteMapDataSource id="MenuSource" runat="server" StartFromCurrentNode="false" ShowStartingNode="true" />
 
         <div id="content" style="width:inherit; height:inherit;">
-            <asp:ScriptManager ID="ScriptManagerClient" runat="server" EnableScriptGlobalization="True"></asp:ScriptManager>
+            <ajaxtoolkit:toolkitscriptmanager id="tksmn" runat="server" enableScriptGlobalization="true"></ajaxtoolkit:toolkitscriptmanager>
             <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>

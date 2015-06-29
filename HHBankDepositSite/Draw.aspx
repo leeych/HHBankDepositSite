@@ -90,29 +90,13 @@
             <tr>
                 <td align="right"><span class="red-star">*</span><span class="label">支取日期：</span></td>
                 <td align="left">
-                    <div style="display: inline;">
-                        <span><asp:TextBox ID="drawDateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox" ReadOnly="True" Width="130px"></asp:TextBox></span>
-                        <ajaxtoolkit:calendarextender ID="calendarDrawDate" runat="server" TargetControlID="drawDateTxt" Format="yyyy-MM-dd"></ajaxtoolkit:calendarextender>
-                        <%--<span><img src="Images/calendar.png" width="24px" height="24px" alt="Calendar" onclick="displayCalendar()" style="vertical-align: middle;"/></span>
-                        <div id="datePicker">
-                            <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnDayRender="Calendar1_DayRender">
-                            <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
-                            <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
-                            <OtherMonthDayStyle ForeColor="#999999" />
-                            <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-                            <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
-                            <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
-                            <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
-                            <WeekendDayStyle BackColor="#CCCCFF" />
-                            </asp:Calendar>
-                        </div>--%>
-                    </div>
-                    <span><asp:RequiredFieldValidator runat="server" ID="dateValidator" CssClass="validator" ControlToValidate="drawDateTxt" Display="Dynamic" ErrorMessage="必填！"></asp:RequiredFieldValidator></span>
+                        <span><asp:TextBox ID="drawDateTxt" runat="server" CssClass="aspTextBox"></asp:TextBox><asp:RequiredFieldValidator runat="server" ID="dateValidator" CssClass="validator" ControlToValidate="drawDateTxt" Display="Dynamic" ErrorMessage="必填！"></asp:RequiredFieldValidator></span>
+                        <span></span>
+                        <span><ajaxtoolkit:calendarextender ID="calendarDrawDate" runat="server" TargetControlID="drawDateTxt" Format="yyyy-MM-dd"></ajaxtoolkit:calendarextender></span>
                  </td>
                 <td align="left"></td>
                 <td align="right"><span class="red-star">*</span><span class="label">支取金额：</span></td>
                 <td align="left"><span><asp:TextBox runat="server" ID="moneyDrawTxt" CssClass="aspTextBox"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="moneyValidator" CssClass="validator" ControlToValidate="moneyDrawTxt" Display="Dynamic" ErrorMessage="必填！"></asp:RequiredFieldValidator></span></td>
-                <%--<td align="left"></td>--%>
                 <td align="center" colspan="2"><asp:Button ID="calcBtn" runat="server" Text="计算" Height="30px" Width="100px" CssClass="aspBtn" OnClick="calcBtn_Click" /></td>
 
             </tr>

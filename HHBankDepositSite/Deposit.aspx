@@ -79,7 +79,7 @@
                     <td align="right"><span class="red-star">*</span><span class="lable">存入日期：</span></td>
                     <td align="left">
                         <div style="display: inline;">
-                            <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox>
+                            <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox"></asp:TextBox>
                             <ajaxtoolkit:calendarextender ID="calenderDepositDate" runat="server" TargetControlID="dateTxt" Format="yyyy-MM-dd"></ajaxtoolkit:calendarextender>
                             <span><asp:RequiredFieldValidator runat="server" ID="depositDateValidator" ControlToValidate="dateTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
                         </div>

@@ -79,8 +79,6 @@ namespace HHBankDepositSite
             param.ProtocolID = protocolIdTxt.Text.Trim();
             param.BillAccount = billAccountTxt.Text.Trim();
             param.ClientID = idCardTxt.Text.Trim();
-            //param.StartDate = DateTime.Parse(startDateTxt.Text.Trim());
-            //param.EndDate = DateTime.Parse(endDateTxt.Text.Trim());
             DateTime startDate = new DateTime();
             DateTime endDate = new DateTime();
             if (string.IsNullOrEmpty(param.ProtocolID) && string.IsNullOrEmpty(param.BillAccount) 

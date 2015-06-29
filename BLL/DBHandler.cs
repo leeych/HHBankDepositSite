@@ -689,6 +689,12 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        /// 查询指定协议编号的“保利存”记录
+        /// </summary>
+        /// <param name="protocolId">协议编号</param>
+        /// <param name="orgCode">机构号</param>
+        /// <returns></returns>
         public SearchInfo GetSearchRecordByProtocolID(string protocolId, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
@@ -728,6 +734,12 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        /// 查询指定存单账号的“保利存”存款记录
+        /// </summary>
+        /// <param name="account">存单账号</param>
+        /// <param name="orgCode">机构号</param>
+        /// <returns></returns>
         public SearchInfo GetSearchRecordByBillAccount(string account, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
@@ -778,7 +790,12 @@ namespace BLL
                 return null;
             }
         }
-
+        /// <summary>
+        /// 查询指定身份证号码在本机构办理保利存记录
+        /// </summary>
+        /// <param name="idCard"></param>
+        /// <param name="orgCode"></param>
+        /// <returns></returns>
         public List<SearchInfo> GetSearchRecordByIDCard(string idCard, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
@@ -836,10 +853,17 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        /// 查询指定期限内的所有交易记录
+        /// </summary>
+        /// <param name="start">起始时间</param>
+        /// <param name="end">截止时间</param>
+        /// <param name="orgCode">机构号</param>
+        /// <returns>所有交易记录列表</returns>
         public List<SearchInfo> GetSearchRecordByDuration(DateTime start, DateTime end, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"select * from {0} where DepositDate between '{1}' and '{2}' and 1=1";
+            string sql = @"select * from {0} where DepositDate between '{1}' and '{2}' and 1=1 order by ProtocolID asc";
             string sqlString = string.Format(sql, tableName, start.ToString("yyyy-MM-dd"), end.ToString("yyyy-MM-dd"));
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
             {
@@ -861,6 +885,7 @@ namespace BLL
                         info.BindAccount = dr["BindAccount"].ToString();
                         info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
                         info.TellerCode = dr["TellerCode"].ToString();
+                        info.TellerName = dr["TellerName"].ToString();
                         info.ExecRate = new BankRate
                         {
                             CurrRate = decimal.Parse(dr["CurrentRate"].ToString()),
@@ -892,6 +917,11 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        /// 查询机构名
+        /// </summary>
+        /// <param name="orgCode"></param>
+        /// <returns></returns>
         public string GetOrgName(string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
@@ -901,6 +931,11 @@ namespace BLL
             return orgName;
         }
 
+        /// <summary>
+        /// 查询指定机构的所有柜员
+        /// </summary>
+        /// <param name="orgCode"></param>
+        /// <returns></returns>
         public List<TellerInfo> GetTellerInfoList(string orgCode)
         {
             string sql = @"select * from TellerInfo where OrgCode='{0}' and 1=1";
@@ -922,6 +957,11 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        /// 柜员调动
+        /// </summary>
+        /// <param name="teller"></param>
+        /// <returns></returns>
         public bool ChangeTellerOrg(TellerInfo teller)
         {
             string sql = @"update TellerInfo set OrgCode='{0}' where TellerCode='{1}' and 1=1";
@@ -934,6 +974,11 @@ namespace BLL
             return false;
         }
 
+        /// <summary>
+        /// 新增柜员
+        /// </summary>
+        /// <param name="teller"></param>
+        /// <returns></returns>
         public bool AddTellerInfo(TellerInfo teller)
         {
             string sql = @"if not exists (select * from TellerInfo where TellerCode='{0}') insert into TellerInfo(TellerCode, TellerName, OrgCode) values('{1}','{2}','{3}')";
@@ -946,6 +991,13 @@ namespace BLL
             return false;
         }
 
+        /// <summary>
+        /// 密码重置
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="orgCode"></param>
+        /// <returns></returns>
         public bool ResetUserPassword(string userName, string password, string orgCode)
         {
             string sql = @"update UserInfo set Password='{0}' where UserName='{1}' and OrgCode='{2}' and 1=1";
@@ -958,6 +1010,10 @@ namespace BLL
             return false;
         }
 
+        /// <summary>
+        /// 查询所有利率
+        /// </summary>
+        /// <returns></returns>
         public List<BankRateInfo> GetAllBankRate()
         {
             string sql = @"select * from BankRateInfo where 1=1";
@@ -981,6 +1037,10 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        /// 查询所有支行
+        /// </summary>
+        /// <returns></returns>
         public List<OrgInfo> GetOrgInfoList()
         {
             string sql = @"select * from OrgInfo where 1=1 order by OrgCode";
@@ -1000,6 +1060,10 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        /// 查询所有柜员信息
+        /// </summary>
+        /// <returns></returns>
         public List<TellerInfo> GetAllTellerInfo()
         {
             string sql = @"select * from TellerInfo where 1=1";
@@ -1019,6 +1083,10 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        /// 查询所有利率表
+        /// </summary>
+        /// <returns></returns>
         public List<BankRateInfo> GetAllBankRateInfoList()
         {
             string sql = @"select * from BankRateInfo where 1=1 order by EffectDate desc";
@@ -1042,7 +1110,12 @@ namespace BLL
                 return rateList;
             }
         }
-
+        
+        /// <summary>
+        /// 新增利率表
+        /// </summary>
+        /// <param name="rateInfo"></param>
+        /// <returns></returns>
         public bool AddBankRateInfo(BankRateInfo rateInfo)
         {
             string sql = @"insert into BankRateInfo(EffectDate,CurrentRate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate) values('{0}',{1},{2},{3},{4},{5},{6},{7})";
@@ -1056,6 +1129,13 @@ namespace BLL
             return false;
         }
 
+        /// <summary>
+        /// 新增柜员
+        /// </summary>
+        /// <param name="tellerCode"></param>
+        /// <param name="tellerName"></param>
+        /// <param name="orgCode"></param>
+        /// <returns></returns>
         public bool AddNewTeller(string tellerCode, string tellerName, string orgCode)
         {
             string sql = @"insert into TellerInfo(TellerCode,TellerName,OrgCode,Role) values('{0}','{1}','{2}',0)";
@@ -1068,6 +1148,13 @@ namespace BLL
             return false;
         }
 
+        /// <summary>
+        /// 调动柜员
+        /// </summary>
+        /// <param name="tellerCode"></param>
+        /// <param name="tellerName"></param>
+        /// <param name="orgCode"></param>
+        /// <returns></returns>
         public bool ChangeTellerOrg(string tellerCode, string tellerName, string orgCode)
         {
             string sql = @"update TellerInfo set OrgCode='{0}' where TellerCode='{1}' and TellerName='{2}'";
@@ -1080,9 +1167,74 @@ namespace BLL
             return false;
         }
 
-        //public List<SearchInfo> GetAllOrgRecord(DateTime start, DateTime end)
-        //{ 
-        //    string sql = @"select * from {0} where DepositDate between '{1}' and '{2}' union select * from {3}"
-        //}
+        public List<SearchInfo> GetAllOrgRecord(DateTime start, DateTime end)
+        {
+            string sql = @"select * from {0} where DepositDate between '{1}' and '{2}'";
+            string startStr = start.ToString("yyyy-MM-dd");
+            string endStr = end.ToString("yyyy-MM-dd");
+            StringBuilder sqlSb = new StringBuilder();
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151477"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151479"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151481"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151483"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151485"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151487"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151489"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151491"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151493"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151501"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151503"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151505"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151507"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151511"], startStr, endStr);
+            sqlSb.AppendFormat(sql, Constants.OrgCodeToTableName["3404157871"], startStr, endStr);
+            string sqlString = sqlSb.ToString();
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
+            {
+                List<SearchInfo> infoList = new List<SearchInfo>();
+                while (dr.Read())
+                {
+                    SearchInfo info = new SearchInfo();
+                    info.ProtocolID = dr["ProtocolID"].ToString();
+                    info.BillAccount = dr["BillAccount"].ToString();
+                    info.BillCode = dr["BillCode"].ToString();
+                    info.DepositDate = DateTime.Parse(dr["DepositDate"].ToString());
+                    info.DepositMoney = decimal.Parse(dr["DepositMoney"].ToString());
+                    info.BillPeriod = (Period)int.Parse(dr["BillPeriod"].ToString());
+                    info.ClientID = dr["DepositorIDCard"].ToString();
+                    info.ClientName = dr["DepositorName"].ToString();
+                    info.TellerCode = dr["TellerCode"].ToString();
+                    info.TellerName = dr["TellerName"].ToString();
+                    info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
+                    info.BindAccount = dr["BindAccount"].ToString();
+
+                    info.ExecRate = new BankRate
+                    {
+                        CurrRate = decimal.Parse(dr["CurrentRate"].ToString()),
+                        D01 = decimal.Parse(dr["D01Rate"].ToString()),
+                        M03 = decimal.Parse(dr["M03Rate"].ToString()),
+                        M06 = decimal.Parse(dr["M06Rate"].ToString()),
+                        Y01 = decimal.Parse(dr["Y01Rate"].ToString()),
+                        Y02 = decimal.Parse(dr["Y02Rate"].ToString()),
+                        Y03 = decimal.Parse(dr["Y03Rate"].ToString()),
+                        Y05 = decimal.Parse(dr["Y05Rate"].ToString())
+                    };
+
+                    info.FirstDrawDate = (dr["FirstDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FirstDrawDate"].ToString());
+                    info.FirstDrawMoney = (dr["FirstDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstDrawMoney"].ToString());
+                    info.FirstSysInterest = (dr["FirstSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstSysInterest"].ToString());
+                    info.FirstCalcInterest = (dr["FirstCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstCalcInterest"].ToString());
+                    info.FirstMarginInterest = (dr["FirstMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstMarginInterest"].ToString());
+
+                    info.FinalDrawDate = (dr["FinalDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FinalDrawDate"].ToString());
+                    info.FinalDrawMoney = (dr["FinalDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalDrawMoney"].ToString());
+                    info.FinalSysInterest = (dr["FinalSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalSysInterest"].ToString());
+                    info.FinalCalcInterest = (dr["FinalCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalCalcInterest"].ToString());
+                    info.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
+                    infoList.Add(info);
+                }
+                return infoList;
+            }
+        }
     }
 }

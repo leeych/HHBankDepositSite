@@ -40,6 +40,15 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TextBox orgCodeTxt;
         
         /// <summary>
+        /// orgCodeValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator orgCodeValidator;
+        
+        /// <summary>
         /// startDateTxt 控件。
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace HHBankDepositSite.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox startDateTxt;
+        
+        /// <summary>
+        /// startDateValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator startDateValidator;
         
         /// <summary>
         /// calendarExtenderStart 控件。
@@ -65,6 +83,15 @@ namespace HHBankDepositSite.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox endDateTxt;
+        
+        /// <summary>
+        /// endDateValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator endDateValidator;
         
         /// <summary>
         /// calendarExtenderEnd 控件。
@@ -227,5 +254,14 @@ namespace HHBankDepositSite.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox calcMoneyTxt;
+        
+        /// <summary>
+        /// GridView1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

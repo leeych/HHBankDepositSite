@@ -17,6 +17,7 @@ namespace Model
         public string ClientID { get; set; }
         public string BindAccount { get; set; }
         public string TellerCode { get; set; }
+        public string TellerName { get; set; }
         public DrawFlag Status { get; set; }
 
         public DateTime FirstDrawDate { get; set; }

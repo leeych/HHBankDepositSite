@@ -305,7 +305,11 @@ namespace BLL
         {
             if (start.Date > end.Date)
             {
-                return null;
+                return new List<SearchInfo>();
+            }
+            if (orgCode == "3404151476")
+            {
+                return dbHandler.GetAllOrgRecord(start, end);
             }
             return dbHandler.GetSearchRecordByDuration(start, end, orgCode);
         }
@@ -377,6 +381,225 @@ namespace BLL
         public bool ChangeTellerOrg(string tellerCode, string tellerName, string orgCode)
         {
             return dbHandler.ChangeTellerOrg(tellerCode, tellerName, orgCode);
+        }
+
+        public List<SearchInfo> GetRecord(string orgCode, DateTime start, DateTime end)
+        {
+            if (orgCode == "3404151476")
+            {
+                List<SearchInfo> list = dbHandler.GetAllOrgRecord(start, end);
+                return list;
+            }
+            List<SearchInfo> recordList = dbHandler.GetSearchRecordByDuration(start, end, orgCode);
+            return recordList;
+        }
+
+        public static List<ExcelRecordInfo> GenExcelRecordInfoList(List<SearchInfo> sinfoList)
+        {
+            List<ExcelRecordInfo> excelList = new List<ExcelRecordInfo>();
+            for (int i = 0; i < sinfoList.Count; i++)
+            {
+                ExcelRecordInfo record = new ExcelRecordInfo();
+                record.ProtocolID = sinfoList[i].ProtocolID;
+                record.BillAccount = sinfoList[i].BillAccount;
+                record.BillCode = sinfoList[i].BillCode;
+                record.DepositDate = sinfoList[i].DepositDate;
+                record.DepositMoney = sinfoList[i].DepositMoney;
+                record.BillPeriod = GetBillPeriodDesc(sinfoList[i].BillPeriod);
+                record.ClientName = sinfoList[i].ClientName;
+                record.ClientIDCard = sinfoList[i].ClientID;
+                record.DepositStatus = GetDepositStatusDesc(sinfoList[i].Status);
+                record.BindAccount = sinfoList[i].BindAccount;
+                record.DueDate = CalcDueDate(sinfoList[i].DepositDate, sinfoList[i].BillPeriod);
+                record.TellerCode = sinfoList[i].TellerCode;
+
+                record.Y05Rate = sinfoList[i].ExecRate.Y05;
+                record.Y03Rate = sinfoList[i].ExecRate.Y03;
+                record.Y02Rate = sinfoList[i].ExecRate.Y02;
+                record.Y01Rate = sinfoList[i].ExecRate.Y01;
+                record.M06Rate = sinfoList[i].ExecRate.M06;
+                record.M03Rate = sinfoList[i].ExecRate.M03;
+                record.CurrRate = sinfoList[i].ExecRate.CurrRate;
+
+                if (sinfoList[i].Status == DrawFlag.Remain)
+                {
+                    record.RemainMoney = (sinfoList[i].DepositMoney - sinfoList[i].FirstDrawMoney);
+                }
+                else if (sinfoList[i].Status == DrawFlag.Draw)
+                {
+                    record.RemainMoney = decimal.Zero;
+                }
+                else if (sinfoList[i].Status == DrawFlag.Deposit)
+                {
+                    record.RemainMoney = sinfoList[i].DepositMoney;
+                }
+
+                if (sinfoList[i].FirstDrawDate == DateTime.MaxValue)
+                {
+                    record.FirstDrawDate = "NULL";
+                    record.FirstDrawMoney = "NULL";
+                    record.FirstSysInterest = "NULL";
+                    record.FirstCalcInterest = "NULL";
+                    record.FirstMarginInterest = "NULL";
+                }
+                else
+                {
+                    record.FirstDrawDate = sinfoList[i].FirstDrawDate.ToString("yyyy-MM-dd");
+                    record.FirstDrawMoney = sinfoList[i].FirstDrawMoney.ToString("f2");
+                    record.FirstSysInterest = sinfoList[i].FirstSysInterest.ToString("f2");
+                    record.FirstCalcInterest = sinfoList[i].FirstCalcInterest.ToString("f2");
+                    record.FirstMarginInterest = sinfoList[i].FirstMarginInterest.ToString("f2");
+                }
+
+                if (sinfoList[i].FinalDrawDate == DateTime.MaxValue)
+                {
+                    record.FinalDrawDate = "NULL";
+                    record.FinalDrawMoney = "NULL";
+                    record.FinalSysInterest = "NULL";
+                    record.FinalCalcInterest = "NULL";
+                    record.FinalMarginInterest = "NULL";
+                }
+                else
+                {
+                    record.FinalDrawDate = sinfoList[i].FirstDrawDate.ToString("yyyy-MM-dd");
+                    record.FinalDrawMoney = sinfoList[i].FinalDrawMoney.ToString("f2");
+                    record.FinalSysInterest = sinfoList[i].FinalSysInterest.ToString("f2");
+                    record.FinalCalcInterest = sinfoList[i].FinalCalcInterest.ToString("f2");
+                    record.FinalMarginInterest = sinfoList[i].FinalMarginInterest.ToString("f2");
+                }
+                excelList.Add(record);
+            }
+            return excelList;
+        }
+
+        public static AdminSketchInfo GetSummaryInfo(List<SearchInfo> infoList)
+        {
+            AdminSketchInfo sumInfo = new AdminSketchInfo()
+                                            {
+                                                NewRecord = new SumSketch(),
+                                                DRecord = new SumSketch(),
+                                                AdDrawRecord = new SumSketch(),
+                                                DueDrawRecord = new SumSketch(),
+                                                RemainRecord = new SumSketch(),
+                                                SysPayfee = new SumSketch(),
+                                                CalcPayfee = new SumSketch(),
+                                                MarginPayfee = new SumSketch()
+                                            };
+            for (int i = 0; i < infoList.Count; i++)
+            {
+                if (IsDeposit(infoList[i]))
+                {
+                    sumInfo.NewRecord.Num += 1;
+                    sumInfo.NewRecord.Money += infoList[i].DepositMoney;
+                }
+                if (IsRemain(infoList[i]))
+                {
+                    sumInfo.RemainRecord.Num += 1;
+                    sumInfo.RemainRecord.Money += (infoList[i].DepositMoney - infoList[i].FirstDrawMoney);
+                    sumInfo.AdDrawRecord.Num += 1;
+                    sumInfo.AdDrawRecord.Money += infoList[i].FirstDrawMoney;
+                    sumInfo.SysPayfee.Num += 1;
+                    sumInfo.SysPayfee.Money += infoList[i].FirstSysInterest;
+                    sumInfo.CalcPayfee.Num += 1;
+                    sumInfo.CalcPayfee.Money += infoList[i].FirstCalcInterest;
+                    sumInfo.MarginPayfee.Num += 1;
+                    sumInfo.MarginPayfee.Money += infoList[i].FirstMarginInterest;
+                }
+                if (IsDrawAll(infoList[i]))
+                {
+                    sumInfo.DRecord.Num += 1;
+                    sumInfo.DRecord.Money += infoList[i].FinalDrawMoney;
+                    sumInfo.SysPayfee.Num += 1;
+                    sumInfo.SysPayfee.Money += infoList[i].FinalSysInterest;
+                    sumInfo.CalcPayfee.Num += 1;
+                    sumInfo.CalcPayfee.Money += infoList[i].FinalCalcInterest;
+                    sumInfo.MarginPayfee.Num += 1;
+                    sumInfo.MarginPayfee.Money += infoList[i].FinalMarginInterest;
+                    if (IsDueDraw(infoList[i]))
+                    {
+                        sumInfo.DueDrawRecord.Num += 1;
+                        sumInfo.DueDrawRecord.Money += infoList[i].FinalDrawMoney;
+                    }
+                }
+            }
+            return sumInfo;
+        }
+
+        private static bool IsEarlierDraw(DateTime agreed, DateTime actual)
+        {
+            return (actual >= agreed);
+        }
+
+        private static bool IsRemain(SearchInfo info)
+        {
+            if (info.Status == DrawFlag.Remain)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private static bool IsDrawAll(SearchInfo info)
+        {
+            if (info.Status == DrawFlag.Draw)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private static bool IsDeposit(SearchInfo info)
+        {
+            if (info.Status == DrawFlag.Deposit)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private static bool IsDueDraw(SearchInfo info)
+        {
+            if (info.Status == DrawFlag.Draw)
+            {
+                if (info.FinalDrawDate >= CalcDueDate(info.DepositDate, info.BillPeriod))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        private static DateTime CalcDueDate(DateTime depositDate, Period period)
+        {
+            DateTime dt = depositDate;
+            switch (period)
+            {
+                case Period.M03:
+                    dt = depositDate.AddMonths(3);
+                    break;
+                case Period.M06:
+                    dt = depositDate.AddMonths(6);
+                    break;
+                case Period.Y01:
+                    dt = depositDate.AddYears(1);
+                    break;
+                case Period.Y02:
+                    dt = depositDate.AddYears(2);
+                    break;
+                case Period.Y03:
+                    dt = depositDate.AddYears(3);
+                    break;
+                case Period.Y05:
+                    dt = depositDate.AddYears(5);
+                    break;
+                default:
+                    break;
+            }
+            return dt;
         }
 
         public static string GetDepositStatusDesc(DrawFlag flag)
