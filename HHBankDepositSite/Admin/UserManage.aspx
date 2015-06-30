@@ -16,33 +16,49 @@
     <script type="text/javascript" src="../Scripts/jquery-1.7.1.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="AdminContentPlaceHolder" runat="server">
-    <div style="width: 100%">        
+    <div style="width:100%">
+        <br />
         <fieldset>
-            <legend>新增用户</legend>
-            <table>
+            <legend>机构密码重置</legend>
+            <table cellpadding="1px" cellspacing="1px" style="margin:2px 10px" align="center">
                 <tr>
-                    <td>用户名：</td>
-                    <td><asp:TextBox ID="newUserNameTxt" runat="server"></asp:TextBox></td>
-                    <td>密码：</td>
-                    <td><asp:TextBox ID="newPasswordTxt" runat="server"></asp:TextBox></td>
-                    <td>用户级别：</td>
-                    <td><span><asp:RadioButton ID="normalRbn" runat="server" Text="普通用户" /></span>
-                        <span><asp:RadioButton ID="adminRbn" runat="server"  Text="管理员"/></span>
+                    <td align="right">用户名：</td>
+                    <td align="left">
+                        <asp:TextBox ID="userNameTxt" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="userNameValidator" runat="server" ControlToValidate="userNameTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="org"></asp:RequiredFieldValidator>
                     </td>
+                    <td align="right">新密码：</td>
+                    <td align="left">
+                        <asp:TextBox ID="passwordTxt" runat="server" TextMode="Password"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="passwordTxtValidator" runat="server" ControlToValidate="passwordTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="org"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="passwordTxtRegValidator" runat="server" ControlToValidate="passwordTxt" Display="Dynamic" ErrorMessage="密码只能是数字或字母！" ValidationExpression="^[a-zA-Z0-9]+$" CssClass="validator"></asp:RegularExpressionValidator>
+                    </td>
+                    <td align="right">确认密码：</td>
+                    <td align="left">
+                        <asp:TextBox ID="surepwdTxt" runat="server" TextMode="Password"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="surepwdTxtValidator" runat="server" ControlToValidate="surepwdTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="org"></asp:RequiredFieldValidator>
+                        <asp:CompareValidator ID="pwdCompareValidator" runat="server" ControlToCompare="passwordTxt" ControlToValidate="surepwdTxt" ErrorMessage="两次密码不一致！" CssClass="validator"></asp:CompareValidator>
+                    </td>
+                    <td align="center"><asp:Button ID="pwdBtn" runat="server" Text="密码重置" CssClass="aspBtn" OnClick="pwdBtn_Click" ValidationGroup="org"/></td>
                 </tr>
             </table>
         </fieldset>
+        </div>
 
+    <div style="width: 100%">        
         <fieldset>
             <legend>机构管理</legend>
             
             <div style="width: 60%; float: left; text-align: center; vertical-align: middle; padding-left: 30px;">
-                <table>
-                    <tr>
-                        <td>机构名：</td>
-                        <td><asp:DropDownList ID="orgDrop" runat="server" AutoPostBack="True" OnSelectedIndexChanged="orgDrop_SelectedIndexChanged"></asp:DropDownList></td>
-                    </tr>
-                </table>
+                <div style="clear:both;">
+                    <table align="left">
+                        <tr>
+                            <td>机构名：</td>
+                            <td><asp:DropDownList ID="orgDrop" runat="server" AutoPostBack="True" OnSelectedIndexChanged="orgDrop_SelectedIndexChanged"></asp:DropDownList></td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="clear:both;">
                 <asp:UpdatePanel id="UpdatePanelBankRateTable" runat="server">
                     <ContentTemplate>
                 <asp:Table ID="tellerTable" runat="server" CellSpacing="3" CellPadding="3" Width="90%" GridLines="Both" BorderColor="Black" BorderStyle="Solid" CssClass="tableTr">
@@ -118,40 +134,26 @@
                         <asp:AsyncPostBackTrigger ControlID="orgDrop" />
                     </Triggers>
                     </asp:UpdatePanel>
+                 </div>
             </div>
             <div style="width: 35%; float: right;">
                 <br />
                 <fieldset>
-                    <legend>重置密码</legend>
-                    <table cellpadding="1px" cellspacing="1px">
-                        <tr>
-                            <td>用户名：</td>
-                            <td><asp:TextBox ID="userNameTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>新密码：</td>
-                            <td><asp:TextBox ID="passwordTxt" runat="server" TextMode="Password"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>确认密码：</td>
-                            <td><asp:TextBox ID="surepwdTxt" runat="server" TextMode="Password"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="center"><asp:Button ID="pwdBtn" runat="server" Text="密码重置" CssClass="aspBtn" OnClick="pwdBtn_Click"/></td>
-                        </tr>
-                    </table>
-                </fieldset>
-                <br />
-                <fieldset>
                     <legend>柜员管理</legend>
-                    <table cellpadding="1px" cellspacing="1px">
+                    <table cellpadding="5px" cellspacing="5px">
                         <tr>
                             <td>柜员号：</td>
-                            <td><asp:TextBox ID="newTellerCodeTxt" runat="server" MaxLength="6"></asp:TextBox></td>
+                            <td>
+                                <asp:TextBox ID="newTellerCodeTxt" runat="server" MaxLength="6"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="newTellerCodeTxtValidator" runat="server" ControlToValidate="newTellerCodeTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="teller"></asp:RequiredFieldValidator>
+                            </td>
                         </tr>
                         <tr>
                             <td>柜员姓名：</td>
-                            <td><asp:TextBox ID="newTellerNameTxt" runat="server"></asp:TextBox></td>
+                            <td>
+                                <asp:TextBox ID="newTellerNameTxt" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="newTellerNameTxtValidator" runat="server" ControlToValidate="newTellerNameTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="teller"></asp:RequiredFieldValidator>
+                            </td>
                         </tr>
                         <tr>
                             <td>所属机构：</td>
@@ -162,7 +164,8 @@
                             <td>
                                 <asp:UpdatePanel id="UpdatePanelOrgCode" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                    <asp:TextBox ID="orgCodeTxt" runat="server" ReadOnly="true" Visible="false"></asp:TextBox>
+                                        <asp:TextBox ID="orgCodeTxt" runat="server" ReadOnly="true" Visible="false"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="orgCodeHiddenValidator" runat="server" ControlToValidate="orgCodeTxt" Display="Dynamic" ErrorMessage="请选定一个机构！" CssClass="validator" ValidationGroup="teller"></asp:RequiredFieldValidator>
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="tellerOrgNameDrop" />
@@ -175,13 +178,12 @@
                             <td><asp:RadioButton ID="changeTellerRbn" runat="server" Text="调动" GroupName="TellerManage" /></td>
                         </tr>
                         <tr>
-                            <td colspan="2" align="center"><asp:Button ID="tellerBtn" runat="server" Text="确定" CssClass="aspBtn" OnClick="tellerBtn_Click" /></td>
+                            <td colspan="2" align="center"><asp:Button ID="tellerBtn" runat="server" Text="确定" CssClass="aspBtn" OnClick="tellerBtn_Click" ValidationGroup="teller" /></td>
                         </tr>
                     </table>
                 </fieldset>
             </div>
         </fieldset>
     </div>
-            </div>
 </asp:Content>
 

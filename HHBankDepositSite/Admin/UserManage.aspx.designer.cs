@@ -13,40 +13,85 @@ namespace HHBankDepositSite.Admin {
     public partial class UserManage {
         
         /// <summary>
-        /// newUserNameTxt 控件。
+        /// userNameTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox newUserNameTxt;
+        protected global::System.Web.UI.WebControls.TextBox userNameTxt;
         
         /// <summary>
-        /// newPasswordTxt 控件。
+        /// userNameValidator 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox newPasswordTxt;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator userNameValidator;
         
         /// <summary>
-        /// normalRbn 控件。
+        /// passwordTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton normalRbn;
+        protected global::System.Web.UI.WebControls.TextBox passwordTxt;
         
         /// <summary>
-        /// adminRbn 控件。
+        /// passwordTxtValidator 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton adminRbn;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordTxtValidator;
+        
+        /// <summary>
+        /// passwordTxtRegValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator passwordTxtRegValidator;
+        
+        /// <summary>
+        /// surepwdTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox surepwdTxt;
+        
+        /// <summary>
+        /// surepwdTxtValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator surepwdTxtValidator;
+        
+        /// <summary>
+        /// pwdCompareValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator pwdCompareValidator;
+        
+        /// <summary>
+        /// pwdBtn 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button pwdBtn;
         
         /// <summary>
         /// orgDrop 控件。
@@ -571,42 +616,6 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TableCell TableCell40;
         
         /// <summary>
-        /// userNameTxt 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox userNameTxt;
-        
-        /// <summary>
-        /// passwordTxt 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passwordTxt;
-        
-        /// <summary>
-        /// surepwdTxt 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox surepwdTxt;
-        
-        /// <summary>
-        /// pwdBtn 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button pwdBtn;
-        
-        /// <summary>
         /// newTellerCodeTxt 控件。
         /// </summary>
         /// <remarks>
@@ -616,6 +625,15 @@ namespace HHBankDepositSite.Admin {
         protected global::System.Web.UI.WebControls.TextBox newTellerCodeTxt;
         
         /// <summary>
+        /// newTellerCodeTxtValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator newTellerCodeTxtValidator;
+        
+        /// <summary>
         /// newTellerNameTxt 控件。
         /// </summary>
         /// <remarks>
@@ -623,6 +641,15 @@ namespace HHBankDepositSite.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox newTellerNameTxt;
+        
+        /// <summary>
+        /// newTellerNameTxtValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator newTellerNameTxtValidator;
         
         /// <summary>
         /// tellerOrgNameDrop 控件。
@@ -650,6 +677,15 @@ namespace HHBankDepositSite.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox orgCodeTxt;
+        
+        /// <summary>
+        /// orgCodeHiddenValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator orgCodeHiddenValidator;
         
         /// <summary>
         /// addTellerRbn 控件。

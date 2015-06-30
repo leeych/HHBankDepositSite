@@ -1000,8 +1000,8 @@ namespace BLL
         /// <returns></returns>
         public bool ResetUserPassword(string userName, string password, string orgCode)
         {
-            string sql = @"update UserInfo set Password='{0}' where UserName='{1}' and OrgCode='{2}' and 1=1";
-            string sqlString = string.Format(sql, password, userName, orgCode);
+            string sql = @"if exists (select * from UserInfo where UserName='{0}') update UserInfo set Password='{1}' where UserName='{2}' and OrgCode='{3}' and 1=1";
+            string sqlString = string.Format(sql, userName, password, userName, orgCode);
             int rows = SqlHelper.ExecuteSql(sqlString);
             if (rows == 1)
             {
@@ -1138,7 +1138,7 @@ namespace BLL
         /// <returns></returns>
         public bool AddNewTeller(string tellerCode, string tellerName, string orgCode)
         {
-            string sql = @"insert into TellerInfo(TellerCode,TellerName,OrgCode,Role) values('{0}','{1}','{2}',0)";
+            string sql = @"if not exists (select * from TellerInfo) insert into TellerInfo(TellerCode,TellerName,OrgCode,Role) values('{0}','{1}','{2}',0)";
             string sqlString = string.Format(sql, tellerCode, tellerName, orgCode);
             int rows = SqlHelper.ExecuteSql(sqlString);
             if (rows == 1)
@@ -1157,8 +1157,8 @@ namespace BLL
         /// <returns></returns>
         public bool ChangeTellerOrg(string tellerCode, string tellerName, string orgCode)
         {
-            string sql = @"update TellerInfo set OrgCode='{0}' where TellerCode='{1}' and TellerName='{2}'";
-            string sqlString = string.Format(sql, orgCode, tellerCode, tellerName);
+            string sql = @"if exists (select * from TellerInfo where TellerCode='{0}' and TellerName='{1}') update TellerInfo set OrgCode='{2}' where TellerCode='{0}' and TellerName='{1}'";
+            string sqlString = string.Format(sql, tellerCode, tellerName, orgCode);
             int rows = SqlHelper.ExecuteSql(sqlString);
             if (rows == 1)
             {

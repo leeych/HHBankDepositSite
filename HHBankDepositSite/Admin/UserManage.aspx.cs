@@ -38,6 +38,7 @@ namespace HHBankDepositSite.Admin
         {
             string userName = userNameTxt.Text.Trim();
             string password = passwordTxt.Text.Trim();
+
             BizHandler.Handler.ResetUserPassword(userName, password, userName);
             TMessageBox.ShowMsg(this, "Resetpwd", "密码已重置为 " + password + "!");
         }
