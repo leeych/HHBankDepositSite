@@ -58,7 +58,7 @@
             <tr>
                 <td align="right"><span class="label">经办柜员：</span></td>
                 <td><asp:TextBox runat="server" ID="tellerCodeTxt" CssClass="aspTextBox" ReadOnly="True" MaxLength="6" BackColor="#ddf1fe"></asp:TextBox></td>
-                <td><asp:Label runat="server" ID="tellerNameTxt"></asp:Label></td>
+                <td><asp:Label runat="server" ID="tellerNameLabel"></asp:Label></td>
                 <td align="right"><span class="label">补息账号：</span></td>
                 <td colspan="2"><asp:TextBox runat="server" ID="bindAccountTxt" ReadOnly="true" CssClass="aspBillAccount" MaxLength="23" Width="90%" BackColor="#ddf1fe"></asp:TextBox></td>
                 </tr>
@@ -94,7 +94,7 @@
                 <td align="left">
                         <span><asp:TextBox ID="drawDateTxt" runat="server" CssClass="aspTextBox"></asp:TextBox><asp:RequiredFieldValidator runat="server" ID="dateValidator" CssClass="validator" ControlToValidate="drawDateTxt" Display="Dynamic" ErrorMessage="必填！"></asp:RequiredFieldValidator></span>
                         <span></span>
-                        <span><ajaxtoolkit:calendarextender ID="calendarDrawDate" runat="server" TargetControlID="drawDateTxt" Format="yyyy-MM-dd"></ajaxtoolkit:calendarextender></span>
+                        <span><ajaxtoolkit:calendarextender ID="calendarDrawDate" runat="server" TargetControlID="drawDateTxt" Format="yyyy-MM-dd" PopupPosition="BottomLeft"></ajaxtoolkit:calendarextender></span>
                  </td>
                 <td align="left"></td>
                 <td align="right"><span class="red-star">*</span><span class="label">支取金额：</span></td>

@@ -32,6 +32,9 @@ namespace HHBankDepositSite.Admin
                 }
             }
             orgCodeTxt.Visible = false;
+            //adminUserNameTxt.Text = Session["UserName"].ToString();
+            adminUserNameTxt.Text = "3404151476";
+            oldpwdCompareValidator.ValueToCompare = Session["Password"].ToString();
         }
 
         protected void pwdBtn_Click(object sender, EventArgs e)
@@ -113,6 +116,25 @@ namespace HHBankDepositSite.Admin
                     TMessageBox.ShowMsg(this, "ChangeTellerOrg", "修改成功！");
                     // TODO: update tellertable
                 }
+            }
+        }
+
+        protected void adminPwdBtn_Click(object sender, EventArgs e)
+        {
+            string adminUserName = adminUserNameTxt.Text.Trim();
+            string oldpwd = oldpwdTxt.Text.Trim();
+            string newpwd = newpwdTxt.Text.Trim();
+
+            if (BizHandler.Handler.ChangePassword(adminUserName, oldpwd, newpwd) == 1)
+            {
+                TMessageBox.ShowMsg(this, "AdminChangePwd", "密码修改成功！");
+                Session["Password"] = newpwd;
+                return;
+            }
+            else
+            {
+                TMessageBox.ShowMsg(this, "AdminChangePwdFailed", "密码修改失败！请确认原密码后再试！");
+                return;
             }
         }
     }

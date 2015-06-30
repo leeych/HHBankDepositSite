@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="Deposit.aspx.cs" Inherits="HHBankDepositSite.Deposit" MaintainScrollPositionOnPostback="true" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <script type="text/javascript" language="javascript">
             function displayCalendar() {
@@ -76,7 +77,7 @@
                     <td align="left">
                         <div style="display: inline;">
                             <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox"></asp:TextBox>
-                            <ajaxToolkit:CalendarExtender ID="CalendarExtenderDate" runat="server" TargetControlID="dateTxt" Format="yyyy-MM-dd"></ajaxToolkit:CalendarExtender>
+                            <ajaxToolkit:CalendarExtender ID="CalendarExtenderDate" runat="server" TargetControlID="dateTxt" Format="yyyy-MM-dd" PopupPosition="BottomLeft"></ajaxToolkit:CalendarExtender>
                             <span><asp:RequiredFieldValidator runat="server" ID="depositDateValidator" ControlToValidate="dateTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
                         </div>
                     </td>

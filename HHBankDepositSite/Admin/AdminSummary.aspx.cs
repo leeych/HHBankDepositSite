@@ -84,5 +84,10 @@ namespace HHBankDepositSite.Admin
             marginNumTxt.Text = info.MarginPayfee.Num.ToString();
             marginMoneyTxt.Text = info.MarginPayfee.Money.ToString("f2");
         }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+        }
     }   
 }

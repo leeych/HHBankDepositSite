@@ -30,7 +30,7 @@
                     <div style="display:inline;">
                         <span>
                         <asp:TextBox ID="startDateAdminTxt" runat="server"></asp:TextBox>
-                            <ajaxToolkit:CalendarExtender ID="CalendarExtenderStart" runat="server" TargetControlID="startDateAdminTxt" Format="yyyy-MM-dd"></ajaxToolkit:CalendarExtender>
+                            <ajaxToolkit:CalendarExtender ID="CalendarExtenderStart" runat="server" TargetControlID="startDateAdminTxt" Format="yyyy-MM-dd" PopupPosition="BottomLeft"></ajaxToolkit:CalendarExtender>
                             </span>
                         <span><asp:RequiredFieldValidator ID="startDateValidator" runat="server" ErrorMessage="必填！" Display="Dynamic" CssClass="validator" ControlToValidate="startDateAdminTxt"></asp:RequiredFieldValidator></span>
                     </div>
@@ -39,7 +39,7 @@
                 <td>截止日期：</td>
                 <td>
                     <span><asp:TextBox ID="endDateAdminTxt" runat="server"></asp:TextBox>
-                        <ajaxToolkit:CalendarExtender ID="CalendarExtenderEnd" runat="server" TargetControlID="endDateAdminTxt" Format="yyyy-MM-dd"></ajaxToolkit:CalendarExtender>
+                        <ajaxToolkit:CalendarExtender ID="CalendarExtenderEnd" runat="server" TargetControlID="endDateAdminTxt" Format="yyyy-MM-dd" PopupPosition="BottomLeft"></ajaxToolkit:CalendarExtender>
                     </span>
                     <span><asp:RequiredFieldValidator ID="endDateValidator" runat="server" ErrorMessage="必填！" Display="Dynamic" CssClass="validator" ControlToValidate="endDateAdminTxt"></asp:RequiredFieldValidator></span>
                 </td>
@@ -94,7 +94,7 @@
         <fieldset>
             <legend>明细</legend>
             <div style="text-align:center; vertical-align:middle;">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" EmptyDataText="没有满足条件的记录！" GridLines="Vertical" AllowPaging="True" ShowHeaderWhenEmpty="True">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" EmptyDataText="没有满足条件的记录！" GridLines="Vertical" AllowPaging="True" ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView1_PageIndexChanging">
                     <AlternatingRowStyle BackColor="#DCDCDC" />
                     <Columns>
                         <asp:BoundField DataField="ProtocolID" HeaderText="协议编号"></asp:BoundField>

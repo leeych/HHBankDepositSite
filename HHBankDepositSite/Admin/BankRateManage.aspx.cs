@@ -31,6 +31,10 @@ namespace HHBankDepositSite.Admin
         private void GenAllBankRateRecord()
         {
             List<BankRateInfo> rateList = BizHandler.Handler.GetAllBankRateInfo();
+            if (rateList == null || rateList.Count == 0)
+            {
+                return;
+            }
             for (int i = 0; i < rateList.Count; i++)
             {
                 if (i + 1 > 10)
@@ -74,7 +78,6 @@ namespace HHBankDepositSite.Admin
                 
                 
                 TableRow tr = new TableRow();
-                tr.Style["HorizontalAlign"] = "Center";
                 tr.Cells.Add(dateCell);
                 tr.Cells.Add(currCell);
                 tr.Cells.Add(m03Cell);

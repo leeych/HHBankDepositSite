@@ -13,85 +13,94 @@ namespace HHBankDepositSite.Admin {
     public partial class UserManage {
         
         /// <summary>
-        /// userNameTxt 控件。
+        /// adminUserNameTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox userNameTxt;
+        protected global::System.Web.UI.WebControls.TextBox adminUserNameTxt;
         
         /// <summary>
-        /// userNameValidator 控件。
+        /// oldpwdTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator userNameValidator;
+        protected global::System.Web.UI.WebControls.TextBox oldpwdTxt;
         
         /// <summary>
-        /// passwordTxt 控件。
+        /// oldpwdTxtValidator 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passwordTxt;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator oldpwdTxtValidator;
         
         /// <summary>
-        /// passwordTxtValidator 控件。
+        /// oldpwdCompareValidator 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordTxtValidator;
+        protected global::System.Web.UI.WebControls.CompareValidator oldpwdCompareValidator;
         
         /// <summary>
-        /// passwordTxtRegValidator 控件。
+        /// newpwdTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator passwordTxtRegValidator;
+        protected global::System.Web.UI.WebControls.TextBox newpwdTxt;
         
         /// <summary>
-        /// surepwdTxt 控件。
+        /// newpwdTxtValidator 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox surepwdTxt;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator newpwdTxtValidator;
         
         /// <summary>
-        /// surepwdTxtValidator 控件。
+        /// surenewpwdTxt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator surepwdTxtValidator;
+        protected global::System.Web.UI.WebControls.TextBox surenewpwdTxt;
         
         /// <summary>
-        /// pwdCompareValidator 控件。
+        /// surenewpwdTxtValidator 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator pwdCompareValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator surenewpwdTxtValidator;
         
         /// <summary>
-        /// pwdBtn 控件。
+        /// adminpwdCompareValidator 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button pwdBtn;
+        protected global::System.Web.UI.WebControls.CompareValidator adminpwdCompareValidator;
+        
+        /// <summary>
+        /// adminPwdBtn 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button adminPwdBtn;
         
         /// <summary>
         /// orgDrop 控件。
@@ -614,6 +623,87 @@ namespace HHBankDepositSite.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell TableCell40;
+        
+        /// <summary>
+        /// userNameTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox userNameTxt;
+        
+        /// <summary>
+        /// userNameValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator userNameValidator;
+        
+        /// <summary>
+        /// passwordTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox passwordTxt;
+        
+        /// <summary>
+        /// passwordTxtValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordTxtValidator;
+        
+        /// <summary>
+        /// passwordTxtRegValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator passwordTxtRegValidator;
+        
+        /// <summary>
+        /// surepwdTxt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox surepwdTxt;
+        
+        /// <summary>
+        /// surepwdTxtValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator surepwdTxtValidator;
+        
+        /// <summary>
+        /// pwdCompareValidator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator pwdCompareValidator;
+        
+        /// <summary>
+        /// pwdBtn 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button pwdBtn;
         
         /// <summary>
         /// newTellerCodeTxt 控件。
