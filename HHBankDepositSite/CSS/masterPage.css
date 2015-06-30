@@ -138,7 +138,6 @@ html {
     width: 160px;
     height: 20px;
     padding-top: 3px;
-    behavior: url(ie-css3.htc);
     text-align: center;
     vertical-align: middle;
 }
@@ -151,6 +150,17 @@ html {
     padding-top: 3px;
     text-align: center;
     vertical-align: middle;
+}
+
+.aspBankrate {
+    border-radius: 3px;
+    border: 1px solid #CDCDCD;
+    height: 20px;
+    font-size: 15px;
+    padding-top: 3px;
+    text-align: center;
+    vertical-align: middle;
+    width: 80px;
 }
 
 .aspBillAccount {

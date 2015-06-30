@@ -104,8 +104,6 @@ namespace HHBankDepositSite.Admin
             rate.Rate.Y05 = decimal.Parse(y05RateTxt.Text.Trim()) / 100;
 
             string filePath = ConfigUtil.GetValue(WebConfigName.BankRateTable, "");
-            ;
-            ;
             if (BizHandler.Handler.SetNewBankRateTable(filePath, rate.Rate) && BizHandler.Handler.AddBankRateInfo(rate))
             {
                 TMessageBox.ShowMsg(this, "SetNewBankRate", "利率修改成功！");

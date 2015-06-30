@@ -6,6 +6,8 @@ using System.Web.UI.WebControls;
 
 using BLL;
 using Common;
+using Model;
+using HHBankDepositSite.Data;
 
 namespace HHBankDepositSite
 {
@@ -21,7 +23,24 @@ namespace HHBankDepositSite
             {
                 userNameTxt.Text = Session["UserName"].ToString();
             }
-            TextBoxDataBind();
+            if (!IsPostBack)
+            {
+                string fileName = ConfigUtil.GetValue(WebConfigName.BankRateTable, "");
+                fileName += Session["UserName"].ToString() + ".xml";
+                LoadBankRate(fileName);
+            }
+        }
+
+        private void LoadBankRate(string fileName)
+        {
+            BankRate rate = BizHandler.Handler.GetBankRateTable(fileName);
+            currentRateTxt.Text = (rate.CurrRate * 100).ToString("f3");
+            m03RateTxt.Text = (rate.M03 * 100).ToString("f3");
+            m06RateTxt.Text = (rate.M06 * 100).ToString("f3");
+            y01RateTxt.Text = (rate.Y01 * 100).ToString("f3");
+            y02RateTxt.Text = (rate.Y02 * 100).ToString("f3");
+            y03RateTxt.Text = (rate.Y03 * 100).ToString("f3");
+            y05RateTxt.Text = (rate.Y05 * 100).ToString("f3");
         }
 
         protected void okBtn_Click(object sender, EventArgs e)
@@ -88,6 +107,37 @@ namespace HHBankDepositSite
             oldpwdTxt.Text = string.Empty;
             newpwdTxt.Text = string.Empty;
             surepwdTxt.Text = string.Empty;
+        }
+
+        protected void changeRateBtn_Click(object sender, EventArgs e)
+        {
+            if (Session["UserName"] == null)
+            {
+                TMessageBox.ShowMsg(this, "ChangeRateLoginExpired", "登录超时，请重新登录！");
+                return;
+            }
+            BankRate rate = new BankRate();
+            rate.CurrRate = decimal.Parse(currentRateTxt.Text.Trim()) / 100;
+            rate.M03 = decimal.Parse(m03RateTxt.Text.Trim()) / 100;
+            rate.M06 = decimal.Parse(m06RateTxt.Text.Trim()) / 100;
+            rate.Y01 = decimal.Parse(y01RateTxt.Text.Trim()) / 100;
+            rate.Y02 = decimal.Parse(y02RateTxt.Text.Trim()) / 100;
+            rate.Y03 = decimal.Parse(y03RateTxt.Text.Trim()) / 100;
+            rate.Y05 = decimal.Parse(y05RateTxt.Text.Trim()) / 100;
+
+            string orgCode = Session["UserName"].ToString();
+            string fileName = ConfigUtil.GetValue(WebConfigName.BankRateTable, "");
+            fileName += orgCode + ".xml";
+            if (BizHandler.Handler.SetNewBankRateTable(fileName, rate))
+            {
+                TMessageBox.ShowMsg(this, "SetBankRateSuccess", "利率修改成功！");
+                return;
+            }
+            else
+            {
+                TMessageBox.ShowMsg(this, "SetBankRateFailed", "利率修改失败！");
+                return;
+            }
         }
     }
 }

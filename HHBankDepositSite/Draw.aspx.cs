@@ -12,9 +12,6 @@ namespace HHBankDepositSite
 {
     public partial class Draw : System.Web.UI.Page
     {
-        private string bankRatePath = ConfigUtil.GetValue(WebConfigName.BankRateTable, "");
-        private BankRate bankRate = BizHandler.Handler.GetBankRateTable(ConfigUtil.GetValue(WebConfigName.BankRateTable, ""));
-
         protected void Page_Load(object sender, EventArgs e)
         {
             periodDrop_SelectedIndexChanged(sender, e);

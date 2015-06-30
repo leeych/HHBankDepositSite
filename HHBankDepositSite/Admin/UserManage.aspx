@@ -141,25 +141,25 @@
                         <br />
         <fieldset>
             <legend>机构密码重置</legend>
-            <table cellpadding="5px" cellspacing="5px" style="margin:2px 10px" align="center">
+            <table cellpadding="3px" cellspacing="3px" align="center">
                 <tr>
-                    <td align="right">用户名：</td>
-                    <td align="left">
+                    <td>用户名：</td>
+                    <td>
                         <asp:TextBox ID="userNameTxt" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="userNameValidator" runat="server" ControlToValidate="userNameTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="org"></asp:RequiredFieldValidator>
                     </td>
                     </tr>
                 <tr>
-                    <td align="right">新密码：</td>
-                    <td align="left">
+                    <td>新密码：</td>
+                    <td>
                         <asp:TextBox ID="passwordTxt" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="passwordTxtValidator" runat="server" ControlToValidate="passwordTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="org"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="passwordTxtRegValidator" runat="server" ControlToValidate="passwordTxt" Display="Dynamic" ErrorMessage="密码只能是数字或字母！" ValidationExpression="^[a-zA-Z0-9]+$" CssClass="validator"></asp:RegularExpressionValidator>
                     </td>
                     </tr>
                 <tr>
-                    <td align="right">确认密码：</td>
-                    <td align="left">
+                    <td>确认密码：</td>
+                    <td>
                         <asp:TextBox ID="surepwdTxt" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="surepwdTxtValidator" runat="server" ControlToValidate="surepwdTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="org"></asp:RequiredFieldValidator>
                         <asp:CompareValidator ID="pwdCompareValidator" runat="server" ControlToCompare="passwordTxt" ControlToValidate="surepwdTxt" ErrorMessage="两次密码不一致！" CssClass="validator"></asp:CompareValidator>
@@ -173,7 +173,7 @@
                 <br />
                 <fieldset>
                     <legend>柜员管理</legend>
-                    <table cellpadding="5px" cellspacing="5px">
+                    <table cellpadding="3px" cellspacing="3px">
                         <tr>
                             <td>柜员号：</td>
                             <td>

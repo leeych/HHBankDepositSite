@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BankRate>
+  <BasicRate>
+    <Current>
+    </Current>
+    <Month03>
+    </Month03>
+    <Month06>
+    </Month06>
+    <Year01>
+    </Year01>
+    <Year02>
+    </Year02>
+    <Year03>
+    </Year03>
+    <Year05>
+    </Year05>
+  </BasicRate>
+  <ExecRate>
+    <Current>0.42</Current>
+    <Month03>2.405</Month03>
+    <Month06>2.665</Month06>
+    <Year01>2.925</Year01>
+    <Year02>3.705</Year02>
+    <Year03>4.55</Year03>
+    <Year05>5.225</Year05>
+  </ExecRate>
+</BankRate>

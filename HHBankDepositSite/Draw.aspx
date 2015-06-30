@@ -35,7 +35,7 @@
                 <td><asp:TextBox runat="server" ID="depositDateTxt" CssClass="aspTextBox" ReadOnly="true" BackColor="#ddf1fe"></asp:TextBox></td>
                 <td align="right"><span class="label">约定存期：</span></td>
                 <td><asp:TextBox runat="server" ID="periodTxt" CssClass="aspTextBox" ReadOnly="true" BackColor="#ddf1fe"></asp:TextBox></td>
-                <td align="right"><span class="label">执行利率：</span></td>
+                <td align="right"><span class="label">约定利率：</span></td>
                 <td><span><asp:TextBox runat="server" ID="execRateTxt" CssClass="aspTextBox" ReadOnly="True" BackColor="#ddf1fe"></asp:TextBox></span><span class="per-cent">%</span></td>
             </tr>
             <tr>

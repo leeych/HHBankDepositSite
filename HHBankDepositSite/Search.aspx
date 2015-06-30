@@ -54,7 +54,7 @@
                         <asp:TextBox runat="server" ID="startDateTxt" CssClass="aspTextBoxShort"></asp:TextBox>
                         <ajaxtoolkit:calendarextender id="calendarExStartDate" runat="server" TargetControlID="startDateTxt" Format="yyyy-MM-dd" PopupPosition="BottomLeft"></ajaxtoolkit:calendarextender>
                     </span>
-                    <span><asp:RangeValidator runat="server" ID="startDateValidator" ControlToValidate="startDateTxt" ErrorMessage="您输入的日期有误！" CssClass="validator"></asp:RangeValidator></span>
+                    <%--<span><asp:RangeValidator runat="server" ID="startDateValidator" ControlToValidate="startDateTxt" ErrorMessage="您输入的日期有误！" CssClass="validator"></asp:RangeValidator></span>--%>
                 </td>
                 <td>截止日期：</td>
                 <td align="left">
@@ -62,7 +62,7 @@
                         <asp:TextBox runat="server" ID="endDateTxt" CssClass="aspTextBoxShort"></asp:TextBox>
                         <ajaxtoolkit:calendarextender id="calendarExEndDate"  runat="server" TargetControlID="endDateTxt" Format="yyyy-MM-dd" PopupPosition="BottomLeft"></ajaxtoolkit:calendarextender>
                     </span>
-                    <span><asp:RangeValidator runat="server" ID="endDateValidator" ControlToValidate="endDateTxt" ErrorMessage="您输入的日期有误！" CssClass="validator"></asp:RangeValidator></span>
+                    <span><%--<asp:RangeValidator runat="server" ID="endDateValidator" ControlToValidate="endDateTxt" ErrorMessage="您输入的日期有误！" CssClass="validator"></asp:RangeValidator>--%></span>
                 </td>
                 <td><span class="note">(示例:2015-06-01)</span></td>
                 <td align="left">

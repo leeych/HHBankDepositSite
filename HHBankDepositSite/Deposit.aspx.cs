@@ -12,8 +12,7 @@ namespace HHBankDepositSite
 {
     public partial class Deposit : System.Web.UI.Page
     {
-        private string bankRatePath = ConfigUtil.GetValue(WebConfigName.BankRateTable, "");
-        private BankRate bankRate = BizHandler.Handler.GetBankRateTable(ConfigUtil.GetValue(WebConfigName.BankRateTable, ""));
+        private BankRate bankRate= new BankRate();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,6 +21,9 @@ namespace HHBankDepositSite
                 Response.Redirect("~/Login.apsx");
                 return;
             }
+            string fileName = ConfigUtil.GetValue(WebConfigName.BankRateTable, "");
+            fileName += Session["UserName"].ToString() + ".xml";
+            this.bankRate = BizHandler.Handler.GetBankRateTable(fileName);
             if (!IsPostBack)
             {
                 periodDrop_SelectedIndexChanged(sender, e);
@@ -34,36 +36,28 @@ namespace HHBankDepositSite
             switch (periodDrop.SelectedIndex)
             {
                 case 0:
-                    rateTxt.Text = (bankRate.M03 * 100).ToString();
+                    rateTxt.Text = (bankRate.M03 * 100).ToString("f3");
                     break;
                 case 1:
-                    rateTxt.Text = (bankRate.M06 * 100).ToString();
+                    rateTxt.Text = (bankRate.M06 * 100).ToString("f3");
                     break;
                 case 2:
-                    rateTxt.Text = (bankRate.Y01 * 100).ToString();
+                    rateTxt.Text = (bankRate.Y01 * 100).ToString("f3");
                     break;
                 case 3:
-                    rateTxt.Text = (bankRate.Y02 * 100).ToString();
+                    rateTxt.Text = (bankRate.Y02 * 100).ToString("f3");
                     break;
                 case 4:
-                    rateTxt.Text = (bankRate.Y03 * 100).ToString();
+                    rateTxt.Text = (bankRate.Y03 * 100).ToString("f3");
                     break;
                 case 5:
-                    rateTxt.Text = (bankRate.Y05 * 100).ToString();
+                    rateTxt.Text = (bankRate.Y05 * 100).ToString("f3");
                     break;
                 default:
                     rateTxt.Text = "--";
                     break;
             }
         }
-
-        protected void rateTxt_TextChanged(object sender, EventArgs e)
-        { }
-
-        //protected void Calendar1_SelectionChanged1(object sender, EventArgs e)
-        //{
-        //    dateTxt.Text = Calendar1.SelectedDate.ToString("yyyy-MM-dd");
-        //}
 
         protected void depositBtn_Click(object sender, EventArgs e)
         {
@@ -365,44 +359,5 @@ namespace HHBankDepositSite
             string tellerCode = tellerCodeDrop.SelectedValue.Trim();
             tellerNameTxt.Text = WebDataCenter.TellerDict[tellerCode].TellerName;
         }
-
-        //protected void billCodeTxt_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (!NumberCheck("BillCodeMsg", "凭证号码必须全部为数字！", billCodeTxt))
-        //    {
-        //        MaxLenCheckTemplate("BillCodeLenErr", "凭证号码长度不够！", billCodeTxt);
-        //    }
-        //}
-
-        //protected void moneyTxt_TextChanged(object sender, EventArgs e)
-        //{
-        //    DecimalCheck("MoneyMsg", "本金输入错误！", moneyTxt);
-        //}
-
-        //protected void bindAccountTxt_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (NumberCheck("BindAccountMsg", "补息账号必须全部为数字！", bindAccountTxt))
-        //    {
-        //        MaxLenCheckTemplate("BindAccountLenErr", "补息账号长度不够！", bindAccountTxt);
-        //    }
-        //}
-
-        //protected void nameTxt_TextChanged(object sender, EventArgs e)
-        //{
-        //    ZHCNCheckTemplate("NameMsg", "客户姓名中不含汉字！", nameTxt);
-        //}
-
-        //protected void IDCardTxt_TextChanged(object sender, EventArgs e)
-        //{
-        //    MaxLenCheckTemplate("IDCardLenErr", "身份证号码长度不够！", IDCardTxt);
-        //}
-
-        //protected void tellerCodeTxt_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (NumberCheck("TellerCodeMsg", "柜员号必须全部为数字！", tellerCodeTxt))
-        //    {
-        //        MaxLenCheckTemplate("TellerCodeLenErr", "柜员号长度不够！", tellerCodeTxt);
-        //    }
-        //}
     }
 }

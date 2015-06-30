@@ -717,6 +717,7 @@ namespace BLL
                     info.ClientID = dr["DepositorIDCard"].ToString();
                     info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
                     info.TellerCode = dr["TellerCode"].ToString();
+                    info.TellerName = dr["TellerName"].ToString();
                     info.ExecRate = new BankRate
                     {
                         CurrRate = decimal.Parse(dr["CurrentRate"].ToString()),
@@ -761,6 +762,7 @@ namespace BLL
                     info.BindAccount = dr["BindAccount"].ToString();
                     info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
                     info.TellerCode = dr["TellerCode"].ToString();
+                    info.TellerName = dr["TellerName"].ToString();
                     info.ExecRate = new BankRate
                     {
                         CurrRate = decimal.Parse(dr["CurrentRate"].ToString()),
@@ -799,7 +801,7 @@ namespace BLL
         public List<SearchInfo> GetSearchRecordByIDCard(string idCard, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"select ProtocolID, BillAccount, BillCode, DepositMoney, DepositDate, BillPeriod,DepositorName, DepositorIDCard,TellerCode,DepositFlag,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate " +
+            string sql = @"select ProtocolID, BillAccount, BillCode, DepositMoney, DepositDate, BillPeriod,DepositorName, DepositorIDCard,TellerCode,TellerName,DepositFlag,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate " +
                 " from {0} where DepositorIDCard='{1}' and 1=1";
             string sqlString = string.Format(sql, tableName, idCard);
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
@@ -822,6 +824,7 @@ namespace BLL
                         info.BindAccount = dr["BindAccount"].ToString();
                         info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
                         info.TellerCode = dr["TellerCode"].ToString();
+                        info.TellerName = dr["TellerName"].ToString();
                         info.ExecRate = new BankRate
                         {
                             CurrRate = decimal.Parse(dr["CurrentRate"].ToString()),
@@ -938,7 +941,7 @@ namespace BLL
         /// <returns></returns>
         public List<TellerInfo> GetTellerInfoList(string orgCode)
         {
-            string sql = @"select * from TellerInfo where OrgCode='{0}' and 1=1";
+            string sql = @"select * from TellerInfo where OrgCode='{0}' and 1=1 order by TellerCode asc";
             string sqlString = string.Format(sql, orgCode);
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
             {
@@ -1066,7 +1069,7 @@ namespace BLL
         /// <returns></returns>
         public List<TellerInfo> GetAllTellerInfo()
         {
-            string sql = @"select * from TellerInfo where 1=1";
+            string sql = @"select * from TellerInfo where 1=1 order by TellerCode asc";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sql))
             {
                 List<TellerInfo> tellerList = new List<TellerInfo>();
