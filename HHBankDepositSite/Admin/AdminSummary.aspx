@@ -94,8 +94,8 @@
         <fieldset>
             <legend>明细</legend>
             <div style="text-align:center; vertical-align:middle;">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" EmptyDataText="没有满足条件的记录！" EnableModelValidation="True" GridLines="Vertical">
-                    <AlternatingRowStyle BackColor="Gainsboro" />
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" EmptyDataText="没有满足条件的记录！" GridLines="Vertical" AllowPaging="True" ShowHeaderWhenEmpty="True">
+                    <AlternatingRowStyle BackColor="#DCDCDC" />
                     <Columns>
                         <asp:BoundField DataField="ProtocolID" HeaderText="协议编号"></asp:BoundField>
                         <asp:BoundField DataField="BillAccount" HeaderText="存单账号"></asp:BoundField>
@@ -137,6 +137,10 @@
                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                     <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
                     <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                    <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                    <SortedDescendingHeaderStyle BackColor="#000065" />
                 </asp:GridView>
             </div>
         </fieldset>
