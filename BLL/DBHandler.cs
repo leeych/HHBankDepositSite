@@ -144,10 +144,10 @@ namespace BLL
         public int AddDepositRecord(DepositRecord record, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"if not exists (select * from {0} where ProtocolID='{1}') begin insert into {0} (ProtocolID, BillAccount, BillCode, DepositDate, OrgCode, TellerCode, TellerName, DepositorName,DepositorIDCard,DepositMoney,DueDate,BillPeriod,BindAccount,DepositFlag,Remark,CurrentRate,D01Rate,M03Rate, M06Rate, Y01Rate,Y02Rate,Y03Rate,Y05Rate)" + 
-                                    "values('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', {10}, '{11}', {12}, '{13}', {14}, '{15}', {16}, {17}, {18}, {19}, {20}, {21}, {22}, {23}) end";
+            string sql = @"if not exists (select * from {0} where ProtocolID='{1}') begin insert into {0} (ProtocolID, BillAccount, BillCode, DepositDate, OrgCode, TellerCode, TellerName, DepositorName,DepositorIDCard,DepositMoney,DueDate,BillPeriod,BindAccount,DepositFlag,Remark,CurrentRate,D01Rate,M03Rate, M06Rate, Y01Rate,Y02Rate,Y03Rate,Y05Rate,RemainMoney)" + 
+                                    "values('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', {10}, '{11}', {12}, '{13}', {14}, '{15}', {16}, {17}, {18}, {19}, {20}, {21}, {22}, {23},{24}) end";
             string sqlString = string.Format(sql, tableName, record.ProtocolID, record.BillAccount, record.BillCode, record.DepositDate.ToString("yyyy-MM-dd"), record.OrgCode, record.TellerCode, record.TellerName, record.DepositorName, record.DepositorIDCard, record.DepositMoney, record.DueDate.ToString("yyyy-MM-dd"), record.Period,
-                record.BindAccount, record.DepositFlag, record.Remark, record.Rate.CurrRate, record.Rate.D01, record.Rate.M03, record.Rate.M06, record.Rate.Y01, record.Rate.Y02, record.Rate.Y03, record.Rate.Y05);
+                record.BindAccount, record.DepositFlag, record.Remark, record.Rate.CurrRate, record.Rate.D01, record.Rate.M03, record.Rate.M06, record.Rate.Y01, record.Rate.Y02, record.Rate.Y03, record.Rate.Y05, record.DepositMoney);
             return SqlHelper.ExecuteSql(sqlString);
         }
 
@@ -449,7 +449,7 @@ namespace BLL
         public DrawRecord GetDrawRecordByProtocolIdAccountCode(string protocolId, string account, string orgCode)
         { 
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"select DepositDate,BillPeriod,DueDate,DepositMoney,DepositorName,DepositorIDCard,DepositFlag,TellerCode,BindAccount,Remark,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate,FirstDrawDate,FirstDrawMoney,RemainMoney,FirstSysInterest,FirstCalcInterest,FirstMarginInterest,FinalDrawDate,FinalDrawMoney,FinalSysInterest,FinalCalcInterest,FinalMarginInterest from "
+            string sql = @"select DepositDate,BillPeriod,DueDate,DepositMoney,DepositorName,DepositorIDCard,DepositFlag,TellerCode,TellerName,BindAccount,Remark,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate,FirstDrawDate,FirstDrawMoney,RemainMoney,FirstSysInterest,FirstCalcInterest,FirstMarginInterest,FinalDrawDate,FinalDrawMoney,FinalSysInterest,FinalCalcInterest,FinalMarginInterest from "
                 + "{0} where ProtocolID='{1}' and BillAccount='{2}' and 1=1";
             string sqlString = string.Format(sql, tableName, protocolId, account);
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
@@ -466,33 +466,20 @@ namespace BLL
                     record.DepositorName = dr["DepositorName"].ToString();
                     record.DepositorIDCard = dr["DepositorIDCard"].ToString();
                     record.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
-                    if (record.Status == DrawFlag.Deposit)
-                    {
-                        record.FirstDrawDate = DateTime.MaxValue;
-                        record.FirstDrawMoney = decimal.Zero;
-                        record.FirstSysInterest = decimal.Zero;
-                        record.FirstSectionInterest = decimal.Zero;
-                        record.FirstMarginInterest = decimal.Zero;
-                        record.RemainMoney = record.CapticalMoney;
-                    }
-                    else if (record.Status == DrawFlag.Remain)
-                    {
-                        record.RemainMoney = decimal.Parse(dr["RemainMoney"].ToString());
-                        record.FirstDrawDate = DateTime.Parse(dr["FirstDrawDate"].ToString());
-                        record.FirstDrawMoney = decimal.Parse(dr["FirstDrawMoney"].ToString());
-                        record.FirstSysInterest = decimal.Parse(dr["FirstSysInterest"].ToString());
-                        record.FirstSectionInterest = decimal.Parse(dr["FirstCalcInterest"].ToString());
-                        record.FirstMarginInterest = decimal.Parse(dr["FirstMarginInterest"].ToString());
-                    }
-                    else
-                    {
-                        record.RemainMoney = decimal.Parse(dr["RemainMoney"].ToString());
-                        record.FinalDrawDate = DateTime.Parse(dr["FinalDrawDate"].ToString());
-                        record.FinalDrawMoney = decimal.Parse(dr["FinalDrawMoney"].ToString());
-                        record.FinalSysInterest = decimal.Parse(dr["FinalSysInterest"].ToString());
-                        record.FinalSectionInterest = decimal.Parse(dr["FinalCalcInterest"].ToString());
-                        record.FinalMarginInterest = decimal.Parse(dr["FinalMarginInterest"].ToString());
-                    }
+                    record.RemainMoney = decimal.Parse(dr["RemainMoney"].ToString());
+
+                    record.FirstDrawDate = (dr["FirstDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FirstDrawDate"].ToString());
+                    record.FirstDrawMoney = (dr["FirstDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstDrawMoney"].ToString());
+                    record.FirstSysInterest = (dr["FirstSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstSysInterest"].ToString());
+                    record.FirstSectionInterest = (dr["FirstCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstCalcInterest"].ToString());
+                    record.FirstMarginInterest = (dr["FirstMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstMarginInterest"].ToString());
+
+                    record.FinalDrawDate = (dr["FinalDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FinalDrawDate"].ToString());
+                    record.FinalDrawMoney = (dr["FinalDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalDrawMoney"].ToString());
+                    record.FinalSysInterest = (dr["FinalSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalSysInterest"].ToString());
+                    record.FinalSectionInterest = (dr["FinalCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalCalcInterest"].ToString());
+                    record.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
+
                     record.TellerCode = dr["TellerCode"].ToString();
                     record.BindAccount = dr["BindAccount"].ToString();
                     record.Rate = new BankRate()
@@ -698,8 +685,7 @@ namespace BLL
         public SearchInfo GetSearchRecordByProtocolID(string protocolId, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"select ProtocolID, BillAccount, BillCode, DepositMoney, DepositDate, BillPeriod,DepositorName, DepositorIDCard,TellerCode,DepositFlag,CurrentRate,D01Rate,M03Rate,M06Rate,Y01Rate,Y02Rate,Y03Rate,Y05Rate " +
-                " from {0} where ProtocolID='{1}' and 1=1";
+            string sql = @"select * from {0} where ProtocolID='{1}' and 1=1";
             string sqlString = string.Format(sql, tableName, protocolId);
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
             {
@@ -718,6 +704,7 @@ namespace BLL
                     info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
                     info.TellerCode = dr["TellerCode"].ToString();
                     info.TellerName = dr["TellerName"].ToString();
+                    info.BindAccount = dr["BindAccount"].ToString();
                     info.ExecRate = new BankRate
                     {
                         CurrRate = decimal.Parse(dr["CurrentRate"].ToString()),
@@ -729,6 +716,18 @@ namespace BLL
                         Y03 = decimal.Parse(dr["Y03Rate"].ToString()),
                         Y05 = decimal.Parse(dr["Y05Rate"].ToString())
                     };
+                    info.FirstDrawDate = (dr["FirstDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FirstDrawDate"].ToString());
+                    info.FirstDrawMoney = (dr["FirstDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstDrawMoney"].ToString());
+                    info.FirstSysInterest = (dr["FirstSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstSysInterest"].ToString());
+                    info.FirstCalcInterest = (dr["FirstCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstCalcInterest"].ToString());
+                    info.FirstMarginInterest = (dr["FirstMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstMarginInterest"].ToString());
+
+                    info.FinalDrawDate = (dr["FinalDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FinalDrawDate"].ToString());
+                    info.FinalDrawMoney = (dr["FinalDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalDrawMoney"].ToString());
+                    info.FinalSysInterest = (dr["FinalSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalSysInterest"].ToString());
+                    info.FinalCalcInterest = (dr["FinalCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalCalcInterest"].ToString());
+                    info.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
+
                     return info;
                 }
                 return null;
@@ -1238,6 +1237,43 @@ namespace BLL
                 }
                 return infoList;
             }
+        }
+
+        public bool SetRecordInfo(SearchInfo info, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"update {0} set BillAccount='{1}',BillCode='{2}',DepositMoney={3},DepositDate='{4}',BillPeriod={5},DepositStatus={6},DepositorName='{7}',DepositorIDCard='{8}',BindAccount='{9}'," +
+                "CurrentRate={10},D01Rate={11},M03Rate={12},M06Rate={13},Y01Rate={14},Y02Rate={15},Y03Rate={16},Y05Rate={17} where ProtocolID='{18}' and 1=1";
+            string sqlString = string.Format(sql, tableName, info.BillAccount, info.BillCode, info.DepositMoney, info.DepositDate.ToString("yyyy-MM-dd"), (int)info.BillPeriod, (int)info.Status, info.ClientName, info.ClientID, info.BindAccount,
+                info.ExecRate.CurrRate, info.ExecRate.D01, info.ExecRate.M03, info.ExecRate.M06, info.ExecRate.Y01, info.ExecRate.Y02, info.ExecRate.Y03, info.ExecRate.Y05, info.ProtocolID);
+            int rows = SqlHelper.ExecuteSql(sqlString);
+            if (rows == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool SetElseDrawRecord(SearchInfo info, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"update {0} set FinalDrawDate='{1}',DepositStatus={2} where ProtocolID='{3}' and 1=1";
+            string sqlString = string.Format(sql, tableName, info.FinalDrawDate.ToString("yyyy-MM-dd"), (int)info.Status, info.ProtocolID);
+            int rows = SqlHelper.ExecuteSql(sqlString);
+            return (rows == 1);
+        }
+
+        public bool SetRecordWithoutDrawDate(SearchInfo info, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"update {0} set BillAccount='{1}',BillCode='{2}',DepositMoney={3},DepositDate='{4}',BillPeriod={5},DepositStatus={6}," +
+                "DepositorName='{7}',DepositorIDCard='{8}',BindAccount='{9}',CurrentRate={10},D01Rate={11},M03Rate={12},M06Rate={13},Y01Rate={14},Y02Rate={15},Y03Rate={16},Y05Rate={17}," + 
+                "RemainMoney={18} where ProtocolID='{19}' and 1=1";
+            string sqlString = string.Format(sql, tableName, info.BillAccount, info.BillCode, info.DepositMoney, info.DepositDate.ToString("yyyy-MM-dd"), (int)info.BillPeriod, (int)info.Status,
+                info.ClientName, info.ClientID, info.BindAccount, info.ExecRate.CurrRate, info.ExecRate.D01, info.ExecRate.M03, info.ExecRate.M06, info.ExecRate.Y01, info.ExecRate.Y02, info.ExecRate.Y03, info.ExecRate.Y05,
+                decimal.Zero, info.ProtocolID);
+            int rows = SqlHelper.ExecuteSql(sqlString);
+            return (rows == 1);
         }
     }
 }

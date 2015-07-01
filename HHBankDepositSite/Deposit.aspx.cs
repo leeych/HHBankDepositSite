@@ -162,28 +162,20 @@ namespace HHBankDepositSite
             }
             if (!BizValidator.CheckBillAccount(account))
             {
-                errMsg += @"存单账号格式不对！\n";
+                errMsg += @"存单账号格式错误！\n";
             }
             if (!BizValidator.CheckBillCode(billCode))
             {
                 errMsg += @"凭证号码必须是以“50”开头的12位数字！\n";
             }
-            if (!BizValidator.CheckIDCard(idCard))
-            {
-                errMsg += @"身份证号码非法！\n";
-            }
             if (!PageValidator.IsHasCHZN(name))
             {
-                errMsg += @"客户姓名必须为中文！\n";
+                errMsg += @"客户姓名必须含汉字！\n";
             }
-            //if (!PageValidator.IsNumber(tellerCode))
-            //{
-            //    errMsg += @"柜员号必须全部为数字！\n";
-            //}
-            //if (tellerCode.Length != 6)
-            //{
-            //    errMsg += @"柜员号长度必须是6位！";
-            //}
+            if (!BizValidator.CheckIDCard(idCard))
+            {
+                errMsg += @"客户身份证号码非法！\n";
+            }
             if (!string.IsNullOrEmpty(errMsg))
             {
                 TMessageBox.ShowMsg(this, "NumberValidateTotal", errMsg);

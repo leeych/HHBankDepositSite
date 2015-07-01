@@ -14,7 +14,6 @@ namespace HHBankDepositSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            periodDrop_SelectedIndexChanged(sender, e);
         }
 
         protected void calcBtn_Click(object sender, EventArgs e)
@@ -59,6 +58,11 @@ namespace HHBankDepositSite
 
             DateTime drawDate = DateTime.Parse(drawDateTxt.Text.Trim());
             decimal drawMoney = decimal.Parse(moneyDrawTxt.Text.Trim());
+            if (drawDate.Date<DateTime.Parse(depositDateTxt.Text.Trim()).Date)
+            {
+                TMessageBox.ShowMsg(this, "DrawDateEarlierThanDeposit", "支取日期不能早于存入日期！");
+                return;
+            }
             record = BizHandler.Handler.GetDrawRecord(protocolId, billAccount, Session["UserName"].ToString());
             if (record == null)
             {
@@ -70,7 +74,7 @@ namespace HHBankDepositSite
                 TMessageBox.ShowMsg(this, "DrawRecordErr", "存款已被全部支取！");
                 return;
             }
-            if (record.Status == DrawFlag.Remain && record.CapticalMoney < 5000)
+            if (record.Status == DrawFlag.Remain && record.RemainMoney < 5000)
             {
                 TMessageBox.ShowMsg(this, "Draw5000Less", "存款已被部分提前支取，余额不足5000元，不再享受保利存补息！");
                 return;
@@ -81,6 +85,7 @@ namespace HHBankDepositSite
                 {
                     TMessageBox.ShowMsg(this, "DrawMoneyOverflowCalc", "支取金额不能大于账户留存金额！");
                     moneyDrawTxt.Text = string.Empty;
+                    return;
                 }
             }
             if (record.Status == DrawFlag.Remain)
@@ -89,7 +94,13 @@ namespace HHBankDepositSite
                 {
                     TMessageBox.ShowMsg(this, "DrawMoneyOverflowRemain", "支取金额不能大于账户留存金额！");
                     moneyDrawTxt.Text = string.Empty;
+                    return;
                 }
+            }
+            if (record.Status == DrawFlag.ElseDraw)
+            {
+                TMessageBox.ShowMsg(this, "ElseDrawWarning", "存单已在别处支取！无法处理！");
+                return;
             }
 
             BankRate depositRate = new BankRate {
@@ -117,6 +128,7 @@ namespace HHBankDepositSite
                 {
                     result.SectionInterest = result.SystemInterest;
                     result.MarginInterest = 0;
+                    TMessageBox.ShowMsg(this, "LessThan5000", "账户余留金额小于5000元，不再享受靠档计息！");
                 }
             }
             if (BizHandler.Handler.DrawRecordInfo.Status == DrawFlag.Deposit)
@@ -145,81 +157,7 @@ namespace HHBankDepositSite
 
         protected void okBtn_Click(object sender, EventArgs e)
         {
-            if (Session["UserName"] == null)
-            {
-                TMessageBox.ShowMsg(this, "SessionExiredDraw", "登录超时，请重新登录！");
-                Session["UserName"] = null;
-                Session["Password"] = null;
-                Response.Redirect("~/Login.aspx");
-                return;
-            }
-            if (string.IsNullOrEmpty(sectionTxt.Text.Trim()))
-            {
-                TMessageBox.ShowMsg(this, "DrawRecordNotCalc", "请先点“计算”！");
-                return;
-            }
-            DrawRecord record = BizHandler.Handler.DrawRecordInfo;
-            if (string.IsNullOrEmpty(record.ProtocolID))
-            {
-                TMessageBox.ShowMsg(this, "DrawRecordNotSearch2", "请先点“查询”！");
-                return;
-            }
-            DrawInfo info = new DrawInfo();
-            if (record.Status == DrawFlag.Deposit)
-            {
-                info.DrawDate = record.FirstDrawDate;
-                info.DrawMoney = record.FirstDrawMoney;
-                info.ProtocolId = record.ProtocolID;
-                info.SystemInterest = record.FirstSysInterest;
-                info.SectionInterest = record.FirstSectionInterest;
-                info.RemainMoney = record.CapticalMoney - record.FirstDrawMoney;
-                info.MarginInterest = record.FirstSectionInterest - record.FirstSysInterest;
-                if (info.RemainMoney > decimal.Zero)
-                {
-                    info.DrawStatus = DrawFlag.Remain;
-                }
-                else
-                {
-                    info.DrawStatus = DrawFlag.Draw;
-                }
-            }
-            else if (record.Status == DrawFlag.Remain)
-            {
-                info.DrawDate = record.FinalDrawDate;
-                info.DrawMoney = record.FinalDrawMoney;
-                info.ProtocolId = record.ProtocolID;
-                info.SystemInterest = record.FinalSysInterest;
-                info.SectionInterest = record.FinalSectionInterest;
-                info.RemainMoney = record.RemainMoney - record.FirstDrawMoney;
-                info.MarginInterest = record.FinalSectionInterest - record.FinalSysInterest;
-                info.DrawStatus = DrawFlag.Draw;
-            }
-            bool res = false;
-            if (info.RemainMoney > decimal.Zero)
-            {
-                info.DrawStatus = DrawFlag.Remain;
-                info.FinalDrawDate = record.FirstDrawDate;
-                res = BizHandler.Handler.DrawDepositRecord(info, Session["UserName"].ToString());
-            }
-            else
-            {
-                res = BizHandler.Handler.FinalDrawDepositRecord(info, Session["UserName"].ToString());
-            }
-            
-            if (!res)
-            {
-                TMessageBox.ShowMsg(this, "DrawMoneyErr", "支取失败！");
-                return;
-            }
-            else
-            {
-                TMessageBox.ShowMsg(this, "DrawMoneySuccess", "支取成功！");
-                return;
-            }
-        }
-
-        protected void periodDrop_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            this.ClientScript.RegisterStartupScript(this.GetType(), "drawRecord", "<script language='javascript' defer='defer'> if (confirm('是否确定支取？')){ document.getElementById('" + linkBtn.ClientID.ToString() + "').click();}</script>");
         }
 
         protected void searchBtn_Click(object sender, EventArgs e)
@@ -231,6 +169,7 @@ namespace HHBankDepositSite
                 Response.Redirect("~/Login.aspx");
                 return;
             }
+            ClearTextBox();
             string protocolId = protocolIDTxt.Text.Trim();
             string billAccount = billAccountTxt.Text.Trim();
             if (string.IsNullOrEmpty(protocolId) || string.IsNullOrEmpty(billAccount))
@@ -278,7 +217,7 @@ namespace HHBankDepositSite
             periodTxt.Text = GetPeriodDesc(record.BillPeriod);
             execRateTxt.Text = GetBankRateDesc(record.BillPeriod, record.Rate);
             systemInterestTxt.Text = SectionCalculator.CalcDueDrawInterest(record.CapticalMoney, record.BillPeriod, record.Rate).ToString("f2");
-            drawStatusTxt.Text = GetDrawStatus(record.Status);
+            drawStatusTxt.Text = BizHandler.GetDepositStatusDesc(record.Status);
             if (record.Status == DrawFlag.Remain)
             {
                 adDrawMoneyTxt.Text = record.FirstDrawMoney.ToString("f2");
@@ -297,14 +236,34 @@ namespace HHBankDepositSite
                 adMarginInterestTxt.Text = "--";
                 remainMoneyTxt.Text = record.CapticalMoney.ToString("f2");
             }
-            else
+            else if (record.Status == DrawFlag.Draw)
             {
-                adDrawMoneyTxt.Text = record.FinalDrawMoney.ToString("f2");
-                adDrawDateTxt.Text = record.FinalDrawDate.ToString("yyyy-MM-dd");
+                if (record.FirstDrawMoney != decimal.Zero || record.FirstDrawDate != DateTime.MaxValue)
+                {
+                    adDrawMoneyTxt.Text = "--";
+                    adDrawDateTxt.Text = "--";
+                    adSysInterestTxt.Text = (record.FirstSysInterest + record.FinalSysInterest).ToString("f2");
+                    adSectionInterestTxt.Text = (record.FirstSectionInterest + record.FinalSectionInterest).ToString("f2");
+                    adMarginInterestTxt.Text = (record.FirstMarginInterest + record.FinalMarginInterest).ToString("f2");
+                }
+                else
+                {
+                    adDrawMoneyTxt.Text = record.FinalDrawMoney.ToString("f2");
+                    adDrawDateTxt.Text = record.FinalDrawDate.ToString("yyyy-MM-dd");
+                    adSysInterestTxt.Text = record.FinalSysInterest.ToString("f2");
+                    adSectionInterestTxt.Text = record.FinalSectionInterest.ToString("f2");
+                    adMarginInterestTxt.Text = record.FinalMarginInterest.ToString("f2");
+                }
                 remainMoneyTxt.Text = record.RemainMoney.ToString("f2");
-                adSysInterestTxt.Text = record.FinalSysInterest.ToString("f2");
-                adSectionInterestTxt.Text = record.FinalSectionInterest.ToString("f2");
-                adMarginInterestTxt.Text = record.FinalMarginInterest.ToString("f2");
+            }
+            else if (record.Status == DrawFlag.ElseDraw)
+            {
+                adDrawMoneyTxt.Text = "--";
+                adDrawDateTxt.Text = "--";
+                adSysInterestTxt.Text = "--";
+                adSectionInterestTxt.Text = "--";
+                adMarginInterestTxt.Text = "--";
+                remainMoneyTxt.Text = "--";
             }
         }
 
@@ -335,6 +294,13 @@ namespace HHBankDepositSite
             adSysInterestTxt.Text = string.Empty;
             adSectionInterestTxt.Text = string.Empty;
             adMarginInterestTxt.Text = string.Empty;
+
+            drawDateTxt.Text = string.Empty;
+            moneyDrawTxt.Text = string.Empty;
+            sectionTxt.Text = string.Empty;
+            systemTxt.Text = string.Empty;
+            totalInterestTxt.Text = string.Empty;
+            marginTxt.Text = string.Empty;
         }
 
         private string GetPeriodDesc(Period period)
@@ -373,22 +339,22 @@ namespace HHBankDepositSite
             switch (period)
             {
                 case Period.M03:
-                    desc = (bankRate.M03 * 100).ToString();
+                    desc = (bankRate.M03 * 100).ToString("f3");
                     break;
                 case Period.M06:
-                    desc = (bankRate.M06 * 100).ToString();
+                    desc = (bankRate.M06 * 100).ToString("f3");
                     break;
                 case Period.Y01:
-                    desc = (bankRate.Y01 * 100).ToString();
+                    desc = (bankRate.Y01 * 100).ToString("f3");
                     break;
                 case Period.Y02:
-                    desc = (bankRate.Y02 * 100).ToString();
+                    desc = (bankRate.Y02 * 100).ToString("f3");
                     break;
                 case Period.Y03:
-                    desc = (bankRate.Y03 * 100).ToString();
+                    desc = (bankRate.Y03 * 100).ToString("f3");
                     break;
                 case Period.Y05:
-                    desc = (bankRate.Y05 * 100).ToString();
+                    desc = (bankRate.Y05 * 100).ToString("f3");
                     break;
                 default:
                     desc = "--";
@@ -411,11 +377,90 @@ namespace HHBankDepositSite
                 case DrawFlag.Remain:
                     desc = "部分提前支取";
                     break;
+                case DrawFlag.ElseDraw:
+                    desc = "他行支取";
+                    break;
                 default:
                     desc = "未知";
                     break;
             }
             return desc;
+        }
+
+        protected void linkBtn_Click(object sender, EventArgs e)
+        {
+
+            if (Session["UserName"] == null)
+            {
+                TMessageBox.ShowMsg(this, "SessionExiredDraw", "登录超时，请重新登录！");
+                Session["UserName"] = null;
+                Session["Password"] = null;
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+            if (string.IsNullOrEmpty(sectionTxt.Text.Trim()))
+            {
+                TMessageBox.ShowMsg(this, "DrawRecordNotCalc", "请先点“计算”！");
+                return;
+            }
+            DrawRecord record = BizHandler.Handler.DrawRecordInfo;
+            if (string.IsNullOrEmpty(record.ProtocolID))
+            {
+                TMessageBox.ShowMsg(this, "DrawRecordNotSearch2", "请先点“查询”！");
+                return;
+            }
+            DrawInfo info = new DrawInfo();
+            if (record.Status == DrawFlag.Deposit)
+            {
+                info.DrawDate = record.FirstDrawDate;
+                info.DrawMoney = record.FirstDrawMoney;
+                info.ProtocolId = record.ProtocolID;
+                info.SystemInterest = record.FirstSysInterest;
+                info.SectionInterest = record.FirstSectionInterest;
+                info.RemainMoney = record.CapticalMoney - record.FirstDrawMoney;
+                info.MarginInterest = record.FirstSectionInterest - record.FirstSysInterest;
+                if (info.RemainMoney > decimal.Zero)
+                {
+                    info.DrawStatus = DrawFlag.Remain;
+                }
+                else
+                {
+                    info.DrawStatus = DrawFlag.Draw;
+                }
+            }
+            else if (record.Status == DrawFlag.Remain)
+            {
+                info.DrawDate = record.FinalDrawDate;
+                info.DrawMoney = record.FinalDrawMoney;
+                info.ProtocolId = record.ProtocolID;
+                info.SystemInterest = record.FinalSysInterest;
+                info.SectionInterest = record.FinalSectionInterest;
+                info.RemainMoney = decimal.Zero;
+                info.MarginInterest = record.FinalSectionInterest - record.FinalSysInterest;
+                info.DrawStatus = DrawFlag.Draw;
+            }
+            bool res = false;
+            if (info.RemainMoney > decimal.Zero)
+            {
+                info.DrawStatus = DrawFlag.Remain;
+                info.FinalDrawDate = record.FirstDrawDate;
+                res = BizHandler.Handler.DrawDepositRecord(info, Session["UserName"].ToString());
+            }
+            else
+            {
+                res = BizHandler.Handler.FinalDrawDepositRecord(info, Session["UserName"].ToString());
+            }
+
+            if (!res)
+            {
+                TMessageBox.ShowMsg(this, "DrawMoneyErr", "存款支取失败！请稍后再试！");
+                return;
+            }
+            else
+            {
+                TMessageBox.ShowMsg(this, "DrawMoneySuccess", "存款已成功支取！");
+                return;
+            }
         }
     }
 }

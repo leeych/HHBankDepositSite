@@ -70,7 +70,13 @@
                         </asp:UpdatePanel>
                         </td>
                     <td align="right"><span class="red-star">*</span><span class="label">存入金额：</span></td>
-                    <td align="left"><span><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="moneyValidator" ControlToValidate="moneyTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span></td>
+                    <td align="left"><span><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort"></asp:TextBox></span>
+                        <span>
+                            <asp:RequiredFieldValidator runat="server" ID="moneyValidator" ControlToValidate="moneyTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="moneyRegValidator" runat="server" ControlToValidate="moneyTxt" Display="Dynamic" ErrorMessage="非法字符！" ValidationExpression="^[0-9]+[.]?[0-9]+$" CssClass="validator"></asp:RegularExpressionValidator>
+                        </span>
+
+                    </td>
                 </tr>
                 <tr>
                     <td align="right"><span class="red-star">*</span><span class="lable">存入日期：</span></td>
@@ -82,7 +88,13 @@
                         </div>
                     </td>
                     <td align="right"><span class="red-star">*</span><span class="label">补息账号：</span></td>
-                    <td align="left" colspan="2"><asp:TextBox ID="bindAccountTxt" runat="server" style="margin-left: 0px;" Width="200px" CssClass="aspBillAccount" MaxLength="23" ></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="bindAccountValidator" ControlToValidate="bindAccountTxt" Display="Dynamic" ErrorMessage="必填！" SetFocusOnError="True" CssClass="validator"></asp:RequiredFieldValidator></span></td>
+                    <td align="left" colspan="2">
+                        <asp:TextBox ID="bindAccountTxt" runat="server" style="margin-left: 0px;" Width="200px" CssClass="aspBillAccount" MaxLength="23" ></asp:TextBox>
+                        <span>
+                            <asp:RequiredFieldValidator runat="server" ID="bindAccountValidator" ControlToValidate="bindAccountTxt" Display="Dynamic" ErrorMessage="必填！" SetFocusOnError="True" CssClass="validator"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="bindAccountRegValidator" runat="server" ControlToValidate="bindAccountTxt" ValidationExpression="^[0-9]+$" ErrorMessage="非法字符！" Display="Dynamic" CssClass="validator"></asp:RegularExpressionValidator>
+                        </span>
+                    </td>
                 </tr>
             </table>
         </fieldset>
@@ -95,7 +107,7 @@
                 <td align="left"><asp:TextBox ID="nameTxt" runat="server" CssClass="aspTextBox" ></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="nameValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="nameTxt"></asp:RequiredFieldValidator></span></td>
                 <td align="right"><span class="red-star">*</span><span class="label">客户身份证：</span></td>
                 <td align="left"><asp:TextBox ID="IDCardTxt" runat="server" CssClass="aspTextBox" MaxLength="18"></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="idValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="IDCardTxt"></asp:RequiredFieldValidator></span></td>
-                <td align="right"><span class="red-star">*</span><span class="label">经办柜员号：</span></td>
+                <td align="right"><span class="red-star">*</span><span class="label">经办柜员：</span></td>
                 <td align="left">
                 <span>
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">

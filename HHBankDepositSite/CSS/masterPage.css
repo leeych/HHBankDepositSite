@@ -110,7 +110,11 @@ html {
     background-color: rgb(221,241,254);
 }
 
-* { margin:0 auto; padding:0;}
+* { padding:0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+}
 
 .legendStyle {
     text-align: center;
@@ -166,8 +170,19 @@ html {
 .aspBillAccount {
     border-radius: 3px;
     border: 1px solid #CDCDCD;
-    width: 180px;
+    width: 200px;
     height: 20px;
+    font-size: 15px;
+    padding-top: 3px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.aspDrop {
+    border-radius: 3px;
+    border: 1px solid #CDCDCD;
+    height:25px;
+    width: 160px;
     font-size: 15px;
     padding-top: 3px;
     text-align: center;

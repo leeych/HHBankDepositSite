@@ -1,4 +1,5 @@
 ﻿using Common;
+using HHBankDepositSite;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -383,6 +384,37 @@ namespace BLL
             return dbHandler.ChangeTellerOrg(tellerCode, tellerName, orgCode);
         }
 
+        public bool ModifyRecord(SearchInfo info, string orgCode)
+        {
+            if (info.Status == DrawFlag.Deposit)
+            {
+                return dbHandler.SetRecordWithoutDrawDate(info, orgCode);
+            }
+            else if (info.Status == DrawFlag.ElseDraw)
+            {
+                DateTime startDate = info.DepositDate;
+                DateTime endDate = info.FinalDrawDate;
+                decimal depositMoney = info.DepositMoney;
+                decimal remainMoney = depositMoney - info.FirstDrawMoney;
+                CalcInfo calcInfo = new CalcInfo 
+                                        { 
+                                            StartDate = startDate,
+                                            EndDate = endDate,
+                                            CapitalMoney = remainMoney,
+                                            DepositPeriod = info.BillPeriod
+                                        };
+                SectionCalculator calculator = new SectionCalculator();
+                CalcResult result = calculator.CalcTotalResult(calcInfo, info.ExecRate);
+                info.FinalSysInterest = result.SystemInterest;
+                info.FinalCalcInterest  = result.SystemInterest;
+                info.FinalMarginInterest = decimal.Zero;
+                info.FinalDrawMoney = remainMoney;
+
+                return dbHandler.SetElseDrawRecord(info, orgCode);
+            }
+            return false;
+        }
+
         public List<SearchInfo> GetRecord(string orgCode, DateTime start, DateTime end)
         {
             if (orgCode == "3404151476")
@@ -615,6 +647,9 @@ namespace BLL
                     break;
                 case DrawFlag.Remain:
                     desc = "部分提前支取";
+                    break;
+                case DrawFlag.ElseDraw:
+                    desc = "他行支取";
                     break;
                 default:
                     desc = "未知";

@@ -83,6 +83,11 @@ namespace Model
             {
                 desc += D01 + "*D01";
             }
+            if (desc.EndsWith(" "))
+            {
+                desc.Remove(desc.Length - 1);
+            }
+            desc = desc.Replace(" ", " + ");
             return desc;
         }
     }

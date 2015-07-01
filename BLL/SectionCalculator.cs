@@ -129,7 +129,7 @@ namespace HHBankDepositSite
         private bool IsDueDateDraw(DateTime start, DateTime end, Period period)
         {
             DateTime mid = GetDueDateByPeriod(start, period);
-            if (end.Date <= mid.Date)
+            if (end.Date > mid.Date)
             {
                 return true;
             }
@@ -158,13 +158,13 @@ namespace HHBankDepositSite
                     lv = money * bankRate.Y01;
                     break;
                 case Period.Y02:
-                    lv = money * bankRate.Y02;
+                    lv = money * bankRate.Y02 * 2;
                     break;
                 case Period.Y03:
-                    lv = money * bankRate.Y03;
+                    lv = money * bankRate.Y03 * 3;
                     break;
                 case Period.Y05:
-                    lv = money * bankRate.Y05;
+                    lv = money * bankRate.Y05 * 5;
                     break;
                 default:
                     break;
@@ -346,7 +346,7 @@ namespace HHBankDepositSite
                 // TODO: 系统利息
                 result.DueDate = GetDueDateByPeriod(depositInfo.StartDate, depositInfo.DepositPeriod);
                 result.SectionDesc = info.ToString();
-                result.SystemInterest = depositInfo.CapitalMoney * (info.Y01 * bankRate.Y01 + info.M06 * bankRate.M06 + info.M03 * bankRate.M03 + info.D01 * bankRate.CurrRate / 360);
+                result.SystemInterest = depositInfo.CapitalMoney * (info.Y01 * bankRate.Y01 + info.M06 * bankRate.M06 / 2 + info.M03 * bankRate.M03 / 4 + info.D01 * bankRate.CurrRate / 360);
                 result.SectionInterest = result.SystemInterest;
                 result.MarginInterest = result.SectionInterest - result.SystemInterest;
             }
@@ -358,7 +358,7 @@ namespace HHBankDepositSite
                 // 计算两个日期间的天数
                 TimeSpan ts = depositInfo.EndDate.Date - depositInfo.StartDate.Date;
                 result.SystemInterest = depositInfo.CapitalMoney * (ts.Days * bankRate.CurrRate / 360);
-                result.SectionInterest = depositInfo.CapitalMoney * (info.Y01 * bankRate.Y01 + info.M06 * bankRate.M06 + info.M03 * bankRate.M03);
+                result.SectionInterest = depositInfo.CapitalMoney * (info.Y01 * bankRate.Y01 + info.M06 * bankRate.M06 / 2 + info.M03 * bankRate.M03 / 4 + info.D01 * bankRate.CurrRate / 360);
                 result.MarginInterest = result.SectionInterest - result.SystemInterest;
             }
             return result;

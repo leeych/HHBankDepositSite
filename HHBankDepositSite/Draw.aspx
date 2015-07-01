@@ -122,7 +122,8 @@
     <fieldset class="fieldSetStyle" style="text-align: center;">
         <legend class="legendStyle"></legend>
         <div style="display: inline; margin: 0px auto;">
-            <span></span>
+            <span>
+                <asp:LinkButton ID="linkBtn" runat="server" Width="1px" OnClick="linkBtn_Click"></asp:LinkButton></span>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span><asp:Button ID="okBtn" runat="server" Text="支取" Height="30px" Width="100px" CssClass="aspBtn" OnClick="okBtn_Click" /></span>
         </div>
