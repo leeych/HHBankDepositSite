@@ -28,6 +28,7 @@ namespace HHBankDepositSite
             {
                 periodDrop_SelectedIndexChanged(sender, e);
                 GenTellerCodeDropDownList(Session["UserName"].ToString());
+                tellerCodeDrop_SelectedIndexChanged(sender, e);
             }
         }
 
@@ -142,7 +143,8 @@ namespace HHBankDepositSite
             string rate = rateTxt.Text.Trim();
             string date = dateTxt.Text.Trim();
             string bindAccount = bindAccountTxt.Text.Trim();
-            //string tellerCode = tellerNameTxt.Text.Trim();
+            string tellerName = tellerNameTxt.Text.Trim();
+            string tellerCode = tellerCodeDrop.SelectedValue.Trim();
             string idCard = IDCardTxt.Text.Trim();
             string name = nameTxt.Text.Trim();
             if (string.IsNullOrEmpty(protocolId) || string.IsNullOrEmpty(account) || string.IsNullOrEmpty(billCode) 

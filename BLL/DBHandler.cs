@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Configuration;
+using HHBankDepositSite;
 
 namespace BLL
 {
@@ -1275,5 +1276,60 @@ namespace BLL
             int rows = SqlHelper.ExecuteSql(sqlString);
             return (rows == 1);
         }
+
+        public List<SearchInfo> GetEachOrgDataPagerRecord(DataPagerInfo pageInfo, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"select top {0} * from {1} where ProtocolID not in (select top {2} ProtocolID from {1} order by ProtocolID asc) order by ProtocolID asc";
+            string sqlString = string.Format(sql, pageInfo.PageSize, tableName, pageInfo.PageSize * pageInfo.CurrengPage);
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
+            {
+                List<SearchInfo> infoList = new List<SearchInfo>();
+                while (dr.Read())
+                {
+                    SearchInfo info = new SearchInfo();
+                    info.ProtocolID = dr["ProtocolID"].ToString();
+                    info.BillAccount = dr["BillAccount"].ToString();
+                    info.BillCode = dr["BillCode"].ToString();
+                    info.DepositMoney = decimal.Parse(dr["DepositMoney"].ToString());
+                    info.DepositDate = DateTime.Parse(dr["DepositDate"].ToString());
+                    info.BillPeriod = (Period)int.Parse(dr["BillPeriod"].ToString());
+                    info.ClientName = dr["DepositorName"].ToString();
+                    info.ClientID = dr["DepositorIDCard"].ToString();
+                    info.BindAccount = dr["BindAccount"].ToString();
+                    info.Status = (DrawFlag)int.Parse(dr["DepositFlag"].ToString());
+                    info.TellerCode = dr["TellerCode"].ToString();
+                    info.TellerName = dr["TellerName"].ToString();
+                    info.ExecRate = new BankRate
+                    {
+                        CurrRate = decimal.Parse(dr["CurrentRate"].ToString()),
+                        D01 = decimal.Parse(dr["D01Rate"].ToString()),
+                        M03 = decimal.Parse(dr["M03Rate"].ToString()),
+                        M06 = decimal.Parse(dr["M06Rate"].ToString()),
+                        Y01 = decimal.Parse(dr["Y01Rate"].ToString()),
+                        Y02 = decimal.Parse(dr["Y02Rate"].ToString()),
+                        Y03 = decimal.Parse(dr["Y03Rate"].ToString()),
+                        Y05 = decimal.Parse(dr["Y05Rate"].ToString())
+                    };
+
+                    info.FirstDrawDate = (dr["FirstDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FirstDrawDate"].ToString());
+                    info.FirstDrawMoney = (dr["FirstDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstDrawMoney"].ToString());
+                    info.FirstSysInterest = (dr["FirstSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstSysInterest"].ToString());
+                    info.FirstCalcInterest = (dr["FirstCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstCalcInterest"].ToString());
+                    info.FirstMarginInterest = (dr["FirstMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FirstMarginInterest"].ToString());
+
+                    info.FinalDrawDate = (dr["FinalDrawDate"] == DBNull.Value) ? DateTime.MaxValue : DateTime.Parse(dr["FinalDrawDate"].ToString());
+                    info.FinalDrawMoney = (dr["FinalDrawMoney"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalDrawMoney"].ToString());
+                    info.FinalSysInterest = (dr["FinalSysInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalSysInterest"].ToString());
+                    info.FinalCalcInterest = (dr["FinalCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalCalcInterest"].ToString());
+                    info.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
+                    infoList.Add(info);
+                }
+                return infoList;
+            }
+        }
+
+        //public List<SearchInfo> GetAllOrgDataPagerRecord(DataPagerInfo pageInfo, string orgCode)
+        //{ }
     }
 }

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BizHandler.cs" />
     <Compile Include="BizValidator.cs" />
+    <Compile Include="DataPagerInfo.cs" />
     <Compile Include="DBHandler.cs" />
     <Compile Include="SectionCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

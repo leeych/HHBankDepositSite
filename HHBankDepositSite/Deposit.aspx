@@ -45,7 +45,7 @@
                 <tr>
                     <td align="right"><span class="red-star">*</span><span class="label">约定存期：</span></td>
                     <td align="left">
-                        <asp:DropDownList ID="periodDrop" runat="server" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True" CssClass="aspTextBox">
+                        <asp:DropDownList ID="periodDrop" runat="server" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged" AutoPostBack="True" CssClass="aspDrop">
                             <asp:ListItem>三个月</asp:ListItem>
                             <asp:ListItem>六个月</asp:ListItem>
                             <asp:ListItem>一年</asp:ListItem>
@@ -118,10 +118,8 @@
                             <asp:AsyncPostBackTrigger ControlID="tellerCodeDrop" />
                         </Triggers>
                     </asp:UpdatePanel>
-                    
-                    </span>
-                    
-                    <span><asp:DropDownList ID="tellerCodeDrop" runat="server" Width="80px" CssClass="aspTextBox" AutoPostBack="True" OnSelectedIndexChanged="tellerCodeDrop_SelectedIndexChanged"></asp:DropDownList></span>
+                    </span>                    
+                    <span><asp:DropDownList ID="tellerCodeDrop" runat="server" Width="80px" CssClass="aspDrop" AutoPostBack="True" OnSelectedIndexChanged="tellerCodeDrop_SelectedIndexChanged"></asp:DropDownList></span>
                     <span><asp:RequiredFieldValidator ID="tellerNameValidator" runat="server" ControlToValidate="tellerNameTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
                 </td>
             </tr>

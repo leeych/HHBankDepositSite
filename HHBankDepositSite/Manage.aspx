@@ -124,7 +124,7 @@
 
           <div style="width:100%; margin-bottom:30px;">
                         <br />
-          <div style="float: left; margin: 0 20px 0 40px; width:45%">
+          <div style="float: left; margin: 0 20px 0 20px; width:45%">
         <fieldset class="fieldSetStyle">
             <legend class="legendStyle">当前利率</legend>
             <table width="90%" cellpadding="5px" cellspacing="5px" align="center" style="border:1px solid #E5E5E5;">
@@ -197,7 +197,7 @@
         </fieldset>
           </div>
 
-          <div style="float:left; width:45%; margin-right: 40px;">
+          <div style="float:right; width:45%; margin-right: 20px;">
          <fieldset class="fieldSetStyle">
             <legend class="legendStyle">修改密码</legend>
             <table width="90%" cellpadding="5" cellspacing="5" align="center" style="border:1px solid #E5E5E5;">

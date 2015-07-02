@@ -21,8 +21,6 @@ namespace HHBankDepositSite.Admin
                 {
                     orgNameDrop.Items.Add(orgList[i].OrgName);
                 }
-                //startDateTxt.Attributes.Add("ReadOnly", "true");
-                //endDateTxt.Attributes.Add("ReadOnly", "true");
             }
         }
 
@@ -88,6 +86,7 @@ namespace HHBankDepositSite.Admin
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
+            
         }
     }   
 }

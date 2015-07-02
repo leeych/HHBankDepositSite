@@ -94,15 +94,6 @@ namespace HHBankDepositSite {
         protected global::AjaxControlToolkit.CalendarExtender calendarExStartDate;
         
         /// <summary>
-        /// startDateValidator 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator startDateValidator;
-        
-        /// <summary>
         /// endDateTxt 控件。
         /// </summary>
         /// <remarks>
@@ -119,15 +110,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender calendarExEndDate;
-        
-        /// <summary>
-        /// endDateValidator 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator endDateValidator;
         
         /// <summary>
         /// linkBtn 控件。
