@@ -30,6 +30,9 @@ namespace HHBankDepositSite.Admin
                     orgDrop.Items.Add(orgList[i].OrgName);
                     tellerOrgNameDrop.Items.Add(orgList[i].OrgName);
                 }
+                orgDrop_SelectedIndexChanged(sender, e);
+                orgNameDrop_SelectedIndexChanged(sender, e);
+                tellerOrgNameDrop_SelectedIndexChanged(sender, e);
             }
             orgCodeTxt.Visible = false;
             //adminUserNameTxt.Text = Session["UserName"].ToString();

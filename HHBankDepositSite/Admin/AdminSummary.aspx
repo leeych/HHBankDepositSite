@@ -94,6 +94,14 @@
         <fieldset>
             <legend>明细</legend>
             <div style="text-align:center; vertical-align:middle;">
+                <table>
+                    <tr>
+                        <td><asp:Button ID="exportExcelBtn" runat="server" CssClass="aspBtn" Text="导出Excel" /></td>
+                        <td></td>
+                        <td><asp:Button ID="exportTxtBtn" runat="server" CssClass="aspBtn" Text="导出Txt" /></td>
+                    </tr>
+                </table>
+
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" EmptyDataText="没有满足条件的记录！" GridLines="Vertical" AllowPaging="True" ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView1_PageIndexChanging">
                     <AlternatingRowStyle BackColor="#DCDCDC" />
                     <Columns>

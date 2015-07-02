@@ -21,6 +21,7 @@ namespace HHBankDepositSite.Admin
                 {
                     orgNameDrop.Items.Add(orgList[i].OrgName);
                 }
+                orgNameDrop_SelectedIndexChanged(sender, e);
             }
         }
 
@@ -83,10 +84,20 @@ namespace HHBankDepositSite.Admin
             marginMoneyTxt.Text = info.MarginPayfee.Money.ToString("f2");
         }
 
+        private void ExcelDataBind()
+        {
+            DateTime startDate = DateTime.Parse(startDateAdminTxt.Text.Trim());
+            DateTime endDate = DateTime.Parse(endDateAdminTxt.Text.Trim());
+            string orgCode= Session["UserName"].ToString();
+            List<SearchInfo> recordList = BizHandler.Handler.SearchRecordByDuration(startDate, endDate, orgCode);
+            GridView1.DataSource = BizHandler.GenExcelRecordInfoList(recordList);
+            GridView1.DataBind();
+        }
+
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
-            
+            ExcelDataBind();
         }
     }   
 }

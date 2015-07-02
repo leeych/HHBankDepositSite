@@ -116,6 +116,9 @@
                       </td>
                   </tr>
                   <tr>
+                      <td><br /></td>
+                  </tr>
+                  <tr>
                       <td colspan="6" align="center"><asp:Button ID="recordBtn" runat="server" ValidationGroup="record" CssClass="aspBtn" Text="修改" OnClick="recordBtn_Click" /></td>
                   </tr>
               </table>
