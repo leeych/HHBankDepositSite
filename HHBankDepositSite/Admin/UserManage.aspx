@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterPage.Master" AutoEventWireup="true" CodeBehind="UserManage.aspx.cs" Inherits="HHBankDepositSite.Admin.UserManage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterPage.Master" AutoEventWireup="true" CodeBehind="UserManage.aspx.cs" EnableEventValidation="false" Inherits="HHBankDepositSite.Admin.UserManage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminHeader" runat="server">
     <style type="text/css">

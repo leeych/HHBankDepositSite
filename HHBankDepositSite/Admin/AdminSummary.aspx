@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterPage.Master" AutoEventWireup="true" CodeBehind="AdminSummary.aspx.cs" Inherits="HHBankDepositSite.Admin.AdminSummary" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterPage.Master" AutoEventWireup="true" CodeBehind="AdminSummary.aspx.cs" EnableEventValidation="false" Inherits="HHBankDepositSite.Admin.AdminSummary" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
@@ -98,11 +98,11 @@
                     <tr>
                         <td><asp:Button ID="exportExcelBtn" runat="server" CssClass="aspBtn" Text="导出Excel" /></td>
                         <td></td>
-                        <td><asp:Button ID="exportTxtBtn" runat="server" CssClass="aspBtn" Text="导出Txt" /></td>
+                        <td><asp:Button ID="exportTxtBtn" runat="server" CssClass="aspBtn" Text="导出Txt" OnClick="exportTxtBtn_Click" /></td>
                     </tr>
                 </table>
 
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" EmptyDataText="没有满足条件的记录！" GridLines="Vertical" AllowPaging="True" ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView1_PageIndexChanging">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" EmptyDataText="没有满足条件的记录！" AllowPaging="True" ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView1_PageIndexChanging">
                     <AlternatingRowStyle BackColor="#DCDCDC" />
                     <Columns>
                         <asp:BoundField DataField="ProtocolID" HeaderText="协议编号"></asp:BoundField>
@@ -121,7 +121,7 @@
                         <asp:BoundField></asp:BoundField>
                     </Columns>
                     <EmptyDataTemplate>
-                        <table id="ctl00_AdminContentPlaceHolder_GridView1" border="1" cellpadding="3" cellspacing="0" rules="cols" style="background-color:White;border-color:#999999;border-width:1px;border-style:None;border-collapse:collapse;">
+                        <table id="emptyTable" border="1" cellpadding="3" cellspacing="3" rules="all" style="background-color:White;border-color:#999999;border-width:1px;border-style:solid;border-collapse:collapse;">
                             <tr style="color:White;background-color:#000084;font-weight:bold;">
                                 <th scope="col">协议编号</th>
                                 <th scope="col">存单账号</th>
@@ -136,7 +136,9 @@
                                 <th scope="col">经办柜员号</th>
                                 <th scope="col">柜员姓名</th>
                                 <th scope="col">备注</th>
-                                <th scope="col">&nbsp;</th>
+                            </tr>
+                            <tr>
+                                <td colspan="13"><h4 style="color:red;">没有满足条件的记录！</h4></td>
                             </tr>
                         </table>
                     </EmptyDataTemplate>

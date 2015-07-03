@@ -33,6 +33,7 @@ namespace HHBankDepositSite.Admin
 
         protected void searchBtn_Click(object sender, EventArgs e)
         {
+            ClearDataSource();
             string orgCode = orgCodeTxt.Text.Trim();
             DateTime startDate = DateTime.Parse(startDateAdminTxt.Text.Trim());
             DateTime endDate = DateTime.Parse(endDateAdminTxt.Text.Trim());
@@ -94,10 +95,21 @@ namespace HHBankDepositSite.Admin
             GridView1.DataBind();
         }
 
+        private void ClearDataSource()
+        {
+            GridView1.DataSource = null;
+            GridView1.DataBind();
+        }
+
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
             ExcelDataBind();
+        }
+
+        protected void exportTxtBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }   
 }
