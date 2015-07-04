@@ -8,5 +8,7 @@ namespace HHBankDepositSite.Data
     {
         public const string ConnectionString = "ConnectionString";
         public const string BankRateTable = "BankRateTable";
+
+        public const string AdminAccount = "3404151476";
     }
 }

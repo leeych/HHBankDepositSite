@@ -315,6 +315,32 @@ namespace BLL
             return dbHandler.GetSearchRecordByDuration(start, end, orgCode);
         }
 
+        public DataTable GetOrgRecordDataSource(DateTime start, DateTime end, string orgCode)
+        {
+            if (start.Date > end.Date)
+            {
+                return null;
+            }
+            if (orgCode == "3404151476")
+            {
+                return dbHandler.GetAllOrgRecordByDuration(start, end);
+            }
+            return dbHandler.GetOrgRecordByDuration(start, end, orgCode);
+        }
+
+        private DataTable GenExcelDataTable(DataTable dt)
+        {
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                DataRow row = dt.Rows[i];
+                Period period = (Period)int.Parse(row["BillPeriod"].ToString());
+                row["BillPeriod"] = GetBillPeriodDesc(period);
+                DrawFlag flag = (DrawFlag)int.Parse(row["DepositFlag"].ToString());
+                row["DepositFlag"] = GetDepositStatusDesc(flag);
+            }
+            return dt;
+        }
+
         public List<TellerInfo> GetTellerInfoListByOrgCode(string orgCode)
         {
             if (string.IsNullOrEmpty(orgCode))

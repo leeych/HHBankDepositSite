@@ -317,6 +317,28 @@ namespace Common
             }
         }
 
+        public static DataTable QueryTable(string sqlString)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(sqlString, connection);
+                adapter.Fill(dt);
+                return dt;
+            }
+            catch (Exception exception)
+            {
+                WriteLog("sql语句[{0}]错误信息：[{1}]调用堆栈[{2}]", sqlString, exception.Message, exception.StackTrace);
+                return null;
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
         #endregion
 
 

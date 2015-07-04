@@ -6,10 +6,10 @@ namespace Model
 {
     public enum DrawFlag
     {
-        Deposit = 0,    // 存入
-        Draw,           // 部分提前支取
-        Remain,         // 已支取
+        Deposit = 0,    // 存入未支取
+        Draw,           // 已全部支取
+        Remain,         // 部分提前支取
         ElseDraw,       // 他行支取
-        Other
+        Other           // 其他
     }
 }

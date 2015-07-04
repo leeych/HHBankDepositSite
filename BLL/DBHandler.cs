@@ -920,6 +920,48 @@ namespace BLL
             }
         }
 
+        public DataTable GetOrgRecordByDuration(DateTime start, DateTime end, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"select * from {0} where DepositDate between '{1}' and '{2}' and 1=1 order by ProtocolID asc";
+            string sqlString = string.Format(sql, tableName, start.ToString("yyyy-MM-dd"), end.ToString("yyyy-MM-dd"));
+            DataTable dt = SqlHelper.QueryTable(sqlString);
+            return dt;
+        }
+
+        /// <summary>
+        /// 查询所有机构的存款记录，返回DataTable
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
+        public DataTable GetAllOrgRecordByDuration(DateTime start, DateTime end)
+        {
+            string sql = @"select * from {0} where DepositDate between '{1}' and '{2}'";
+            string startStr = start.ToString("yyyy-MM-dd");
+            string endStr = end.ToString("yyyy-MM-dd");
+            StringBuilder sqlSb = new StringBuilder();
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151477"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151479"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151481"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151483"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151485"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151487"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151489"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151491"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151493"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151501"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151503"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151505"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151507"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151511"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " order by ProtocolID asc", Constants.OrgCodeToTableName["3404157871"], startStr, endStr);
+
+            string sqlString = sqlSb.ToString();
+            DataTable dt = SqlHelper.QueryTable(sqlString);
+            return dt;
+        }
+
         /// <summary>
         /// 查询机构名
         /// </summary>
@@ -1170,6 +1212,12 @@ namespace BLL
             return false;
         }
 
+        /// <summary>
+        /// 查询所有机构的存款记录
+        /// </summary>
+        /// <param name="start">起始时间</param>
+        /// <param name="end">结束时间</param>
+        /// <returns>所有分支机构的存款记录</returns>
         public List<SearchInfo> GetAllOrgRecord(DateTime start, DateTime end)
         {
             string sql = @"select * from {0} where DepositDate between '{1}' and '{2}'";
@@ -1190,7 +1238,7 @@ namespace BLL
             sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151505"], startStr, endStr);
             sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151507"], startStr, endStr);
             sqlSb.AppendFormat(sql + " union all ", Constants.OrgCodeToTableName["3404151511"], startStr, endStr);
-            sqlSb.AppendFormat(sql, Constants.OrgCodeToTableName["3404157871"], startStr, endStr);
+            sqlSb.AppendFormat(sql + " order by ProtocolID asc", Constants.OrgCodeToTableName["3404157871"], startStr, endStr);
             string sqlString = sqlSb.ToString();
             using (SqlDataReader dr = SqlHelper.ExecuteReader(sqlString))
             {

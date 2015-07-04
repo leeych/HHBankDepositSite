@@ -7,11 +7,22 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
+using System.Data;
 
 namespace HHBankDepositSite.Admin
 {
     public partial class AdminSummary : System.Web.UI.Page
     {
+        protected static Dictionary<string, string> BillPeriodDict = new Dictionary<string, string>() 
+        {
+            {"0", "三个月"}, {"1","六个月"}, {"2", "一年"}, {"3", "二年"}, {"4", "三年"}, {"5", "五年"} 
+        };
+        protected static Dictionary<string, string> StatusDict = new Dictionary<string, string>() 
+        { 
+            {"0", "存入未支取"}, {"1", "已全部支取"}, {"2", "部分提前支取"}, {"3", "他行支取"}, {"4", "其他"}
+        };
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -45,7 +56,7 @@ namespace HHBankDepositSite.Admin
             }
             AdminSketchInfo sketchInfo = BizHandler.GetSummaryInfo(recordList);
             UpdateSummary(sketchInfo);
-            GridView1.DataSource = BizHandler.GenExcelRecordInfoList(recordList);
+            GridView1.DataSource = BizHandler.Handler.GetOrgRecordDataSource(startDate, endDate, orgCode);
             GridView1.DataBind();
         }
 
@@ -64,25 +75,25 @@ namespace HHBankDepositSite.Admin
         private void UpdateSummary(AdminSketchInfo info)
         {
             newNumTxt.Text = info.NewRecord.Num.ToString();
-            newMoneyTxt.Text = info.NewRecord.Money.ToString("f2");
+            newMoneyTxt.Text = info.NewRecord.Money.ToString("#.##");
 
             remainNumTxt.Text = info.RemainRecord.Num.ToString();
-            remainMoneyTxt.Text = info.RemainRecord.Money.ToString("f2");
+            remainMoneyTxt.Text = info.RemainRecord.Money.ToString("#.#");
 
             drawNumTxt.Text = info.DRecord.Num.ToString();
-            drawMoneyTxt.Text = info.DRecord.Money.ToString("f2");
+            drawMoneyTxt.Text = info.DRecord.Money.ToString("#.#");
 
             dueDrawNumTxt.Text = info.DueDrawRecord.Num.ToString();
-            dueDrawMoneyTxt.Text = info.DueDrawRecord.Money.ToString("f2");
+            dueDrawMoneyTxt.Text = info.DueDrawRecord.Money.ToString("#.#");
 
             sysNumTxt.Text = info.SysPayfee.Num.ToString();
-            sysMoneyTxt.Text = info.SysPayfee.Money.ToString("f2");
+            sysMoneyTxt.Text = info.SysPayfee.Money.ToString("#.#");
 
             calcNumTxt.Text = info.CalcPayfee.Num.ToString();
-            calcMoneyTxt.Text = info.CalcPayfee.Money.ToString("f2");
+            calcMoneyTxt.Text = info.CalcPayfee.Money.ToString("#.#");
 
             marginNumTxt.Text = info.MarginPayfee.Num.ToString();
-            marginMoneyTxt.Text = info.MarginPayfee.Money.ToString("f2");
+            marginMoneyTxt.Text = info.MarginPayfee.Money.ToString("#.#");
         }
 
         private void ExcelDataBind()
@@ -104,12 +115,104 @@ namespace HHBankDepositSite.Admin
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
-            ExcelDataBind();
+            DateTime start = DateTime.Parse(startDateAdminTxt.Text.Trim());
+            DateTime end = DateTime.Parse(endDateAdminTxt.Text.Trim());
+            string orgCode = orgCodeTxt.Text.Trim();
+            GridView1.DataSource = BizHandler.Handler.GetOrgRecordDataSource(start, end, orgCode);
+            GridView1.DataBind();
         }
 
         protected void exportTxtBtn_Click(object sender, EventArgs e)
         {
-
+            InsertDB();
         }
-    }   
+
+        protected void exportExcelBtn_Click(object sender, EventArgs e)
+        {
+            GridView1.AllowPaging = false;
+            GridViewToExcel();
+            GridView1.AllowPaging = true;
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            //base.VerifyRenderingInServerForm(control);
+        }
+
+        private void GridViewToExcel()
+        {
+            string fileName = DateTime.Now.ToString("yyyyMMdd") + ".xls";
+            string style = @"<style> .text {mso-number-format:\@;}</script>";
+
+            fileName = HttpUtility.UrlEncode(fileName, System.Text.Encoding.UTF8);
+            Response.ClearContent();
+
+            Response.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+            Response.ContentType = "application/excel";
+            Response.AppendHeader("Content-Disposition", "attachment;filename=" + fileName);
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            GridView1.RenderControl(htw);
+            Response.Write(style);
+            Response.Write(sw);
+            Response.End();
+        }
+
+        private void CreateExcel(DataSet ds, string fileName)
+        {
+            fileName = HttpUtility.UrlEncode(fileName, System.Text.Encoding.UTF8);
+            HttpResponse resp = Page.Response;
+            resp.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+            resp.AppendHeader("Content-Disposition", "attachment;filename=" + fileName);
+            string colHeaders = "", lsItem = "";
+            DataTable dt = ds.Tables[0];
+            DataRow[] myRow = dt.Select();
+            
+            int cl = dt.Columns.Count;
+            for (int i = 0; i < cl; i++)
+            {
+                if (i == (cl - 1))
+                {
+                    colHeaders += dt.Columns[i].Caption.ToString() + "\n";
+                }
+                else
+                {
+                    colHeaders += dt.Columns[i].Caption.ToString() + "\t";
+                }
+            }
+            resp.Write(colHeaders);
+
+            foreach (DataRow row in myRow)
+            {
+                for (int i = 0; i < cl; i++)
+                {
+                    if (i == (cl - 1))
+                    {
+                        lsItem += row[i].ToString() + "\n";
+                    }
+                    else
+                    {
+                        lsItem += row[i].ToString() + "\t";
+                    }
+                }
+                resp.Write(lsItem);
+                lsItem = "";
+            }
+            resp.End();
+        }
+
+        private void InsertDB()
+        {
+            string sql = @"insert into Jiuhuashanlu(protocolid,billaccount,billcode,depositdate,orgcode,tellercode,tellername,depositorname,depositoridcard,depositmoney,billperiod,duedate,remainmoney,bindaccount,depositflag,currentRate,d01rate,m03rate,m06rate,y01rate,y02rate,y03rate,y05rate) " +
+                " values('{0}','10021629952710200000101','503515208801','2015-06-09','3404157871','787103','李杰','李院成','340121198907221314',20000,3,'2017-06-09','20000','6217788311500094100',0,0.0042,0.00001,0.02405,0.02665,0.02925,0.03705,0.0455,0.05225)";
+            long protocolid = 78712015000000;
+
+            for (int i = 0; i < 10000; i++)
+            {
+                string sqlString = string.Format(sql, protocolid++);
+                SqlHelper.ExecuteSql(sqlString);
+            }
+        }
+    }
 }

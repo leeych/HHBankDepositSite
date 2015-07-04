@@ -132,6 +132,7 @@
     <Compile Include="Admin\UserManage.aspx.designer.cs">
       <DependentUpon>UserManage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Data\DataFieldInfo.cs" />
     <Compile Include="Data\WebConfigName.cs" />
     <Compile Include="Data\WebDataCenter.cs" />
     <Compile Include="Default.aspx.cs">
