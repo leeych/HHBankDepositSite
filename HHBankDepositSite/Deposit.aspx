@@ -112,7 +112,7 @@
                 <span>
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
-                            <asp:TextBox ID="tellerNameTxt" runat="server" CssClass="aspTextBox" Width="80px" MaxLength="6" ReadOnly="true"></asp:TextBox>
+                            <asp:TextBox ID="tellerNameTxt" runat="server" CssClass="aspTextBox" Width="80px"></asp:TextBox>
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="tellerCodeDrop" />

@@ -74,7 +74,6 @@
     <Content Include="Deposit.aspx" />
     <Content Include="Draw.aspx" />
     <Content Include="Help.aspx" />
-    <Content Include="ie-css3.htc" />
     <Content Include="Images\bg-black.gif" />
     <Content Include="Images\bg-black2.gif" />
     <Content Include="Images\bg.jpg" />
@@ -97,10 +96,6 @@
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Search.aspx" />
-    <Content Include="UserControl\HeaderControl.ascx" />
-    <Content Include="UserControl\MyGVPage.ascx" />
-    <Content Include="UserControl\nav.aspx" />
-    <Content Include="UserControl\NavigationBarControl.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -200,39 +195,10 @@
       <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="TGridView.cs" />
-    <Compile Include="UserControl\HeaderControl.ascx.cs">
-      <DependentUpon>HeaderControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\HeaderControl.ascx.designer.cs">
-      <DependentUpon>HeaderControl.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\MyGVPage.ascx.cs">
-      <DependentUpon>MyGVPage.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\MyGVPage.ascx.designer.cs">
-      <DependentUpon>MyGVPage.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\nav.aspx.cs">
-      <DependentUpon>nav.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\nav.aspx.designer.cs">
-      <DependentUpon>nav.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\NavigationBarControl.ascx.cs">
-      <DependentUpon>NavigationBarControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\NavigationBarControl.ascx.designer.cs">
-      <DependentUpon>NavigationBarControl.ascx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Downloads\" />
-    <Folder Include="UserControl\GridViewEx\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage.master" />
