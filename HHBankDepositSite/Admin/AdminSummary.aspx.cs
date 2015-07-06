@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Data;
+using System.Text;
 
 namespace HHBankDepositSite.Admin
 {
@@ -22,6 +23,8 @@ namespace HHBankDepositSite.Admin
         { 
             {"0", "存入未支取"}, {"1", "已全部支取"}, {"2", "部分提前支取"}, {"3", "他行支取"}, {"4", "其他"}
         };
+
+        private static DataTable ExcelDataSource { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -56,7 +59,8 @@ namespace HHBankDepositSite.Admin
             }
             AdminSketchInfo sketchInfo = BizHandler.GetSummaryInfo(recordList);
             UpdateSummary(sketchInfo);
-            GridView1.DataSource = BizHandler.Handler.GetOrgRecordDataSource(startDate, endDate, orgCode);
+            ExcelDataSource = BizHandler.Handler.GetOrgRecordDataSource(startDate, endDate, orgCode);
+            GridView1.DataSource = ExcelDataSource;
             GridView1.DataBind();
         }
 
@@ -96,16 +100,6 @@ namespace HHBankDepositSite.Admin
             marginMoneyTxt.Text = info.MarginPayfee.Money.ToString("#.#");
         }
 
-        private void ExcelDataBind()
-        {
-            DateTime startDate = DateTime.Parse(startDateAdminTxt.Text.Trim());
-            DateTime endDate = DateTime.Parse(endDateAdminTxt.Text.Trim());
-            string orgCode= Session["UserName"].ToString();
-            List<SearchInfo> recordList = BizHandler.Handler.SearchRecordByDuration(startDate, endDate, orgCode);
-            GridView1.DataSource = BizHandler.GenExcelRecordInfoList(recordList);
-            GridView1.DataBind();
-        }
-
         private void ClearDataSource()
         {
             GridView1.DataSource = null;
@@ -124,12 +118,13 @@ namespace HHBankDepositSite.Admin
 
         protected void exportTxtBtn_Click(object sender, EventArgs e)
         {
-            InsertDB();
         }
 
         protected void exportExcelBtn_Click(object sender, EventArgs e)
         {
             GridView1.AllowPaging = false;
+            GridView1.DataSource = ExcelDataSource;
+            GridView1.DataBind();
             GridViewToExcel();
             GridView1.AllowPaging = true;
         }
@@ -142,21 +137,34 @@ namespace HHBankDepositSite.Admin
         private void GridViewToExcel()
         {
             string fileName = DateTime.Now.ToString("yyyyMMdd") + ".xls";
-            string style = @"<style> .text {mso-number-format:\@;}</script>";
 
             fileName = HttpUtility.UrlEncode(fileName, System.Text.Encoding.UTF8);
-            Response.ClearContent();
-
-            Response.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
-            Response.ContentType = "application/excel";
-            Response.AppendHeader("Content-Disposition", "attachment;filename=" + fileName);
-
+            Response.Charset = "GB2312";
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            Response.AppendHeader("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode(fileName, System.Text.Encoding.UTF8).ToString());
+            Response.ContentType = "application/ms-excel";
+            GridView1.Page.EnableViewState = false;
             StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            GridView1.RenderControl(htw);
-            Response.Write(style);
-            Response.Write(sw);
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            GridView1.RenderControl(hw);
+            Response.Write(sw.ToString());
             Response.End();
+            GridView1.Page.EnableViewState = true;
+        }
+
+        private void GridViewToTXT()
+        {
+            string fileName = DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
+            fileName = HttpUtility.UrlEncode(fileName, System.Text.Encoding.UTF8);
+            DataTable dt = ExcelDataSource;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                for (int j = 0; j < dt.Columns.Count; j++)
+                {
+                    sb.AppendLine(dt.Rows[i][j].ToString() + ";");
+                }
+            }
         }
 
         private void CreateExcel(DataSet ds, string fileName)
@@ -212,6 +220,17 @@ namespace HHBankDepositSite.Admin
             {
                 string sqlString = string.Format(sql, protocolid++);
                 SqlHelper.ExecuteSql(sqlString);
+            }
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                for (int i = 0; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
+                }
             }
         }
     }

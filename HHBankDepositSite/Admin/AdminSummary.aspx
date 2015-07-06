@@ -3,6 +3,11 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminHeader" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            color: #FF6600;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="AdminContentPlaceHolder" runat="server">
     <div>
@@ -97,12 +102,12 @@
                     <tr>
                         <td><asp:Button ID="exportExcelBtn" runat="server" CssClass="aspBtn" Text="导出Excel" OnClick="exportExcelBtn_Click" /></td>
                         <td></td>
-                        <td><asp:Button ID="exportTxtBtn" runat="server" CssClass="aspBtn" Text="导出Txt" OnClick="exportTxtBtn_Click" /></td>
+                        <td><asp:Button ID="exportTxtBtn" runat="server" CssClass="aspBtn" Text="导出Txt" OnClick="exportTxtBtn_Click" Visible="false" /></td>
                     </tr>
                 </table>
                 <div style="overflow:scroll; width:100%;">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" EmptyDataText="没有满足条件的记录！" AllowPaging="True" ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView1_PageIndexChanging" style="margin-bottom: 0px" PageSize="20">
-                    <AlternatingRowStyle BackColor="#DCDCDC" />
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" EmptyDataText="没有满足条件的记录！" AllowPaging="True" ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView1_PageIndexChanging" style="margin-bottom: 0px" PageSize="20" OnRowDataBound="GridView1_RowDataBound">
+                    <AlternatingRowStyle BackColor="#F7F7F7" />
                     <Columns>
                         <asp:BoundField DataField="ProtocolID" HeaderText="协议编号" ItemStyle-Wrap="false" HeaderStyle-Wrap="False">
 <HeaderStyle Wrap="False"></HeaderStyle>
@@ -262,39 +267,24 @@
 
 <ItemStyle Wrap="False"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="Remark" HeaderText="备注" HeaderStyle-Wrap="false" ItemStyle-Wrap="false"></asp:BoundField>
+                        <asp:BoundField DataField="Remark" HeaderText="备注" HeaderStyle-Wrap="false" ItemStyle-Wrap="false">
+<HeaderStyle Wrap="False"></HeaderStyle>
+
+<ItemStyle Wrap="False"></ItemStyle>
+                        </asp:BoundField>
                     </Columns>
                     <EmptyDataTemplate>
-                        <table id="emptyTable" border="1" cellpadding="3" cellspacing="3" rules="all" style="background-color:White;border-color:#999999;border-width:1px;border-style:solid;border-collapse:collapse;">
-                            <tr style="color:White;background-color:#000084;font-weight:bold;">
-                                <th scope="col">协议编号</th>
-                                <th scope="col">存单账号</th>
-                                <th scope="col">凭证号码</th>
-                                <th scope="col">存入日期</th>
-                                <th scope="col">本金</th>
-                                <th scope="col">存期</th>
-                                <th scope="col">客户姓名</th>
-                                <th scope="col">客户身份证号</th>
-                                <th scope="col">存款状态</th>
-                                <th scope="col">绑定账号</th>
-                                <th scope="col">经办柜员号</th>
-                                <th scope="col">柜员姓名</th>
-                                <th scope="col">备注</th>
-                            </tr>
-                            <tr>
-                                <td colspan="13"><h4 style="color:red;">没有满足条件的记录！</h4></td>
-                            </tr>
-                        </table>
+                        <span class="auto-style1"><strong>没有满足条件的记录！</strong></span>
                     </EmptyDataTemplate>
-                    <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                    <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
-                    <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#000065" />
+                    <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
+                    <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
+                    <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
+                    <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
+                    <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
+                    <SortedAscendingCellStyle BackColor="#F4F4FD" />
+                    <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
+                    <SortedDescendingCellStyle BackColor="#D8D8F0" />
+                    <SortedDescendingHeaderStyle BackColor="#3E3277" />
                     
                 </asp:GridView>
                     </div>
