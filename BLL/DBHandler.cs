@@ -929,6 +929,33 @@ namespace BLL
             return dt;
         }
 
+        public DataTable GetDataSourceByProtocolID(string protocolID, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"select * from {0} where ProtocolID='{1}' and 1=1";
+            string sqlString = string.Format(sql, tableName, protocolID);
+            DataTable dt = SqlHelper.QueryTable(sqlString);
+            return dt;
+        }
+
+        public DataTable GetDataSourceByBillAccount(string billAccount, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"select * from {0} where BillAccount='{1}' and 1=1";
+            string sqlString = string.Format(sql, tableName, billAccount);
+            DataTable dt = SqlHelper.QueryTable(sqlString);
+            return dt;
+        }
+
+        public DataTable GetDataSourceByIDCard(string idCard, string orgCode)
+        {
+            string tableName = Constants.OrgCodeToTableName[orgCode];
+            string sql = @"select * from {0} where DepositorIDCard='{1}' and 1=1";
+            string sqlString = string.Format(sql, tableName, idCard);
+            DataTable dt = SqlHelper.QueryTable(sqlString);
+            return dt;
+        }
+
         /// <summary>
         /// 查询所有机构的存款记录，返回DataTable
         /// </summary>

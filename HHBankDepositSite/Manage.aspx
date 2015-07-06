@@ -14,8 +14,8 @@
           <br />
           <div style="clear:both;">
           <fieldset class="fieldSetStyle">
-              <legend class="legendStyle">记录修改</legend>
-              <table width="80%" style="border:1px solid #E5E5E5;">
+              <legend class="legendStyle" align="center">记录修改</legend>
+              <table width="80%" style="border:1px solid #E5E5E5;" align="center">
                   <tr>
                       <td>协议编号：</td>
                       <td>
@@ -34,7 +34,7 @@
                   </table>
               <hr />
               <br />
-              <table width="80%" style="border: 1px solid #E5E5E5; border-spacing: 0">
+              <table width="80%" style="border: 1px solid #E5E5E5; border-spacing: 0" align="center">
                   <tr>
                       <td>凭证号码：</td>
                       <td><asp:TextBox ID="billCodeTxt" runat="server" MaxLength="12" CssClass="aspTextBox"></asp:TextBox>
@@ -129,7 +129,7 @@
                         <br />
           <div style="float: left; margin: 0 20px 0 20px; width:45%">
         <fieldset class="fieldSetStyle">
-            <legend class="legendStyle">当前利率</legend>
+            <legend class="legendStyle" align="center">当前利率</legend>
             <table width="90%" cellpadding="5px" cellspacing="5px" align="center" style="border:1px solid #E5E5E5;">
                 <tr>
                     <td align="right">三个月：</td>
@@ -202,7 +202,7 @@
 
           <div style="float:right; width:45%; margin-right: 20px;">
          <fieldset class="fieldSetStyle">
-            <legend class="legendStyle">修改密码</legend>
+            <legend class="legendStyle" align="center">修改密码</legend>
             <table width="90%" cellpadding="5" cellspacing="5" align="center" style="border:1px solid #E5E5E5;">
                 <tr>
                     <td class="tdLabel">用户名：</td>

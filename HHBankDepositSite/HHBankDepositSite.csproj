@@ -232,10 +232,6 @@
       <Project>{12cd808b-b26e-48c1-8e2f-a2c00b82b8fa}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YYControls\YYControls.csproj">
-      <Project>{b542a4fb-3fdf-4a3d-82bd-fb8d86d75055}</Project>
-      <Name>YYControls</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

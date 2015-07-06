@@ -135,10 +135,12 @@
             <div style="border: 1px; height:100px; text-align:left;">
                 <div style="float:left;">
                 <asp:Panel ID="notePanel" runat="server" Width="335px" BorderColor="#4684AF" BorderStyle="Solid" BorderWidth="10px" BackColor="#F0F0F0">
-                    <h5 align="left">协议编号：机构号末4位 + 年份4位 + 6位编号</h5>
-                    <h5 align="left">存单账号：综合业务系统生成的23位账号</h5>
-                    <h5 align="left">凭证号码：“50” + 10位编码</h5>
-                </asp:Panel>
+                    <p style="line-height:15px; font-size:14px; margin:3px;">协议编号：机构号末4位 + 年份4位 + 6位编号</p>
+                    <p style="line-height:15px; font-size:14px; margin:3px;">存单账号：综合业务系统生成的23位账号</p>
+                    <p style="line-height:15px; font-size:14px; margin:3px;">凭证号码：“50” + 10位编码
+                    <h5 style="text-align:left; margin:3px;"><a href="./Files/保利存管理办法.doc">“保利存”管理办法</a></h5>
+                    <h5 style="text-align:left; margin:3px;"><a href="./Files/正式协议书.doc">“保利存”储蓄存款开户协议书</a></h5>
+                    </asp:Panel>
 
                 <ajaxToolkit:DragPanelExtender ID="notePanel_DragPanelExtender" runat="server" BehaviorID="notePanel_DragPanelExtender" DragHandleID="notePanel" TargetControlID="notePanel" />
                 </div>

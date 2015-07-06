@@ -262,7 +262,7 @@
 
 <ItemStyle Wrap="False"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="Remark" HeaderText="备注"></asp:BoundField>
+                        <asp:BoundField DataField="Remark" HeaderText="备注" HeaderStyle-Wrap="false" ItemStyle-Wrap="false"></asp:BoundField>
                     </Columns>
                     <EmptyDataTemplate>
                         <table id="emptyTable" border="1" cellpadding="3" cellspacing="3" rules="all" style="background-color:White;border-color:#999999;border-width:1px;border-style:solid;border-collapse:collapse;">

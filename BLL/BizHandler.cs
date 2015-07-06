@@ -302,6 +302,24 @@ namespace BLL
             return dbHandler.GetSearchRecordByBillAccount(account, orgCode);
         }
 
+        public DataTable GetOrgRecordDataSourceByBillAccount(string billAccount, string orgCode)
+        {
+            if (!string.IsNullOrEmpty(billAccount) && !string.IsNullOrEmpty(orgCode))
+            {
+                return dbHandler.GetDataSourceByBillAccount(billAccount, orgCode);
+            }
+            return null;
+        }
+
+        public DataTable GetOrgRecordDataSourceByIDCard(string idCard, string orgCode)
+        {
+            if (!string.IsNullOrEmpty(idCard) && !string.IsNullOrEmpty(orgCode))
+            {
+                return dbHandler.GetDataSourceByIDCard(idCard, orgCode);
+            }
+            return null;
+        }
+
         public List<SearchInfo> SearchRecordByDuration(DateTime start, DateTime end, string orgCode)
         {
             if (start.Date > end.Date)
@@ -326,6 +344,15 @@ namespace BLL
                 return dbHandler.GetAllOrgRecordByDuration(start, end);
             }
             return dbHandler.GetOrgRecordByDuration(start, end, orgCode);
+        }
+
+        public DataTable GetOrgRecordDataSource(string protocolID, string orgCode)
+        {
+            if (!string.IsNullOrEmpty(protocolID) && !string.IsNullOrEmpty(orgCode))
+            {
+                return dbHandler.GetDataSourceByProtocolID(protocolID, orgCode);
+            }
+            return null;
         }
 
         private DataTable GenExcelDataTable(DataTable dt)

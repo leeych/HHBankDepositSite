@@ -14,9 +14,8 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <div id="whole">
     <form id="form1" runat="server">
-        <div><img src="./Images/logo.jpg" alt="logo" style="width:100%; height: 100px; opacity: 1;"/></div>
+        <div style="margin:0;"><img src="./Images/logo.jpg" alt="logo" style="width:100%; height: 100px; opacity: 1;"/></div>
         <div class="background">
             <asp:Menu ID="NavigationMenu" CssClass="NavigationMenu"
                 StaticDisplayLevels="2" DynamicHorizontalOffset="1"
@@ -42,35 +41,32 @@
                 </DataBindings>
             </asp:Menu>
         </div>
+        <asp:TreeView ID="NavigationTreeView" runat="server" Visible="false" DataSourceID="MenuSource" />
 
-    <asp:TreeView ID="NavigationTreeView" runat="server" Visible="false" DataSourceID="MenuSource" />
-
-<div id="e">
-        <asp:SiteMapPath ID="SiteMapPath1" runat="server" 
-                RenderCurrentNodeAsLink="true" 
-                CssClass="currentNodeStyle"
-            PathSeparator=" >> ">
-            <PathSeparatorStyle ForeColor="#5D7B9D" CssClass="currentNodeStyle" />
-            <CurrentNodeStyle ForeColor="#333333" CssClass="currentNodeStyle" />
-            <NodeStyle ForeColor="#7C6F57"  CssClass="currentNodeStyle"  />
-            <RootNodeStyle  ForeColor="#5D7B9D" CssClass="currentNodeStyle"  />
-    </asp:SiteMapPath> 
-</div>
-    <asp:Panel ID="AccessKeyPanel" runat="server">
-    </asp:Panel>
-       <asp:SiteMapDataSource id="MenuSource" runat="server" StartFromCurrentNode="false" ShowStartingNode="true" />
+        <div id="e">
+                <asp:SiteMapPath ID="SiteMapPath1" runat="server" 
+                        RenderCurrentNodeAsLink="true" 
+                        CssClass="currentNodeStyle"
+                    PathSeparator=" >> ">
+                    <PathSeparatorStyle ForeColor="#5D7B9D" CssClass="currentNodeStyle" />
+                    <CurrentNodeStyle ForeColor="#333333" CssClass="currentNodeStyle" />
+                    <NodeStyle ForeColor="#7C6F57"  CssClass="currentNodeStyle"  />
+                    <RootNodeStyle  ForeColor="#5D7B9D" CssClass="currentNodeStyle"  />
+            </asp:SiteMapPath> 
+        </div>
+        <asp:Panel ID="AccessKeyPanel" runat="server">
+        </asp:Panel>
+        <asp:SiteMapDataSource id="MenuSource" runat="server" StartFromCurrentNode="false" ShowStartingNode="true" />
 
         <div id="content" style="width:inherit; height:inherit;">
             <asp:ScriptManager ID="ScriptManagerUser" EnableScriptGlobalization="true" EnableScriptLocalization="true" runat="server"></asp:ScriptManager>
             <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-
-    <div id="footer">
-        <asp:Label ID="Label1" runat="server" Font-Size="Small" Text="Copyright 2015 @ hhBank：淮南淮河农村商业银行股份有限公司 地址：淮南市潘集区黄山路53号 电话：0554-4977159"
-            Width="100%"></asp:Label>
-    </div>
+        <div id="footer">
+            <asp:Label ID="Label1" runat="server" Font-Size="Small" Text="Copyright 2015 @ hhBank：淮南淮河农村商业银行股份有限公司 地址：淮南市潘集区黄山路53号 电话：0554-4977159"
+                Width="100%"></asp:Label>
+        </div>
   </form>
-</div>
 </body>
 </html>
