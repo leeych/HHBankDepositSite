@@ -10,7 +10,7 @@ namespace Common
     {
         private static Regex RegNumber = new Regex("^[0-9]+$");
         private static Regex RegNumberSign = new Regex("^[+-]?[0-9]+$");
-        private static Regex RegDecimal = new Regex("^[0-9]+[.]?[0-9]+$");
+        private static Regex RegDecimal = new Regex("^[0-9]*[.]?[0-9]+$");
         private static Regex RegDecimalSign = new Regex("^[+-]?[0-9]+[.]?[0-9]+$");
         private static Regex RegDigitAlpha = new Regex("^[a-zA-Z0-9]+$");
         private static Regex RegEmail = new Regex("^[\\w-]+@[\\w-]+\\.(com|net|org|edu|mil|tv|biz|tv|info)$");

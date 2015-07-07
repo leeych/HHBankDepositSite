@@ -37,22 +37,22 @@ namespace HHBankDepositSite
             switch (periodDrop.SelectedIndex)
             {
                 case 0:
-                    rateTxt.Text = (bankRate.M03 * 100).ToString("f3");
+                    rateTxt.Text = (bankRate.M03 * 100).ToString("#.###");
                     break;
                 case 1:
-                    rateTxt.Text = (bankRate.M06 * 100).ToString("f3");
+                    rateTxt.Text = (bankRate.M06 * 100).ToString("#.###");
                     break;
                 case 2:
-                    rateTxt.Text = (bankRate.Y01 * 100).ToString("f3");
+                    rateTxt.Text = (bankRate.Y01 * 100).ToString("#.###");
                     break;
                 case 3:
-                    rateTxt.Text = (bankRate.Y02 * 100).ToString("f3");
+                    rateTxt.Text = (bankRate.Y02 * 100).ToString("#.###");
                     break;
                 case 4:
-                    rateTxt.Text = (bankRate.Y03 * 100).ToString("f3");
+                    rateTxt.Text = (bankRate.Y03 * 100).ToString("#.###");
                     break;
                 case 5:
-                    rateTxt.Text = (bankRate.Y05 * 100).ToString("f3");
+                    rateTxt.Text = (bankRate.Y05 * 100).ToString("#.###");
                     break;
                 default:
                     rateTxt.Text = "--";
@@ -255,7 +255,6 @@ namespace HHBankDepositSite
             billAccountTxt.Text = string.Empty;
             billCodeTxt.Text = string.Empty;
             periodDrop.SelectedIndex = 0;
-            //rateTxt.Text = string.Empty;
             moneyTxt.Text = string.Empty;
             dateTxt.Text = string.Empty;
             bindAccountTxt.Text = string.Empty;
@@ -286,13 +285,6 @@ namespace HHBankDepositSite
         protected void dateTxt_TextChanged(object sender, EventArgs e)
         {
             dateTxt.DataBind();
-        }
-
-        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
-        {
-            //bool startDate = e.Day.Date >= DateTime.Now.Date.AddDays(-1);
-            //bool endDate = e.Day.Date <= DateTime.Now.Date;
-            //e.Day.IsSelectable = (startDate && endDate);
         }
 
         public string TextInputCheck()

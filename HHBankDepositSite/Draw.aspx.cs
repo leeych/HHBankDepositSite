@@ -70,7 +70,7 @@ namespace HHBankDepositSite
             }
             if (record.Status == DrawFlag.Draw)
             {
-                TMessageBox.ShowMsg(this, "DrawRecordErr", "存款已被全部支取！");
+                TMessageBox.ShowMsg(this, "DrawRecordErr", "存款已被全部支取！不能再次支取！");
                 return;
             }
             if (record.Status == DrawFlag.Remain && record.RemainMoney < 5000)
@@ -156,6 +156,10 @@ namespace HHBankDepositSite
 
         protected void okBtn_Click(object sender, EventArgs e)
         {
+            if (BizHandler.Handler.DrawRecordInfo.Status == DrawFlag.Draw || BizHandler.Handler.DrawRecordInfo.Status == DrawFlag.ElseDraw)
+            {
+                return;
+            }
             this.ClientScript.RegisterStartupScript(this.GetType(), "drawRecord", "<script language='javascript' defer='defer'> if (confirm('是否确定支取？')){ document.getElementById('" + linkBtn.ClientID.ToString() + "').click();}</script>");
         }
 
@@ -266,11 +270,8 @@ namespace HHBankDepositSite
             }
         }
 
-        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+        private void UpdateDrawPage(DrawInfo info)
         {
-            bool start = e.Day.Date >= DateTime.Now.Date.AddDays(-1);
-            bool end = e.Day.Date <= DateTime.Now.Date.AddDays(1);
-            e.Day.IsSelectable = (start && end);
         }
 
         private void ClearTextBox()
@@ -452,12 +453,14 @@ namespace HHBankDepositSite
 
             if (!res)
             {
-                TMessageBox.ShowMsg(this, "DrawMoneyErr", "存款支取失败！请稍后再试！");
+                TMessageBox.ShowMsg(this, "DrawMoneyErr", "存款支取失败！核对信息后再试！");
                 return;
             }
             else
             {
                 TMessageBox.ShowMsg(this, "DrawMoneySuccess", "存款已成功支取！");
+                DrawRecord newRecord = BizHandler.Handler.GetDrawRecord(protocolIDTxt.Text.Trim(), billAccountTxt.Text.Trim(), Session["UserName"].ToString());
+                UpdatePage(newRecord);
                 return;
             }
         }
