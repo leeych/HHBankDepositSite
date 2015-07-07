@@ -439,7 +439,7 @@ namespace BLL
 
         public bool ModifyRecord(SearchInfo info, string orgCode)
         {
-            if (info.Status == DrawFlag.Deposit)
+            if (info.Status == DrawFlag.Deposit || info.Status == DrawFlag.Draw || info.Status == DrawFlag.Remain)
             {
                 return dbHandler.SetRecordWithoutDrawDate(info, orgCode);
             }

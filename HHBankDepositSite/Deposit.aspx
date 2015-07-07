@@ -12,20 +12,6 @@
                 var dataPicker = document.getElementById('datePicker');
                 datePicker.style.display = 'block';
             }
-
-            function onlyNumber() {
-                var key = window.event.keyCode;
-                if ((key == 46) || (key==8) || (key == 189) || (key==109) || (key==190)||(key==110)||(key>=48 && key<=57) 
-                    || (key >= 96 && key <= 105) || (key >= 37 && key <= 40)) {
-                }
-                else if (key == 13) {
-                    window.event.keyCode = 9;
-                }
-                else {
-                    window.event.returnValue = false;
-                }
-            }
-
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

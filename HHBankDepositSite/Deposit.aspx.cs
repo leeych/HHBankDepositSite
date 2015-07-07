@@ -113,6 +113,7 @@ namespace HHBankDepositSite
                                             Remark = remark,
                                             Rate = bankRate,
                                             DueDate = dueDate,
+                                            DepositFlag = (int)DrawFlag.Deposit
                                         };
             if (BizHandler.Handler.AddDepositRecord(record) == 1)
             {

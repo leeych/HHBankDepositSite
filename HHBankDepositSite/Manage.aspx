@@ -77,8 +77,8 @@
                       <td>
                           <asp:DropDownList ID="statusDrop" runat="server" CssClass="aspDrop">
                               <asp:ListItem>存入未支取</asp:ListItem>
-                              <asp:ListItem>部分提前支取</asp:ListItem>
                               <asp:ListItem>全部支取</asp:ListItem>
+                              <asp:ListItem>部分提前支取</asp:ListItem>
                               <asp:ListItem>他行支取</asp:ListItem>
                               <asp:ListItem>其他</asp:ListItem>
                           </asp:DropDownList>

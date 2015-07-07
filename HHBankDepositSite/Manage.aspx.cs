@@ -159,6 +159,7 @@ namespace HHBankDepositSite
             info.TellerCode = tellerCodeTxt.Text.Trim();
             info.ClientName = tellerNameTxt.Text.Trim();
             info.Status = GetRecordStatus();
+            info.BillAccount = billAccountTxt.Text.Trim();
             if (info.Status == DrawFlag.ElseDraw || info.Status == DrawFlag.Draw)
             {
                 info.FinalDrawDate = DateTime.Parse(drawDateTxt.Text.Trim());
@@ -314,10 +315,10 @@ namespace HHBankDepositSite
                     state = DrawFlag.Deposit;
                     break;
                 case 1:
-                    state = DrawFlag.Remain;
+                    state = DrawFlag.Draw;
                     break;
                 case 2:
-                    state = DrawFlag.Draw;
+                    state = DrawFlag.Remain;
                     break;
                 case 3:
                     state = DrawFlag.ElseDraw;

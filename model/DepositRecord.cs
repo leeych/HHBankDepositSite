@@ -82,7 +82,7 @@ namespace Model
         public string BindAccount { get; set; }
 
         /// <summary>
-        /// 存取标志（存入、支取、部提）
+        /// 存取标志（存入、支取、部提、他行支取、其他）
         /// </summary>
         public int DepositFlag { get; set; }
 

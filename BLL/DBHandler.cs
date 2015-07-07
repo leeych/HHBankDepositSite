@@ -1342,7 +1342,7 @@ namespace BLL
         public bool SetRecordWithoutDrawDate(SearchInfo info, string orgCode)
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
-            string sql = @"update {0} set BillAccount='{1}',BillCode='{2}',DepositMoney={3},DepositDate='{4}',BillPeriod={5},DepositStatus={6}," +
+            string sql = @"update {0} set BillAccount='{1}',BillCode='{2}',DepositMoney={3},DepositDate='{4}',BillPeriod={5},DepositFlag={6}," +
                 "DepositorName='{7}',DepositorIDCard='{8}',BindAccount='{9}',CurrentRate={10},D01Rate={11},M03Rate={12},M06Rate={13},Y01Rate={14},Y02Rate={15},Y03Rate={16},Y05Rate={17}," + 
                 "RemainMoney={18} where ProtocolID='{19}' and 1=1";
             string sqlString = string.Format(sql, tableName, info.BillAccount, info.BillCode, info.DepositMoney, info.DepositDate.ToString("yyyy-MM-dd"), (int)info.BillPeriod, (int)info.Status,
