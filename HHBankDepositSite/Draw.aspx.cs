@@ -13,8 +13,7 @@ namespace HHBankDepositSite
     public partial class Draw : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-        }
+        {  }
 
         protected void calcBtn_Click(object sender, EventArgs e)
         {
@@ -339,22 +338,22 @@ namespace HHBankDepositSite
             switch (period)
             {
                 case Period.M03:
-                    desc = (bankRate.M03 * 100).ToString("f3");
+                    desc = (bankRate.M03*100).ToString("#.###");
                     break;
                 case Period.M06:
-                    desc = (bankRate.M06 * 100).ToString("f3");
+                    desc = (bankRate.M06*100).ToString("#.###");
                     break;
                 case Period.Y01:
-                    desc = (bankRate.Y01 * 100).ToString("f3");
+                    desc = (bankRate.Y01*100).ToString("#.###");
                     break;
                 case Period.Y02:
-                    desc = (bankRate.Y02 * 100).ToString("f3");
+                    desc = (bankRate.Y02*100).ToString("#.###");
                     break;
                 case Period.Y03:
-                    desc = (bankRate.Y03 * 100).ToString("f3");
+                    desc = (bankRate.Y03*100).ToString("#.###");
                     break;
                 case Period.Y05:
-                    desc = (bankRate.Y05 * 100).ToString("f3");
+                    desc = (bankRate.Y05*100).ToString("#.###");
                     break;
                 default:
                     desc = "--";

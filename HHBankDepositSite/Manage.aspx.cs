@@ -157,7 +157,7 @@ namespace HHBankDepositSite
             info.ClientID = clientIDTxt.Text.Trim();
             info.ClientName = clientNameTxt.Text.Trim();
             info.TellerCode = tellerCodeTxt.Text.Trim();
-            info.ClientName = tellerNameTxt.Text.Trim();
+            info.TellerName = tellerNameTxt.Text.Trim();
             info.Status = GetRecordStatus();
             info.BillAccount = billAccountTxt.Text.Trim();
             if (info.Status == DrawFlag.ElseDraw || info.Status == DrawFlag.Draw)

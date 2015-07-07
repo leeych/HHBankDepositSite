@@ -2,19 +2,19 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <script type="text/javascript">
-            function displayCalendar() {
-                if (datePicker.style.display == 'block') {
-                    datePicker.style.display = 'none';
-                    return;
-                }
-                var dataPicker = document.getElementById('datePicker');
-                datePicker.style.display = 'block';
+    <script type="text/javascript">
+        function displayCalendar() {
+            if (datePicker.style.display == 'block') {
+                datePicker.style.display = 'none';
+                return;
             }
-            </script>
+            var dataPicker = document.getElementById('datePicker');
+            datePicker.style.display = 'block';
+        }
+     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div width="100%">
+    <div style="width: 100%;">
         <br />
     <fieldset class="fieldSetStyle">
         <legend align="center" class="legendStyle">查询</legend>
@@ -112,7 +112,6 @@
                 <td></td>
                 <td align="right"><span class="label">靠档本息：</span></td>
                 <td align="left"><asp:TextBox runat="server" ID="totalInterestTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
-                <%--<td></td>--%>
                 <td align="right"><h3 style="color:red;">应补利息：</h3></td>
                 <td align="left"><asp:TextBox runat="server" ID="marginTxt" CssClass="aspTextBox" ReadOnly="True"></asp:TextBox></td>
             </tr>
