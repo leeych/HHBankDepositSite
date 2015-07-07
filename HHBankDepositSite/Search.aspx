@@ -79,190 +79,189 @@
             <br />
         </div>
         
-        <div style="text-align:center; overflow: scroll;padding:3px 5px;">
-        <fieldset class="fieldSetStyle" style="text-align:center; width:90%; margin:0 auto;" align="center">
+        <div style="margin:0 auto; text-align:center; width:90%; overflow:auto; vertical-align:middle;">
+        <fieldset class="fieldSetStyle" style="text-align:center;margin:3px 5px;" align="center">
             <legend class="legendStyle" align="center">查询结果</legend>
-                <asp:GridView ID="orgRecordGv" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" AllowPaging="True" PageSize="15" OnPageIndexChanging="orgRecordGv_PageIndexChanging">
-                <AlternatingRowStyle BackColor="White" />
-                <Columns>
-                    <asp:BoundField DataField="ProtocolID" HeaderText="协议编号" Visible="True" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+            <asp:GridView ID="orgRecordGv" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" AllowPaging="True" PageSize="15" OnPageIndexChanging="orgRecordGv_PageIndexChanging" OnRowDataBound="orgRecordGv_RowDataBound">
+            <AlternatingRowStyle BackColor="White" />
+            <Columns>
+                <asp:BoundField DataField="ProtocolID" HeaderText="协议编号" Visible="True" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="BillAccount" HeaderText="存单账号" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="BillAccount" HeaderText="存单账号" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="BillCode" HeaderText="凭证号码" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="BillCode" HeaderText="凭证号码" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="DepositDate" DataFormatString="{0:yyyy-MM-dd}" HeaderText="存入日期" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="DepositDate" DataFormatString="{0:yyyy-MM-dd}" HeaderText="存入日期" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="DepositMoney" DataFormatString="{0:N2}" HeaderText="本金" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="DepositMoney" DataFormatString="{0:N2}" HeaderText="本金" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:TemplateField HeaderText="存期" ItemStyle-Wrap="False" HeaderStyle-Wrap="False">
-                        <ItemTemplate>
-                            <asp:Label ID="Label1" runat="server" Text='<%# BillPeriodDict[Eval("BillPeriod").ToString()] %>'></asp:Label>
-                        </ItemTemplate>
-
-<HeaderStyle Wrap="False"></HeaderStyle>
-
-<ItemStyle Wrap="False"></ItemStyle>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="DepositorName" HeaderText="客户姓名" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
-<HeaderStyle Wrap="False"></HeaderStyle>
-
-<ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="DepositorIDCard" HeaderText="客户身份证号" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
-<HeaderStyle Wrap="False"></HeaderStyle>
-
-<ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:TemplateField HeaderText="存款状态" ItemStyle-Wrap="False" HeaderStyle-Wrap="False">
-                        <ItemTemplate>
-                            <asp:Label ID="Label2" runat="server" Text='<%# StatusDict[Eval("DepositFlag").ToString()] %>'>'></asp:Label>
-                        </ItemTemplate>
+                </asp:BoundField>
+                <asp:TemplateField HeaderText="存期" ItemStyle-Wrap="False" HeaderStyle-Wrap="False">
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# BillPeriodDict[Eval("BillPeriod").ToString()] %>'></asp:Label>
+                    </ItemTemplate>
 
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="RemainMoney" DataFormatString="{0:N2}" HeaderText="余留金额" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:TemplateField>
+                <asp:BoundField DataField="DepositorName" HeaderText="客户姓名" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="BindAccount" HeaderText="绑定账号" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="DepositorIDCard" HeaderText="客户身份证号" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="TellerCode" HeaderText="经办柜员号" HeaderStyle-Wrap="False" ItemStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:TemplateField HeaderText="存款状态" ItemStyle-Wrap="False" HeaderStyle-Wrap="False">
+                    <ItemTemplate>
+                        <asp:Label ID="Label2" runat="server" Text='<%# StatusDict[Eval("DepositFlag").ToString()] %>'>'></asp:Label>
+                    </ItemTemplate>
+
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="TellerName" HeaderText="柜员姓名" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:TemplateField>
+                <asp:BoundField DataField="RemainMoney" DataFormatString="{0:N2}" HeaderText="余留金额" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="CurrentRate" DataFormatString="{0:0.###%}" HeaderText="活期" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="BindAccount" HeaderText="绑定账号" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="M03Rate" DataFormatString="{0:#.###%}" HeaderText="三个月" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="TellerCode" HeaderText="经办柜员号" HeaderStyle-Wrap="False" ItemStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="M06Rate" DataFormatString="{0:#.###%}" HeaderText="六个月" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="TellerName" HeaderText="柜员姓名" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Y01Rate" DataFormatString="{0:#.###%}" HeaderText="一年" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="CurrentRate" DataFormatString="{0:0.###%}" HeaderText="活期" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Y02Rate" DataFormatString="{0:#.###%}" HeaderText="二年" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="M03Rate" DataFormatString="{0:#.###%}" HeaderText="三个月" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Y03Rate" DataFormatString="{0:#.###%}" HeaderText="三年" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="M06Rate" DataFormatString="{0:#.###%}" HeaderText="六个月" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Y05Rate" DataFormatString="{0:#.###%}" HeaderText="五年" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="Y01Rate" DataFormatString="{0:#.###%}" HeaderText="一年" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="FirstDrawDate" DataFormatString="{0:yyyy-MM-dd}" HeaderText="部提日期" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="Y02Rate" DataFormatString="{0:#.###%}" HeaderText="二年" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="FirstDrawMoney" DataFormatString="{0:N2}" HeaderText="部提金额" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="Y03Rate" DataFormatString="{0:#.###%}" HeaderText="三年" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="FirstSysInterest" DataFormatString="{0:N2}" HeaderText="系统利息" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="Y05Rate" DataFormatString="{0:#.###%}" HeaderText="五年" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="FirstCalcInterest" DataFormatString="{0:N2}" HeaderText="靠档利息" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="FirstDrawDate" DataFormatString="{0:yyyy-MM-dd}" HeaderText="部提日期" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="FirstMarginInterest" DataFormatString="{0:N2}" HeaderText="补息金额" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="FirstDrawMoney" DataFormatString="{0:N2}" HeaderText="部提金额" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="FinalDrawDate" DataFormatString="{0:yyyy-MM-dd}" HeaderText="支取日期" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="FirstSysInterest" DataFormatString="{0:N2}" HeaderText="系统利息" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="FinalSysInterest" DataFormatString="{0:N2}" HeaderText="系统利息" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="FirstCalcInterest" DataFormatString="{0:N2}" HeaderText="靠档利息" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="FinalCalcInterest" DataFormatString="{0:N2}" HeaderText="靠档利息" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="FirstMarginInterest" DataFormatString="{0:N2}" HeaderText="补息金额" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="FinalMarginInterest" DataFormatString="{0:N2}" HeaderText="补息金额" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="FinalDrawDate" DataFormatString="{0:yyyy-MM-dd}" HeaderText="支取日期" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Remark" HeaderText="备注" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+                </asp:BoundField>
+                <asp:BoundField DataField="FinalSysInterest" DataFormatString="{0:N2}" HeaderText="系统利息" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
 <HeaderStyle Wrap="False"></HeaderStyle>
 
 <ItemStyle Wrap="False"></ItemStyle>
-                    </asp:BoundField>
-                </Columns>
-                <EditRowStyle BackColor="#2461BF" />
-                    <EmptyDataTemplate>
-                        <strong>没有满足条件的记录！</strong>
-                    </EmptyDataTemplate>
-                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EFF3FB" />
-                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                <SortedDescendingHeaderStyle BackColor="#4870BE" />
-            </asp:GridView>
+                </asp:BoundField>
+                <asp:BoundField DataField="FinalCalcInterest" DataFormatString="{0:N2}" HeaderText="靠档利息" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+<HeaderStyle Wrap="False"></HeaderStyle>
+
+<ItemStyle Wrap="False"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="FinalMarginInterest" DataFormatString="{0:N2}" HeaderText="补息金额" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+<HeaderStyle Wrap="False"></HeaderStyle>
+
+<ItemStyle Wrap="False"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="Remark" HeaderText="备注" ItemStyle-Wrap="False" HeaderStyle-Wrap="False" >
+<HeaderStyle Wrap="False"></HeaderStyle>
+
+<ItemStyle Wrap="False"></ItemStyle>
+                </asp:BoundField>
+            </Columns>
+            <EditRowStyle BackColor="#2461BF" />
+                <EmptyDataTemplate>
+                    <strong>没有满足条件的记录！</strong>
+                </EmptyDataTemplate>
+            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Left" />
+            <RowStyle BackColor="#EFF3FB" />
+            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#F5F7FB" />
+            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+            <SortedDescendingCellStyle BackColor="#E9EBEF" />
+            <SortedDescendingHeaderStyle BackColor="#4870BE" />
+        </asp:GridView>
         </fieldset>
-        <div style="clear: both;">
-            <div style="text-align:center;"></div>
         </div>
-    </div>
-
+        <div style="margin:0 auto; clear: both; width:90%; text-align:left;">
+            <asp:Button ID="exportExcelBtn" runat="server" Text="导出Excel" CssClass="aspBtn" OnClick="exportExcelBtn_Click" />
+        </div>
     </div>
 </asp:Content>

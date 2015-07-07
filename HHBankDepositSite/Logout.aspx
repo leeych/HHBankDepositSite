@@ -17,7 +17,7 @@
                 <td class="tdContent"><asp:TextBox runat="server" ID="userNameTxt" CssClass="txtBox" ReadOnly="True" BackColor="#ddf1fe"></asp:TextBox></td>
             </tr>
             <tr>
-                <td class="tdLabel">机构号：
+                <td class="tdLabel">机构号：</td>
                 <td class="tdContent"><asp:TextBox runat="server" ID="orgCodeTxt" CssClass="txtBox" ReadOnly="True" BackColor="#ddf1fe"></asp:TextBox></td>
             </tr>
             <tr>

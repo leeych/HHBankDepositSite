@@ -62,6 +62,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AdminLogout.aspx" />
     <Content Include="Admin\AdminSummary.aspx" />
     <Content Include="Admin\BankRateManage.aspx" />
     <Content Include="Admin\UserManage.aspx" />
@@ -99,6 +100,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AdminLogout.aspx.cs">
+      <DependentUpon>AdminLogout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminLogout.aspx.designer.cs">
+      <DependentUpon>AdminLogout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AdminMasterPage.Master.cs">
       <DependentUpon>AdminMasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

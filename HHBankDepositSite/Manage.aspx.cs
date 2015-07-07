@@ -31,7 +31,6 @@ namespace HHBankDepositSite
                 LoadBankRate(fileName);
                 periodDrop.SelectedIndex = 0;
                 periodDrop_SelectedIndexChanged(sender, e);
-                //GenTellerCodeDrop(orgCode);
             }
         }
 
@@ -261,7 +260,7 @@ namespace HHBankDepositSite
                 drawDateTxt.Text = "--";
             }
 
-            SetBillPeriodDrop(info.BillPeriod);
+            SetBillPeriodDrop(info.BillPeriod, info.ExecRate);
             clientNameTxt.Text = info.ClientName;
             clientIDTxt.Text = info.ClientID;
             bindAccountTxt.Text = info.BindAccount;
@@ -330,27 +329,33 @@ namespace HHBankDepositSite
             return state;
         }
 
-        private void SetBillPeriodDrop(Period period)
+        private void SetBillPeriodDrop(Period period, BankRate rate)
         {
             switch (period)
             {
                 case Period.M03:
                     periodDrop.SelectedIndex = 0;
+                    rateTxt.Text = (rate.M03 * 100).ToString("#.###");
                     break;
                 case Period.M06:
                     periodDrop.SelectedIndex = 1;
+                    rateTxt.Text = (rate.M06 * 100).ToString("#.###");
                     break;
                 case Period.Y01:
                     periodDrop.SelectedIndex = 2;
+                    rateTxt.Text = (rate.Y01 * 100).ToString("#.###");
                     break;
                 case Period.Y02:
                     periodDrop.SelectedIndex = 3;
+                    rateTxt.Text = (rate.Y02 * 100).ToString("#.###");
                     break;
                 case Period.Y03:
                     periodDrop.SelectedIndex = 4;
+                    rateTxt.Text = (rate.Y03 * 100).ToString("#.###");
                     break;
                 case Period.Y05:
                     periodDrop.SelectedIndex = 5;
+                    rateTxt.Text = (rate.Y05 * 100).ToString("#.###");
                     break;
                 default:
                     break;
@@ -369,22 +374,22 @@ namespace HHBankDepositSite
             switch (periodDrop.SelectedIndex)
             {
                 case 0:
-                    rateTxt.Text = (rate.M03 * 100).ToString("f3");
+                    rateTxt.Text = (rate.M03 * 100).ToString("#.###");
                     break;
                 case 1:
-                    rateTxt.Text = (rate.M06 * 100).ToString("f3");
+                    rateTxt.Text = (rate.M06 * 100).ToString("#.###");
                     break;
                 case 2:
-                    rateTxt.Text = (rate.Y01 * 100).ToString("f3");
+                    rateTxt.Text = (rate.Y01 * 100).ToString("#.###");
                     break;
                 case 3:
-                    rateTxt.Text = (rate.Y02 * 100).ToString("f3");
+                    rateTxt.Text = (rate.Y02 * 100).ToString("#.###");
                     break;
                 case 4:
-                    rateTxt.Text = (rate.Y03 * 100).ToString("f3");
+                    rateTxt.Text = (rate.Y03 * 100).ToString("#.###");
                     break;
                 case 5:
-                    rateTxt.Text = (rate.Y05 * 100).ToString("f3");
+                    rateTxt.Text = (rate.Y05 * 100).ToString("#.###");
                     break;
                 default:
                     rateTxt.Text = "--";

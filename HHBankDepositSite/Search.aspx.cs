@@ -4,6 +4,7 @@ using HHBankDepositSite.Data;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Text;
 using System.Web;
@@ -24,6 +25,8 @@ namespace HHBankDepositSite
             {"0", "存入未支取"}, {"1", "已全部支取"}, {"2", "部分提前支取"}, {"3", "他行支取"}, {"4", "其他"}
         };
 
+        private static DataTable ExcelDataSource { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["UserName"] != null)
@@ -32,6 +35,7 @@ namespace HHBankDepositSite
                 SearchDraftInfo info = BizHandler.Handler.GetDraftSearchInfo(Session["UserName"].ToString());
                 UpdateDraftInfo(info);
             }
+            exportExcelBtn.Enabled = false;
         }
 
         private void UpdateDraftInfo(SearchDraftInfo info)
@@ -73,7 +77,8 @@ namespace HHBankDepositSite
             if (string.IsNullOrEmpty(param.ProtocolID) && string.IsNullOrEmpty(param.BillAccount) 
                 && string.IsNullOrEmpty(startDateStr) && string.IsNullOrEmpty(endDateStr))
             {
-                orgRecordGv.DataSource = BizHandler.Handler.GetOrgRecordDataSource(new DateTime(DateTime.Now.Year,01,01), DateTime.Now, orgCode);
+                ExcelDataSource = BizHandler.Handler.GetOrgRecordDataSource(new DateTime(DateTime.Now.Year, 01, 01), DateTime.Now, orgCode);
+                orgRecordGv.DataSource = ExcelDataSource;
                 orgRecordGv.DataBind();
             }
             else if (!string.IsNullOrEmpty(param.ProtocolID))
@@ -86,7 +91,8 @@ namespace HHBankDepositSite
                 }
                 else
                 {
-                    orgRecordGv.DataSource = BizHandler.Handler.GetOrgRecordDataSource(param.ProtocolID, orgCode);
+                    ExcelDataSource = BizHandler.Handler.GetOrgRecordDataSource(param.ProtocolID, orgCode);
+                    orgRecordGv.DataSource = ExcelDataSource;
                     orgRecordGv.DataBind();
                 }
             }
@@ -99,7 +105,8 @@ namespace HHBankDepositSite
                 }
                 else
                 {
-                    orgRecordGv.DataSource = BizHandler.Handler.GetOrgRecordDataSourceByBillAccount(param.BillAccount, orgCode);
+                    ExcelDataSource = BizHandler.Handler.GetOrgRecordDataSourceByBillAccount(param.BillAccount, orgCode);
+                    orgRecordGv.DataSource = ExcelDataSource;
                     orgRecordGv.DataBind();
                 }
             }
@@ -112,7 +119,8 @@ namespace HHBankDepositSite
                 }
                 else
                 {
-                    orgRecordGv.DataSource = BizHandler.Handler.GetOrgRecordDataSourceByIDCard(param.ClientID, orgCode);
+                    ExcelDataSource = BizHandler.Handler.GetOrgRecordDataSourceByIDCard(param.ClientID, orgCode);
+                    orgRecordGv.DataSource = ExcelDataSource;
                     orgRecordGv.DataBind();
                 }
             }
@@ -125,9 +133,14 @@ namespace HHBankDepositSite
                 }
                 else
                 {
-                    orgRecordGv.DataSource = BizHandler.Handler.GetOrgRecordDataSource(startDate, endDate, orgCode);
+                    ExcelDataSource = BizHandler.Handler.GetOrgRecordDataSource(startDate, endDate, orgCode);
+                    orgRecordGv.DataSource = ExcelDataSource;
                     orgRecordGv.DataBind();
                 }
+            }
+            if (ExcelDataSource.Rows.Count > 0)
+            {
+                exportExcelBtn.Enabled = true;   
             }
         }
 
@@ -198,11 +211,50 @@ namespace HHBankDepositSite
 
         protected void orgRecordGv_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            DateTime start = DateTime.Parse(startDateTxt.Text.Trim());
-            DateTime end = DateTime.Parse(endDateTxt.Text.Trim());
-            string orgCode = Session["UserName"].ToString();
-            orgRecordGv.DataSource = BizHandler.Handler.GetOrgRecordDataSource(start, end, orgCode);
+            orgRecordGv.DataSource = ExcelDataSource;
             orgRecordGv.DataBind();
+        }
+
+        protected void orgRecordGv_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                for (int i = 0; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
+                }
+            }
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            //base.VerifyRenderingInServerForm(control);
+        }
+
+        private void GridViewToExcel()
+        {
+            string fileName = Session["UserName"].ToString() + "_" + DateTime.Now.ToString("yyyyMMdd") + ".xls";
+            fileName = HttpUtility.UrlEncode(fileName, System.Text.Encoding.UTF8);
+            Response.Charset = "GB2312";
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            Response.AppendHeader("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode(fileName, System.Text.Encoding.UTF8).ToString());
+            Response.ContentType = "application/ms-excel";
+            orgRecordGv.Page.EnableViewState = false;
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            orgRecordGv.RenderControl(hw);
+            Response.Write(sw.ToString());
+            Response.End();
+            orgRecordGv.Page.EnableViewState = true;
+        }
+
+        protected void exportExcelBtn_Click(object sender, EventArgs e)
+        {
+            orgRecordGv.AllowPaging = false;
+            orgRecordGv.DataSource = ExcelDataSource;
+            orgRecordGv.DataBind();
+            GridViewToExcel();
+            orgRecordGv.AllowPaging = true;
         }
     }
 }

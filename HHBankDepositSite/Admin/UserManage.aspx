@@ -21,20 +21,20 @@
             <legend>管理员密码修改</legend>
             <table>
                 <tr>
-                    <td>用户名：</td>
+                    <td><span class="notetag">用户名：</span></td>
                     <td><asp:TextBox ID="adminUserNameTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
-                    <td>原密码：</td>
+                    <td><span class="notetag">原密码：</span></td>
                     <td>
                         <asp:TextBox ID="oldpwdTxt" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="oldpwdTxtValidator" runat="server" ControlToValidate="oldpwdTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
                         <asp:CompareValidator ID="oldpwdCompareValidator" runat="server" ControlToValidate="oldpwdTxt" Display="Dynamic" ErrorMessage="原密码不对！" CssClass="validator"></asp:CompareValidator>
                     </td>
-                    <td>新密码</td>
+                    <td><span class="notetag">新密码</span></td>
                     <td>
                         <asp:TextBox ID="newpwdTxt" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="newpwdTxtValidator" runat="server" ControlToValidate="newpwdTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
                     </td>
-                    <td>确认新密码：</td>
+                    <td><span class="notetag">确认新密码：</span></td>
                     <td>
                         <asp:TextBox ID="surenewpwdTxt" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="surenewpwdTxtValidator" runat="server" ControlToValidate="surenewpwdTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
@@ -54,7 +54,7 @@
                 <div style="clear:both;">
                     <table align="left">
                         <tr>
-                            <td>机构名：</td>
+                            <td><span class="notetag">机构名：</span></td>
                             <td><asp:DropDownList ID="orgDrop" runat="server" AutoPostBack="True" OnSelectedIndexChanged="orgDrop_SelectedIndexChanged"></asp:DropDownList></td>
                         </tr>
                     </table>
@@ -143,14 +143,14 @@
             <legend>机构密码重置</legend>
             <table cellpadding="3px" cellspacing="3px" align="center">
                 <tr>
-                    <td>用户名：</td>
+                    <td><span class="notetag">用户名：</span></td>
                     <td>
                         <asp:TextBox ID="userNameTxt" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="userNameValidator" runat="server" ControlToValidate="userNameTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="org"></asp:RequiredFieldValidator>
                     </td>
                     </tr>
                 <tr>
-                    <td>新密码：</td>
+                    <td><span class="notetag">新密码：</span></td>
                     <td>
                         <asp:TextBox ID="passwordTxt" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="passwordTxtValidator" runat="server" ControlToValidate="passwordTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="org"></asp:RequiredFieldValidator>
@@ -158,7 +158,7 @@
                     </td>
                     </tr>
                 <tr>
-                    <td>确认密码：</td>
+                    <td><span class="notetag">确认密码：</span></td>
                     <td>
                         <asp:TextBox ID="surepwdTxt" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="surepwdTxtValidator" runat="server" ControlToValidate="surepwdTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="org"></asp:RequiredFieldValidator>
@@ -175,21 +175,21 @@
                     <legend>柜员管理</legend>
                     <table cellpadding="3px" cellspacing="3px">
                         <tr>
-                            <td>柜员号：</td>
+                            <td><span class="notetag">柜员号：</span></td>
                             <td>
                                 <asp:TextBox ID="newTellerCodeTxt" runat="server" MaxLength="6"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="newTellerCodeTxtValidator" runat="server" ControlToValidate="newTellerCodeTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="teller"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
-                            <td>柜员姓名：</td>
+                            <td><span class="notetag">柜员姓名：</span></td>
                             <td>
                                 <asp:TextBox ID="newTellerNameTxt" runat="server"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="newTellerNameTxtValidator" runat="server" ControlToValidate="newTellerNameTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator" ValidationGroup="teller"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
-                            <td>所属机构：</td>
+                            <td><span class="notetag">所属机构：</span></td>
                             <td><asp:DropDownList ID="tellerOrgNameDrop" runat="server" AutoPostBack="True" OnSelectedIndexChanged="tellerOrgNameDrop_SelectedIndexChanged"></asp:DropDownList></td>
                         </tr>
                         <tr>

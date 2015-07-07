@@ -81,6 +81,10 @@ font-size:14px;
     border: 1px solid rgb(70,132,175);
 }
 
+.notetag {
+    font-size:14px;
+}
+
 .aspBtn {
     border-radius: 5px;
     border: double;

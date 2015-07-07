@@ -13,11 +13,11 @@
     <div>
         <table>
             <tr>
-                <td>机构名：</td>
+                <td><span class="notetag">机构名：</span></td>
                 <td>
                     <asp:DropDownList ID="orgNameDrop" runat="server" AutoPostBack="true" OnSelectedIndexChanged="orgNameDrop_SelectedIndexChanged"></asp:DropDownList>
                 </td>
-                <td>机构号：</td>
+                <td><span class="notetag">机构号：</span></td>
                 <td>
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
@@ -29,7 +29,7 @@
                         </triggers>
                      </asp:UpdatePanel>
                 </td>
-                <td>起始日期：</td>
+                <td><span class="notetag">起始日期：</span></td>
                 <td>
                     <div style="display:inline;">
                         <span>
@@ -40,7 +40,7 @@
                     </div>
                 </td>
                 <td></td>
-                <td>截止日期：</td>
+                <td><span class="notetag">截止日期：</span></td>
                 <td>
                     <span><asp:TextBox ID="endDateAdminTxt" runat="server"></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtenderEnd" runat="server" TargetControlID="endDateAdminTxt" Format="yyyy-MM-dd" PopupPosition="BottomLeft"></ajaxToolkit:CalendarExtender>
@@ -56,41 +56,41 @@
             <legend>概览</legend>
             <table>
                 <tr>
-                    <td>新存入</td>
-                    <td>笔数：<asp:TextBox ID="newNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
-                    <td>金额：<asp:TextBox ID="newMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">新存入</span></td>
+                    <td><span class="notetag">笔数：</span><asp:TextBox ID="newNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">金额：</span><asp:TextBox ID="newMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                     <td></td>
 
-                    <td>部提</td>
-                    <td>笔数：<asp:TextBox ID="adNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
-                    <td>金额：<asp:TextBox ID="adMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">部提</span></td>
+                    <td><span class="notetag">笔数：</span><asp:TextBox ID="adNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">金额：</span><asp:TextBox ID="adMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td>支取</td>
-                    <td>笔数：<asp:TextBox ID="drawNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
-                    <td>金额：<asp:TextBox ID="drawMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">支取</span></td>
+                    <td><span class="notetag">笔数：</span><asp:TextBox ID="drawNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">金额：</span><asp:TextBox ID="drawMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                     <td></td>
-                    <td>到期支取</td>
-                    <td>笔数：<asp:TextBox ID="dueDrawNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
-                    <td>金额：<asp:TextBox ID="dueDrawMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">到期支取</span></td>
+                    <td><span class="notetag">笔数：</span><asp:TextBox ID="dueDrawNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">金额：</span><asp:TextBox ID="dueDrawMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td>余留本金</td>
-                    <td>笔数：<asp:TextBox ID="remainNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
-                    <td>金额：<asp:TextBox ID="remainMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">余留本金</span></td>
+                    <td><span class="notetag">笔数：</span><asp:TextBox ID="remainNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">金额：</span><asp:TextBox ID="remainMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                     <td></td>
-                    <td>补息</td>
-                    <td>笔数：<asp:TextBox ID="marginNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
-                    <td>金额：<asp:TextBox ID="marginMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">补息</span></td>
+                    <td><span class="notetag">笔数：</span><asp:TextBox ID="marginNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">金额：</span><asp:TextBox ID="marginMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td>系统利息</td>
-                    <td>笔数：<asp:TextBox ID="sysNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
-                    <td>金额：<asp:TextBox ID="sysMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">系统利息</span></td>
+                    <td><span class="notetag">笔数：</span><asp:TextBox ID="sysNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">金额：</span><asp:TextBox ID="sysMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                     <td></td>
-                    <td>靠档利息</td>
-                    <td>笔数：<asp:TextBox ID="calcNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
-                    <td>金额：<asp:TextBox ID="calcMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">靠档利息</span></td>
+                    <td><span class="notetag">笔数：</span><asp:TextBox ID="calcNumTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
+                    <td><span class="notetag">金额：</span><asp:TextBox ID="calcMoneyTxt" runat="server" ReadOnly="true"></asp:TextBox></td>
                 </tr>
             </table>
         </fieldset>
