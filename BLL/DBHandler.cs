@@ -1343,11 +1343,10 @@ namespace BLL
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
             string sql = @"update {0} set BillAccount='{1}',BillCode='{2}',DepositMoney={3},DepositDate='{4}',BillPeriod={5},DepositFlag={6}," +
-                "DepositorName='{7}',DepositorIDCard='{8}',BindAccount='{9}',CurrentRate={10},D01Rate={11},M03Rate={12},M06Rate={13},Y01Rate={14},Y02Rate={15},Y03Rate={16},Y05Rate={17}," + 
-                "RemainMoney={18} where ProtocolID='{19}' and 1=1";
+                "DepositorName='{7}',DepositorIDCard='{8}',BindAccount='{9}',CurrentRate={10},D01Rate={11},M03Rate={12},M06Rate={13},Y01Rate={14},Y02Rate={15},Y03Rate={16},Y05Rate={17} " + 
+                " where ProtocolID='{18}' and 1=1";
             string sqlString = string.Format(sql, tableName, info.BillAccount, info.BillCode, info.DepositMoney, info.DepositDate.ToString("yyyy-MM-dd"), (int)info.BillPeriod, (int)info.Status,
-                info.ClientName, info.ClientID, info.BindAccount, info.ExecRate.CurrRate, info.ExecRate.D01, info.ExecRate.M03, info.ExecRate.M06, info.ExecRate.Y01, info.ExecRate.Y02, info.ExecRate.Y03, info.ExecRate.Y05,
-                decimal.Zero, info.ProtocolID);
+                info.ClientName, info.ClientID, info.BindAccount, info.ExecRate.CurrRate, info.ExecRate.D01, info.ExecRate.M03, info.ExecRate.M06, info.ExecRate.Y01, info.ExecRate.Y02, info.ExecRate.Y03, info.ExecRate.Y05, info.ProtocolID);
             int rows = SqlHelper.ExecuteSql(sqlString);
             return (rows == 1);
         }
@@ -1403,8 +1402,5 @@ namespace BLL
                 return infoList;
             }
         }
-
-        //public List<SearchInfo> GetAllOrgDataPagerRecord(DataPagerInfo pageInfo, string orgCode)
-        //{ }
     }
 }

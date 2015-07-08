@@ -65,7 +65,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="right"><span class="red-star">*</span><span class="lable">存入日期：</span></td>
+                    <td align="right"><span class="red-star">*</span><span class="label">存入日期：</span></td>
                     <td align="left">
                         <div style="display: inline;">
                             <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox"></asp:TextBox>

@@ -17,13 +17,13 @@
               <legend class="legendStyle" align="center">记录修改</legend>
               <table width="80%" style="border:1px solid #E5E5E5;" align="center">
                   <tr>
-                      <td>协议编号：</td>
+                      <td><span class="label">协议编号：</span></td>
                       <td>
                           <asp:TextBox ID="protocolIDTxt" runat="server" MaxLength="14" CssClass="aspTextBox"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="protocolIDNonValidator" runat="server" ControlToValidate="protocolIDTxt" ValidationGroup="search" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
                           <asp:RegularExpressionValidator ID="protocolIDRegValidator" runat="server" ControlToValidate="protocolIDTxt" ValidationExpression="^[0-9]+$" ValidationGroup="search" Display="Dynamic" ErrorMessage="非法字符！" CssClass="validator"></asp:RegularExpressionValidator>
                       </td>
-                      <td>存单账号：</td>
+                      <td><span class="label">存单账号：</span></td>
                       <td>
                           <asp:TextBox ID="billAccountTxt" runat="server" MaxLength="23" CssClass="aspBillAccount"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="billAccountNonValidator" runat="server" ControlToValidate="billAccountTxt" ValidationGroup="search" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
@@ -36,16 +36,16 @@
               <br />
               <table width="80%" style="border: 1px solid #E5E5E5; border-spacing: 0" align="center">
                   <tr>
-                      <td>凭证号码：</td>
+                      <td><span class="label">凭证号码：</span></td>
                       <td><asp:TextBox ID="billCodeTxt" runat="server" MaxLength="12" CssClass="aspTextBox"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="billCodeValidator" runat="server" ControlToValidate="billCodeTxt" ValidationGroup="record" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
                       </td>
-                      <td>本金：</td>
+                      <td><span class="label">本金：</span></td>
                       <td>
                           <asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBox"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="moneyValidator" runat="server" ControlToValidate="moneyTxt" ValidationGroup="record" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
                       </td>
-                      <td>存入日期：</td>
+                      <td><span class="label">存入日期：</span></td>
                       <td><asp:TextBox ID="dateTxt" runat="server" CssClass="aspTextBox"></asp:TextBox>
                           <ajaxToolkit:CalendarExtender ID="dateTxt_CalendarExtender" runat="server" BehaviorID="dateTxt_CalendarExtender" TargetControlID="dateTxt" Format="yyyy-MM-dd" PopupPosition="BottomLeft">
                           </ajaxToolkit:CalendarExtender>
@@ -53,7 +53,7 @@
                       </td>
                   </tr>
                   <tr>
-                      <td>存期：</td>
+                      <td><span class="label">存期：</span></td>
                       <td><asp:DropDownList ID="periodDrop" runat="server" CssClass="aspDrop" AutoPostBack="True" OnSelectedIndexChanged="periodDrop_SelectedIndexChanged">
                               <asp:ListItem>三个月</asp:ListItem>
                               <asp:ListItem>六个月</asp:ListItem>
@@ -62,7 +62,7 @@
                               <asp:ListItem>三年</asp:ListItem>
                               <asp:ListItem>五年</asp:ListItem>
                           </asp:DropDownList></td>
-                      <td>利率：</td>
+                      <td><span class="label">利率：</span></td>
                       <td>
                           <asp:UpdatePanel ID="UpdatePanelRate" runat="server">
                               <ContentTemplate>
@@ -73,7 +73,7 @@
                               </Triggers>
                           </asp:UpdatePanel>
                       </td>
-                      <td>记录状态：</td>
+                      <td><span class="label">记录状态：</span></td>
                       <td>
                           <asp:DropDownList ID="statusDrop" runat="server" CssClass="aspDrop">
                               <asp:ListItem>存入未支取</asp:ListItem>
@@ -85,17 +85,17 @@
                       </td>
                   </tr>
                   <tr>
-                      <td>客户姓名：</td>
+                      <td><span class="label">客户姓名：</span></td>
                       <td>
                           <asp:TextBox ID="clientNameTxt" runat="server" CssClass="aspTextBox"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="clientNameValidator" runat="server" ControlToValidate="clientNameTxt" ValidationGroup="record" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
                       </td>
-                      <td>身份证号：</td>
+                      <td><span class="label">身份证号：</span></td>
                       <td>
                           <asp:TextBox ID="clientIDTxt" runat="server" CssClass="aspTextBox"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="clientIDValidator" runat="server" ControlToValidate="clientIDTxt" ValidationGroup="record" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
                       </td>
-                      <td>经办柜员：</td>
+                      <td><span class="label">经办柜员：</span></td>
                       <td>
                           <asp:TextBox ID="tellerCodeTxt" runat="server" CssClass="aspTextBox" Width="80px"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="tellerCodeValidator" runat="server" ControlToValidate="tellerCodeTxt" ValidationGroup="record" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
@@ -104,12 +104,12 @@
                       </td>
                   </tr>
                   <tr>
-                      <td>支取日期：</td>
+                      <td><span class="label">支取日期：</span></td>
                       <td>
                           <asp:TextBox ID="drawDateTxt" runat="server" CssClass="aspTextBox"></asp:TextBox>
                           <ajaxToolkit:CalendarExtender ID="drawCalendarEx" runat="server" TargetControlID="drawDateTxt" Format="yyyy-MM-dd" />
                       </td>
-                      <td>补息账号：</td>
+                      <td><span class="label">补息账号：</span></td>
                       <td colspan="2" align="left">
                           <asp:TextBox ID="bindAccountTxt" runat="server" MaxLength="23" CssClass="aspBillAccount"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="bindAccountValidator" runat="server" ControlToValidate="bindAccountTxt" ValidationGroup="record" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
@@ -132,14 +132,14 @@
             <legend class="legendStyle" align="center">当前利率</legend>
             <table width="90%" cellpadding="5px" cellspacing="5px" align="center" style="border:1px solid #E5E5E5;">
                 <tr>
-                    <td align="right">三个月：</td>
+                    <td align="right"><span class="label">三个月：</span></td>
                     <td><asp:TextBox ID="m03RateTxt" runat="server" CssClass="aspBankrate"></asp:TextBox>%
                         <span>
                             <asp:RequiredFieldValidator ID="m03RateValidator" runat="server" ErrorMessage="必填！" ControlToValidate="m03RateTxt" ValidationGroup="bankrate" Display="Dynamic" CssClass="validator"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="m03RateRegValidator" runat="server" ErrorMessage="非法字符！" ControlToValidate="m03RateTxt" ValidationExpression="^[0-9]+[.]?[0-9]+$" ValidationGroup="bankrate" Display="Dynamic" CssClass="validator"></asp:RegularExpressionValidator>
                         </span>
                     </td>
-                    <td align="right">六个月：</td>
+                    <td align="right"><span class="label">六个月：</span></td>
                     <td><asp:TextBox ID="m06RateTxt" runat="server" CssClass="aspBankrate"></asp:TextBox>%
                         <span>
                             <asp:RequiredFieldValidator ID="m06RateValidator" runat="server" ErrorMessage="必填！" ControlToValidate="m06RateTxt" ValidationGroup="bankrate" Display="Dynamic" CssClass="validator"></asp:RequiredFieldValidator>
@@ -148,14 +148,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">一年：</td>
+                    <td align="right"><span class="label">一年：</span></td>
                     <td><asp:TextBox ID="y01RateTxt" runat="server" CssClass="aspBankrate"></asp:TextBox>%
                         <span>
                             <asp:RequiredFieldValidator ID="y01RateValidator" runat="server" ErrorMessage="必填！" ControlToValidate="y01RateTxt" ValidationGroup="bankrate" Display="Dynamic" CssClass="validator"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="y01RateRegValidator" runat="server" ErrorMessage="非法字符！" ControlToValidate="y01RateTxt" ValidationExpression="^[0-9]+[.]?[0-9]+$" ValidationGroup="bankrate" Display="Dynamic" CssClass="validator"></asp:RegularExpressionValidator>
                         </span>
                     </td>
-                    <td align="right">二年：</td>
+                    <td align="right"><span class="label">二年：</span></td>
                     <td><asp:TextBox ID="y02RateTxt" runat="server" CssClass="aspBankrate"></asp:TextBox>%
                         <span>
                             <asp:RequiredFieldValidator ID="y02RateValidator" runat="server" ErrorMessage="必填！" ControlToValidate="y02RateTxt" ValidationGroup="bankrate" Display="Dynamic" CssClass="validator"></asp:RequiredFieldValidator>
@@ -164,14 +164,14 @@
                     </td>
                     </tr>
                 <tr>
-                    <td align="right">三年：</td>
+                    <td align="right"><span class="label">三年：</span></td>
                     <td><asp:TextBox ID="y03RateTxt" runat="server" CssClass="aspBankrate"></asp:TextBox>%
                         <span>
                             <asp:RequiredFieldValidator ID="y03RateValidator" runat="server" ErrorMessage="必填！" ControlToValidate="y03RateTxt" ValidationGroup="bankrate" Display="Dynamic" CssClass="validator"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="y03RateRegValidator" runat="server" ErrorMessage="非法字符！" ControlToValidate="y03RateTxt" ValidationExpression="^[0-9]+[.]?[0-9]+$" ValidationGroup="bankrate" Display="Dynamic" CssClass="validator"></asp:RegularExpressionValidator>
                         </span>
                     </td>
-                    <td align="right">五年：</td>
+                    <td align="right"><span class="label">五年：</span></td>
                     <td><asp:TextBox ID="y05RateTxt" runat="server" CssClass="aspBankrate"></asp:TextBox>%
                         <span>
                             <asp:RequiredFieldValidator ID="y05RateValidator" runat="server" ErrorMessage="必填！" ControlToValidate="y05RateTxt" ValidationGroup="bankrate" Display="Dynamic" CssClass="validator"></asp:RequiredFieldValidator>
@@ -180,7 +180,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">活期年利率：</td>
+                    <td align="right"><span class="label">活期年利率：</span></td>
                     <td><asp:TextBox ID="currentRateTxt" runat="server" CssClass="aspBankrate"></asp:TextBox>%
                         <span>
                             <asp:RequiredFieldValidator ID="currRateValidator" runat="server" ErrorMessage="必填！" ControlToValidate="currentRateTxt" ValidationGroup="bankrate" Display="Dynamic" CssClass="validator"></asp:RequiredFieldValidator>
@@ -205,28 +205,28 @@
             <legend class="legendStyle" align="center">修改密码</legend>
             <table width="90%" cellpadding="5" cellspacing="5" align="center" style="border:1px solid #E5E5E5;">
                 <tr>
-                    <td class="tdLabel">用户名：</td>
+                    <td class="tdLabel"><span class="label">用户名：</span></td>
                     <td class="tdContent">
                         <asp:TextBox runat="server" ID="userNameTxt" Font-Names="Arial" Font-Size="20px" CssClass="aspTextBoxShort" ReadOnly="True"></asp:TextBox>
                         <asp:RequiredFieldValidator runat="server" ID="userNameValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="userNameTxt" ValidationGroup="password" CssClass="validator"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
-                    <td class="tdLabel">原 密 码：</td>
+                    <td class="tdLabel"><span class="label">原 密 码：</span></td>
                     <td class="tdContent">
                         <asp:TextBox runat="server" ID="oldpwdTxt" TextMode="Password" Font-Names="Arial" Font-Size="20px" CssClass="aspTextBoxShort"></asp:TextBox>
                     <asp:RequiredFieldValidator runat="server" ID="oldpwdValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="oldpwdTxt" ValidationGroup="password" CssClass="validator"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
-                    <td class="tdLabel">新 密 码：</td>
+                    <td class="tdLabel"><span class="label">新 密 码：</span></td>
                     <td class="tdContent">
                         <asp:TextBox runat="server" ID="newpwdTxt" TextMode="Password" Font-Names="Arial" Font-Size="20px" CssClass="aspTextBoxShort"></asp:TextBox>
                     <asp:RequiredFieldValidator runat="server" ID="newpwdValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="newpwdTxt" ValidationGroup="password" CssClass="validator"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
-                    <td class="tdLabel">确认新密码：</td>
+                    <td class="tdLabel"><span class="label">确认新密码：</span></td>
                     <td class="tdContent">
                         <asp:TextBox runat="server" ID="surepwdTxt" TextMode="Password" Font-Names="Arial" Font-Size="20px" CssClass="aspTextBoxShort"></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="surepwdValidator" ErrorMessage="必填！" Display="Dynamic" ControlToValidate="surepwdTxt" CssClass="validator"></asp:RequiredFieldValidator></span>
                         <span><asp:CompareValidator ID="compareValidator" runat="server" ErrorMessage="两次密码不一致！" Display="Dynamic" ControlToCompare="newpwdTxt" ValidationGroup="password" ControlToValidate="surepwdTxt" CssClass="validator"></asp:CompareValidator></span>

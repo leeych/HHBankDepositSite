@@ -3,6 +3,6 @@
   <siteMapNode>
     <siteMapNode url="~/Admin/UserManage.aspx" title="用户管理" description="机构用户管理" accesskey="H" />
     <siteMapNode url="~/Admin/AdminSummary.aspx" title="查询统计" description="查询全辖交易记录" accesskey="S" />
-    <siteMapNode url="Logout.aspx" title="退出" description="退出系统" accesskey="E" />
+    <siteMapNode url="~/Admin/AdminLogout.aspx" title="退出" description="退出系统" accesskey="E" />
   </siteMapNode>
 </siteMap>

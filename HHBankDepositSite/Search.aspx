@@ -22,13 +22,13 @@
         <div style="margin-bottom:10px; text-align: center;" align="center">
         <table align="center" style="width:90%">
             <tr>
-                <td>机构号：</td>
+                <td><span class="label">机构号：</span></td>
                 <td><asp:TextBox runat="server" ID="orgCodeTxt" CssClass="aspTextBox" ReadOnly="true" MaxLength="10" BackColor="#ddf1fe"></asp:TextBox></td>
-                <td>机构名称：</td>  
+                <td><span class="label">机构名称：</span></td>  
                 <td><asp:TextBox runat="server" ID="orgNameTxt" CssClass="aspTextBox" ReadOnly="true" BackColor="#ddf1fe"></asp:TextBox></td>
-                <td>已用最大协议编号：</td>
+                <td><span class="label">已用最大协议编号：</span></td>
                 <td><asp:TextBox runat="server" ID="maxProtocolIdTxt" CssClass="aspTextBox" MaxLength="14" ReadOnly="True" BackColor="#ddf1fe"></asp:TextBox></td>
-                <td>“保利存”总笔数：</td>
+                <td><span class="label">“保利存”总笔数：</span></td>
                 <td><asp:TextBox runat="server" ID="protocolCountTxt" CssClass="aspTextBox" ReadOnly="true" BackColor="#ddf1fe"></asp:TextBox></td>
             </tr>
         </table>
@@ -38,17 +38,17 @@
         <div align="center" style="width: 100%; margin: 0 auto;">
             <table style="border: 1px solid #E5E5E5; text-align: center; width:90%" align="center">
                 <tr>
-                    <td>协议编号：</td>
+                    <td><span class="label">协议编号：</label></td>
                     <td align="left"><asp:TextBox runat="server" ID="protocolIdTxt" CssClass="aspTextBox" MaxLength="14" ></asp:TextBox></td>
-                    <td>存单账号：</td>
+                    <td><span class="label">存单账号：</span></td>
                     <td align="left"><asp:TextBox runat="server" ID="billAccountTxt" CssClass="aspBillAccount" MaxLength="23" ></asp:TextBox></td>
-                    <td>身份证号：</td>
+                    <td><span class="label">身份证号：</span></td>
                     <td align="left"><asp:TextBox runat="server" ID="idCardTxt" CssClass="aspTextBox" MaxLength="18" ></asp:TextBox></td>            
                     <td><span class="note">(仅需输入一项)</span></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td>起始日期：</td>
+                    <td><span class="label">起始日期：</span></td>
                     <td align="left">
                         <span>
                             <asp:TextBox runat="server" ID="startDateTxt" CssClass="aspTextBoxShort"></asp:TextBox>
@@ -58,7 +58,7 @@
                             <%--<asp:RequiredFieldValidator ID="startDateValidator" runat="server" ControlToValidate="startDateTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>--%>
                         </span>
                     </td>
-                    <td>截止日期：</td>
+                    <td><span class="label">截止日期：</span></td>
                     <td align="left">
                         <span>
                             <asp:TextBox runat="server" ID="endDateTxt" CssClass="aspTextBoxShort"></asp:TextBox>
