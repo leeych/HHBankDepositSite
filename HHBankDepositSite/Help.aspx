@@ -119,9 +119,9 @@ mso-bidi-font-family:仿宋"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; <
 mso-bidi-font-family:仿宋">
         <o:p>
         &nbsp;</o:p></span></p>
-
-    <p>
-        <h5 style="text-align: center;"><a href="./Files/保利存管理办法.doc">淮南淮河农村商业银行“保利存”管理办法</a></h5>
-        <h5 style="text-align: center;"><a href="./Files/正式协议书.doc">淮南淮河农村商业银行“保利存”储蓄存款开户协议书</a></h5>
+    <p style="line-height:15px; font-size:14px;">
+        <h5 style="text-align: left; line-height:15px;"><a href="./Files/保利存管理办法.doc">“保利存”管理办法</a></h5>
+        <h5 style="text-align: left; line-height:15px;"><a href="./Files/正式协议书.doc">“保利存”开户协议书</a></h5>
+        <h5 style="text-align: left; line-height:15px;"><a href="./Files/保利存管理系统使用说明.doc">“保利存”操作说明</a></h5>
     </p>
 </asp:Content>

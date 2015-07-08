@@ -126,6 +126,7 @@
                     <p style="line-height:15px; font-size:14px; margin:3px;">凭证号码：“50” + 10位编码
                     <h5 style="text-align:left; margin:3px;"><a href="./Files/保利存管理办法.doc">“保利存”管理办法</a></h5>
                     <h5 style="text-align:left; margin:3px;"><a href="./Files/正式协议书.doc">“保利存”储蓄存款开户协议书</a></h5>
+                    <h5 style="text-align:left; margin:3px;"><a href="./Files/保利存管理系统使用说明.doc">“保利存”管理系统使用说明</a></h5>
                     </asp:Panel>
 
                 <ajaxToolkit:DragPanelExtender ID="notePanel_DragPanelExtender" runat="server" BehaviorID="notePanel_DragPanelExtender" DragHandleID="notePanel" TargetControlID="notePanel" />
