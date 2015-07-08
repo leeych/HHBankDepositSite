@@ -3,16 +3,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <script type="text/javascript" language="javascript">
-            function displayCalendar() {
-                if (datePicker.style.display == 'block') {
-                    datePicker.style.display = 'none';
-                    return;
-                }
-                var dataPicker = document.getElementById('datePicker');
-                datePicker.style.display = 'block';
-            }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="width:100%; height:100%;">

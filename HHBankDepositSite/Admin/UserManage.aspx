@@ -49,7 +49,6 @@
     <div style="width: 100%">        
         <fieldset>
             <legend>机构管理</legend>
-            
             <div style="width: 60%; float: left; text-align: center; vertical-align: middle; padding-left: 30px;">
                 <div style="clear:both;">
                     <table align="left">
