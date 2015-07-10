@@ -58,6 +58,15 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox protocolIdTxt;
         
         /// <summary>
+        /// protocolIdCornerEx 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::AjaxControlToolkit.RoundedCornersExtender protocolIdCornerEx;
+        
+        /// <summary>
         /// billAccountTxt 控件。
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox billAccountTxt;
         
         /// <summary>
+        /// billAccountCornerEx 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::AjaxControlToolkit.RoundedCornersExtender billAccountCornerEx;
+        
+        /// <summary>
         /// idCardTxt 控件。
         /// </summary>
         /// <remarks>
@@ -74,6 +92,15 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox idCardTxt;
+        
+        /// <summary>
+        /// idCardCornerEx 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::AjaxControlToolkit.RoundedCornersExtender idCardCornerEx;
         
         /// <summary>
         /// startDateTxt 控件。
@@ -94,6 +121,15 @@ namespace HHBankDepositSite {
         protected global::AjaxControlToolkit.CalendarExtender calendarExStartDate;
         
         /// <summary>
+        /// startDateCornerEx 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::AjaxControlToolkit.RoundedCornersExtender startDateCornerEx;
+        
+        /// <summary>
         /// endDateTxt 控件。
         /// </summary>
         /// <remarks>
@@ -110,6 +146,15 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender calendarExEndDate;
+        
+        /// <summary>
+        /// endDateCornerEx 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::AjaxControlToolkit.RoundedCornersExtender endDateCornerEx;
         
         /// <summary>
         /// linkBtn 控件。

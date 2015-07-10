@@ -12,11 +12,21 @@
             <table width="85%" align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5; border-spacing: 0px;">
                 <tr>
                     <td align="right"><span class="red-star">*</span><span class="label">协议编号：</span></td>
-                    <td width="22%" align="left"><span><asp:TextBox ID="protocolTxt" runat="server" CssClass="aspTextBox" MaxLength="14"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="protocolIdValidator" ControlToValidate="protocolTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span></td>
+                    <td width="22%" align="left">
+                        <span><asp:TextBox ID="protocolTxt" runat="server" CssClass="aspTextBox" MaxLength="14"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="protocolIdValidator" ControlToValidate="protocolTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
+                        <span><ajaxToolkit:RoundedCornersExtender ID="protocolIdCornersEx" runat="server" TargetControlID="protocolTxt" Corners="All" Radius="5" BorderColor="#4684af" /></span>
+
+                    </td>
                     <td align="right"><span class="red-star">*</span><span class="label">存单账号：</span></td>
-                    <td width="25%" align="left"><span><asp:TextBox ID="billAccountTxt" runat="server" CssClass="aspBillAccount" Width="200px" MaxLength="23"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="billAccountValidator" ControlToValidate="billAccountTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span></td>
+                    <td width="25%" align="left">
+                        <span><asp:TextBox ID="billAccountTxt" runat="server" CssClass="aspBillAccount" Width="200px" MaxLength="23"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="billAccountValidator" ControlToValidate="billAccountTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
+                        <span><ajaxToolkit:RoundedCornersExtender ID="billAccountCornerEx" runat="server" TargetControlID="billAccountTxt" Corners="All" Radius="5" BorderColor="#4684af" /></span>
+                    </td>
                     <td align="right"><span class="red-star">*</span><span class="label">凭证号码：</span></td>
-                    <td align="left"><span><asp:TextBox ID="billCodeTxt" runat="server" CssClass="aspTextBox" MaxLength="12"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="billCodeValidator" ControlToValidate="billCodeTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span></td>
+                    <td align="left">
+                        <span><asp:TextBox ID="billCodeTxt" runat="server" CssClass="aspTextBox" MaxLength="12"></asp:TextBox></span><span><asp:RequiredFieldValidator runat="server" ID="billCodeValidator" ControlToValidate="billCodeTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
+                        <span><ajaxToolkit:RoundedCornersExtender ID="billCodeCornerEx" runat="server" TargetControlID="billCodeTxt" Radius="5" BorderColor="#4684af" /></span>
+                    </td>
                 </tr>
                 <tr>
                     <td align="right"><span class="red-star">*</span><span class="label">约定存期：</span></td>
@@ -29,15 +39,17 @@
                             <asp:ListItem>三年</asp:ListItem>
                             <asp:ListItem>五年</asp:ListItem>
                         </asp:DropDownList>
+                        <span><ajaxToolkit:RoundedCornersExtender ID="periodDropCornerEx" runat="server" TargetControlID="periodDrop" Radius="5" BorderColor="#4684af" /></span>
                     </td>
+                    
                     <td align="right"><span class="red-star">*</span><span class="label">约定利率：</span></td>
-                    <td align="left">
-                                  
+                    <td align="left">        
                         <asp:UpdatePanel ID="UpdatePanelRate" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <span>
                                   <asp:TextBox ID="rateTxt" runat="server" Width="131px" CssClass="aspTextBoxShort" ReadOnly="True"></asp:TextBox>
                                 </span>
+                                <span><ajaxToolkit:RoundedCornersExtender ID="rateCornerEx" runat="server" TargetControlID="rateTxt" Radius="5" BorderColor="#4684af" /></span>
                                 <span class="per-cent">%</span></td>
                             </ContentTemplate>
                             <Triggers>
@@ -46,12 +58,13 @@
                         </asp:UpdatePanel>
                         </td>
                     <td align="right"><span class="red-star">*</span><span class="label">存入金额：</span></td>
-                    <td align="left"><span><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort"></asp:TextBox></span>
+                    <td align="left">
+                        <span><asp:TextBox ID="moneyTxt" runat="server" CssClass="aspTextBoxShort"></asp:TextBox></span>
                         <span>
                             <asp:RequiredFieldValidator runat="server" ID="moneyValidator" ControlToValidate="moneyTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="moneyRegValidator" runat="server" ControlToValidate="moneyTxt" Display="Dynamic" ErrorMessage="非法字符！" ValidationExpression="^[0-9]+[.]?[0-9]+$" CssClass="validator"></asp:RegularExpressionValidator>
                         </span>
-
+                        <span><ajaxToolkit:RoundedCornersExtender ID="moneyCornerEx" runat="server" TargetControlID="moneyTxt" Radius="5" BorderColor="#4684af" /></span>
                     </td>
                 </tr>
                 <tr>
@@ -61,6 +74,7 @@
                             <asp:TextBox ID="dateTxt" runat="server" TextMode="SingleLine" CssClass="aspTextBox"></asp:TextBox>
                             <ajaxToolkit:CalendarExtender ID="CalendarExtenderDate" runat="server" TargetControlID="dateTxt" Format="yyyy-MM-dd" PopupPosition="BottomLeft"></ajaxToolkit:CalendarExtender>
                             <span><asp:RequiredFieldValidator runat="server" ID="depositDateValidator" ControlToValidate="dateTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
+                            <span><ajaxToolkit:RoundedCornersExtender ID="dateCornerEx" runat="server" TargetControlID="dateTxt" Radius="5" BorderColor="#4684af" /></span>
                         </div>
                     </td>
                     <td align="right"><span class="red-star">*</span><span class="label">补息账号：</span></td>
@@ -69,6 +83,7 @@
                         <span>
                             <asp:RequiredFieldValidator runat="server" ID="bindAccountValidator" ControlToValidate="bindAccountTxt" Display="Dynamic" ErrorMessage="必填！" SetFocusOnError="True" CssClass="validator"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="bindAccountRegValidator" runat="server" ControlToValidate="bindAccountTxt" ValidationExpression="^[0-9]+$" ErrorMessage="非法字符！" Display="Dynamic" CssClass="validator"></asp:RegularExpressionValidator>
+                            <ajaxToolkit:RoundedCornersExtender ID="bindAccountCornerEx" runat="server" TargetControlID="bindAccountTxt" Radius="5" BorderColor="#4684af" />
                         </span>
                     </td>
                 </tr>
@@ -80,15 +95,28 @@
         <table width="85%" align="center" cellpadding="5px" cellspacing="5px" style="border: 1px solid #E5E5E5;">
             <tr>
                 <td align="right"><span class="red-star">*</span><span class="label">客户姓名：</span></td>
-                <td align="left"><asp:TextBox ID="nameTxt" runat="server" CssClass="aspTextBox" ></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="nameValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="nameTxt"></asp:RequiredFieldValidator></span></td>
+                <td align="left">
+                    <asp:TextBox ID="nameTxt" runat="server" CssClass="aspTextBox" ></asp:TextBox>
+                    <span>
+                        <asp:RequiredFieldValidator runat="server" ID="nameValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="nameTxt"></asp:RequiredFieldValidator>
+                        <ajaxToolkit:RoundedCornersExtender ID="nameCornerEx" runat="server" TargetControlID="nameTxt" Radius="5" BorderColor="#4684af" />
+                    </span>
+                </td>
                 <td align="right"><span class="red-star">*</span><span class="label">客户身份证：</span></td>
-                <td align="left"><asp:TextBox ID="IDCardTxt" runat="server" CssClass="aspTextBox" MaxLength="18"></asp:TextBox><span><asp:RequiredFieldValidator runat="server" ID="idValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="IDCardTxt"></asp:RequiredFieldValidator></span></td>
+                <td align="left">
+                    <asp:TextBox ID="IDCardTxt" runat="server" CssClass="aspTextBox" MaxLength="18"></asp:TextBox>
+                    <span>
+                        <asp:RequiredFieldValidator runat="server" ID="idValidator" CssClass="validator" Display="Dynamic" ErrorMessage="必填！" ControlToValidate="IDCardTxt"></asp:RequiredFieldValidator>
+                        <ajaxToolkit:RoundedCornersExtender ID="IDCardCornerEx" runat="server" TargetControlID="IDCardTxt" Radius="5" BorderColor="#4684af" />
+                    </span>
+                </td>
                 <td align="right"><span class="red-star">*</span><span class="label">经办柜员：</span></td>
                 <td align="left">
                 <span>
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
                             <asp:TextBox ID="tellerNameTxt" runat="server" CssClass="aspTextBox" Width="80px"></asp:TextBox>
+                            <ajaxToolkit:RoundedCornersExtender ID="tellerNameCornerEx" runat="server" TargetControlID="tellerNameTxt" Radius="5" BorderColor="#4684af" />
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="tellerCodeDrop" />
@@ -97,11 +125,15 @@
                     </span>                    
                     <span><asp:DropDownList ID="tellerCodeDrop" runat="server" Width="80px" CssClass="aspDrop" AutoPostBack="True" OnSelectedIndexChanged="tellerCodeDrop_SelectedIndexChanged"></asp:DropDownList></span>
                     <span><asp:RequiredFieldValidator ID="tellerNameValidator" runat="server" ControlToValidate="tellerNameTxt" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator></span>
+                    <span><ajaxToolkit:RoundedCornersExtender ID="tellerCodeCornerEx" runat="server" TargetControlID="tellerCodeDrop" Radius="5" BorderColor="#4684af" /></span>
                 </td>
             </tr>
             <tr>
                 <td align="right">备注</td>
-                <td align="left" colspan="5"><asp:TextBox runat="server" Height="63px" Width="100%" TextMode="MultiLine" ID="remarkTxt"></asp:TextBox></td>
+                <td align="left" colspan="5">
+                    <asp:TextBox runat="server" Height="63px" Width="100%" TextMode="MultiLine" ID="remarkTxt"></asp:TextBox>
+                    <ajaxToolkit:RoundedCornersExtender ID="remarkCornerEx" runat="server" TargetControlID="remarkTxt" Radius="5" BorderColor="#4684af" />
+                </td>
             </tr>
         </table>
         </fieldset>

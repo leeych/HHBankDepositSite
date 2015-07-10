@@ -67,9 +67,7 @@
     <Content Include="Admin\BankRateManage.aspx" />
     <Content Include="Admin\UserManage.aspx" />
     <Content Include="App_Themes\Default\SmartGridView.css" />
-    <Content Include="CSS\css.css" />
     <Content Include="CSS\masterPage.css" />
-    <Content Include="CSS\navStyle.css" />
     <Content Include="CSS\Adminstyle.css" />
     <Content Include="Default.aspx" />
     <Content Include="Deposit.aspx" />
@@ -98,6 +96,7 @@
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Search.aspx" />
     <Content Include="Web.config" />
+    <Content Include="wordpage.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\AdminLogout.aspx.cs">
@@ -203,6 +202,13 @@
       <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="TGridView.cs" />
+    <Compile Include="wordpage.aspx.cs">
+      <DependentUpon>wordpage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wordpage.aspx.designer.cs">
+      <DependentUpon>wordpage.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
