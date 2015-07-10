@@ -40,15 +40,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator protocolIDRegValidator;
         
         /// <summary>
-        /// protocolIDCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender protocolIDCornerEx;
-        
-        /// <summary>
         /// billAccountTxt 控件。
         /// </summary>
         /// <remarks>
@@ -74,15 +65,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator billAccountRegValidator;
-        
-        /// <summary>
-        /// billAccountCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender billAccountCornerEx;
         
         /// <summary>
         /// searchBtn 控件。
@@ -112,15 +94,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator billCodeValidator;
         
         /// <summary>
-        /// billCodeCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender billCodeCornerEx;
-        
-        /// <summary>
         /// moneyTxt 控件。
         /// </summary>
         /// <remarks>
@@ -137,15 +110,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator moneyValidator;
-        
-        /// <summary>
-        /// moneyCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender moneyCornerEx;
         
         /// <summary>
         /// dateTxt 控件。
@@ -175,15 +139,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator depositDateValidator;
         
         /// <summary>
-        /// dateCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender dateCornerEx;
-        
-        /// <summary>
         /// periodDrop 控件。
         /// </summary>
         /// <remarks>
@@ -191,15 +146,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList periodDrop;
-        
-        /// <summary>
-        /// periodCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender periodCornerEx;
         
         /// <summary>
         /// UpdatePanelRate 控件。
@@ -220,15 +166,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox rateTxt;
         
         /// <summary>
-        /// rateCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender rateCornerEx;
-        
-        /// <summary>
         /// statusDrop 控件。
         /// </summary>
         /// <remarks>
@@ -236,15 +173,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList statusDrop;
-        
-        /// <summary>
-        /// statusCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender statusCornerEx;
         
         /// <summary>
         /// clientNameTxt 控件。
@@ -265,15 +193,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator clientNameValidator;
         
         /// <summary>
-        /// clientNameCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender clientNameCornerEx;
-        
-        /// <summary>
         /// clientIDTxt 控件。
         /// </summary>
         /// <remarks>
@@ -290,15 +209,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator clientIDValidator;
-        
-        /// <summary>
-        /// clientIDCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender clientIDCornerEx;
         
         /// <summary>
         /// tellerCodeTxt 控件。
@@ -319,15 +229,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator tellerCodeValidator;
         
         /// <summary>
-        /// tellerCodeCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender tellerCodeCornerEx;
-        
-        /// <summary>
         /// tellerNameTxt 控件。
         /// </summary>
         /// <remarks>
@@ -344,15 +245,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator tellerNameValidator;
-        
-        /// <summary>
-        /// tellerNameCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender tellerNameCornerEx;
         
         /// <summary>
         /// drawDateTxt 控件。
@@ -373,15 +265,6 @@ namespace HHBankDepositSite {
         protected global::AjaxControlToolkit.CalendarExtender drawCalendarEx;
         
         /// <summary>
-        /// drawDateCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender drawDateCornerEx;
-        
-        /// <summary>
         /// bindAccountTxt 控件。
         /// </summary>
         /// <remarks>
@@ -398,15 +281,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator bindAccountValidator;
-        
-        /// <summary>
-        /// bindAccountCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender bindAccountCornerEx;
         
         /// <summary>
         /// recordBtn 控件。
@@ -445,15 +319,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator m03RateRegValidator;
         
         /// <summary>
-        /// m03CornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender m03CornerEx;
-        
-        /// <summary>
         /// m06RateTxt 控件。
         /// </summary>
         /// <remarks>
@@ -479,15 +344,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator m06RateRegValidator;
-        
-        /// <summary>
-        /// m06RateCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender m06RateCornerEx;
         
         /// <summary>
         /// y01RateTxt 控件。
@@ -517,15 +373,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator y01RateRegValidator;
         
         /// <summary>
-        /// y01RateCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender y01RateCornerEx;
-        
-        /// <summary>
         /// y02RateTxt 控件。
         /// </summary>
         /// <remarks>
@@ -551,15 +398,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator y02RateRegValidator;
-        
-        /// <summary>
-        /// y02RateCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender y02RateCornerEx;
         
         /// <summary>
         /// y03RateTxt 控件。
@@ -589,15 +427,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator y03RateRegValidator;
         
         /// <summary>
-        /// y03RateCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender y03RateCornerEx;
-        
-        /// <summary>
         /// y05RateTxt 控件。
         /// </summary>
         /// <remarks>
@@ -623,15 +452,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator y05RateRegValidator;
-        
-        /// <summary>
-        /// y05RateCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender y05RateCornerEx;
         
         /// <summary>
         /// currentRateTxt 控件。
@@ -661,15 +481,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator currRateRegValidator;
         
         /// <summary>
-        /// currentRateCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender currentRateCornerEx;
-        
-        /// <summary>
         /// changeRateBtn 控件。
         /// </summary>
         /// <remarks>
@@ -697,15 +508,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator userNameValidator;
         
         /// <summary>
-        /// userNameCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender userNameCornerEx;
-        
-        /// <summary>
         /// oldpwdTxt 控件。
         /// </summary>
         /// <remarks>
@@ -724,15 +526,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator oldpwdValidator;
         
         /// <summary>
-        /// oldpwdCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender oldpwdCornerEx;
-        
-        /// <summary>
         /// newpwdTxt 控件。
         /// </summary>
         /// <remarks>
@@ -749,15 +542,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator newpwdValidator;
-        
-        /// <summary>
-        /// newpwdCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender newpwdCornerEx;
         
         /// <summary>
         /// surepwdTxt 控件。
@@ -785,15 +569,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator compareValidator;
-        
-        /// <summary>
-        /// surepwdCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender surepwdCornerEx;
         
         /// <summary>
         /// okBtn 控件。

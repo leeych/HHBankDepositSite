@@ -39,20 +39,11 @@
             <table style="border: 1px solid #E5E5E5; text-align: center; width:90%" align="center">
                 <tr>
                     <td><span class="label">协议编号：</label></td>
-                    <td align="left">
-                        <asp:TextBox runat="server" ID="protocolIdTxt" CssClass="aspTextBox" MaxLength="14" ></asp:TextBox>
-                        <ajaxToolkit:RoundedCornersExtender ID="protocolIdCornerEx" runat="server" TargetControlID="protocolIdTxt" Radius="5" BorderColor="#4684af" />
-                    </td>
+                    <td align="left"><asp:TextBox runat="server" ID="protocolIdTxt" CssClass="aspTextBox" MaxLength="14" ></asp:TextBox></td>
                     <td><span class="label">存单账号：</span></td>
-                    <td align="left">
-                        <asp:TextBox runat="server" ID="billAccountTxt" CssClass="aspBillAccount" MaxLength="23" ></asp:TextBox>
-                        <ajaxToolkit:RoundedCornersExtender ID="billAccountCornerEx" runat="server" TargetControlID="billAccountTxt" Radius="5" BorderColor="#4684af" />
-                    </td>
+                    <td align="left"><asp:TextBox runat="server" ID="billAccountTxt" CssClass="aspBillAccount" MaxLength="23" ></asp:TextBox></td>
                     <td><span class="label">身份证号：</span></td>
-                    <td align="left">
-                        <asp:TextBox runat="server" ID="idCardTxt" CssClass="aspTextBox" MaxLength="18" ></asp:TextBox>
-                        <ajaxToolkit:RoundedCornersExtender ID="idCardCornerEx" runat="server" TargetControlID="idCardTxt" Radius="5" BorderColor="#4684af" />
-                    </td>
+                    <td align="left"><asp:TextBox runat="server" ID="idCardTxt" CssClass="aspTextBox" MaxLength="18" ></asp:TextBox></td>            
                     <td><span class="note">(仅需输入一项)</span></td>
                     <td>&nbsp;</td>
                 </tr>
@@ -64,7 +55,7 @@
                             <ajaxtoolkit:calendarextender id="calendarExStartDate" runat="server" TargetControlID="startDateTxt" Format="yyyy-MM-dd" PopupPosition="BottomLeft"></ajaxtoolkit:calendarextender>
                         </span>
                         <span>
-                            <ajaxToolkit:RoundedCornersExtender ID="startDateCornerEx" runat="server" TargetControlID="startDateTxt" BorderColor="#4684af" />
+                            <%--<asp:RequiredFieldValidator ID="startDateValidator" runat="server" ControlToValidate="startDateTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>--%>
                         </span>
                     </td>
                     <td><span class="label">截止日期：</span></td>
@@ -74,7 +65,7 @@
                             <ajaxtoolkit:calendarextender id="calendarExEndDate"  runat="server" TargetControlID="endDateTxt" Format="yyyy-MM-dd" PopupPosition="BottomLeft"></ajaxtoolkit:calendarextender>
                         </span>
                         <span>
-                            <ajaxToolkit:RoundedCornersExtender ID="endDateCornerEx" runat="server" TargetControlID="endDateTxt" Radius="5" BorderColor="#4684af" />
+                            <%--<asp:RequiredFieldValidator ID="endDateValidator" runat="server" ControlToValidate="endDateTxt" Display="Dynamic" ErrorMessage="必填！" CssClass="validator"></asp:RequiredFieldValidator>--%>
                         </span>
                     </td>
                     <td><span class="note"></span></td>

@@ -31,15 +31,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator protocolIdValidator;
         
         /// <summary>
-        /// protocolIDCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender protocolIDCornerEx;
-        
-        /// <summary>
         /// billAccountTxt 控件。
         /// </summary>
         /// <remarks>
@@ -56,15 +47,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator accountValidator;
-        
-        /// <summary>
-        /// accountCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender accountCornerEx;
         
         /// <summary>
         /// searchBtn 控件。
@@ -265,15 +247,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator dateValidator;
         
         /// <summary>
-        /// drawDateCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender drawDateCornerEx;
-        
-        /// <summary>
         /// calendarDrawDate 控件。
         /// </summary>
         /// <remarks>
@@ -301,15 +274,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator moneyValidator;
         
         /// <summary>
-        /// moneyDrawCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender moneyDrawCornerEx;
-        
-        /// <summary>
         /// calcBtn 控件。
         /// </summary>
         /// <remarks>
@@ -328,15 +292,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox sectionTxt;
         
         /// <summary>
-        /// sectionCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender sectionCornerEx;
-        
-        /// <summary>
         /// systemTxt 控件。
         /// </summary>
         /// <remarks>
@@ -344,15 +299,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox systemTxt;
-        
-        /// <summary>
-        /// systemCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender systemCornerEx;
         
         /// <summary>
         /// totalInterestTxt 控件。
@@ -364,15 +310,6 @@ namespace HHBankDepositSite {
         protected global::System.Web.UI.WebControls.TextBox totalInterestTxt;
         
         /// <summary>
-        /// totalInterestCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender totalInterestCornerEx;
-        
-        /// <summary>
         /// marginTxt 控件。
         /// </summary>
         /// <remarks>
@@ -380,15 +317,6 @@ namespace HHBankDepositSite {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox marginTxt;
-        
-        /// <summary>
-        /// marginCornerEx 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender marginCornerEx;
         
         /// <summary>
         /// linkBtn 控件。
