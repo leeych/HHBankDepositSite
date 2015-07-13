@@ -111,6 +111,10 @@ namespace HHBankDepositSite.Admin
                     TMessageBox.ShowMsg(this, "AddNewTeller", "添加成功！");
                     // TODO: update tellertable
                 }
+                else
+                {
+                    TMessageBox.ShowMsg(this, "AddNewTellerFailed", "添加失败！请确认无误后再添加！");
+                }
             }
             else if (changeTellerRbn.Checked)
             {

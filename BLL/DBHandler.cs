@@ -1053,8 +1053,8 @@ namespace BLL
         /// <returns></returns>
         public bool AddTellerInfo(TellerInfo teller)
         {
-            string sql = @"if not exists (select * from TellerInfo where TellerCode='{0}') insert into TellerInfo(TellerCode, TellerName, OrgCode) values('{1}','{2}','{3}')";
-            string sqlString = string.Format(sql, teller.TellerCode, teller.TellerCode, teller.TellerName, teller.OrgCode);
+            string sql = @"if not exists (select * from TellerInfo where TellerCode='{0}') begin insert into TellerInfo(TellerCode, TellerName, OrgCode, Role) values('{1}','{2}','{3}', {4}) end";
+            string sqlString = string.Format(sql, teller.TellerCode, teller.TellerCode, teller.TellerName, teller.OrgCode, (int)teller.Role);
             int rows = (int)SqlHelper.ExecuteSqlObj(sqlString);
             if (rows == 1)
             {
@@ -1210,7 +1210,7 @@ namespace BLL
         /// <returns></returns>
         public bool AddNewTeller(string tellerCode, string tellerName, string orgCode)
         {
-            string sql = @"if not exists (select * from TellerInfo) insert into TellerInfo(TellerCode,TellerName,OrgCode,Role) values('{0}','{1}','{2}',0)";
+            string sql = @"if not exists (select * from TellerInfo where TellerCode='{0}') begin insert into TellerInfo(TellerCode,TellerName,OrgCode,Role) values('{0}','{1}','{2}',0) end";
             string sqlString = string.Format(sql, tellerCode, tellerName, orgCode);
             int rows = SqlHelper.ExecuteSql(sqlString);
             if (rows == 1)
@@ -1343,10 +1343,11 @@ namespace BLL
         {
             string tableName = Constants.OrgCodeToTableName[orgCode];
             string sql = @"update {0} set BillAccount='{1}',BillCode='{2}',DepositMoney={3},DepositDate='{4}',BillPeriod={5},DepositFlag={6}," +
-                "DepositorName='{7}',DepositorIDCard='{8}',BindAccount='{9}',CurrentRate={10},D01Rate={11},M03Rate={12},M06Rate={13},Y01Rate={14},Y02Rate={15},Y03Rate={16},Y05Rate={17} " + 
-                " where ProtocolID='{18}' and 1=1";
+                "DepositorName='{7}',DepositorIDCard='{8}',BindAccount='{9}',CurrentRate={10},D01Rate={11},M03Rate={12},M06Rate={13},Y01Rate={14},Y02Rate={15},Y03Rate={16},Y05Rate={17}, " + 
+                "TellerCode='{18}',TellerName='{19}' where ProtocolID='{20}' and 1=1";
             string sqlString = string.Format(sql, tableName, info.BillAccount, info.BillCode, info.DepositMoney, info.DepositDate.ToString("yyyy-MM-dd"), (int)info.BillPeriod, (int)info.Status,
-                info.ClientName, info.ClientID, info.BindAccount, info.ExecRate.CurrRate, info.ExecRate.D01, info.ExecRate.M03, info.ExecRate.M06, info.ExecRate.Y01, info.ExecRate.Y02, info.ExecRate.Y03, info.ExecRate.Y05, info.ProtocolID);
+                info.ClientName, info.ClientID, info.BindAccount, info.ExecRate.CurrRate, info.ExecRate.D01, info.ExecRate.M03, info.ExecRate.M06, info.ExecRate.Y01, info.ExecRate.Y02, info.ExecRate.Y03, info.ExecRate.Y05, 
+                info.TellerCode, info.TellerName, info.ProtocolID);
             int rows = SqlHelper.ExecuteSql(sqlString);
             return (rows == 1);
         }
