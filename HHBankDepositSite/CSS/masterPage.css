@@ -110,6 +110,8 @@ html {
     background-color: rgb(221,241,254);
 }
 
+* { margin:0 auto; padding:0; border:0;}
+
 .legendStyle {
     font-size: 20px;
     text-align: center;

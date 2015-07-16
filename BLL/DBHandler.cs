@@ -46,6 +46,7 @@ namespace BLL
                                         OrgCode = dr["OrgCode"].ToString(),
                                         Role = (UserRole)int.Parse(dr["Priority"].ToString())
                                     };
+                    dr.Close();
                     return userInfo;
                 }
             }
@@ -71,6 +72,7 @@ namespace BLL
                                         OrgCode = dr["OrgCode"].ToString(),
                                         Role = (UserRole)int.Parse(dr["Priority"].ToString())
                                    };
+                    dr.Close();
                     return userInfo;
                 }
             }
@@ -96,13 +98,6 @@ namespace BLL
                                             new SqlParameter("@IDCard", SqlDbType.Char),
                                             new SqlParameter("@DepositMoney", SqlDbType.Money),
                                             new SqlParameter("@BillPeriod", SqlDbType.Int),
-                                            //new SqlParameter("@EarlierDrawDate", SqlDbType.SmallDateTime),
-                                            //new SqlParameter("@CalcDueDate", SqlDbType.SmallDateTime),
-                                            //new SqlParameter("@EarlierDrawMoney", SqlDbType.Money),
-                                            //new SqlParameter("@RemainMoney", SqlDbType.Money),
-                                            //new SqlParameter("@EarlierInterest", SqlDbType.Money),
-                                            //new SqlParameter("@SystemInterest", SqlDbType.Money),
-                                            //new SqlParameter("@MarginInterest", SqlDbType.Money),
                                             new SqlParameter("@BindAccount", SqlDbType.VarChar),
                                             new SqlParameter("@DepositFlag", SqlDbType.Int),
                                             new SqlParameter("@Remark", SqlDbType.NText)
@@ -118,13 +113,6 @@ namespace BLL
             parameters[8].Value = record.DepositorIDCard;
             parameters[9].Value = record.DepositMoney;
             parameters[10].Value = record.Period;
-            //parameters[11].Value = record.EarlierDrawDate;
-            //parameters[12].Value = record.CalcDueDate;
-            //parameters[13].Value = record.EarlierDrawMoney;
-            //parameters[14].Value = record.RemainMoney;
-            //parameters[15].Value = record.EarlierInterest;
-            //parameters[16].Value = record.SystemInterest;
-            //parameters[17].Value = record.MarginInterest;
             parameters[11].Value = record.BindAccount;
             parameters[12].Value = record.DepositFlag;
             parameters[13].Value = record.Remark;
@@ -178,17 +166,11 @@ namespace BLL
                                         DepositorIDCard = dr["IDCard"].ToString(),
                                         DepositMoney = decimal.Parse(dr["DepositMoney"].ToString()),
                                         Period = int.Parse(dr["BillPeriod"].ToString()),
-                                        //EarlierDrawDate = DateTime.Parse(dr["EarlierDrawDate"].ToString()),
-                                        //CalcDueDate = DateTime.Parse(dr["CalcDueDate"].ToString()),
-                                        //EarlierDrawMoney = decimal.Parse(dr["EarlierDrawMoney"].ToString()),
-                                        //RemainMoney = decimal.Parse(dr["RemainMoney"].ToString()),
-                                        //EarlierInterest = decimal.Parse(dr["EarlierInterest"].ToString()),
-                                        //SystemInterest = decimal.Parse(dr["SystemInterest"].ToString()),
-                                        //MarginInterest = decimal.Parse(dr["MarginInsterest"].ToString()),
                                         BindAccount = dr["BindAccount"].ToString(),
                                         DepositFlag = int.Parse(dr["DepositFlag"].ToString()),
                                         Remark = dr["Remark"].ToString()
                                     };
+                dr.Close();
                 return record;
             }
         }
@@ -224,13 +206,6 @@ namespace BLL
                             DepositorIDCard = dr["IDCard"].ToString(),
                             DepositMoney = decimal.Parse(dr["DepositMoney"].ToString()),
                             Period = int.Parse(dr["BillPeriod"].ToString()),
-                            //EarlierDrawDate = DateTime.Parse(dr["EarlierDrawDate"].ToString()),
-                            //CalcDueDate = DateTime.Parse(dr["CalcDueDate"].ToString()),
-                            //EarlierDrawMoney = decimal.Parse(dr["EarlierDrawMoney"].ToString()),
-                            //RemainMoney = decimal.Parse(dr["RemainMoney"].ToString()),
-                            //EarlierInterest = decimal.Parse(dr["EarlierInterest"].ToString()),
-                            //SystemInterest = decimal.Parse(dr["SystemInterest"].ToString()),
-                            //MarginInterest = decimal.Parse(dr["MarginInsterest"].ToString()),
                             BindAccount = dr["BindAccount"].ToString(),
                             DepositFlag = int.Parse(dr["DepositFlag"].ToString()),
                             Remark = dr["Remark"].ToString()
@@ -280,13 +255,6 @@ namespace BLL
                             DepositorIDCard = dr["IDCard"].ToString(),
                             DepositMoney = decimal.Parse(dr["DepositMoney"].ToString()),
                             Period = int.Parse(dr["BillPeriod"].ToString()),
-                            //EarlierDrawDate = (dr["EalierDrawDate"] == null ? DateTime.MaxValue : DateTime.Parse(dr["EarlierDrawDate"].ToString())),
-                            //CalcDueDate = (dr["CalcDueDate"] == null ? DateTime.MaxValue : DateTime.Parse(dr["CalcDueDate"].ToString())),
-                            //EarlierDrawMoney = decimal.Parse(dr["EarlierDrawMoney"].ToString()),
-                            //RemainMoney = decimal.Parse(dr["RemainMoney"].ToString()),
-                            //EarlierInterest = decimal.Parse(dr["EarlierInterest"].ToString()),
-                            //SystemInterest = decimal.Parse(dr["SystemInterest"].ToString()),
-                            //MarginInterest = decimal.Parse(dr["MarginInsterest"].ToString()),
                             BindAccount = dr["BindAccount"].ToString(),
                             DepositFlag = int.Parse(dr["DepositFlag"].ToString()),
                             Remark = dr["Remark"].ToString()
@@ -333,13 +301,6 @@ namespace BLL
                             DepositorIDCard = dr["IDCard"].ToString(),
                             DepositMoney = decimal.Parse(dr["DepositMoney"].ToString()),
                             Period = int.Parse(dr["BillPeriod"].ToString()),
-                            //EarlierDrawDate = DateTime.Parse(dr["EarlierDrawDate"].ToString()),
-                            //CalcDueDate = DateTime.Parse(dr["CalcDueDate"].ToString()),
-                            //EarlierDrawMoney = decimal.Parse(dr["EarlierDrawMoney"].ToString()),
-                            //RemainMoney = decimal.Parse(dr["RemainMoney"].ToString()),
-                            //EarlierInterest = decimal.Parse(dr["EarlierInterest"].ToString()),
-                            //SystemInterest = decimal.Parse(dr["SystemInterest"].ToString()),
-                            //MarginInterest = decimal.Parse(dr["MarginInsterest"].ToString()),
                             BindAccount = dr["BindAccount"].ToString(),
                             DepositFlag = int.Parse(dr["DepositFlag"].ToString()),
                             Remark = dr["Remark"].ToString()
@@ -385,13 +346,6 @@ namespace BLL
                             DepositorIDCard = dr["IDCard"].ToString(),
                             DepositMoney = decimal.Parse(dr["DepositMoney"].ToString()),
                             Period = int.Parse(dr["BillPeriod"].ToString()),
-                            //EarlierDrawDate = DateTime.Parse(dr["EarlierDrawDate"].ToString()),
-                            //CalcDueDate = DateTime.Parse(dr["CalcDueDate"].ToString()),
-                            //EarlierDrawMoney = decimal.Parse(dr["EarlierDrawMoney"].ToString()),
-                            //RemainMoney = decimal.Parse(dr["RemainMoney"].ToString()),
-                            //EarlierInterest = decimal.Parse(dr["EarlierInterest"].ToString()),
-                            //SystemInterest = decimal.Parse(dr["SystemInterest"].ToString()),
-                            //MarginInterest = decimal.Parse(dr["MarginInsterest"].ToString()),
                             BindAccount = dr["BindAccount"].ToString(),
                             DepositFlag = int.Parse(dr["DepositFlag"].ToString()),
                             Remark = dr["Remark"].ToString()
@@ -435,6 +389,7 @@ namespace BLL
                                     DepositFlag = int.Parse(dr["DepositFlag"].ToString()),
                                     Remark = dr["Remark"].ToString()
                                 };
+                dr.Close();
                 return record;
             }
         }
@@ -495,6 +450,7 @@ namespace BLL
                                         Y05 = decimal.Parse(dr["Y05Rate"].ToString())
                                     };
                     record.Remark = dr["Remark"].ToString();
+                    dr.Close();
                     return record;
                 }
                 return null;
@@ -523,27 +479,6 @@ namespace BLL
             int rowsAffected = SqlHelper.ExecuteSql(sqlString);
             return rowsAffected;
         }
-
-        /// <summary>
-        /// 根据协议号修改存款记录
-        /// </summary>
-        /// <param name="protocolID"></param>
-        /// <param name="record"></param>
-        /// <returns></returns>
-        //public int SetRecordByProtocolID(string protocolID, DepositRecord record)
-        //{
-        //    string tableName = Constants.OrgCodeToTableName[record.OrgCode];
-        //    string sql = @"update {0} set BillAccount='{1}',BillCode='{2}',DepositDate='{3}',OrgCode='{4}',"
-        //        + "TellerCode='{5}',TellerName='{6}',DepositorName='{7}',IDCard='{8}',DepositMoney='{9}',DepositPeriod='{10}'" 
-        //        + "EarlierDrawDate='{11}',CalcDrawDate='{12}',EarlierDrawMoney={13},RemainMoney={14},EarlierInterest={15},SystemInterest={16},"
-        //        + "MarginInterest={17},BindAccount='{18}',DepositFlag={19},Remark='{20}' where ProtocolID='{21}'";
-        //    string sqlString = string.Format(sql, tableName, record.BillAccount, record.BillCode, record.DepositDate.ToString("yyyy-MM-dd"), record.OrgCode,
-        //        record.TellerCode, record.TellerName, record.DepositorName, record.DepositorIDCard, record.DepositMoney, record.Period,
-        //        record.EarlierDrawDate.ToString("yyyy-MM-dd"), record.CalcDueDate.ToString("yyyy-MM-dd"), record.EarlierDrawMoney, record.RemainMoney, record.EarlierInterest, record.SystemInterest,
-        //        record.MarginInterest, record.BillAccount, record.DepositFlag, record.Remark, protocolID);
-        //    int rows = SqlHelper.ExecuteSql(sqlString);
-        //    return rows;
-        //}
 
         /// <summary>
         /// 根据协议号和机构号删除记录
@@ -594,6 +529,7 @@ namespace BLL
                                         OrgAddress= dr["OrgAddress"].ToString(),
                                         OrgPhone = dr["OrgPhone"].ToString()
                                        };
+                    dr.Close();
                     return orgInfo;
                 }
             }
@@ -671,6 +607,7 @@ namespace BLL
                                                     MaxProtocolId = dr["MaxID"].ToString(),
                                                     RecordCount = long.Parse(dr["TotalID"].ToString())
                                                 };
+                    dr.Close();
                     return info;
                 }
                 return null;
@@ -729,6 +666,7 @@ namespace BLL
                     info.FinalCalcInterest = (dr["FinalCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalCalcInterest"].ToString());
                     info.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
 
+                    dr.Close();
                     return info;
                 }
                 return null;
@@ -787,11 +725,13 @@ namespace BLL
                     info.FinalCalcInterest = (dr["FinalCalcInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalCalcInterest"].ToString());
                     info.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
 
+                    dr.Close();
                     return info;
                 }
                 return null;
             }
         }
+
         /// <summary>
         /// 查询指定身份证号码在本机构办理保利存记录
         /// </summary>
@@ -850,6 +790,7 @@ namespace BLL
                         info.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
                         infoList.Add(info);
                     }
+                    dr.Close();
                     return infoList;
                 }
                 return null;
@@ -914,6 +855,7 @@ namespace BLL
                         info.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
                         infoList.Add(info);
                     }
+                    dr.Close();
                     return infoList;
                 }
                 return null;
@@ -1025,6 +967,7 @@ namespace BLL
 
                     tellerList.Add(teller);
                 }
+                dr.Close();
                 return tellerList;
             }
         }
@@ -1105,6 +1048,7 @@ namespace BLL
                     rate.Rate.Y05 = decimal.Parse(dr["Y05Rate"].ToString());
                     rateList.Add(rate);
                 }
+                dr.Close();
                 return rateList;
             }
         }
@@ -1128,6 +1072,7 @@ namespace BLL
                     org.OrgPhone = dr["OrgPhone"].ToString();
                     orgList.Add(org);
                 }
+                dr.Close();
                 return orgList;
             }
         }
@@ -1151,6 +1096,7 @@ namespace BLL
                     teller.Role = (RoleFlag)int.Parse(dr["Role"].ToString());
                     tellerList.Add(teller);
                 }
+                dr.Close();
                 return tellerList;
             }
         }
@@ -1179,6 +1125,7 @@ namespace BLL
                     rate.Rate.Y05 = decimal.Parse(dr["Y05Rate"].ToString());
                     rateList.Add(rate);
                 }
+                dr.Close();
                 return rateList;
             }
         }
@@ -1311,6 +1258,7 @@ namespace BLL
                     info.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
                     infoList.Add(info);
                 }
+                dr.Close();
                 return infoList;
             }
         }
@@ -1400,6 +1348,7 @@ namespace BLL
                     info.FinalMarginInterest = (dr["FinalMarginInterest"] == DBNull.Value) ? decimal.Zero : decimal.Parse(dr["FinalMarginInterest"].ToString());
                     infoList.Add(info);
                 }
+                dr.Close();
                 return infoList;
             }
         }

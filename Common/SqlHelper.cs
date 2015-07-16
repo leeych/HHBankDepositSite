@@ -78,23 +78,29 @@ namespace Common
         /// <returns>影响行数</returns>
         public static int ExecuteSql(string sqlString)
         {
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            SqlCommand cmd = new SqlCommand(sqlString, connection);
-            try
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                connection.Open();
-                int rows = cmd.ExecuteNonQuery();
-                return rows;
-            }
-            catch (Exception exception)
-            {
-                WriteLog("sql语句[{0}]：错误信息[{1}]调用堆栈[{2}]", sqlString, exception.Message, exception.StackTrace);
-                return -1;
-            }
-            finally
-            {
-                cmd.Dispose();
-                connection.Close();
+                using (SqlCommand cmd = new SqlCommand(sqlString, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        int rows = cmd.ExecuteNonQuery();
+                        connection.Close();
+                        return rows;
+                    }
+                    catch (Exception exception)
+                    {
+                        WriteLog("sql语句[{0}]：错误信息[{1}]调用堆栈[{2}]", sqlString, exception.Message, exception.StackTrace);
+                        connection.Close();
+                        return -1;
+                    }
+                    finally
+                    {
+                        cmd.Dispose();
+                        connection.Close();
+                    }
+                }
             }
         }
 
@@ -111,11 +117,13 @@ namespace Common
             {
                 connection.Open();
                 object obj = cmd.ExecuteScalar();
+                connection.Close();
                 return obj;
             }
             catch (Exception exception)
             {
                 WriteLog("sql语句[{0}]:错误信息[{1}]调用堆栈[{2}]", sqlString, exception.Message, exception.StackTrace);
+                connection.Close();
                 return null;
             }
             finally
@@ -131,46 +139,52 @@ namespace Common
         /// <param name="sqlStringList"></param>
         public static void ExecuteSqlTran(List<string> sqlStringList)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
-            SqlCommand cmd = new SqlCommand();
-            SqlTransaction transaction = null;
-            try
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
-                conn.Open();
-                cmd.Connection = conn;
-                transaction = conn.BeginTransaction();
-                cmd.Transaction = transaction;
-
-                foreach (string s in sqlStringList)
+                using (SqlCommand cmd = new SqlCommand())
                 {
-                    if (!string.IsNullOrEmpty(s.Trim()))
+                    SqlTransaction transaction = null;
+                    try
                     {
-                        cmd.CommandText = s;
-                        cmd.ExecuteNonQuery();
+                        conn.Open();
+                        cmd.Connection = conn;
+                        transaction = conn.BeginTransaction();
+                        cmd.Transaction = transaction;
+
+                        foreach (string s in sqlStringList)
+                        {
+                            if (!string.IsNullOrEmpty(s.Trim()))
+                            {
+                                cmd.CommandText = s;
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                        transaction.Commit();
+                        conn.Close();
+                    }
+                    catch (Exception exception)
+                    {
+                        WriteLog("ExecuteSqlTran：错误信息[{0}]调用堆栈[{1}]", exception.Message, exception.StackTrace);
+                        try
+                        {
+                            transaction.Rollback();
+                        }
+                        catch (Exception exception2)
+                        {
+                            WriteLog("Rollback Exception: Type[{0}]Message[{0}]", exception2.GetType(), exception2.Message);
+                        }
+                        conn.Close();
+                    }
+                    finally
+                    {
+                        if (transaction != null)
+                        {
+                            transaction.Dispose();
+                        }
+                        cmd.Dispose();
+                        conn.Close();
                     }
                 }
-                transaction.Commit();
-            }
-            catch (Exception exception)
-            {
-                WriteLog("ExecuteSqlTran：错误信息[{0}]调用堆栈[{1}]", exception.Message, exception.StackTrace);
-                try
-                {
-                    transaction.Rollback();
-                }
-                catch (Exception exception2)
-                {
-                    WriteLog("Rollback Exception: Type[{0}]Message[{0}]", exception2.GetType(), exception2.Message);
-                }
-            }
-            finally
-            {
-                if (transaction != null)
-                {
-                    transaction.Dispose();
-                }
-                cmd.Dispose();
-                conn.Close();
             }
         }
 
@@ -191,11 +205,13 @@ namespace Common
             {
                 connection.Open();
                 int rows = cmd.ExecuteNonQuery();
+                connection.Close();
                 return rows;
             }
             catch (SqlException exception)
             {
                 WriteLog("sql语句[{0}]content[{1}]：错误信息[{2}]调用堆栈[{3}]", sqlString, content, exception.Message, exception.StackTrace);
+                connection.Close();
                 return -1;
             }
             finally
@@ -215,24 +231,28 @@ namespace Common
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand(sqlString, connection);
-                SqlParameter myParameter = new SqlParameter("@fs", SqlDbType.Image);
-                myParameter.Value = fs;
-                cmd.Parameters.Add(myParameter);
-                try
+                using (SqlCommand cmd = new SqlCommand(sqlString, connection))
                 {
-                    connection.Open();
-                    int rows = cmd.ExecuteNonQuery();
-                    return rows;
-                }
-                catch (SqlException exception)
-                {
-                    throw new Exception(exception.Message);
-                }
-                finally
-                {
-                    cmd.Dispose();
-                    connection.Close();
+                    SqlParameter myParameter = new SqlParameter("@fs", SqlDbType.Image);
+                    myParameter.Value = fs;
+                    cmd.Parameters.Add(myParameter);
+                    try
+                    {
+                        connection.Open();
+                        int rows = cmd.ExecuteNonQuery();
+                        connection.Close();
+                        return rows;
+                    }
+                    catch (SqlException exception)
+                    {
+                        connection.Close();
+                        throw new Exception(exception.Message);
+                    }
+                    finally
+                    {
+                        cmd.Dispose();
+                        connection.Close();
+                    }
                 }
             }
         }
@@ -254,10 +274,12 @@ namespace Common
                         object obj = cmd.ExecuteScalar();
                         if ((Object.Equals(obj, null)) || (Object.Equals(obj, DBNull.Value)))
                         {
+                            connection.Close();
                             return null;
                         }
                         else
                         {
+                            connection.Close();
                             return obj;
                         }
                     }
@@ -287,6 +309,7 @@ namespace Common
             }
             catch (SqlException exception)
             {
+                connection.Close();
                 throw new Exception(exception.Message);
             }
         }
@@ -298,44 +321,51 @@ namespace Common
         /// <returns>DataSet</returns>
         public static DataSet Query(string sqlString)
         {
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            try
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                DataSet ds = new DataSet();
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlString, connection);
-                adapter.Fill(ds, "ds");
-                return ds;
-            }
-            catch (Exception exception)
-            {
-                WriteLog("sql语句[{0}]错误信息：[{1}]调用堆栈[{2}]", sqlString, exception.Message, exception.StackTrace);
-                return null;
-            }
-            finally
-            {
-                connection.Close();
+                try
+                {
+                    DataSet ds = new DataSet();
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlString, connection);
+                    adapter.Fill(ds, "ds");
+                    connection.Close();
+                    return ds;
+                }
+                catch (Exception exception)
+                {
+                    WriteLog("sql语句[{0}]错误信息：[{1}]调用堆栈[{2}]", sqlString, exception.Message, exception.StackTrace);
+                    connection.Close();
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
         }
 
         public static DataTable QueryTable(string sqlString)
         {
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            try
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                DataTable dt = new DataTable();
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlString, connection);
-                adapter.Fill(dt);
-                return dt;
-            }
-            catch (Exception exception)
-            {
-                WriteLog("sql语句[{0}]错误信息：[{1}]调用堆栈[{2}]", sqlString, exception.Message, exception.StackTrace);
-                return null;
-                throw;
-            }
-            finally
-            {
-                connection.Close();
+                try
+                {
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlString, connection);
+                    adapter.Fill(dt);
+                    connection.Close();
+                    return dt;
+                }
+                catch (Exception exception)
+                {
+                    WriteLog("sql语句[{0}]错误信息：[{1}]调用堆栈[{2}]", sqlString, exception.Message, exception.StackTrace);
+                    connection.Close();
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
         }
 
@@ -361,10 +391,12 @@ namespace Common
                         PrepareCommand(cmd, connection, null, sqlString, cmdParams);
                         int rows = cmd.ExecuteNonQuery();
                         cmd.Parameters.Clear();
+                        connection.Close();
                         return rows;
                     }
                     catch (SqlException exception)
                     {
+                        connection.Close();
                         throw new Exception(exception.Message);
                     }
                 }
@@ -398,6 +430,7 @@ namespace Common
                     catch
                     {
                         trans.Rollback();
+                        conn.Close();
                         throw;
                     }
                 }
@@ -423,15 +456,18 @@ namespace Common
                         cmd.Parameters.Clear();
                         if ((Object.Equals(obj, null)) || (Object.Equals(obj, DBNull.Value)))
                         {
+                            connection.Close();
                             return null;
                         }
                         else
                         {
+                            connection.Close();
                             return obj;
                         }
                     }
                     catch (SqlException e)
                     {
+                        connection.Close();
                         throw new Exception(e.Message);
                     }
                 }
@@ -446,18 +482,23 @@ namespace Common
         /// <returns>SqlDataReader</returns>
         public static SqlDataReader ExecuteReader(string sqlString, params SqlParameter[] cmdParams)
         {
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            SqlCommand cmd = new SqlCommand();
-            try
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                PrepareCommand(cmd, connection, null, sqlString, cmdParams);
-                SqlDataReader myReader = cmd.ExecuteReader();
-                cmd.Parameters.Clear();
-                return myReader;
-            }
-            catch (SqlException e)
-            {
-                throw new Exception(e.Message);
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    try
+                    {
+                        PrepareCommand(cmd, connection, null, sqlString, cmdParams);
+                        SqlDataReader myReader = cmd.ExecuteReader();
+                        cmd.Parameters.Clear();
+                        return myReader;
+                    }
+                    catch (SqlException e)
+                    {
+                        connection.Close();
+                        throw new Exception(e.Message);
+                    }
+                }
             }
         }
 
@@ -483,8 +524,10 @@ namespace Common
                     }
                     catch (SqlException ex)
                     {
+                        connection.Close();
                         throw new Exception(ex.Message);
                     }
+                    connection.Close();
                     return ds;
                 }
             }

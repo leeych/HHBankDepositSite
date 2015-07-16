@@ -67,9 +67,7 @@
     <Content Include="Admin\BankRateManage.aspx" />
     <Content Include="Admin\UserManage.aspx" />
     <Content Include="App_Themes\Default\SmartGridView.css" />
-    <Content Include="CSS\css.css" />
     <Content Include="CSS\masterPage.css" />
-    <Content Include="CSS\navStyle.css" />
     <Content Include="CSS\Adminstyle.css" />
     <Content Include="Default.aspx" />
     <Content Include="Deposit.aspx" />
