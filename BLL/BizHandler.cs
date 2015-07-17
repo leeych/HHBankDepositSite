@@ -24,10 +24,6 @@ namespace BLL
                 {
                     if (instance == null)
                     {
-                        if (DateTime.Now.Year > 2015)
-                        {
-                            return null;
-                        }
                         instance = new BizHandler();
                     }
                     return instance;
